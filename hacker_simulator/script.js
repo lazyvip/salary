@@ -234,7 +234,13 @@ document.addEventListener('DOMContentLoaded', function() {
         updateStatus("完成");
         updateStatusText("黑客模拟完成");
         await addOutput("操作完成. 目标已被成功入侵.");
-        await addOutput("按任意键继续...");
+        
+        // 等待3秒后自动重新开始
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        output.innerHTML = '';
+        input.textContent = '';
+        updateProgress(0);
+        runHackingSimulation();
     }
     
     // 键盘事件监听
