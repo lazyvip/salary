@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', monospace;
+}
+
+body {
+    background-color: #000;
+    color: #0f0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    text-align: center;
+}
+
+.warning p {
+    margin-bottom: 20px;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+#start-btn, .home-link {
+    background-color: #333;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#start-btn:hover, .home-link:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #0f0;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.header .home-link {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #0f0;
+    padding: 10px;
+    background-color: rgba(0, 20, 0, 0.3);
+    position: relative;
+}
+
+.output {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+.prompt {
+    margin-right: 5px;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.side-panels {
+    display: flex;
+    margin-top: 10px;
+    height: 150px;
+}
+
+.panel {
+    flex: 1;
+    border: 1px solid #0f0;
+    margin: 0 5px;
+    padding: 5px;
+    overflow: hidden;
+    font-size: 12px;
+    background-color: rgba(0, 20, 0, 0.3);
+}
+
+.footer {
+    margin-top: 10px;
+    padding: 10px;
+    border-top: 1px solid #0f0;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #111;
+    border: 1px solid #0f0;
+    margin-bottom: 5px;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: #0f0;
+    transition: width 0.3s;
+}
+
+.status-text {
+    font-size: 12px;
+    text-align: center;
+}
+
+/* 动画效果 */
+.text-appear {
+    animation: textAppear 0.1s;
+}
+
+@keyframes textAppear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.glitch {
+    animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: rgba(0, 255, 0, 0.3);
+    animation: scanLine 8s linear infinite;
+}
+
+@keyframes scanLine {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* 弹窗效果 */
+.popup {
+    position: absolute;
+    background-color: rgba(0, 20, 0, 0.9);
+    border: 1px solid #0f0;
+    padding: 10px;
+    z-index: 100;
+    box-shadow: 0 0 10px #0f0;
+    animation: popupAppear 0.3s;
+}
+
+@keyframes popupAppear {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.home-link {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #333;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    z-index: 2000;
+}
+
+.home-link:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+#cancel-btn {
+    display: inline-block;
+    position: static;
+    margin-top: 10px;
+}

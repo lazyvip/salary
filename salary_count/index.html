@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时工资计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="../index.html" class="home-link">返回主页</a>
+    <div class="money-rain" id="money-rain"></div>
+    
+    <div class="container">
+        <div id="input-page" class="page active">
+            <h1>实时工资计算器</h1>
+            <div class="input-group">
+                <label for="monthly-salary">月薪 (人民币)</label>
+                <input type="number" id="monthly-salary" placeholder="请输入月薪" required>
+            </div>
+            <div class="input-group">
+                <label for="hours-per-day">每天工作小时数</label>
+                <input type="number" id="hours-per-day" placeholder="请输入每天工作小时" required>
+            </div>
+            <div class="input-group">
+                <label for="days-per-month">当月上班天数</label>
+                <input type="number" id="days-per-month" placeholder="请输入当月上班天数" required>
+            </div>
+            <button id="start-work" class="btn">上班</button>
+        </div>
+
+        <div id="timer-page" class="page">
+            <h1 class="working-title">正在上班中</h1>
+            <div class="timer" id="timer">00:00:00:00</div>
+            <div class="earned-money">
+                <span>已赚：</span>
+                <span id="earned-amount">￥0.00</span>
+            </div>
+            <button id="end-work" class="btn">下班</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

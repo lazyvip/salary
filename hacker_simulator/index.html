@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑客模拟器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="warning">
+        <p>注意：这只是一个娱乐性质的页面，模仿电视剧和电影中的"黑客"场景。这里没有真正的黑客行为发生。</p>
+        <button id="start-btn">开始模拟</button>
+        <button id="cancel-btn" class="home-link">取消攻击</button>
+    </div>
+    
+    <div class="container" id="hacker-screen">
+        <div class="header">
+            <div class="title">高级终端访问</div>
+            <a href="../index.html" class="home-link" id="cancel-btn">取消攻击</a>
+            <div class="status">状态: <span id="status">待命</span></div>
+        </div>
+        
+        <div class="main-screen">
+            <div class="output" id="output"></div>
+            <div class="input-line">
+                <span class="prompt">></span>
+                <span class="input" id="input"></span>
+                <span class="cursor" id="cursor">|</span>
+            </div>
+        </div>
+        
+        <div class="side-panels">
+            <div class="panel" id="panel1"></div>
+            <div class="panel" id="panel2"></div>
+        </div>
+        
+        <div class="footer">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="status-text" id="status-text">系统就绪</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

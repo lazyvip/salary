@@ -207,3 +207,26 @@ input:focus {
         height: 30px;
     }
 }
+
+.home-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background: rgba(35, 166, 213, 0.2);
+    border: 1px solid #23a6d5;
+    color: #23a6d5;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif;
+    z-index: 2000;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.home-link:hover {
+    background: #23a6d5;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(35, 166, 213, 0.5);
+    transform: translateY(-2px);
+}
