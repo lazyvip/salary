@@ -45,6 +45,15 @@
                 </div>
                 <div class="hover-effect"></div>
             </div>
+
+            <div class="card" onclick="window.location.href='https://logo.lazytool.top/'">
+                <div class="card-content">
+                    <div class="icon">🎨</div>
+                    <h2>P站Logo生成器</h2>
+                    <p>一键生成P站风格Logo</p>
+                </div>
+                <div class="hover-effect"></div>
+            </div>
         </div>
     </div>
     <div id="particles"></div>
@@ -52,5 +61,19 @@
         <p>© 2025 lazytool made by 公众号@懒人搜索</p>
     </footer>
     <script src="portal.js"></script>
+    <script>
+        // 获取P站Logo生成器卡片元素
+        const logoCard = document.querySelector('.card[onclick*="logo.lazytool.top"]');
+        
+        // 获取页面来源
+        const referrer = document.referrer;
+        
+        // 根据来源修改跳转链接
+        if (referrer.includes('salarycou.netlify.app')) {
+            logoCard.setAttribute('onclick', "window.location.href='https://lazylogo.netlify.app'");
+        } else if (referrer.includes('lazytool.top')) {
+            logoCard.setAttribute('onclick', "window.location.href='https://logo.lazytool.top'");
+        }
+    </script>
 </body>
 </html>
