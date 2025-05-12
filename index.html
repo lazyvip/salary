@@ -68,11 +68,24 @@
         // 获取页面来源
         const referrer = document.referrer;
         
-        // 根据来源修改跳转链接
-        if (referrer.includes('salarycou.netlify.app')) {
-            logoCard.setAttribute('onclick', "window.location.href='https://lazylogo.netlify.app'");
-        } else if (referrer.includes('lazytool.top')) {
-            logoCard.setAttribute('onclick', "window.location.href='https://logo.lazytool.top'");
+        // 添加调试信息
+        console.log('当前页面来源(referrer):', referrer);
+        
+        // 创建URL对象进行精确匹配
+        try {
+            const referrerUrl = new URL(referrer);
+            console.log('解析后的域名:', referrerUrl.hostname);
+            
+            // 使用精确的域名匹配
+            if (referrerUrl.hostname === 'salarycou.netlify.app') {
+                console.log('匹配到salarycou.netlify.app，设置跳转到lazylogo.netlify.app');
+                logoCard.setAttribute('onclick', "window.location.href='https://lazylogo.netlify.app'");
+            } else if (referrerUrl.hostname.endsWith('lazytool.top')) {
+                console.log('匹配到lazytool.top，设置跳转到logo.lazytool.top');
+                logoCard.setAttribute('onclick', "window.location.href='https://logo.lazytool.top'");
+            }
+        } catch (error) {
+            console.log('referrer解析错误或为空:', error);
         }
     </script>
 </body>
