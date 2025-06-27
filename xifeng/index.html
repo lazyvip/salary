@@ -93,6 +93,86 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
+        /* Search Section Styles */
+        .search-section {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .search-container {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 5px;
+            transition: all 0.3s ease;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .search-container:focus-within {
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 12px 20px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-btn, .clear-search-btn {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+        }
+
+        .search-btn:hover, .clear-search-btn:hover {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            transform: scale(1.05);
+        }
+
+        .search-results-info {
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+
+        .timeline-item.hidden {
+            display: none;
+        }
+
+        .search-highlight {
+            background: linear-gradient(45deg, #ffeb3b, #ffc107);
+            color: #333;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
         .timeline {
             position: relative;
             padding: 40px 0;
@@ -581,6 +661,16 @@
                 <button class="contact-btn" id="wechatBtn">小懒微信</button>
                 <button class="contact-btn" id="qrcodeBtn">关注公众号</button>
             </div>
+            
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="搜索文章标题或内容...">
+                    <button class="search-btn" id="searchBtn">🔍</button>
+                    <button class="clear-search-btn" id="clearSearchBtn" style="display: none;">✕</button>
+                </div>
+                <div class="search-results-info" id="searchResultsInfo" style="display: none;"></div>
+            </div>
         </div>
 
         <div class="timeline" id="timeline">
@@ -678,6 +768,141 @@
                 if (e.key === 'Escape') {
                     wechatModal.classList.remove('active');
                     qrcodeModal.classList.remove('active');
+                }
+            });
+        });
+
+        // 搜索功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const clearSearchBtn = document.getElementById('clearSearchBtn');
+            const searchResultsInfo = document.getElementById('searchResultsInfo');
+            let originalTimelineData = [];
+            let isSearchActive = false;
+
+            // 执行搜索
+            function performSearch() {
+                const searchTerm = searchInput.value.trim().toLowerCase();
+                
+                if (searchTerm === '') {
+                    clearSearch();
+                    return;
+                }
+
+                isSearchActive = true;
+                clearSearchBtn.style.display = 'flex';
+                
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                let visibleCount = 0;
+                
+                timelineItems.forEach((item, index) => {
+                    const title = item.querySelector('h3')?.textContent?.toLowerCase() || '';
+                    const preview = item.querySelector('.preview')?.textContent?.toLowerCase() || '';
+                    
+                    // 获取对应的原始数据中的aiPreview内容
+                    let aiPreviewContent = '';
+                    if (timelineData && timelineData[index] && timelineData[index].aiPreview) {
+                        aiPreviewContent = timelineData[index].aiPreview.toLowerCase();
+                    }
+                    
+                    // 搜索标题、预览文本和完整的AI概括内容
+                    if (title.includes(searchTerm) || preview.includes(searchTerm) || aiPreviewContent.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                        
+                        // 高亮搜索关键词
+                        highlightSearchTerm(item, searchTerm);
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // 显示搜索结果信息
+                searchResultsInfo.style.display = 'block';
+                searchResultsInfo.textContent = `找到 ${visibleCount} 篇相关文章`;
+                
+                if (visibleCount === 0) {
+                    searchResultsInfo.textContent = '未找到相关文章，请尝试其他关键词';
+                }
+            }
+
+            // 高亮搜索关键词
+            function highlightSearchTerm(item, searchTerm) {
+                const title = item.querySelector('h3');
+                const preview = item.querySelector('.preview');
+                
+                if (title) {
+                    const titleText = title.textContent;
+                    const highlightedTitle = titleText.replace(
+                        new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi'),
+                        '<span class="search-highlight">$1</span>'
+                    );
+                    title.innerHTML = highlightedTitle;
+                }
+                
+                if (preview) {
+                    const previewText = preview.textContent;
+                    const highlightedPreview = previewText.replace(
+                        new RegExp(`(${escapeRegExp(searchTerm)})`, 'gi'),
+                        '<span class="search-highlight">$1</span>'
+                    );
+                    preview.innerHTML = highlightedPreview;
+                }
+            }
+
+            // 转义正则表达式特殊字符
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            // 清除搜索
+            function clearSearch() {
+                isSearchActive = false;
+                searchInput.value = '';
+                clearSearchBtn.style.display = 'none';
+                searchResultsInfo.style.display = 'none';
+                
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                timelineItems.forEach(item => {
+                    item.classList.remove('hidden');
+                    
+                    // 移除高亮
+                    const title = item.querySelector('h3');
+                    const preview = item.querySelector('.preview');
+                    
+                    if (title) {
+                        title.innerHTML = title.textContent;
+                    }
+                    if (preview) {
+                        preview.innerHTML = preview.textContent;
+                    }
+                });
+            }
+
+            // 搜索按钮点击事件
+            searchBtn.addEventListener('click', performSearch);
+            
+            // 清除搜索按钮点击事件
+            clearSearchBtn.addEventListener('click', clearSearch);
+            
+            // 输入框回车搜索
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // 实时搜索（可选，输入时即时搜索）
+            searchInput.addEventListener('input', function() {
+                if (this.value.trim() === '') {
+                    clearSearch();
+                } else {
+                    // 延迟搜索，避免频繁触发
+                    clearTimeout(this.searchTimeout);
+                    this.searchTimeout = setTimeout(() => {
+                        performSearch();
+                    }, 300);
                 }
             });
         });
