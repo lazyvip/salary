@@ -93,6 +93,35 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
+        /* Back Button Styles */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
         /* Search Section Styles */
         .search-section {
             margin-top: 40px;
@@ -652,6 +681,12 @@
     </style>
 </head>
 <body>
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='../index.html'">
+        <span>←</span>
+        <span>返回主页</span>
+    </button>
+    
     <div class="container">
         <div class="header">
             <h1>记忆承载付费文 - AI导读</h1>
