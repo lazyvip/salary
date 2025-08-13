@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>懒人信息差分享</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+  
+    /* 卡片容器 - 固定尺寸和位置 */
+    #card-container {
+      position: relative;
+      width: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      padding: 30px;
+    }
+  
+    /* 自定义文本截断类 */
+    .text-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .text-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    /* 图标精确定位样式 */
+    .icon-container i {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+    }
+  
+    /* 头部大图标修正 */
+    .header-icon i {
+      position: relative;
+      top: -3px;
+      line-height: 0;
+    }
+  
+    /* 列标题图标修正 */
+    .column-icon i {
+      position: relative;
+      top: -2px;
+      line-height: 0;
+    }
+
+    /* 标题区域 */
+    .header-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #718096;
+      margin-bottom: 15px;
+    }
+
+    .scale-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    /* 核心数据展示 */
+    .data-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 8px;
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .data-item {
+      text-align: center;
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      position: relative;
+    }
+
+    .data-number {
+      font-size: 24px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 8px;
+    }
+
+    .data-label {
+      font-size: 12px;
+      color: #4a5568;
+      font-weight: 500;
+    }
+
+    .highlight-item {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      border: none;
+    }
+
+    .highlight-item .data-number {
+      color: white;
+      font-size: 28px;
+    }
+
+    .highlight-item .data-label {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* 技术流程 */
+    .workflow-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .workflow-item {
+      background: #f7fafc;
+      border-radius: 6px;
+      padding: 15px;
+      border-left: 4px solid #667eea;
+      position: relative;
+    }
+
+    .workflow-number {
+      background: #667eea;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+      position: absolute;
+      top: -8px;
+      left: -8px;
+    }
+
+    .workflow-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      margin-left: 15px;
+    }
+
+    .workflow-desc {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.4;
+      margin-left: 15px;
+    }
+
+    /* 技术栈 */
+    .tech-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .tech-item {
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      border-top: 3px solid #f56565;
+    }
+
+    .tech-icon {
+      background: #f56565;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-size: 16px;
+    }
+
+    .tech-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 6px;
+    }
+
+    .tech-desc {
+      font-size: 12px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    /* 运营策略 */
+    .strategy-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .strategy-item {
+      background: #f0fff4;
+      border: 1px solid #9ae6b4;
+      border-radius: 8px;
+      padding: 15px;
+      border-left: 4px solid #48bb78;
+    }
+
+    .strategy-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .strategy-desc {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    /* 成功要素 */
+    .success-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .success-content {
+      background: #fffaf0;
+      border: 1px solid #fbd38d;
+      border-radius: 6px;
+      padding: 15px;
+      border-left: 4px solid #ed8936;
+    }
+
+    .success-text {
+      font-size: 14px;
+      color: #2d3748;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .success-icon {
+      color: #ed8936;
+      font-size: 16px;
+    }
+
+    /* 底部信息 */
+    .bottom-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .target-audience {
+      font-size: 14px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+
+    .source-info {
+      font-size: 12px;
+      color: #718096;
+      text-align: right;
+    }
+  
+    /* 下载按钮固定定位，不占用卡片空间 */
+    .download-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #8B2332;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+  
+    .download-button i {
+      margin-right: 8px;
+    }
+  
+    .download-button:hover {
+      opacity: 0.9;
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  
+    .animate-spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+  <!-- 卡片容器 -->
+  <div id="card-container">
+    <!-- 标题区域 -->
+    <div class="header-section">
+      <div class="main-title card-title">
+        <i class="fas fa-robot header-icon"></i>
+        AI Agent短视频矩阵
+      </div>
+      <div class="subtitle">10个实习生运营上百账号，日播放破亿</div>
+      <div class="scale-badge">
+        <i class="fas fa-chart-line"></i> 规模化AI内容生产
+      </div>
+    </div>
+
+    <!-- 核心数据 -->
+    <div class="data-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-chart-bar"></i>
+        规模数据
+      </div>
+      <div class="data-grid">
+        <div class="data-item">
+          <div class="data-number">100+</div>
+          <div class="data-label">AI账号矩阵</div>
+        </div>
+        <div class="data-item highlight-item">
+          <div class="data-number">1亿+</div>
+          <div class="data-label">日均播放量</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">1000万+</div>
+          <div class="data-label">粉丝总量</div>
+        </div>
+        <div class="data-item">
+          <div class="data-number">10人</div>
+          <div class="data-label">运营团队</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技术流程 -->
+    <div class="workflow-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-cogs"></i>
+        制作流程
+      </div>
+      <div class="workflow-grid">
+        <div class="workflow-item">
+          <div class="workflow-number">1</div>
+          <div class="workflow-title">账号矩阵</div>
+          <div class="workflow-desc">批量注册管理多平台账号</div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-number">2</div>
+          <div class="workflow-title">文案库建设</div>
+          <div class="workflow-desc">热点新闻资讯普及内容库</div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-number">3</div>
+          <div class="workflow-title">素材处理</div>
+          <div class="workflow-desc">数字人改口型+原新闻素材去重</div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-number">4</div>
+          <div class="workflow-title">AI配音</div>
+          <div class="workflow-desc">自动生成多样化语音内容</div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-number">5</div>
+          <div class="workflow-title">批量剪辑</div>
+          <div class="workflow-desc">自动化视频制作和编辑</div>
+        </div>
+        <div class="workflow-item">
+          <div class="workflow-number">6</div>
+          <div class="workflow-title">一键发布</div>
+          <div class="workflow-desc">多平台同步批量发布</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技术栈 -->
+    <div class="tech-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-microchip"></i>
+        核心技术
+      </div>
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fas fa-user-tie"></i>
+          </div>
+          <div class="tech-title">数字人技术</div>
+          <div class="tech-desc">AI换脸、口型同步</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fas fa-volume-up"></i>
+          </div>
+          <div class="tech-title">AI语音合成</div>
+          <div class="tech-desc">多音色自动配音</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">
+            <i class="fas fa-cut"></i>
+          </div>
+          <div class="tech-title">自动剪辑</div>
+          <div class="tech-desc">批量视频制作工具</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 运营策略 -->
+    <div class="strategy-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-chess"></i>
+        运营策略
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-layer-group"></i>
+            矩阵布局
+          </div>
+          <div class="strategy-desc">多平台、多账号覆盖不同垂直领域</div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-fire"></i>
+            热点追踪
+          </div>
+          <div class="strategy-desc">实时抓取热门新闻快速制作内容</div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-sync-alt"></i>
+            自动化流程
+          </div>
+          <div class="strategy-desc">从内容生产到发布全流程自动化</div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-chart-line"></i>
+            数据驱动
+          </div>
+          <div class="strategy-desc">基于播放数据优化内容策略</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 成功要素 -->
+    <div class="success-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-key"></i>
+        成功要素
+      </div>
+      <div class="success-content">
+        <div class="success-text">
+          <i class="fas fa-lightbulb success-icon"></i>
+          <span>技术+规模+效率：AI技术降低制作成本，矩阵运营放大流量效果，自动化提升运营效率</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="bottom-section">
+      <div class="target-audience">
+        <i class="fas fa-users"></i>
+        适合：AI技术团队、MCN机构、短视频创业者
+      </div>
+      <div class="source-info">
+        公众号@懒人搜索
+      </div>
+    </div>
+  </div>
+  
+  <!-- 下载按钮 - 必须包含 -->
+  <button id="download-btn" class="download-button">
+    <i class="fas fa-download"></i> 下载卡片PNG图像
+  </button>
+
+  <!-- 下载功能脚本 - 必须包含且不得修改 -->
+  <script>
+    // 确保DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取下载按钮
+      const downloadBtn = document.getElementById('download-btn');
+    
+      // 添加点击事件
+      downloadBtn.addEventListener('click', async function() {
+        try {
+          // 显示加载状态
+          const originalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner animate-spin"></i> 正在生成高清图片...';
+          this.disabled = true;
+        
+          // 先隐藏下载按钮再截图
+          this.style.display = 'none';
+        
+          const cardElement = document.getElementById('card-container');
+        
+          // 确保字体和图标完全加载
+          await document.fonts.ready;
+        
+          // 触发重排，确保布局稳定
+          cardElement.getBoundingClientRect();
+        
+          // 增加等待时间确保所有渲染完成
+          await new Promise(resolve => setTimeout(resolve, 500));
+        
+          // 强制应用所有计算样式，防止重叠问题
+          const forceStyleRecalc = (element) => {
+            if (!element) return;
+            window.getComputedStyle(element).getPropertyValue('position');
+            const children = element.children;
+            for (let i = 0; i < children.length; i++) {
+              forceStyleRecalc(children[i]);
+            }
+          };
+          forceStyleRecalc(cardElement);
+        
+          // 使用html2canvas，处理图标位置和元素重叠问题
+          const canvas = await html2canvas(cardElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: cardElement.style.backgroundColor || "#667eea",
+            logging: false,
+            onclone: function(clonedDoc) {
+              const clonedCard = clonedDoc.getElementById('card-container');
+            
+              // 确保布局稳定性
+              clonedCard.style.position = 'relative';
+              clonedCard.style.width = '800px';
+            
+              // 处理所有定位元素，确保正确的堆叠顺序
+              const positionedElements = clonedCard.querySelectorAll('[style*="position"]');
+              positionedElements.forEach((el, index) => {
+                // 确保有明确的z-index，防止重叠混乱
+                if (!el.style.zIndex) {
+                  el.style.zIndex = 10 + index;
+                }
+              });
+            
+              // 修正所有图标位置
+              const icons = clonedDoc.querySelectorAll('i');
+              icons.forEach(icon => {
+                icon.style.position = 'relative';
+                icon.style.top = '-2px';
+                icon.style.display = 'inline-block'; 
+                icon.style.lineHeight = '1';
+              });
+            
+              // 特别处理标题图标
+              const headerIcons = clonedDoc.querySelectorAll('.header-icon i');
+              headerIcons.forEach(icon => {
+                icon.style.top = '-4px';
+              });
+            
+              // 特别处理列标题图标
+              const columnIcons = clonedDoc.querySelectorAll('.column-icon i');
+              columnIcons.forEach(icon => {
+                icon.style.top = '-3px';
+              });
+            
+              // 确保文本容器不重叠
+              const textContainers = clonedCard.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+              textContainers.forEach(el => {
+                // 如果没有明确的overflow设置，添加overflow:hidden
+                if (!el.style.overflow) {
+                  el.style.overflow = 'hidden';
+                }
+              });
+            }
+          });
+        
+          // 转换为PNG并下载
+          canvas.toBlob(function(blob) {
+            // 创建下载链接
+            const link = document.createElement('a');
+            // 从卡片标题获取文件名，如果没有则使用默认名称
+            const title = document.querySelector('.card-title') || document.querySelector('h1');
+            const fileName = (title ? title.textContent.trim().substring(0, 30) : '文章概念卡片') + '.png';
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          
+            // 清理URL对象
+            URL.revokeObjectURL(link.href);
+          
+            // 恢复按钮状态和显示
+            downloadBtn.style.display = 'flex';
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.disabled = false;
+          }, 'image/png', 1.0);
+        
+        } catch (error) {
+          console.error('生成图片失败:', error);
+          alert('生成图片失败，请重试');
+        
+          // 恢复按钮状态
+          this.style.display = 'flex';
+          this.innerHTML = '<i class="fas fa-download"></i> 下载卡片PNG图像';
+          this.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱奇艺创作者分成计划</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00b894, #55a3ff);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #e84393;
+        }
+        
+        .highlight-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-text {
+            font-size: 14px;
+            color: #636e72;
+            font-weight: 500;
+        }
+        
+        .revenue-box {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .revenue-box h3 {
+            color: #2d3436;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .revenue-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .revenue-item {
+            background: rgba(255,255,255,0.7);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #2d3436;
+        }
+        
+        .revenue-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00b894;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title::before {
+            content: '🎬';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f2f6;
+            color: #636e72;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list li::before {
+            content: '▶';
+            color: #00b894;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .key-insight h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-insight p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .source {
+            text-align: right;
+            font-size: 12px;
+            color: #b2bec3;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f2f6;
+        }
+        
+        .export-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .export-btn {
+                position: static;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportCard()">导出卡片</button>
+    
+    <div class="card" id="knowledge-card">
+        <div class="header">
+            <h1>爱奇艺创作者分成计划</h1>
+            <div class="subtitle">新兴视频变现渠道</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <div class="highlight-number">100粉</div>
+                <div class="highlight-text">即可开通分成计划</div>
+            </div>
+            
+            <div class="revenue-box">
+                <h3>💰 收益数据</h3>
+                <div class="revenue-items">
+                    <div class="revenue-item">
+                        <div class="revenue-number">30-50元</div>
+                        <div>万次播放收益</div>
+                    </div>
+                    <div class="revenue-item">
+                        <div class="revenue-number">2300+</div>
+                        <div>10条视频半月收益</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">操作要点</div>
+                <ul class="info-list">
+                    <li>必须通过网页端发布才有收益</li>
+                    <li>搜索"爱奇艺号"登录后台</li>
+                    <li>点击"创作者中心"发布内容</li>
+                    <li>不要在APP内上传视频</li>
+                </ul>
+            </div>
+            
+            <div class="key-insight">
+                <h3>🎯 内容策略</h3>
+                <p>可使用AI写文案或剪映一键生成视频。热播剧剪辑、剧宣相关、明星采访等内容在平台表现较好，适合作为自媒体分发平台。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">优势特点</div>
+                <ul class="info-list">
+                    <li>门槛极低，100粉即可开通</li>
+                    <li>收益相对可观</li>
+                    <li>可作为内容分发渠道</li>
+                    <li>支持AI工具辅助创作</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function exportCard() {
+            const card = document.getElementById('knowledge-card');
+            const exportBtn = document.querySelector('.export-btn');
+            
+            // 临时隐藏导出按钮
+            exportBtn.style.display = 'none';
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                // 恢复导出按钮
+                exportBtn.style.display = 'block';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '爱奇艺创作者分成计划-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(error => {
+                exportBtn.style.display = 'block';
+                console.error('导出失败:', error);
+                alert('导出失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

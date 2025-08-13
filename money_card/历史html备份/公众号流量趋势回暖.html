@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号流量趋势回暖案例</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #e84393;
+        }
+        
+        .highlight-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-text {
+            font-size: 14px;
+            color: #636e72;
+            font-weight: 500;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title::before {
+            content: '📈';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f2f6;
+            color: #636e72;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list li::before {
+            content: '▶';
+            color: #00b894;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .key-insight h3 {
+            color: #2d3436;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-insight p {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .trend-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .trend-box h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .trend-box p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .source {
+            text-align: right;
+            font-size: 12px;
+            color: #b2bec3;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f2f6;
+        }
+        
+        .export-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .export-btn {
+                position: static;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportCard()">导出卡片</button>
+    
+    <div class="card" id="knowledge-card">
+        <div class="header">
+            <h1>公众号流量趋势回暖</h1>
+            <div class="subtitle">6月开始流量明显好转</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <div class="highlight-number">100万+</div>
+                <div class="highlight-text">单月流量主收益案例</div>
+            </div>
+            
+            <div class="trend-box">
+                <h3>🔮 趋势预判</h3>
+                <p>亦仁老大精准预判公众号流量回暖趋势，提前布局超级标项目，体现了对平台动向的敏锐洞察力。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">流量变化</div>
+                <ul class="info-list">
+                    <li>上半年流量持续低迷</li>
+                    <li>6月开始流量逐步回暖</li>
+                    <li>流量主单价表现不错</li>
+                    <li>部分账号收益显著提升</li>
+                </ul>
+            </div>
+            
+            <div class="key-insight">
+                <h3>💡 关键洞察</h3>
+                <p>公众号存在明显的季节性流量波动，下半年通常表现更好。提前预判趋势并坚持布局的重要性不言而喻。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">运营策略</div>
+                <ul class="info-list">
+                    <li>坚持爆文内容策略</li>
+                    <li>考虑加入人设打造</li>
+                    <li>避免一波流现象</li>
+                    <li>追求长期稳定运营</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function exportCard() {
+            const card = document.getElementById('knowledge-card');
+            const exportBtn = document.querySelector('.export-btn');
+            
+            // 临时隐藏导出按钮
+            exportBtn.style.display = 'none';
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                // 恢复导出按钮
+                exportBtn.style.display = 'block';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '公众号流量趋势回暖-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(error => {
+                exportBtn.style.display = 'block';
+                console.error('导出失败:', error);
+                alert('导出失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

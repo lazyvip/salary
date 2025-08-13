@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号垂直小号变现攻略</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .core-concept {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid #00b894;
+            text-align: center;
+        }
+        
+        .core-concept h3 {
+            color: #00a085;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .core-concept h3 i {
+            margin-right: 10px;
+            font-size: 26px;
+        }
+        
+        .three-keys {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .key-item {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .key-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .key-item .icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #00b894, #00a085);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .key-item h4 {
+            color: #2d3436;
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-item p {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .case-studies {
+            margin: 30px 0;
+        }
+        
+        .case-studies h3 {
+            color: #2d3436;
+            font-size: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .case-studies h3 i {
+            margin-right: 10px;
+            color: #fdcb6e;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .case-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .case-item .title {
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .case-item .description {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .process-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .process-section h3 {
+            color: #1976d2;
+            font-size: 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .process-section h3 i {
+            margin-right: 10px;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .step-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2196f3, #1976d2);
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .step-item .step-number {
+            background: #2196f3;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .step-item h4 {
+            color: #2d3436;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .step-item p {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .ai-tips {
+            background: #f1f3f4;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .ai-tips h4 {
+            color: #2d3436;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ai-tips h4 i {
+            margin-right: 10px;
+            color: #6c5ce7;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .tip-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tip-card .tip-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6c5ce7, #5f3dc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .tip-card h5 {
+            color: #2d3436;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .tip-card p {
+            color: #636e72;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #d1f2eb 0%, #a3e4d7 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .key-points h4 {
+            color: #00a085;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points h4 i {
+            margin-right: 10px;
+        }
+        
+        .points-list {
+            list-style: none;
+        }
+        
+        .points-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 168, 133, 0.2);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .points-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .points-list li i {
+            color: #00b894;
+            margin-right: 12px;
+            margin-top: 2px;
+        }
+        
+        .footer {
+            background: #2d3436;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .footer .brand {
+            font-weight: bold;
+            color: #00b894;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 184, 148, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 184, 148, 0.4);
+        }
+        
+        .download-btn i {
+            font-size: 18px;
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .three-keys,
+            .case-grid,
+            .process-steps,
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1><i class="fab fa-weixin"></i> 公众号垂直小号变现攻略</h1>
+            <p class="subtitle">窄·专·粘三字诀 · 精准获客·高效转化·持续变现</p>
+        </div>
+        
+        <div class="content">
+            <div class="core-concept">
+                <h3><i class="fas fa-bullseye"></i> 核心三字诀</h3>
+                <div class="three-keys">
+                    <div class="key-item">
+                        <div class="icon"><i class="fas fa-crosshairs"></i></div>
+                        <h4>窄</h4>
+                        <p>定位要窄，专注细分领域，避免大而全的内容定位</p>
+                    </div>
+                    <div class="key-item">
+                        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h4>专</h4>
+                        <p>内容要专业，提供"伸手就能用"的实操方法</p>
+                    </div>
+                    <div class="key-item">
+                        <div class="icon"><i class="fas fa-heart"></i></div>
+                        <h4>粘</h4>
+                        <p>信任运营要粘性，通过持续价值输出建立信任</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="case-studies">
+                <h3><i class="fas fa-star"></i> 成功案例参考</h3>
+                <div class="case-grid">
+                    <div class="case-item">
+                        <div class="title">4-8岁儿童创意手抄报指南</div>
+                        <div class="description">专注特定年龄段，提供具体可操作的手抄报制作方法</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="title">6-8岁女童民族舞安全训练</div>
+                        <div class="description">细分到性别和舞种，解决家长关心的安全问题</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="title">0-3岁宝宝触觉训练</div>
+                        <div class="description">聚焦早教细分领域，提供专业训练方法</div>
+                    </div>
+                    <div class="case-item">
+                        <div class="title">围棋老师月增5个长期班</div>
+                        <div class="description">1500粉丝实现稳定变现，内容与获客完美结合</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-section">
+                <h3><i class="fas fa-cogs"></i> 四步变现闭环</h3>
+                <div class="process-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h4>公众号筛选精准人群</h4>
+                        <p>通过干货内容吸引目标用户，设置钩子筛选高意向客户</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h4>社群沉淀信任</h4>
+                        <p>建立专业社群，每日价值输出，引流视频号扩大影响</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h4>直播集中转化</h4>
+                        <p>定期主题直播，现场演示方法，限时优惠促进下单</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h4>微信分层运营</h4>
+                        <p>个人微信精细化运营，分层推送，促进复购和升单</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-tips">
+                <h4><i class="fas fa-robot"></i> AI助力内容创作</h4>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-edit"></i></div>
+                        <h5>内容优化</h5>
+                        <p>用AI改写草稿，增加生活化案例，提升内容亲和力</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-eye"></i></div>
+                        <h5>标题优化</h5>
+                        <p>批量生成吸睛标题，结合爆款逻辑，提升点击率</p>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <h5>排版优化</h5>
+                        <p>自动调整段落结构，适配手机阅读，提升用户体验</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h4><i class="fas fa-key"></i> 关键成功要素</h4>
+                <ul class="points-list">
+                    <li><i class="fas fa-check-circle"></i>内容与变现要缠在一起，每篇文章都为获客铺路</li>
+                    <li><i class="fas fa-check-circle"></i>重复中见专业，持续深耕细分领域建立权威</li>
+                    <li><i class="fas fa-check-circle"></i>1000个精准粉丝比5000个泛粉更有价值</li>
+                    <li><i class="fas fa-check-circle"></i>建立三个素材库：问题库、案例库、观点库</li>
+                    <li><i class="fas fa-check-circle"></i>坚持长期主义，持续出现比偶尔爆款更重要</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>来源：<span class="brand">懒人搜索</span> | 专注信息差挖掘与商业洞察</p>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>
+        下载卡片
+    </button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            html2canvas(document.getElementById('card'), {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                width: 800,
+                height: document.getElementById('card').offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '公众号垂直小号变现攻略.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                button.style.display = 'flex';
+            }).catch(error => {
+                console.error('下载失败:', error);
+                button.style.display = 'flex';
+                alert('下载失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

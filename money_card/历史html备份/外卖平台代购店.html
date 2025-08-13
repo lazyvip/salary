@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>懒人信息差分享</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+  
+    /* 卡片容器 - 固定尺寸和位置 */
+    #card-container {
+      position: relative;
+      width: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      padding: 30px;
+    }
+  
+    /* 自定义文本截断类 */
+    .text-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .text-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    /* 图标精确定位样式 */
+    .icon-container i {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+    }
+  
+    /* 头部大图标修正 */
+    .header-icon i {
+      position: relative;
+      top: -3px;
+      line-height: 0;
+    }
+  
+    /* 列标题图标修正 */
+    .column-icon i {
+      position: relative;
+      top: -2px;
+      line-height: 0;
+    }
+
+    /* 标题区域 */
+    .header-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #718096;
+      margin-bottom: 15px;
+    }
+
+    .highlight-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    /* 商业模式 */
+    .model-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 8px;
+    }
+
+    .model-content {
+      background: #f0fff4;
+      border: 1px solid #9ae6b4;
+      border-radius: 8px;
+      padding: 20px;
+      border-left: 4px solid #48bb78;
+      text-align: center;
+    }
+
+    .model-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .model-desc {
+      font-size: 16px;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+
+    /* 核心优势 */
+    .advantage-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .advantage-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .advantage-item {
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 8px;
+      padding: 18px;
+      border-left: 4px solid #f56565;
+    }
+
+    .advantage-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .advantage-desc {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .advantage-icon {
+      color: #f56565;
+      font-size: 16px;
+    }
+
+    /* 拓展思路 */
+    .expansion-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .expansion-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 15px;
+    }
+
+    .expansion-item {
+      background: #fffaf0;
+      border: 1px solid #fbd38d;
+      border-radius: 8px;
+      padding: 18px;
+      border-left: 4px solid #ed8936;
+      position: relative;
+    }
+
+    .expansion-number {
+      background: #ed8936;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      position: absolute;
+      top: -10px;
+      left: -10px;
+    }
+
+    .expansion-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 10px;
+      margin-left: 15px;
+    }
+
+    .expansion-desc {
+      font-size: 14px;
+      color: #4a5568;
+      line-height: 1.5;
+      margin-left: 15px;
+    }
+
+    /* 操作要点 */
+    .operation-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .operation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .operation-item {
+      background: #e6fffa;
+      border: 1px solid #81e6d9;
+      border-radius: 8px;
+      padding: 18px;
+      text-align: center;
+      border-top: 3px solid #38b2ac;
+    }
+
+    .operation-icon {
+      background: #38b2ac;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 16px;
+    }
+
+    .operation-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    .operation-desc {
+      font-size: 12px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    /* 适用场景 */
+    .scenario-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .scenario-item {
+      background: #f7fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 18px;
+      border-left: 4px solid #667eea;
+    }
+
+    .scenario-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-desc {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    .scenario-icon {
+      color: #667eea;
+      font-size: 16px;
+    }
+
+    /* 底部信息 */
+    .bottom-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .target-audience {
+      font-size: 14px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+
+    .source-info {
+      font-size: 12px;
+      color: #718096;
+      text-align: right;
+    }
+  
+    /* 下载按钮固定定位，不占用卡片空间 */
+    .download-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #8B2332;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+  
+    .download-button i {
+      margin-right: 8px;
+    }
+  
+    .download-button:hover {
+      opacity: 0.9;
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  
+    .animate-spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+  <!-- 卡片容器 -->
+  <div id="card-container">
+    <!-- 标题区域 -->
+    <div class="header-section">
+      <div class="main-title card-title">
+        <i class="fas fa-motorcycle header-icon"></i>
+        外卖平台代购店
+      </div>
+      <div class="subtitle">火爆商品的新销售渠道</div>
+      <div class="highlight-badge">
+        <i class="fas fa-rocket"></i> 新兴商业模式
+      </div>
+    </div>
+
+    <!-- 商业模式 -->
+    <div class="model-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-lightbulb"></i>
+        商业模式
+      </div>
+      <div class="model-content">
+        <div class="model-title">
+          <i class="fas fa-store"></i>
+          外卖平台代购模式
+        </div>
+        <div class="model-desc">
+          利用外卖平台的流量和便民属性，为火爆商品或特殊需求商品提供代购服务，赚取服务费和差价
+        </div>
+      </div>
+    </div>
+
+    <!-- 核心优势 -->
+    <div class="advantage-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-star"></i>
+        核心优势
+      </div>
+      <div class="advantage-grid">
+        <div class="advantage-item">
+          <div class="advantage-title">
+            <i class="fas fa-users advantage-icon"></i>
+            流量红利
+          </div>
+          <div class="advantage-desc">外卖平台用户基数大，活跃度高，天然流量优势</div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-title">
+            <i class="fas fa-clock advantage-icon"></i>
+            即时需求
+          </div>
+          <div class="advantage-desc">满足用户即时购买需求，提供便民服务</div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-title">
+            <i class="fas fa-dollar-sign advantage-icon"></i>
+            低成本启动
+          </div>
+          <div class="advantage-desc">无需实体店面，只需平台入驻即可开始运营</div>
+        </div>
+        <div class="advantage-item">
+          <div class="advantage-title">
+            <i class="fas fa-shipping-fast advantage-icon"></i>
+            配送便利
+          </div>
+          <div class="advantage-desc">依托外卖配送体系，快速送达用户手中</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 拓展思路 -->
+    <div class="expansion-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-expand-arrows-alt"></i>
+        拓展思路
+      </div>
+      <div class="expansion-grid">
+        <div class="expansion-item">
+          <div class="expansion-number">1</div>
+          <div class="expansion-title">品牌代购扩展</div>
+          <div class="expansion-desc">山姆、Costco等会员店代购，奢侈品代购，海外商品代购等热门品类</div>
+        </div>
+        <div class="expansion-item">
+          <div class="expansion-number">2</div>
+          <div class="expansion-title">特殊商品代购</div>
+          <div class="expansion-desc">未开通外卖的店铺商品，跑腿费昂贵的商品，特殊时段限购商品</div>
+        </div>
+        <div class="expansion-item">
+          <div class="expansion-number">3</div>
+          <div class="expansion-title">平台流量利用</div>
+          <div class="expansion-desc">其他品类商品也可入驻外卖平台，蹭取平台流量红利</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 操作要点 -->
+    <div class="operation-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-cogs"></i>
+        操作要点
+      </div>
+      <div class="operation-grid">
+        <div class="operation-item">
+          <div class="operation-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <div class="operation-title">选品策略</div>
+          <div class="operation-desc">选择热门、刚需、高频商品</div>
+        </div>
+        <div class="operation-item">
+          <div class="operation-icon">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <div class="operation-title">定价策略</div>
+          <div class="operation-desc">合理设置服务费和配送费</div>
+        </div>
+        <div class="operation-item">
+          <div class="operation-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="operation-title">服务质量</div>
+          <div class="operation-desc">保证商品质量和配送时效</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 适用场景 -->
+    <div class="scenario-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-map-marked-alt"></i>
+        适用场景
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario-item">
+          <div class="scenario-title">
+            <i class="fas fa-fire scenario-icon"></i>
+            爆款商品
+          </div>
+          <div class="scenario-desc">网红产品、限量商品、热门新品等</div>
+        </div>
+        <div class="scenario-item">
+          <div class="scenario-title">
+            <i class="fas fa-building scenario-icon"></i>
+            会员店商品
+          </div>
+          <div class="scenario-desc">山姆、Costco等会员制商店商品</div>
+        </div>
+        <div class="scenario-item">
+          <div class="scenario-title">
+            <i class="fas fa-clock scenario-icon"></i>
+            应急需求
+          </div>
+          <div class="scenario-desc">深夜、节假日等特殊时段的购物需求</div>
+        </div>
+        <div class="scenario-item">
+          <div class="scenario-title">
+            <i class="fas fa-gift scenario-icon"></i>
+            特殊商品
+          </div>
+          <div class="scenario-desc">生鲜、药品、母婴用品等特殊品类</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="bottom-section">
+      <div class="target-audience">
+        <i class="fas fa-users"></i>
+        适合：电商创业者、代购从业者、本地服务商
+      </div>
+      <div class="source-info">
+        公众号@懒人搜索
+      </div>
+    </div>
+  </div>
+  
+  <!-- 下载按钮 - 必须包含 -->
+  <button id="download-btn" class="download-button">
+    <i class="fas fa-download"></i> 下载卡片PNG图像
+  </button>
+
+  <!-- 下载功能脚本 - 必须包含且不得修改 -->
+  <script>
+    // 确保DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取下载按钮
+      const downloadBtn = document.getElementById('download-btn');
+    
+      // 添加点击事件
+      downloadBtn.addEventListener('click', async function() {
+        try {
+          // 显示加载状态
+          const originalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner animate-spin"></i> 正在生成高清图片...';
+          this.disabled = true;
+        
+          // 先隐藏下载按钮再截图
+          this.style.display = 'none';
+        
+          const cardElement = document.getElementById('card-container');
+        
+          // 确保字体和图标完全加载
+          await document.fonts.ready;
+        
+          // 触发重排，确保布局稳定
+          cardElement.getBoundingClientRect();
+        
+          // 增加等待时间确保所有渲染完成
+          await new Promise(resolve => setTimeout(resolve, 500));
+        
+          // 强制应用所有计算样式，防止重叠问题
+          const forceStyleRecalc = (element) => {
+            if (!element) return;
+            window.getComputedStyle(element).getPropertyValue('position');
+            const children = element.children;
+            for (let i = 0; i < children.length; i++) {
+              forceStyleRecalc(children[i]);
+            }
+          };
+          forceStyleRecalc(cardElement);
+        
+          // 使用html2canvas，处理图标位置和元素重叠问题
+          const canvas = await html2canvas(cardElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: cardElement.style.backgroundColor || "#667eea",
+            logging: false,
+            onclone: function(clonedDoc) {
+              const clonedCard = clonedDoc.getElementById('card-container');
+            
+              // 确保布局稳定性
+              clonedCard.style.position = 'relative';
+              clonedCard.style.width = '800px';
+            
+              // 处理所有定位元素，确保正确的堆叠顺序
+              const positionedElements = clonedCard.querySelectorAll('[style*="position"]');
+              positionedElements.forEach((el, index) => {
+                // 确保有明确的z-index，防止重叠混乱
+                if (!el.style.zIndex) {
+                  el.style.zIndex = 10 + index;
+                }
+              });
+            
+              // 修正所有图标位置
+              const icons = clonedDoc.querySelectorAll('i');
+              icons.forEach(icon => {
+                icon.style.position = 'relative';
+                icon.style.top = '-2px';
+                icon.style.display = 'inline-block'; 
+                icon.style.lineHeight = '1';
+              });
+            
+              // 特别处理标题图标
+              const headerIcons = clonedDoc.querySelectorAll('.header-icon i');
+              headerIcons.forEach(icon => {
+                icon.style.top = '-4px';
+              });
+            
+              // 特别处理列标题图标
+              const columnIcons = clonedDoc.querySelectorAll('.column-icon i');
+              columnIcons.forEach(icon => {
+                icon.style.top = '-3px';
+              });
+            
+              // 确保文本容器不重叠
+              const textContainers = clonedCard.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+              textContainers.forEach(el => {
+                // 如果没有明确的overflow设置，添加overflow:hidden
+                if (!el.style.overflow) {
+                  el.style.overflow = 'hidden';
+                }
+              });
+            }
+          });
+        
+          // 转换为PNG并下载
+          canvas.toBlob(function(blob) {
+            // 创建下载链接
+            const link = document.createElement('a');
+            // 从卡片标题获取文件名，如果没有则使用默认名称
+            const title = document.querySelector('.card-title') || document.querySelector('h1');
+            const fileName = (title ? title.textContent.trim().substring(0, 30) : '文章概念卡片') + '.png';
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          
+            // 清理URL对象
+            URL.revokeObjectURL(link.href);
+          
+            // 恢复按钮状态和显示
+            downloadBtn.style.display = 'flex';
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.disabled = false;
+          }, 'image/png', 1.0);
+        
+        } catch (error) {
+          console.error('生成图片失败:', error);
+          alert('生成图片失败，请重试');
+        
+          // 恢复按钮状态
+          this.style.display = 'flex';
+          this.innerHTML = '<i class="fas fa-download"></i> 下载卡片PNG图像';
+          this.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

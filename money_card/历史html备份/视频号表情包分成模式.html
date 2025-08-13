@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频号表情包分成模式</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .highlight-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .highlight-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .data-item {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            border-left: 4px solid #e17055;
+        }
+        
+        .data-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        .data-text {
+            font-size: 12px;
+            color: #636e72;
+            font-weight: 500;
+        }
+        
+        .process-section {
+            margin-bottom: 20px;
+        }
+        
+        .process-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .process-title::before {
+            content: '🎬';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .process-item {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .process-item h4 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 6px;
+        }
+        
+        .process-item p {
+            font-size: 13px;
+            color: #636e72;
+            line-height: 1.4;
+        }
+        
+        .script-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .script-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .script-title::before {
+            content: '🎤';
+            margin-right: 8px;
+        }
+        
+        .script-content {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title::before {
+            content: '💡';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f2f6;
+            color: #636e72;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list li::before {
+            content: '▶';
+            color: #fd79a8;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .key-insight h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-insight p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .source {
+            text-align: right;
+            font-size: 12px;
+            color: #b2bec3;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f2f6;
+        }
+        
+        .export-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .export-btn {
+                position: static;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportCard()">导出卡片</button>
+    
+    <div class="card" id="knowledge-card">
+        <div class="header">
+            <h1>视频号表情包分成</h1>
+            <div class="subtitle">简单操作高互动</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <div class="highlight-title">异常值发现</div>
+                <div class="highlight-desc">留言比分享还多，互动越多分成越高</div>
+            </div>
+            
+            <div class="script-box">
+                <div class="script-title">固定话术</div>
+                <div class="script-content">
+                    "观众朋友们大家好，某某表情包已经抠好，背景图放在评论区了，请大家自取"
+                </div>
+            </div>
+            
+            <div class="process-section">
+                <div class="process-title">操作流程</div>
+                
+                <div class="process-item">
+                    <h4>1️⃣ 选择热门表情包</h4>
+                    <p>挑选当下流行的表情包素材</p>
+                </div>
+                
+                <div class="process-item">
+                    <h4>2️⃣ 录制简单视频</h4>
+                    <p>使用固定话术，每次只换表情包</p>
+                </div>
+                
+                <div class="process-item">
+                    <h4>3️⃣ 评论区放素材</h4>
+                    <p>将抠好的表情包背景图放在评论区</p>
+                </div>
+                
+                <div class="process-item">
+                    <h4>4️⃣ 引导用户互动</h4>
+                    <p>鼓励用户留言获取，提高互动率</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">核心优势</div>
+                <ul class="info-list">
+                    <li>制作成本极低</li>
+                    <li>用户需求刚性</li>
+                    <li>互动率极高</li>
+                    <li>可批量复制</li>
+                </ul>
+            </div>
+            
+            <div class="key-insight">
+                <h3>🚀 盈利逻辑</h3>
+                <p>通过提供免费表情包素材吸引用户互动，高互动率带来更多广告点击，从而获得更高的视频号分成收益。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">拓展思路</div>
+                <ul class="info-list">
+                    <li>可扩展到其他素材类型</li>
+                    <li>建立用户群体进行二次变现</li>
+                    <li>与表情包制作工具合作</li>
+                    <li>开发表情包定制服务</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function exportCard() {
+            const card = document.getElementById('knowledge-card');
+            const exportBtn = document.querySelector('.export-btn');
+            
+            // 临时隐藏导出按钮
+            exportBtn.style.display = 'none';
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                // 恢复导出按钮
+                exportBtn.style.display = 'block';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '视频号表情包分成模式-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(error => {
+                exportBtn.style.display = 'block';
+                console.error('导出失败:', error);
+                alert('导出失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

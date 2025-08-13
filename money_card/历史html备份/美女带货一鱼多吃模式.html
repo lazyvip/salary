@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美女带货一鱼多吃模式</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .profit-highlight {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+        
+        .profit-amount {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .profit-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .data-item {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            border-left: 4px solid #e17055;
+        }
+        
+        .data-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 5px;
+        }
+        
+        .data-text {
+            font-size: 12px;
+            color: #636e72;
+            font-weight: 500;
+        }
+        
+        .model-section {
+            margin-bottom: 20px;
+        }
+        
+        .model-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .model-title::before {
+            content: '🎯';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .model-item {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .model-item h4 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 6px;
+        }
+        
+        .model-item p {
+            font-size: 13px;
+            color: #636e72;
+            line-height: 1.4;
+        }
+        
+        .cost-analysis {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .cost-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        
+        .cost-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .cost-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .cost-value {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .cost-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title::before {
+            content: '💡';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f2f6;
+            color: #636e72;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list li::before {
+            content: '▶';
+            color: #fd79a8;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .key-insight h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-insight p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .source {
+            text-align: right;
+            font-size: 12px;
+            color: #b2bec3;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f2f6;
+        }
+        
+        .export-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .export-btn {
+                position: static;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportCard()">导出卡片</button>
+    
+    <div class="card" id="knowledge-card">
+        <div class="header">
+            <h1>美女带货一鱼多吃</h1>
+            <div class="subtitle">多重变现模式</div>
+        </div>
+        
+        <div class="content">
+            <div class="profit-highlight">
+                <div class="profit-amount">145万</div>
+                <div class="profit-desc">单品利润（可能为矩阵收入）</div>
+            </div>
+            
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-number">3.8万</div>
+                    <div class="data-text">阅读量</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">1.4万单</div>
+                    <div class="data-text">销售数量</div>
+                </div>
+            </div>
+            
+            <div class="cost-analysis">
+                <div class="cost-title">💰 成本利润分析</div>
+                <div class="cost-grid">
+                    <div class="cost-item">
+                        <div class="cost-value">169元</div>
+                        <div class="cost-label">售价</div>
+                    </div>
+                    <div class="cost-item">
+                        <div class="cost-value">65元</div>
+                        <div class="cost-label">进货价</div>
+                    </div>
+                    <div class="cost-item">
+                        <div class="cost-value">104元</div>
+                        <div class="cost-label">单品利润</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="model-section">
+                <div class="model-title">变现模式</div>
+                
+                <div class="model-item">
+                    <h4>1️⃣ 流量主广告</h4>
+                    <p>公众号开通流量主，获得广告分成收入</p>
+                </div>
+                
+                <div class="model-item">
+                    <h4>2️⃣ 商品带货</h4>
+                    <p>文章末尾添加衣服商品链接，直接销售</p>
+                </div>
+                
+                <div class="model-item">
+                    <h4>3️⃣ AI内容</h4>
+                    <p>使用AI创作文案，降低内容制作成本</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">操作要点</div>
+                <ul class="info-list">
+                    <li>美女图片吸引眼球</li>
+                    <li>AI文案降低成本</li>
+                    <li>双重变现增加收入</li>
+                    <li>爆款文章持续引流</li>
+                </ul>
+            </div>
+            
+            <div class="key-insight">
+                <h3>🚀 成功要素</h3>
+                <p>通过美女图片吸引流量，结合AI文案降低成本，同时布局流量主和商品带货双重变现，实现收益最大化。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">拓展思路</div>
+                <ul class="info-list">
+                    <li>可能存在账号矩阵运营</li>
+                    <li>一篇爆文带来持续订单</li>
+                    <li>高利润率商品选择</li>
+                    <li>内容+电商完美结合</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function exportCard() {
+            const card = document.getElementById('knowledge-card');
+            const exportBtn = document.querySelector('.export-btn');
+            
+            // 临时隐藏导出按钮
+            exportBtn.style.display = 'none';
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                // 恢复导出按钮
+                exportBtn.style.display = 'block';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '美女带货一鱼多吃模式-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(error => {
+                exportBtn.style.display = 'block';
+                console.error('导出失败:', error);
+                alert('导出失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书直播带货起号完整攻略</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card-container {
+            width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title i {
+            color: #ff6b6b;
+            font-size: 22px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-2px);
+        }
+        
+        .info-box h4 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .info-box p {
+            color: #5a6c7d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+        }
+        
+        .highlight-box h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .strategy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .strategy-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-item:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        
+        .strategy-item h4 {
+            color: #ff6b6b;
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .strategy-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .strategy-item li {
+            color: #5a6c7d;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .strategy-item li::before {
+            content: '▸';
+            color: #ff6b6b;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .data-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric-item {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .metric-item:hover::before {
+            left: 100%;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ff6b6b;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-left: 20px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #ff6b6b;
+        }
+        
+        .timeline-item h4 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item p {
+            color: #5a6c7d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .source {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,184,148,0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .strategy-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>保存卡片
+    </button>
+    
+    <div class="card-container" id="card">
+        <div class="header">
+            <h1>小红书直播带货起号完整攻略</h1>
+            <p class="subtitle">实操80+账号总结的系统化推流逻辑与起号模型</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    推流核心逻辑
+                </h3>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>三大主力流量渠道</h4>
+                        <p>发现频道+笔记>50%为良性占比，发现频道≥20-30%，上下滑<30%，非粉数据权重>粉丝权重</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>GPM决定流量分发</h4>
+                        <p>GPM=成交客单价×点击率×转化率×1000，同时优化客单价、转化率、停留时长、引流订单</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>赛马机制评估维度</h4>
+                        <p>留存率(40%)+互动率(30%)+GPM(30%)，Top30%直播间获得更多流量分配</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>熔断触发条件</h4>
+                        <p>低留存、低互动、低GPM触发观察期，复活靠爆款单品、优秀主播、鱼塘辅助、关播二开</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-clock"></i> 30分钟冷启动黄金法则</h3>
+                <p>每场直播前30分钟决定后续流量池级别。0-5分钟立刻展示产品制造信任感，5-10分钟引导互动制造活跃氛围，10-30分钟福利爆品+逼单优化转化数据。平台每5分钟计算流量分配，成交触发3-5分钟计算一次。</p>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    关键数据指标
+                </h3>
+                <div class="data-metrics">
+                    <div class="metric-item">
+                        <div class="metric-value">80-120</div>
+                        <div class="metric-label">每小时场观(保底)</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">≥4%</div>
+                        <div class="metric-label">封面点击率(合格线)</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">≥5%</div>
+                        <div class="metric-label">互动率(及格线)</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">≥3%</div>
+                        <div class="metric-label">关注率(起号必需)</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">≥13%</div>
+                        <div class="metric-label">加购转化率</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">90s</div>
+                        <div class="metric-label">人均停留时长</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    两大起号模型
+                </h3>
+                <div class="strategy-list">
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-fire"></i> 爆封起号模型</h4>
+                        <ul>
+                            <li>适合功能性/功效性强的产品</li>
+                            <li>封面点击率做到8%以上(目标10%+)</li>
+                            <li>设置关注可秒杀提升关注率</li>
+                            <li>单品高种草平播或多品憋单</li>
+                            <li>直播时长3h+，避开5-9点大主播时段</li>
+                            <li>消耗型直播间，短期爆款变现</li>
+                        </ul>
+                    </div>
+                    <div class="strategy-item">
+                        <h4><i class="fas fa-users"></i> 鱼塘起号模型</h4>
+                        <ul>
+                            <li>适合有私域/粉丝基础的账号</li>
+                            <li>准备10个左右30天+老号做鱼塘</li>
+                            <li>开播前1-2天做关联铺垫</li>
+                            <li>5分钟内鱼塘号下单1-2单</li>
+                            <li>30分钟冷启动后可长期稳定运营</li>
+                            <li>后续通过群聊运营维持流量</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-image"></i>
+                    爆封封面六大类型
+                </h3>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>性暗示场景化</h4>
+                        <p>私密场景+隐晦暗示+半藏半露文案，精准吸引目标人群但需注意合规</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>极致产品特写</h4>
+                        <p>清晰产品主体+氛围感场景，突出质感格调激发购买欲望</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>热点明星网红</h4>
+                        <p>借势流量但需遮脸或仅文案提及，避免侵权风险</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>价格优惠活动</h4>
+                        <p>突出产品类型+活动折扣，模拟线下门店促销吸引进店</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>直播间福利</h4>
+                        <p>抽奖送礼等福利展示，满足用户薅羊毛心理拉升热度</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>极致痛点卖点</h4>
+                        <p>放大用户缺点到极致，精准戳中需求痛点引发共鸣</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">
+                    <i class="fas fa-edit"></i>
+                    笔记内容三大公式
+                </h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>痛点型公式</h4>
+                        <p>抛出痛点→痛点场景→解决方案→情绪激励。直接点出困扰，描述踩坑经历，推出产品解决，感性话术促下单。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>卖点型公式</h4>
+                        <p>强调卖点→使用场景→痛点解决→情绪激励。突出核心优势，描述理想状态，罗列解决问题，降低决策门槛。</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>故事型公式</h4>
+                        <p>引入→冲突→高潮→解决。私密猎奇话题吸引，制造人群矛盾，上升健康高度，推出产品升华。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3><i class="fas fa-lightbulb"></i> 核心成功要素</h3>
+                <p><strong>精细化运营是关键：</strong>不是玄学而是数据驱动的竞争。每分钟数据决定下一分钟流量，通过优化封面点击率、留存率、互动率、转化率四大核心指标，配合30分钟冷启动节奏和合适的起号模型，可大幅提升起号成功率。记住：开播5分钟内必须成交一单，下播前5分钟内必须成单。</p>
+            </div>
+        </div>
+        
+        <div class="source">来源：公众号@懒人搜索</div>
+    </div>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            
+            try {
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>生成中...';
+                button.disabled = true;
+                
+                // 隐藏按钮
+                button.style.display = 'none';
+                
+                const canvas = await html2canvas(document.getElementById('card'), {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: document.getElementById('card').scrollHeight
+                });
+                
+                // 恢复按钮
+                button.style.display = 'block';
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // 下载图片
+                const link = document.createElement('a');
+                link.download = '小红书直播带货起号完整攻略.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i>生成失败';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

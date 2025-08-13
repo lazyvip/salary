@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小红书虚拟电商全流程实操指南 - 懒人信息差分享</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+  
+    /* 卡片容器 - 固定尺寸和位置 */
+    #card-container {
+      position: relative;
+      width: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      color: white;
+    }
+  
+    /* 头部区域 */
+    .header-section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .main-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .subtitle {
+      font-size: 18px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+    
+    /* 核心理念区域 */
+    .core-concept {
+      background: rgba(255, 255, 255, 0.95);
+      color: #2d3748;
+      padding: 25px 30px;
+      margin: 0;
+      border-left: 5px solid #667eea;
+    }
+    
+    .concept-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #667eea;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .concept-content {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e53e3e;
+      text-align: center;
+      padding: 8px 0;
+    }
+    
+    /* 内容区域 */
+    .content-section {
+      padding: 30px;
+    }
+    
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+    
+    .section-title i {
+      margin-right: 10px;
+      color: #ffd700;
+    }
+    
+    /* 亮点列表 */
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    
+    .highlight-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 18px;
+      border-radius: 12px;
+      border-left: 4px solid #ffd700;
+      backdrop-filter: blur(5px);
+    }
+    
+    .highlight-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #ffd700;
+    }
+    
+    .highlight-content {
+      font-size: 14px;
+      line-height: 1.5;
+      opacity: 0.9;
+    }
+    
+    /* 规模化流程 */
+    .process-flow {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+    
+    .process-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .process-step {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    .process-arrow {
+      color: #ffd700;
+      font-size: 18px;
+      margin: 0 5px;
+    }
+    
+    /* 适合人群 */
+    .target-audience {
+      background: rgba(255, 215, 0, 0.15);
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      margin-bottom: 20px;
+    }
+    
+    .audience-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #ffd700;
+      display: flex;
+      align-items: center;
+    }
+    
+    .audience-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .audience-tag {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    /* 底部来源 */
+    .source-info {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 12px;
+      opacity: 0.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+  
+    /* 自定义文本截断类 */
+    .text-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .text-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    /* 图标精确定位样式 */
+    .icon-container i {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+    }
+  
+    /* 头部大图标修正 */
+    .header-icon i {
+      position: relative;
+      top: -3px;
+      line-height: 0;
+    }
+  
+    /* 列标题图标修正 */
+    .column-icon i {
+      position: relative;
+      top: -2px;
+      line-height: 0;
+    }
+  
+    /* 下载按钮固定定位，不占用卡片空间 */
+    .download-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+  
+    .download-button i {
+      margin-right: 8px;
+    }
+  
+    .download-button:hover {
+      background-color: #5a67d8;
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  
+    .animate-spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+  <!-- 卡片容器 -->
+  <div id="card-container">
+    <!-- 头部区域 -->
+    <div class="header-section">
+      <h1 class="main-title card-title">
+        <i class="fas fa-store header-icon"></i>
+        小红书虚拟电商全流程实操指南
+      </h1>
+      <p class="subtitle">从选品到规模化的完整玩法</p>
+    </div>
+    
+    <!-- 核心理念 -->
+    <div class="core-concept">
+      <div class="concept-title">
+        <i class="fas fa-lightbulb"></i>
+        核心理念
+      </div>
+      <div class="concept-content">
+        "产品是测出来的，不是选出来的"
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content-section">
+      <!-- 选品策略 -->
+      <div class="section-title column-icon">
+        <i class="fas fa-bullseye"></i>
+        选品策略 & 实操方法
+      </div>
+      
+      <div class="highlights-grid">
+        <div class="highlight-item">
+          <div class="highlight-title">👉 选品2大方向</div>
+          <div class="highlight-content">痛点刚需+熟悉领域 vs 小众细分+蓝海领域</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-title">👉 4种选品方法</div>
+          <div class="highlight-content">千帆数据、野马工具、淘宝拓品、AI挖掘</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-title">👉 测品策略</div>
+          <div class="highlight-content">素材不重要，选对产品是关键</div>
+        </div>
+        
+        <div class="highlight-item">
+          <div class="highlight-title">👉 投流要点</div>
+          <div class="highlight-content">学习期4天10单，重点关注点击率转化率</div>
+        </div>
+      </div>
+      
+      <!-- 规模化流程 -->
+      <div class="section-title column-icon">
+        <i class="fas fa-chart-line"></i>
+        规模化4步骤
+      </div>
+      
+      <div class="process-flow">
+        <div class="process-steps">
+          <div class="process-step">单店模型</div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">提炼动作</div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">SOP化</div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">拓店放大</div>
+        </div>
+      </div>
+      
+      <!-- 团队配置 -->
+      <div class="highlight-item" style="margin-bottom: 25px;">
+        <div class="highlight-title">👉 团队配置建议</div>
+        <div class="highlight-content">店铺运营 + 内容创作 + 实习生批量生产</div>
+      </div>
+      
+      <!-- 适合人群 -->
+      <div class="target-audience">
+        <div class="audience-title">
+          <i class="fas fa-users"></i>
+          适合人群
+        </div>
+        <div class="audience-list">
+          <div class="audience-tag">小红书电商创业者</div>
+          <div class="audience-tag">虚拟产品卖家</div>
+          <div class="audience-tag">想要规模化的商家</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部来源 -->
+    <div class="source-info">
+      公众号@懒人搜索
+    </div>
+  </div>
+  
+  <!-- 下载按钮 - 必须包含 -->
+  <button id="download-btn" class="download-button">
+    <i class="fas fa-download"></i> 下载卡片PNG图像
+  </button>
+
+  <!-- 下载功能脚本 - 必须包含且不得修改 -->
+  <script>
+    // 确保DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取下载按钮
+      const downloadBtn = document.getElementById('download-btn');
+    
+      // 添加点击事件
+      downloadBtn.addEventListener('click', async function() {
+        try {
+          // 显示加载状态
+          const originalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner animate-spin"></i> 正在生成高清图片...';
+          this.disabled = true;
+        
+          // 先隐藏下载按钮再截图
+          this.style.display = 'none';
+        
+          const cardElement = document.getElementById('card-container');
+        
+          // 确保字体和图标完全加载
+          await document.fonts.ready;
+        
+          // 触发重排，确保布局稳定
+          cardElement.getBoundingClientRect();
+        
+          // 增加等待时间确保所有渲染完成
+          await new Promise(resolve => setTimeout(resolve, 500));
+        
+          // 强制应用所有计算样式，防止重叠问题
+          const forceStyleRecalc = (element) => {
+            if (!element) return;
+            window.getComputedStyle(element).getPropertyValue('position');
+            const children = element.children;
+            for (let i = 0; i < children.length; i++) {
+              forceStyleRecalc(children[i]);
+            }
+          };
+          forceStyleRecalc(cardElement);
+        
+          // 使用html2canvas，处理图标位置和元素重叠问题
+          const canvas = await html2canvas(cardElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: cardElement.style.backgroundColor || "#667eea",
+            logging: false,
+            onclone: function(clonedDoc) {
+              const clonedCard = clonedDoc.getElementById('card-container');
+            
+              // 确保布局稳定性
+              clonedCard.style.position = 'relative';
+              clonedCard.style.width = '800px';
+            
+              // 处理所有定位元素，确保正确的堆叠顺序
+              const positionedElements = clonedCard.querySelectorAll('[style*="position"]');
+              positionedElements.forEach((el, index) => {
+                // 确保有明确的z-index，防止重叠混乱
+                if (!el.style.zIndex) {
+                  el.style.zIndex = 10 + index;
+                }
+              });
+            
+              // 修正所有图标位置
+              const icons = clonedDoc.querySelectorAll('i');
+              icons.forEach(icon => {
+                icon.style.position = 'relative';
+                icon.style.top = '-2px';
+                icon.style.display = 'inline-block'; 
+                icon.style.lineHeight = '1';
+              });
+            
+              // 特别处理标题图标
+              const headerIcons = clonedDoc.querySelectorAll('.header-icon i');
+              headerIcons.forEach(icon => {
+                icon.style.top = '-4px';
+              });
+            
+              // 特别处理列标题图标
+              const columnIcons = clonedDoc.querySelectorAll('.column-icon i');
+              columnIcons.forEach(icon => {
+                icon.style.top = '-3px';
+              });
+            
+              // 确保文本容器不重叠
+              const textContainers = clonedCard.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+              textContainers.forEach(el => {
+                // 如果没有明确的overflow设置，添加overflow:hidden
+                if (!el.style.overflow) {
+                  el.style.overflow = 'hidden';
+                }
+              });
+            }
+          });
+        
+          // 转换为PNG并下载
+          canvas.toBlob(function(blob) {
+            // 创建下载链接
+            const link = document.createElement('a');
+            // 从卡片标题获取文件名，如果没有则使用默认名称
+            const title = document.querySelector('.card-title') || document.querySelector('h1');
+            const fileName = (title ? title.textContent.trim().substring(0, 30) : '小红书虚拟电商实操指南') + '.png';
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          
+            // 清理URL对象
+            URL.revokeObjectURL(link.href);
+          
+            // 恢复按钮状态和显示
+            downloadBtn.style.display = 'flex';
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.disabled = false;
+          }, 'image/png', 1.0);
+        
+        } catch (error) {
+          console.error('生成图片失败:', error);
+          alert('生成图片失败，请重试');
+        
+          // 恢复按钮状态
+          this.style.display = 'flex';
+          this.innerHTML = '<i class="fas fa-download"></i> 下载卡片PNG图像';
+          this.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外卖平台代购店模式</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .core-idea {
+            background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-left: 4px solid #e17055;
+        }
+        
+        .core-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+        
+        .core-desc {
+            font-size: 14px;
+            color: #636e72;
+            line-height: 1.5;
+        }
+        
+        .expansion-section {
+            margin-bottom: 20px;
+        }
+        
+        .expansion-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .expansion-title::before {
+            content: '🚀';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .expansion-item {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #00b894;
+        }
+        
+        .expansion-item h4 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 6px;
+        }
+        
+        .expansion-item p {
+            font-size: 13px;
+            color: #636e72;
+            line-height: 1.4;
+        }
+        
+        .opportunity-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .opportunity-box h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .opportunity-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title::before {
+            content: '💡';
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f2f6;
+            color: #636e72;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list li::before {
+            content: '▶';
+            color: #00b894;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .key-insight {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .key-insight h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .key-insight p {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .source {
+            text-align: right;
+            font-size: 12px;
+            color: #b2bec3;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f2f6;
+        }
+        
+        .export-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .export-btn {
+                position: static;
+                margin: 20px auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="export-btn" onclick="exportCard()">导出卡片</button>
+    
+    <div class="card" id="knowledge-card">
+        <div class="header">
+            <h1>外卖平台代购店</h1>
+            <div class="subtitle">创新商业模式</div>
+        </div>
+        
+        <div class="content">
+            <div class="core-idea">
+                <div class="core-title">💡 核心思路</div>
+                <div class="core-desc">火爆商品可以直接在外卖平台开代购店，利用外卖平台流量获客</div>
+            </div>
+            
+            <div class="expansion-section">
+                <div class="expansion-title">思路拓展</div>
+                
+                <div class="expansion-item">
+                    <h4>1️⃣ 品牌代购</h4>
+                    <p>山姆等代购泛滥的品类，借此思路操作获得更多曝光</p>
+                </div>
+                
+                <div class="expansion-item">
+                    <h4>2️⃣ 跑腿服务</h4>
+                    <p>没有开通外卖的店铺，跑腿费贵的商品，都可以做代购</p>
+                </div>
+                
+                <div class="expansion-item">
+                    <h4>3️⃣ 流量蹭取</h4>
+                    <p>其他品类也可以利用外卖平台开店，蹭取平台流量</p>
+                </div>
+            </div>
+            
+            <div class="opportunity-box">
+                <h3>🔥 市场机会</h3>
+                <p>外卖平台火爆，用户习惯已养成，各类商品都有通过外卖平台销售的潜力，关键是找到合适的切入点。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">操作要点</div>
+                <ul class="info-list">
+                    <li>选择火爆或刚需商品</li>
+                    <li>利用外卖平台现有流量</li>
+                    <li>提供便民代购服务</li>
+                    <li>降低用户获取成本</li>
+                </ul>
+            </div>
+            
+            <div class="key-insight">
+                <h3>🎯 成功要素</h3>
+                <p>抓住外卖平台流量红利，将传统代购业务平台化，通过便民服务获得用户认可，实现商业价值。</p>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-title">适用场景</div>
+                <ul class="info-list">
+                    <li>热门品牌商品代购</li>
+                    <li>未入驻外卖的店铺</li>
+                    <li>高跑腿费商品服务</li>
+                    <li>特色小众商品销售</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function exportCard() {
+            const card = document.getElementById('knowledge-card');
+            const exportBtn = document.querySelector('.export-btn');
+            
+            // 临时隐藏导出按钮
+            exportBtn.style.display = 'none';
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                // 恢复导出按钮
+                exportBtn.style.display = 'block';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '外卖平台代购店模式-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }).catch(error => {
+                exportBtn.style.display = 'block';
+                console.error('导出失败:', error);
+                alert('导出失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

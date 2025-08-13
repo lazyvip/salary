@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书3年创业复盘指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            position: relative;
+        }
+
+        .card {
+            width: 800px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .metrics-section {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .metrics-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .metric-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .content-section {
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .highlight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-item {
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            line-height: 1.4;
+            border-left: 4px solid rgba(255,255,255,0.5);
+        }
+
+        .highlight-item strong {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .failure-reasons {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .failure-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .failure-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .failure-list li {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .failure-list li::before {
+            content: '×';
+            position: absolute;
+            left: 0;
+            color: #ff4757;
+            font-weight: bold;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .insight-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .insight-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            z-index: 10;
+        }
+
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 850px) {
+            .card {
+                width: 95vw;
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 下载卡片
+    </button>
+
+    <div class="card-container">
+        <div class="card" id="infoCard">
+            <div class="header">
+                <h1 class="title">小红书3年创业复盘指南</h1>
+                <p class="subtitle">从零到月入10万再到收入归零的完整复盘</p>
+            </div>
+
+            <div class="metrics-section">
+                <div class="metrics-title">
+                    <i class="fas fa-chart-line"></i>
+                    核心数据
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <div class="metric-value">10万+</div>
+                        <div class="metric-label">最高月收入</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">15.7万</div>
+                        <div class="metric-label">最高月流水</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">47%</div>
+                        <div class="metric-label">进店转化率</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">3年</div>
+                        <div class="metric-label">创业周期</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    成功经验总结
+                </div>
+                <ul class="highlight-list">
+                    <li class="highlight-item">
+                        <strong>家居赛道红利：</strong>竞争小、博主少、品牌方多，商单接不过来
+                    </li>
+                    <li class="highlight-item">
+                        <strong>横测内容策略：</strong>多品牌对比+测评结果展示+突出某品牌优势
+                    </li>
+                    <li class="highlight-item">
+                        <strong>评论区带货：</strong>单篇笔记变现10万+，月返佣2-3万持续4-5个月
+                    </li>
+                    <li class="highlight-item">
+                        <strong>投流转化：</strong>品牌方投入20万+，实现47%进店转化率
+                    </li>
+                    <li class="highlight-item">
+                        <strong>矩阵运营：</strong>多账号同步操作，放大收益规模
+                    </li>
+                </ul>
+            </div>
+
+            <div class="two-column">
+                <div class="content-section">
+                    <div class="section-title">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        失败原因分析
+                    </div>
+                    <div class="failure-reasons">
+                        <div class="failure-title">平台政策变化</div>
+                        <ul class="failure-list">
+                            <li>严打矩阵测评，无备选方案</li>
+                            <li>明知违规仍硬写横测商单</li>
+                            <li>账号限流、蒲公英异常</li>
+                        </ul>
+                    </div>
+                    <div class="failure-reasons">
+                        <div class="failure-title">转型项目失败</div>
+                        <ul class="failure-list">
+                            <li>家电团购：目标用户错误</li>
+                            <li>简历项目：个人能力依赖过重</li>
+                            <li>代运营：合作不规范被踢出局</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-title">
+                        <i class="fas fa-lightbulb"></i>
+                        核心创业心得
+                    </div>
+                    <div class="insights-grid">
+                        <div class="insight-item">
+                            <div class="insight-number">1</div>
+                            顺势而为，选择风口项目比努力更重要
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-number">2</div>
+                            学会梳理SOP，专注20%最重要工作
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-number">3</div>
+                            在成功路径里优化，切勿颠覆流程
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-number">4</div>
+                            合作项目必须谈好退出和违约条款
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-number">5</div>
+                            市场调研和前景预估比埋头苦干重要
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-number">6</div>
+                            专注已跑通业务，不要吃着碗里看锅里
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-title">
+                    <i class="fas fa-users"></i>
+                    适用人群
+                </div>
+                <ul class="highlight-list">
+                    <li class="highlight-item">小红书创业者和内容创作者</li>
+                    <li class="highlight-item">自媒体从业者和博主</li>
+                    <li class="highlight-item">电商和品牌营销人员</li>
+                    <li class="highlight-item">想要转型或副业的职场人士</li>
+                </ul>
+            </div>
+
+            <div class="watermark">公众号@懒人搜索</div>
+        </div>
+    </div>
+
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            const card = document.getElementById('infoCard');
+            
+            html2canvas(card, {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                width: card.offsetWidth,
+                height: card.offsetHeight
+            }).then(canvas => {
+                button.style.display = 'block';
+                
+                const link = document.createElement('a');
+                link.download = '小红书3年创业复盘指南.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+            }).catch(error => {
+                button.style.display = 'block';
+                console.error('生成图片失败:', error);
+                alert('图片生成失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

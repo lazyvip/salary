@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟资料4.0：从卖资料到卖人设的进化之路</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>');
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .highlight-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-title::before {
+            content: '💰';
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .metric-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        
+        .metric-item:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+        
+        .metric-number {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 25px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            margin-right: 15px;
+            border-radius: 2px;
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .strategy-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .strategy-item h4 {
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .strategy-item p {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .content-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .content-type {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .content-type h4 {
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .content-type p {
+            color: #636e72;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .key-points {
+            background: #f1f2f6;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .key-points h3 {
+            color: #2d3436;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .points-list {
+            list-style: none;
+        }
+        
+        .points-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: #2d3436;
+            line-height: 1.5;
+        }
+        
+        .points-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00b894;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .evolution-path {
+            background: linear-gradient(135deg, #e17055 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .evolution-path h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .evolution-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .evolution-step {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .evolution-step h4 {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .evolution-step p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            color: #bdc3c7;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,184,148,0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .strategy-grid,
+            .content-types,
+            .evolution-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadCard()">📥 下载卡片</button>
+    
+    <div class="card" id="card">
+        <div class="header">
+            <div class="title">虚拟资料4.0：从卖资料到卖人设</div>
+            <div class="subtitle">单店单月20万+的人设IP进化策略</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <div class="highlight-title">核心成果</div>
+                <div class="metrics">
+                    <div class="metric-item">
+                        <div class="metric-number">20万+</div>
+                        <div class="metric-label">单店单月销量</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-number">3倍+</div>
+                        <div class="metric-label">复购率提升</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎯 转型背景：为什么必须做人设</div>
+                <div class="strategy-grid">
+                    <div class="strategy-item">
+                        <h4>流量机制变化</h4>
+                        <p>老打法失效，爆款生命周期缩短，搜索排名被压制</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>同行恶性竞争</h4>
+                        <p>盗版泛滥，低价竞争，市场价格混乱</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>新号起店困难</h4>
+                        <p>稳定销量周期变长，快速破万难度增加</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>信任成为关键</h4>
+                        <p>用户买的不是资料，是懂他们的人</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="evolution-path">
+                <h3>🚀 人设定位三步法</h3>
+                <div class="evolution-steps">
+                    <div class="evolution-step">
+                        <h4>第一步</h4>
+                        <p>分析目标用户画像：年龄/职业/需求/痛点</p>
+                    </div>
+                    <div class="evolution-step">
+                        <h4>第二步</h4>
+                        <p>挖掘自身优势：经验/特长/价值观差异化</p>
+                    </div>
+                    <div class="evolution-step">
+                        <h4>第三步</h4>
+                        <p>确定关键标签：3-5个核心专业标签</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">📹 内容策略：三大视频类型</div>
+                <div class="content-types">
+                    <div class="content-type">
+                        <h4>干货型</h4>
+                        <p>爆款选题+"怎么看/怎么做"的方法口播，建立专业人设</p>
+                    </div>
+                    <div class="content-type">
+                        <h4>故事型</h4>
+                        <p>用"我经历过"的口吻讲干货，增加人格温度和共鸣</p>
+                    </div>
+                    <div class="content-type">
+                        <h4>共创型</h4>
+                        <p>从评论找选题，你问我答增强互动和陪伴感</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎨 视觉包装：职业化形象打造</div>
+                <div class="strategy-grid">
+                    <div class="strategy-item">
+                        <h4>服饰搭配</h4>
+                        <p>根据赛道选择：医考穿白大褂，考公穿厅局风</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>场景选择</h4>
+                        <p>在相关专业场景录制，增强可信度</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>头像封面</h4>
+                        <p>统一视觉风格，强化专业身份认知</p>
+                    </div>
+                    <div class="strategy-item">
+                        <h4>活人感打造</h4>
+                        <p>真实自然，避免过度包装，素颜录制增加真实感</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">📚 产品升级：人设融入资料设计</div>
+                <div class="key-points">
+                    <h3>资料人格化改造</h3>
+                    <ul class="points-list">
+                        <li><strong>前言故事化：</strong>400字人设故事+使用指南，建立信任和好感</li>
+                        <li><strong>赠品人格化：</strong>"我现在还在用的复盘模板"等人设周边</li>
+                        <li><strong>服务强化：</strong>退款保障+一对一答疑+用户共创</li>
+                        <li><strong>专业定位：</strong>专才比全才转化率更高，垂直细分市场</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💡 核心洞察</div>
+                <div class="key-points">
+                    <ul class="points-list">
+                        <li><strong>长期主义：</strong>流量会消失，但信任不会，人设是护城河</li>
+                        <li><strong>差异化壁垒：</strong>资料可以复制，但人无法复制</li>
+                        <li><strong>情感溢价：</strong>有人设的账号高客单转化率更高</li>
+                        <li><strong>复购驱动：</strong>情感链接决定能卖多少次、卖多贵</li>
+                        <li><strong>平台趋势：</strong>小红书越来越偏向真人表达类内容</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="watermark">公众号@懒人搜索</div>
+    </div>
+    
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            html2canvas(document.getElementById('card'), {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#ffffff'
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '虚拟资料4.0-从卖资料到卖人设.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                button.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识付费公私域联动高效模型</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b6b;
+            display: inline-block;
+        }
+        
+        .models-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .model-card {
+            background: linear-gradient(135deg, #a8e6cf 0%, #88d8a3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #00b894;
+        }
+        
+        .model-card h4 {
+            color: #00695c;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .model-card p {
+            color: #004d40;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .stages {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .stage {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stage:last-child {
+            margin-bottom: 0;
+        }
+        
+        .stage-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .stage-content h4 {
+            color: #2d3436;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stage-content p {
+            color: #636e72;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .highlight-item {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #e17055;
+        }
+        
+        .highlight-item h4 {
+            color: #d63031;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-item p {
+            color: #2d3436;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .metrics {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .metrics h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .metric-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .tips {
+            background: #f1f2f6;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #3742fa;
+        }
+        
+        .tips h4 {
+            color: #3742fa;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .tips ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips li {
+            color: #2f3542;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .tips li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: #bdc3c7;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,184,148,0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 95%;
+                margin: 10px;
+            }
+            
+            .models-grid,
+            .highlights,
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadCard()">📥 下载卡片</button>
+    
+    <div class="card" id="card">
+        <div class="header">
+            <h1>知识付费公私域联动高效模型</h1>
+            <div class="subtitle">从公域大规模获客到私域高价值续费的完整商业闭环</div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                💰 年营收1亿+的实战经验总结，教你打造小而美高人效的知识付费公司
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎯 四种获客模式对比</div>
+                <div class="models-grid">
+                    <div class="model-card">
+                        <h4>0元线索获客</h4>
+                        <p>偷流量、信息流留资、低价商品引流，需要大销售团队，适合大机构</p>
+                    </div>
+                    <div class="model-card">
+                        <h4>低价线索获客</h4>
+                        <p>19.9-29.9书课包模式，团队要求高，销售依赖重</p>
+                    </div>
+                    <div class="model-card">
+                        <h4>中价课模式 ⭐</h4>
+                        <p>99-500元产品，前端盈利后端纯赚，风险低效果好，推荐模式</p>
+                    </div>
+                    <div class="model-card">
+                        <h4>高价课模式</h4>
+                        <p>500+产品直接成交，规模有限但利润可观</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">📊 关键业务数据</div>
+                <div class="metrics">
+                    <h3>核心指标体系</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-item">
+                            <div class="metric-value">0.8-1.5</div>
+                            <div class="metric-label">前端ROI范围</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">10-15%</div>
+                            <div class="metric-label">私域续费率</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-value">5倍</div>
+                            <div class="metric-label">销售人效提升</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🚀 三阶段实施框架</div>
+                <div class="stages">
+                    <div class="stage">
+                        <div class="stage-number">1</div>
+                        <div class="stage-content">
+                            <h4>测算业务健康度</h4>
+                            <p>调研竞品数据，计算毛利模型：公域GMV + 私域GMV - 总消耗，确定可接受的ROI边界</p>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <div class="stage-number">2</div>
+                        <div class="stage-content">
+                            <h4>梳理产品体系</h4>
+                            <p>公域课程做钩子(瞬时收获感)，私域课程建信任(体系完善)，确保进阶性和差异化</p>
+                        </div>
+                    </div>
+                    <div class="stage">
+                        <div class="stage-number">3</div>
+                        <div class="stage-content">
+                            <h4>打磨直播内容</h4>
+                            <p>公域：最小干货闭环+收获感呈现+独特魅力；私域：武功秘籍式体系课程</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💡 核心策略要点</div>
+                <div class="highlights">
+                    <div class="highlight-item">
+                        <h4>产品设计原则</h4>
+                        <p>公域50节课vs市场100节+，避免用户觉得够用不续费。公私域要有进阶性和差异化，不能同质化竞争</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4>成本优势策略</h4>
+                        <p>私域续费能力强，可接受更高获客成本，卡住竞争对手ROI底线，获得流量优势</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4>内容呈现技巧</h4>
+                        <p>植入反认知+引导用户+举一反三+强调效果，让用户感觉"好像会了"而非"真的会了"</p>
+                    </div>
+                    <div class="highlight-item">
+                        <h4>软性销售植入</h4>
+                        <p>在公域课程交付中植入私域卖点，每次听课都是销售机会，刷脸熟建立产品印象</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎯 实操建议</div>
+                <div class="tips">
+                    <h4>适合人群与门槛要求</h4>
+                    <ul>
+                        <li>有IP基础，"肚子里有料"的内容创作者</li>
+                        <li>能"炒出好菜"，内容成体系且通俗易懂</li>
+                        <li>团队重质不重量，前后端人员要求都较高</li>
+                        <li>先保证中价课能卖动，再打磨高价课产品</li>
+                        <li>需要足够心力支撑，数据反馈快压力大</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="watermark">公众号@懒人搜索</div>
+    </div>
+    
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            html2canvas(document.getElementById('card'), {
+                backgroundColor: '#ffffff',
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '知识付费公私域联动模型.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                button.style.display = 'block';
+            }).catch(err => {
+                console.error('下载失败:', err);
+                button.style.display = 'block';
+                alert('下载失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

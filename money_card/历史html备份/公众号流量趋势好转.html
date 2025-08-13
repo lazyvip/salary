@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>懒人信息差分享</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+  
+    /* 卡片容器 - 固定尺寸和位置 */
+    #card-container {
+      position: relative;
+      width: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      padding: 30px;
+    }
+  
+    /* 自定义文本截断类 */
+    .text-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    .text-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  
+    /* 图标精确定位样式 */
+    .icon-container i {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+    }
+  
+    /* 头部大图标修正 */
+    .header-icon i {
+      position: relative;
+      top: -3px;
+      line-height: 0;
+    }
+  
+    /* 列标题图标修正 */
+    .column-icon i {
+      position: relative;
+      top: -2px;
+      line-height: 0;
+    }
+
+    /* 标题区域 */
+    .header-section {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .main-title {
+      font-size: 26px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #718096;
+      margin-bottom: 15px;
+    }
+
+    .trend-badge {
+      background: linear-gradient(45deg, #48bb78, #38a169);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    /* 数据展示区域 */
+    .data-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 8px;
+    }
+
+    .highlight-data {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .highlight-number {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .highlight-label {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* 趋势分析 */
+    .trend-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .trend-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .trend-item {
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 18px;
+      border-left: 4px solid #667eea;
+    }
+
+    .trend-period {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .trend-desc {
+      font-size: 14px;
+      color: #2d3748;
+      line-height: 1.5;
+    }
+
+    .trend-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .status-down {
+      color: #e53e3e;
+    }
+
+    .status-up {
+      color: #38a169;
+    }
+
+    /* 策略建议 */
+    .strategy-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .strategy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .strategy-item {
+      background: #fff5f5;
+      border: 1px solid #fed7d7;
+      border-radius: 8px;
+      padding: 15px;
+      border-top: 3px solid #f56565;
+    }
+
+    .strategy-title {
+      font-size: 14px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .strategy-desc {
+      font-size: 13px;
+      color: #4a5568;
+      line-height: 1.4;
+    }
+
+    /* 预测展望 */
+    .forecast-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+
+    .forecast-content {
+      background: #f0fff4;
+      border: 1px solid #9ae6b4;
+      border-radius: 6px;
+      padding: 15px;
+      border-left: 4px solid #48bb78;
+    }
+
+    .forecast-text {
+      font-size: 14px;
+      color: #2d3748;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .forecast-icon {
+      color: #48bb78;
+      font-size: 16px;
+    }
+
+    /* 底部信息 */
+    .bottom-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .target-audience {
+      font-size: 14px;
+      color: #2d3748;
+      font-weight: 500;
+    }
+
+    .source-info {
+      font-size: 12px;
+      color: #718096;
+      text-align: right;
+    }
+  
+    /* 下载按钮固定定位，不占用卡片空间 */
+    .download-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #8B2332;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+  
+    .download-button i {
+      margin-right: 8px;
+    }
+  
+    .download-button:hover {
+      opacity: 0.9;
+    }
+  
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  
+    .animate-spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body style="background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+  <!-- 卡片容器 -->
+  <div id="card-container">
+    <!-- 标题区域 -->
+    <div class="header-section">
+      <div class="main-title card-title">
+        <i class="fab fa-weixin header-icon"></i>
+        公众号流量趋势回暖
+      </div>
+      <div class="subtitle">6月开始流量好转，下半年迎来爆发期</div>
+      <div class="trend-badge">
+        <i class="fas fa-chart-line"></i> 流量主收益大幅提升
+      </div>
+    </div>
+
+    <!-- 核心数据展示 -->
+    <div class="data-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-fire"></i>
+        核心数据
+      </div>
+      <div class="highlight-data">
+        <div class="highlight-number">100万+</div>
+        <div class="highlight-label">单月流量主收益（某圈友）</div>
+      </div>
+    </div>
+
+    <!-- 趋势分析 -->
+    <div class="trend-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-chart-area"></i>
+        趋势分析
+      </div>
+      <div class="trend-grid">
+        <div class="trend-item">
+          <div class="trend-period">上半年（1-5月）</div>
+          <div class="trend-desc">流量持续低迷，账号获取流量困难</div>
+          <div class="trend-status status-down">
+            <i class="fas fa-arrow-down"></i>
+            流量低迷期
+          </div>
+        </div>
+        <div class="trend-item">
+          <div class="trend-period">6月开始</div>
+          <div class="trend-desc">流量趋势明显好转，单价也有提升</div>
+          <div class="trend-status status-up">
+            <i class="fas fa-arrow-up"></i>
+            流量回暖期
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 策略建议 -->
+    <div class="strategy-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-lightbulb"></i>
+        运营策略
+      </div>
+      <div class="strategy-grid">
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-user-circle"></i>
+            人设打造
+          </div>
+          <div class="strategy-desc">从纯爆文转向人设创作，提升账号存活率</div>
+        </div>
+        <div class="strategy-item">
+          <div class="strategy-title">
+            <i class="fas fa-rocket"></i>
+            持续输出
+          </div>
+          <div class="strategy-desc">避免一波流现象，保持长期稳定创作</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 预测展望 -->
+    <div class="forecast-section">
+      <div class="section-title column-icon">
+        <i class="fas fa-crystal-ball"></i>
+        趋势预测
+      </div>
+      <div class="forecast-content">
+        <div class="forecast-text">
+          <i class="fas fa-trending-up forecast-icon"></i>
+          <span>下半年公众号流量将持续向好，是入局的最佳时机</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部信息 -->
+    <div class="bottom-section">
+      <div class="target-audience">
+        <i class="fas fa-users"></i>
+        适合：内容创作者、自媒体运营者、流量主变现者
+      </div>
+      <div class="source-info">
+        公众号@懒人搜索
+      </div>
+    </div>
+  </div>
+  
+  <!-- 下载按钮 - 必须包含 -->
+  <button id="download-btn" class="download-button">
+    <i class="fas fa-download"></i> 下载卡片PNG图像
+  </button>
+
+  <!-- 下载功能脚本 - 必须包含且不得修改 -->
+  <script>
+    // 确保DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取下载按钮
+      const downloadBtn = document.getElementById('download-btn');
+    
+      // 添加点击事件
+      downloadBtn.addEventListener('click', async function() {
+        try {
+          // 显示加载状态
+          const originalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner animate-spin"></i> 正在生成高清图片...';
+          this.disabled = true;
+        
+          // 先隐藏下载按钮再截图
+          this.style.display = 'none';
+        
+          const cardElement = document.getElementById('card-container');
+        
+          // 确保字体和图标完全加载
+          await document.fonts.ready;
+        
+          // 触发重排，确保布局稳定
+          cardElement.getBoundingClientRect();
+        
+          // 增加等待时间确保所有渲染完成
+          await new Promise(resolve => setTimeout(resolve, 500));
+        
+          // 强制应用所有计算样式，防止重叠问题
+          const forceStyleRecalc = (element) => {
+            if (!element) return;
+            window.getComputedStyle(element).getPropertyValue('position');
+            const children = element.children;
+            for (let i = 0; i < children.length; i++) {
+              forceStyleRecalc(children[i]);
+            }
+          };
+          forceStyleRecalc(cardElement);
+        
+          // 使用html2canvas，处理图标位置和元素重叠问题
+          const canvas = await html2canvas(cardElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: cardElement.style.backgroundColor || "#667eea",
+            logging: false,
+            onclone: function(clonedDoc) {
+              const clonedCard = clonedDoc.getElementById('card-container');
+            
+              // 确保布局稳定性
+              clonedCard.style.position = 'relative';
+              clonedCard.style.width = '800px';
+            
+              // 处理所有定位元素，确保正确的堆叠顺序
+              const positionedElements = clonedCard.querySelectorAll('[style*="position"]');
+              positionedElements.forEach((el, index) => {
+                // 确保有明确的z-index，防止重叠混乱
+                if (!el.style.zIndex) {
+                  el.style.zIndex = 10 + index;
+                }
+              });
+            
+              // 修正所有图标位置
+              const icons = clonedDoc.querySelectorAll('i');
+              icons.forEach(icon => {
+                icon.style.position = 'relative';
+                icon.style.top = '-2px';
+                icon.style.display = 'inline-block'; 
+                icon.style.lineHeight = '1';
+              });
+            
+              // 特别处理标题图标
+              const headerIcons = clonedDoc.querySelectorAll('.header-icon i');
+              headerIcons.forEach(icon => {
+                icon.style.top = '-4px';
+              });
+            
+              // 特别处理列标题图标
+              const columnIcons = clonedDoc.querySelectorAll('.column-icon i');
+              columnIcons.forEach(icon => {
+                icon.style.top = '-3px';
+              });
+            
+              // 确保文本容器不重叠
+              const textContainers = clonedCard.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+              textContainers.forEach(el => {
+                // 如果没有明确的overflow设置，添加overflow:hidden
+                if (!el.style.overflow) {
+                  el.style.overflow = 'hidden';
+                }
+              });
+            }
+          });
+        
+          // 转换为PNG并下载
+          canvas.toBlob(function(blob) {
+            // 创建下载链接
+            const link = document.createElement('a');
+            // 从卡片标题获取文件名，如果没有则使用默认名称
+            const title = document.querySelector('.card-title') || document.querySelector('h1');
+            const fileName = (title ? title.textContent.trim().substring(0, 30) : '文章概念卡片') + '.png';
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          
+            // 清理URL对象
+            URL.revokeObjectURL(link.href);
+          
+            // 恢复按钮状态和显示
+            downloadBtn.style.display = 'flex';
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.disabled = false;
+          }, 'image/png', 1.0);
+        
+        } catch (error) {
+          console.error('生成图片失败:', error);
+          alert('生成图片失败，请重试');
+        
+          // 恢复按钮状态
+          this.style.display = 'flex';
+          this.innerHTML = '<i class="fas fa-download"></i> 下载卡片PNG图像';
+          this.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小红书创业复盘：从0到月入10万再归零</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  
+  <style>
+    /* 重置样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+  
+    /* 卡片容器 - 固定尺寸和位置 */
+    #card-container {
+      position: relative;
+      width: 800px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      color: white;
+    }
+
+    /* 头部区域 */
+    .header-section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .main-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-number {
+      font-size: 20px;
+      font-weight: bold;
+      color: #FFD700;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    /* 内容区域 */
+    .content-section {
+      padding: 30px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      color: #FFD700;
+    }
+
+    .section-title i {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    /* 核心成就区域 */
+    .achievement-section {
+      background: rgba(46, 204, 113, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #2ecc71;
+      margin-bottom: 25px;
+    }
+
+    .achievement-section h4 {
+      color: #2ecc71;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .achievement-section h4 i {
+      margin-right: 8px;
+    }
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .achievement-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .achievement-number {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2ecc71;
+      margin-bottom: 5px;
+    }
+
+    .achievement-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* 起号方法区域 */
+    .methods-section {
+      background: rgba(52, 152, 219, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #3498db;
+      margin-bottom: 25px;
+    }
+
+    .methods-section h4 {
+      color: #3498db;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .methods-section h4 i {
+      margin-right: 8px;
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .method-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .method-title {
+      font-weight: bold;
+      color: #3498db;
+      margin-bottom: 8px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .method-title i {
+      margin-right: 6px;
+      font-size: 12px;
+    }
+
+    .method-description {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    /* 异常值机会区域 */
+    .opportunities-section {
+      background: rgba(155, 89, 182, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #9b59b6;
+      margin-bottom: 25px;
+    }
+
+    .opportunities-section h4 {
+      color: #9b59b6;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .opportunities-section h4 i {
+      margin-right: 8px;
+    }
+
+    .opportunity-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .opportunity-title {
+      font-weight: bold;
+      color: #9b59b6;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .opportunity-description {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .opportunity-highlight {
+      color: #FFD700;
+      font-weight: bold;
+    }
+
+    /* 失败教训区域 */
+    .lessons-section {
+      background: rgba(231, 76, 60, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 4px solid #e74c3c;
+      margin-bottom: 25px;
+    }
+
+    .lessons-section h4 {
+      color: #e74c3c;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .lessons-section h4 i {
+      margin-right: 8px;
+    }
+
+    .lesson-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .lesson-title {
+      font-weight: bold;
+      color: #e74c3c;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .lesson-description {
+      font-size: 13px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    /* 核心洞察区域 */
+    .insights-section {
+      background: rgba(230, 126, 34, 0.2);
+      padding: 20px;
+      border-radius: 12px;
+      border-left: 4px solid #e67e22;
+      margin-bottom: 25px;
+    }
+
+    .insights-section h4 {
+      color: #e67e22;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .insights-section h4 i {
+      margin-right: 8px;
+    }
+
+    .insight-item {
+      font-size: 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      line-height: 1.4;
+    }
+
+    .insight-item i {
+      color: #e67e22;
+      margin-right: 8px;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+
+    /* 底部区域 */
+    .footer-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .target-audience {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .target-audience strong {
+      color: #FFD700;
+    }
+
+    .source-info {
+      font-size: 12px;
+      opacity: 0.7;
+      text-align: right;
+    }
+
+    /* 图标精确定位样式 */
+    .icon-container i {
+      display: inline-block;
+      line-height: 0;
+      position: relative;
+      top: -2px;
+    }
+
+    /* 头部大图标修正 */
+    .header-icon i {
+      position: relative;
+      top: -3px;
+      line-height: 0;
+    }
+
+    /* 列标题图标修正 */
+    .column-icon i {
+      position: relative;
+      top: -2px;
+      line-height: 0;
+    }
+
+    /* 下载按钮固定定位，不占用卡片空间 */
+    .download-button {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    .download-button i {
+      margin-right: 10px;
+    }
+
+    .download-button:hover {
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .animate-spin {
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+  <!-- 卡片容器 -->
+  <div id="card-container">
+    <!-- 头部区域 -->
+    <div class="header-section">
+      <h1 class="main-title card-title">
+        <i class="fas fa-chart-line header-icon"></i>
+        小红书创业复盘：从0到月入10万再归零
+      </h1>
+      <p class="subtitle">3年小红书创业的完整复盘经验</p>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">2W+</div>
+          <div class="stat-label">半年粉丝</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">33.7%</div>
+          <div class="stat-label">千赞率</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15.7W</div>
+          <div class="stat-label">月最高流水</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="content-section">
+      <!-- 核心成就 -->
+      <div class="achievement-section">
+        <h4><i class="fas fa-trophy"></i>核心成就数据</h4>
+        <div class="achievement-grid">
+          <div class="achievement-item">
+            <div class="achievement-number">30W+</div>
+            <div class="achievement-label">赞藏总数</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-number">10W+</div>
+            <div class="achievement-label">变现超过</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-number">100+</div>
+            <div class="achievement-label">品牌合作邀请</div>
+          </div>
+          <div class="achievement-item">
+            <div class="achievement-number">93.7%</div>
+            <div class="achievement-label">百赞率</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 起号4大核心方法 -->
+      <h3 class="section-title column-icon">
+        <i class="fas fa-rocket"></i>
+        起号4大核心方法
+      </h3>
+      
+      <div class="methods-section">
+        <h4><i class="fas fa-lightbulb"></i>实战验证的起号策略</h4>
+        <div class="methods-grid">
+          <div class="method-item">
+            <div class="method-title">
+              <i class="fas fa-user"></i>人设打造
+            </div>
+            <div class="method-description">
+              不是简单编简介，而是分享人设要经历的所有事情，让用户共情。从买房→装修→入住全过程分享。
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-title">
+              <i class="fas fa-fire"></i>抓热点
+            </div>
+            <div class="method-description">
+              每天逛2-3遍小红书热点榜，思考能否与业务搭边。当天出笔记，当天爆的概率很大。
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-title">
+              <i class="fas fa-copy"></i>复制爆款
+            </div>
+            <div class="method-description">
+              找可扩展的内容形式+持续获得爆款+模仿成本低+市面模仿者少的异常值进行复制。
+            </div>
+          </div>
+          <div class="method-item">
+            <div class="method-title">
+              <i class="fas fa-gift"></i>送资料
+            </div>
+            <div class="method-description">
+              容易涨粉且来的都是精准粉，用户愿意为有价值的资料关注你，后续推送转化率高。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3个异常值机会 -->
+      <div class="opportunities-section">
+        <h4><i class="fas fa-gem"></i>3个异常值机会</h4>
+        <div class="opportunity-item">
+          <div class="opportunity-title">家居赛道红利</div>
+          <div class="opportunity-description">
+            家居/装修号很容易起号成功，流量大竞争小。博主少但品牌方多，都是商单接不过来的情况。踩中了<span class="opportunity-highlight">22-23年流量风口期</span>。
+          </div>
+        </div>
+        <div class="opportunity-item">
+          <div class="opportunity-title">带货返佣模式</div>
+          <div class="opportunity-description">
+            仅靠一篇笔记带货变现<span class="opportunity-highlight">10W+</span>，霸榜搜索排名，每月返佣2-3W，持续4-5个月。类似知乎好物的原始版本。
+          </div>
+        </div>
+        <div class="opportunity-item">
+          <div class="opportunity-title">品牌横测投流</div>
+          <div class="opportunity-description">
+            品牌方投流超<span class="opportunity-highlight">20W</span>，带来<span class="opportunity-highlight">47%</span>进店转化率。同品牌横测+投流，ROI效果惊人，现在仍可操作。
+          </div>
+        </div>
+      </div>
+
+      <!-- 测评矩阵玩法 -->
+      <div class="methods-section">
+        <h4><i class="fas fa-chart-bar"></i>测评矩阵玩法</h4>
+        <div class="method-item" style="grid-column: 1 / -1;">
+          <div class="method-description">
+            <strong>横测内容+品牌投流：</strong>首页多款产品测评表格，副图选购攻略，最后产品推荐。联系品牌方投新号广告，一旦小爆（100赞+）就会暴露在各大品牌方眼前。<br><br>
+            <strong>矩阵规模：</strong>3个号同时运营，单篇报价2K-5K，10月份流水最高15.7W，净利润11W。
+          </div>
+        </div>
+      </div>
+
+      <!-- 失败教训 -->
+      <div class="lessons-section">
+        <h4><i class="fas fa-exclamation-triangle"></i>失败教训</h4>
+        <div class="lesson-item">
+          <div class="lesson-title">平台严打无备选</div>
+          <div class="lesson-description">
+            23年底小红书严打图文横测，明知违规还硬着头皮写商单，没考虑转型，竭泽而渔导致账号限流。
+          </div>
+        </div>
+        <div class="lesson-item">
+          <div class="lesson-title">焦虑转型踩坑</div>
+          <div class="lesson-description">
+            收入降低后尝试3-4个项目都失败：家电团购（目标用户错误）、简历项目（个人能力依赖过重）、代运营合作（不规范合作被踢出局）。
+          </div>
+        </div>
+      </div>
+
+      <!-- 核心洞察 -->
+      <div class="insights-section">
+        <h4><i class="fas fa-brain"></i>创业心得总结</h4>
+        <div class="insight-item">
+          <i class="fas fa-wind"></i>
+          顺势而为，选择比努力更重要，去选正在风口上的项目
+        </div>
+        <div class="insight-item">
+          <i class="fas fa-cogs"></i>
+          学会梳理SOP，把80%重复工作交出去，专注20%最重要的工作
+        </div>
+        <div class="insight-item">
+          <i class="fas fa-route"></i>
+          在成功路径里小步快跑优化，切勿"自作聪明"颠覆已验证流程
+        </div>
+        <div class="insight-item">
+          <i class="fas fa-handshake"></i>
+          合作项目要谈好退出机制和违约条款，避免被别人白嫖
+        </div>
+        <div class="insight-item">
+          <i class="fas fa-search"></i>
+          市场调研、项目前景预估比埋头苦干更重要
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部区域 -->
+    <div class="footer-section">
+      <div class="target-audience">
+        <strong>适合人群：</strong>小红书创业者、自媒体从业者、想了解平台红利的人
+      </div>
+      <div class="source-info">
+        公众号@懒人搜索
+      </div>
+    </div>
+  </div>
+  
+  <!-- 下载按钮 - 必须包含 -->
+  <button id="download-btn" class="download-button">
+    <i class="fas fa-download"></i> 下载卡片PNG图像
+  </button>
+
+  <!-- 下载功能脚本 - 必须包含且不得修改 -->
+  <script>
+    // 确保DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      // 获取下载按钮
+      const downloadBtn = document.getElementById('download-btn');
+    
+      // 添加点击事件
+      downloadBtn.addEventListener('click', async function() {
+        try {
+          // 显示加载状态
+          const originalHTML = this.innerHTML;
+          this.innerHTML = '<i class="fas fa-spinner animate-spin"></i> 正在生成高清图片...';
+          this.disabled = true;
+        
+          // 先隐藏下载按钮再截图
+          this.style.display = 'none';
+        
+          const cardElement = document.getElementById('card-container');
+        
+          // 确保字体和图标完全加载
+          await document.fonts.ready;
+        
+          // 触发重排，确保布局稳定
+          cardElement.getBoundingClientRect();
+        
+          // 增加等待时间确保所有渲染完成
+          await new Promise(resolve => setTimeout(resolve, 500));
+        
+          // 强制应用所有计算样式，防止重叠问题
+          const forceStyleRecalc = (element) => {
+            if (!element) return;
+            window.getComputedStyle(element).getPropertyValue('position');
+            const children = element.children;
+            for (let i = 0; i < children.length; i++) {
+              forceStyleRecalc(children[i]);
+            }
+          };
+          forceStyleRecalc(cardElement);
+        
+          // 使用html2canvas，处理图标位置和元素重叠问题
+          const canvas = await html2canvas(cardElement, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: cardElement.style.backgroundColor || "#667eea",
+            logging: false,
+            onclone: function(clonedDoc) {
+              const clonedCard = clonedDoc.getElementById('card-container');
+            
+              // 确保布局稳定性
+              clonedCard.style.position = 'relative';
+              clonedCard.style.width = '800px';
+            
+              // 处理所有定位元素，确保正确的堆叠顺序
+              const positionedElements = clonedCard.querySelectorAll('[style*="position"]');
+              positionedElements.forEach((el, index) => {
+                // 确保有明确的z-index，防止重叠混乱
+                if (!el.style.zIndex) {
+                  el.style.zIndex = 10 + index;
+                }
+              });
+            
+              // 修正所有图标位置
+              const icons = clonedDoc.querySelectorAll('i');
+              icons.forEach(icon => {
+                icon.style.position = 'relative';
+                icon.style.top = '-2px';
+                icon.style.display = 'inline-block'; 
+                icon.style.lineHeight = '1';
+              });
+            
+              // 特别处理标题图标
+              const headerIcons = clonedDoc.querySelectorAll('.header-icon i');
+              headerIcons.forEach(icon => {
+                icon.style.top = '-4px';
+              });
+            
+              // 特别处理列标题图标
+              const columnIcons = clonedDoc.querySelectorAll('.column-icon i');
+              columnIcons.forEach(icon => {
+                icon.style.top = '-3px';
+              });
+            
+              // 确保文本容器不重叠
+              const textContainers = clonedCard.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+              textContainers.forEach(el => {
+                // 如果没有明确的overflow设置，添加overflow:hidden
+                if (!el.style.overflow) {
+                  el.style.overflow = 'hidden';
+                }
+              });
+            }
+          });
+        
+          // 转换为PNG并下载
+          canvas.toBlob(function(blob) {
+            // 创建下载链接
+            const link = document.createElement('a');
+            // 从卡片标题获取文件名，如果没有则使用默认名称
+            const title = document.querySelector('.card-title') || document.querySelector('h1');
+            const fileName = (title ? title.textContent.trim().substring(0, 30) : '小红书创业复盘卡片') + '.png';
+            link.download = fileName;
+            link.href = URL.createObjectURL(blob);
+            link.click();
+          
+            // 清理URL对象
+            URL.revokeObjectURL(link.href);
+          
+            // 恢复按钮状态和显示
+            downloadBtn.style.display = 'flex';
+            downloadBtn.innerHTML = originalHTML;
+            downloadBtn.disabled = false;
+          }, 'image/png', 1.0);
+        
+        } catch (error) {
+          console.error('生成图片失败:', error);
+          alert('生成图片失败，请重试');
+        
+          // 恢复按钮状态
+          this.style.display = 'flex';
+          this.innerHTML = '<i class="fas fa-download"></i> 下载卡片PNG图像';
+          this.disabled = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
