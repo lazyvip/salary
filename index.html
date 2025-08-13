@@ -9,7 +9,21 @@
 </head>
 <body>
     <div class="container">
+        <header class="main-header">
+            <h1>懒人实用工具导航</h1>
+            <p class="subtitle">精选实用工具，提升工作效率</p>
+        </header>
         <div class="card-container">
+
+            <div class="card" onclick="window.location.href='money_card/index.html'">
+                <div class="card-content">
+                    <div class="icon">💡</div>
+                    <h2>信息差卡片合集</h2>
+                    <p>精选优质商业案例，深度解析成功模式</p>
+                </div>
+                <div class="hover-effect"></div>
+            </div>
+
             <div class="card" onclick="window.location.href='salary_count/index.html'">
                 <div class="card-content">
                     <div class="icon">💰</div>
@@ -64,20 +78,27 @@
                 <div class="hover-effect"></div>
             </div>
 
-            <div class="card" onclick="window.location.href='money_card/index.html'">
-                <div class="card-content">
-                    <div class="icon">💡</div>
-                    <h2>信息差卡片合集</h2>
-                    <p>精选优质商业案例，深度解析成功模式</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+            
 
             <div class="card" onclick="window.location.href='blog/secret.html'">
                 <div class="card-content">
                     <div class="icon">🔐</div>
                     <h2>歪比巴卜密文转换器</h2>
                     <p>安全的AES加密解密工具</p>
+                </div>
+                <div class="hover-effect"></div>
+            </div>
+
+            <div class="card lazy-handbook-card" onclick="event.stopPropagation();">
+                <div class="card-content">
+                    <div class="icon">📖</div>
+                    <h2>懒人手册</h2>
+                    <p>多域名访问，选择最适合的入口</p>
+                    <div class="domain-links">
+                        <a href="https://lazybook.fun" target="_blank" class="domain-link primary" onclick="event.stopPropagation();">主域名: lazybook.fun</a>
+                        <a href="https://lazy2024.top/" target="_blank" class="domain-link backup" onclick="event.stopPropagation();">备用域名1: lazy2024.top</a>
+                        <a href="https://lazy2025.top/" target="_blank" class="domain-link backup" onclick="event.stopPropagation();">备用域名2: lazy2025.top</a>
+                    </div>
                 </div>
                 <div class="hover-effect"></div>
             </div>
