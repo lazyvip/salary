@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI改造业务2年实战复盘</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .header-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #667eea;
+            font-size: 20px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .highlight-box .title {
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .highlight-box .content {
+            color: #2d3436;
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #636e72;
+            margin-top: 5px;
+        }
+        
+        .process-steps {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            font-size: 14px;
+        }
+        
+        .step-desc {
+            color: #636e72;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .point:last-child {
+            margin-bottom: 0;
+        }
+        
+        .point i {
+            color: #00b894;
+            margin-right: 8px;
+            margin-top: 2px;
+            font-size: 12px;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .tech-item {
+            background: #667eea;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .target-audience {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .source {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: #95a5a6;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <i class="fas fa-robot header-icon"></i>
+                <div class="header-title">AI改造业务2年实战复盘</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                6年老圈友分享AI改造业务实战经验，从替代30人审核团队到支撑50国运营，成本降低90%，效率提升8倍
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-trophy"></i>
+                    核心成果
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">30人</span>
+                        <div class="stat-label">审核团队被AI替代</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24万/月</span>
+                        <div class="stat-label">人工成本节省</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">$100/天</span>
+                        <div class="stat-label">AI替代成本</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50国</span>
+                        <div class="stat-label">内容运营覆盖</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    改造路径
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">MVP验证</div>
+                            <div class="step-desc">文本审核先行，GPT3.5处理文章内容，双跑验证准确率和召回率</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">图片审核</div>
+                            <div class="step-desc">GPT4V处理图片内容，解决图片模糊问题，优化成本控制</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">图文融合</div>
+                            <div class="step-desc">GPT4o图文一体化审核，提升准确性，降低成本</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">视频审核</div>
+                            <div class="step-desc">封面+关键帧审核，98%覆盖率，保留人工兜底</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    关键技术要点
+                </div>
+                <div class="key-points">
+                    <div class="point">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>提示词工程：</strong>详细规则定义，要求AI给出判断理由提升准确性</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>成本优化：</strong>图片tile计费规则优化，选择最经济尺寸方案</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>模型选择：</strong>Gemini2.0成本仅为GPT4o的1/5，效果相当</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check-circle"></i>
+                        <span><strong>业务数据集：</strong>沉淀专业评测标准，构建业务飞轮</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-globe"></i>
+                    内容运营AI化
+                </div>
+                <div class="highlight-box">
+                    <div class="title">工作流拆解</div>
+                    <div class="content">
+                        将运营工作拆解为：爆款识别 → 话题归类 → 子话题判断 → 自动化运营动作，AI负责判断决策，代码执行固定动作
+                    </div>
+                </div>
+                <div class="tech-stack">
+                    <div class="tech-item">爆款识别</div>
+                    <div class="tech-item">话题分类</div>
+                    <div class="tech-item">内容标签</div>
+                    <div class="tech-item">自动推送</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    实战心得
+                </div>
+                <div class="key-points">
+                    <div class="point">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>先验证可行性再优化成本，MVP阶段不计成本</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>温度设置：判断性内容设为0，创作性内容0.3-0.5</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>迭代思维：不求一步到位，逐步推进成功率更高</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>用发展眼光看AI：模型快速迭代，今天做不了明天可能就行了</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="target-audience">
+                👥 适合人群：技术负责人、业务操盘手、AI产品经理、出海团队
+            </div>
+        </div>
+        
+        <div class="source">公众号@懒人搜索</div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>
+        保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            
+            try {
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+                button.disabled = true;
+                
+                // 等待字体和图标加载
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                
+                // 强制重新计算布局
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: card.offsetWidth,
+                    height: card.offsetHeight,
+                    onclone: function(clonedDoc) {
+                        // 确保克隆文档中的图标正确显示
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('i[class*="fa"]');
+                        
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                            
+                            // 根据图标位置进行微调
+                            if (icon.closest('.header-icon')) {
+                                icon.style.transform = 'translateY(0px)';
+                            } else if (icon.closest('.section-title')) {
+                                icon.style.transform = 'translateY(-1px)';
+                            } else if (icon.closest('.point')) {
+                                icon.style.transform = 'translateY(1px)';
+                            }
+                        });
+                        
+                        // 强制应用所有样式
+                        clonedCard.style.fontFamily = 'Microsoft YaHei, PingFang SC, sans-serif';
+                    }
+                });
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = 'AI改造业务2年实战复盘.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                
+                // 触发下载
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                button.innerHTML = '<i class="fas fa-check"></i> 保存成功';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+                
+            } catch (error) {
+                console.error('下载失败:', error);
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 下载失败';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

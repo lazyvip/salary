@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI客服：百万级实战心法</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        .process-flow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .process-step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        .step-number {
+            background: #4facfe;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .step-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .tech-item {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+        
+        .tech-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .tech-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tech-desc {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .insights {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .insights-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .insight-list {
+            list-style: none;
+        }
+        
+        .insight-item {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .insight-item:before {
+            content: "💡";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .business-model {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .model-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .model-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .model-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #4facfe;
+            margin-bottom: 8px;
+        }
+        
+        .model-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .source {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: #999;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 15px;
+        }
+        
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .card {
+                width: 100%;
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .title {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .stats-grid,
+            .process-flow,
+            .business-model {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="download-btn" onclick="downloadCard()">💾 保存卡片</button>
+    
+    <div class="card" id="card">
+        <div class="header">
+            <div class="title">AI客服：百万级实战心法</div>
+            <div class="subtitle">从0到1构建高转化AI客服系统</div>
+        </div>
+        
+        <div class="content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100万+</div>
+                    <div class="stat-label">年营收规模</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10倍</div>
+                    <div class="stat-label">业务增长</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎯 核心业务策略</div>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-title">
+                            <span class="step-number">1</span>线下获客
+                        </div>
+                        <div class="step-desc">与阿里巴巴、高校合作举办会议，精准触达目标客户</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-title">
+                            <span class="step-number">2</span>私域运营
+                        </div>
+                        <div class="step-desc">微信生态深度运营，构建客户信任关系</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-title">
+                            <span class="step-number">3</span>业务分析
+                        </div>
+                        <div class="step-desc">深度挖掘客户SOP，提取顶级销售话术精华</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-title">
+                            <span class="step-number">4</span>提示词工程
+                        </div>
+                        <div class="step-desc">基于LangGPT框架，构建结构化提示词体系</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🛠️ 技术架构选型</div>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <div class="tech-icon">🤖</div>
+                        <div class="tech-name">Claude/Gemini</div>
+                        <div class="tech-desc">低幻觉率，高质量回复</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">📝</div>
+                        <div class="tech-name">LangGPT框架</div>
+                        <div class="tech-desc">结构化提示词模板</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">💬</div>
+                        <div class="tech-name">微信API</div>
+                        <div class="tech-desc">第三方稳定消息通道</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔍</div>
+                        <div class="tech-name">RAG系统</div>
+                        <div class="tech-desc">重写+重排序优化</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💡 核心实战技巧</div>
+                <div class="insights">
+                    <div class="insights-title">提示词工程精华</div>
+                    <ul class="insight-list">
+                        <li class="insight-item">业务流程先行：提示词是业务逻辑的投射，先梳理SOP再写提示词</li>
+                        <li class="insight-item">Few-shots示例：给AI几个标准回复示例，胜过千言万语的描述</li>
+                        <li class="insight-item">微信场景适配：数组输出格式+表情符号+时间间隔，模拟真人对话</li>
+                        <li class="insight-item">变量替换法：长文本用变量代替，大幅减少提示词长度和幻觉</li>
+                        <li class="insight-item">提示词拆分：复杂场景用意图识别+多提示词，提升准确率</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">💰 商业模式设计</div>
+                <div class="business-model">
+                    <div class="model-card">
+                        <div class="model-title">🚀 标准版</div>
+                        <div class="model-price">5K/年/席位</div>
+                        <div class="model-desc">通用RAG系统，运营人员配置，快速上线验证效果</div>
+                    </div>
+                    <div class="model-card">
+                        <div class="model-title">⭐ 定制版</div>
+                        <div class="model-price">3-5万</div>
+                        <div class="model-desc">深度定制提示词，图片识别，用户打标等高级功能</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🎯 关键成功要素</div>
+                <div class="insights">
+                    <div class="insights-title">AI产品护城河</div>
+                    <ul class="insight-list">
+                        <li class="insight-item">随AI进步而增强：模型能力提升直接带动产品效果提升</li>
+                        <li class="insight-item">数据壁垒：微信会话数据，大模型公司无法触达</li>
+                        <li class="insight-item">平台整合：深度集成微信生态，提供主动触达等增值功能</li>
+                        <li class="insight-item">业务专家：提示词本质是业务逻辑投射，需要深度业务理解</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="source">来源：公众号@懒人搜索</div>
+    </div>
+    
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            html2canvas(document.getElementById('card'), {
+                backgroundColor: null,
+                scale: 2,
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'AI客服百万级实战心法.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                button.style.display = 'block';
+            }).catch(err => {
+                console.error('生成图片失败:', err);
+                button.style.display = 'block';
+                alert('生成图片失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>
