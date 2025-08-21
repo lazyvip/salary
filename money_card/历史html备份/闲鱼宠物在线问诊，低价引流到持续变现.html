@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闲鱼宠物问诊：低价引流的变现秘籍</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="paw" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="8" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="6" cy="14" r="1.5" fill="%23ffffff" opacity="0.1"/><circle cx="14" cy="14" r="1.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23paw)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e17055;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .profit-section {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .profit-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profit-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .profit-item {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .advantage-item {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #bee5eb;
+        }
+        
+        .advantage-icon {
+            font-size: 24px;
+            color: #ff6b6b;
+            margin-bottom: 10px;
+        }
+        
+        .advantage-text {
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">闲鱼宠物问诊：低价引流的变现秘籍</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-paw icon"></i> 宠物在线问诊服务，<span class="highlight">1-2元</span>低价引流，通过微信朋友圈实现<span class="highlight">持续变现</span>，零库存零囤货的轻资产模式
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-rocket"></i> 操作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">闲鱼开店引流</div>
+                        </div>
+                        <div class="step-content">
+                            发布"宠物医生在线解答"商品，价格设置1-2元，封面借鉴同行，建立信任背书
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">建立专业形象</div>
+                        </div>
+                        <div class="step-content">
+                            与附近宠物店合作，获取兽医证书拍照，增强专业可信度
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">智能问答服务</div>
+                        </div>
+                        <div class="step-content">
+                            用户提问后，复制问题用免费在线工具搜答案，整理成简短可执行的建议回复
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">微信引流转化</div>
+                        </div>
+                        <div class="step-content">
+                            服务结束后引导加微信："以后有问题随时找我，朋友圈也会发养宠小技巧"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profit-section">
+                <h3 class="profit-title">
+                    <i class="fas fa-dollar-sign"></i> 变现渠道
+                </h3>
+                <ul class="profit-list">
+                    <li class="profit-item">
+                        <i class="fas fa-shopping-cart icon"></i>
+                        <span>宠物用品分佣：猫粮、猫砂、磨牙棒等，一单几块到几十元</span>
+                    </li>
+                    <li class="profit-item">
+                        <i class="fas fa-map-marker-alt icon"></i>
+                        <span>同城服务推荐：洗澡、美容、打疫苗，一单几十元介绍费</span>
+                    </li>
+                    <li class="profit-item">
+                        <i class="fas fa-book icon"></i>
+                        <span>知识付费：《新手养猫避坑手册》等资料，定价9.9元</span>
+                    </li>
+                    <li class="profit-item">
+                        <i class="fas fa-users icon"></i>
+                        <span>社群运营：建宠物交流群，定期推产品，转化率高</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="advantage-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="advantage-text">零库存</div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <div class="advantage-text">零囤货</div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <div class="advantage-text">零广告费</div>
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">闲鱼引流</span>
+                <span class="tag">宠物经济</span>
+                <span class="tag">微信变现</span>
+                <span class="tag">轻资产模式</span>
+                <span class="tag">社群运营</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-heart icon"></i> 适合：宠物爱好者、微商从业者、社群运营者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = '闲鱼宠物问诊_低价引流变现秘籍.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI赋能小红书运营体系搭建指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .header-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .section-icon {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #667eea;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .tool-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tool-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .tool-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            counter-increment: step-counter;
+            background: #f8f9fa;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .highlight-title {
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-title i {
+            margin-right: 8px;
+        }
+        
+        .highlight-content {
+            color: #2d3436;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        
+        .key-points {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .key-points-title {
+            font-weight: bold;
+            color: #0984e3;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points-title i {
+            margin-right: 8px;
+        }
+        
+        .points-list {
+            list-style: none;
+        }
+        
+        .points-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #2d3436;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        
+        .points-list li::before {
+            content: '👉';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .workflow-diagram {
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .workflow-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .workflow-step {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #2c3e50;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .workflow-arrow {
+            color: #667eea;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+        
+        .footer {
+            text-align: right;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 850px) {
+            .card {
+                width: 95%;
+                margin: 0 auto;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .workflow-steps {
+                flex-direction: column;
+            }
+            
+            .workflow-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <i class="fas fa-robot header-icon"></i>
+                <div class="header-title">AI赋能小红书运营体系</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    10分钟生成高质量IP文案，批量产出100条爆款笔记<br>
+                    从0到1搭建完整AI运营体系，实现高效内容创作
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-tools section-icon"></i>
+                    核心AI工具选择
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-name">DeepSeek</div>
+                        <div class="tool-desc">易上手，API接入飞书表格，高效笔记分析</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-name">Claude</div>
+                        <div class="tool-desc">逻辑性强，适合长文案、代码、卡片生成</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-name">Gemini</div>
+                        <div class="tool-desc">深度分析，风格模仿，个人IP文案创作</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-name">Dia浏览器</div>
+                        <div class="tool-desc">网页总结，直接AI对话，爆款笔记分析</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-bullseye section-icon"></i>
+                    账号定位与规划
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-title">Claude账号规划</div>
+                        <div class="step-content">输入个人信息、目标用户画像、内容方向，获得详细账号规划建议，包含定位公式、受众画像、内容策略等8大模块</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">Gemini深度训练</div>
+                        <div class="step-content">投喂5000+字个人介绍和30+篇文案，训练专属AI助手，生成符合个人风格的内容</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <i class="fas fa-lightbulb"></i>
+                    核心选题系统
+                </div>
+                <div class="highlight-content">
+                    <strong>ALL IN ONE记录法：</strong>微信群聊、手机备忘录、语音笔记多场景记录，确保不错过任何灵感<br><br>
+                    <strong>知识库体系：</strong>飞书多维表格整理闪念，自动分类到专项素材库（金句、案例、故事等）
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-lightbulb section-icon"></i>
+                    三大选题来源
+                </div>
+                <div class="key-points">
+                    <div class="key-points-title">
+                        <i class="fas fa-star"></i>
+                        选题获取方式
+                    </div>
+                    <ul class="points-list">
+                        <li><strong>闪念选题：</strong>日常想法记录→知识库整理→选题标签筛选</li>
+                        <li><strong>对标选题：</strong>爆文收集→DeepSeek分析→契合定位转化</li>
+                        <li><strong>热点选题：</strong>Dia浏览器+灰豚数据，快速捕捉热门话题</li>
+                        <li><strong>全网热点：</strong>DeepSeek联网搜集，结合定位生成选题</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="workflow-diagram">
+                <div class="workflow-title">AI文案创作流程</div>
+                <div class="workflow-steps">
+                    <div class="workflow-step">投喂个人信息</div>
+                    <i class="fas fa-arrow-right workflow-arrow"></i>
+                    <div class="workflow-step">风格学习训练</div>
+                    <i class="fas fa-arrow-right workflow-arrow"></i>
+                    <div class="workflow-step">选题输入生成</div>
+                    <i class="fas fa-arrow-right workflow-arrow"></i>
+                    <div class="workflow-step">人工优化迭代</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-edit section-icon"></i>
+                    高效文案产出
+                </div>
+                <div class="process-steps">
+                    <div class="step">
+                        <div class="step-title">Gemini个人IP文案</div>
+                        <div class="step-content">投喂→输出→学习循环，持续优化文案风格，记住个人故事和表达习惯</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-title">飞书表格批量生成</div>
+                        <div class="step-content">关键词批量导入，自动生成文案，支持竞品分析和定向改写</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <div class="key-points-title">
+                    <i class="fas fa-check-circle"></i>
+                    实操要点
+                </div>
+                <ul class="points-list">
+                    <li>工具选择看上手难度、内容质量、多平台协作能力</li>
+                    <li>账号定位要明确解决哪个人群的具体问题</li>
+                    <li>选题系统要覆盖闪念、对标、热点三大来源</li>
+                    <li>文案创作必须亲自朗读，找到个人风格</li>
+                    <li>知识库要定期复盘，形成输入→记录→输出闭环</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <i class="fas fa-users"></i>
+                    适合人群
+                </div>
+                <div class="highlight-content">
+                    想通过小红书打造个人IP的创业者、自由职业者、职场人、大学生、宝妈，特别是希望用AI提升内容创作效率的自媒体从业者
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>
+        保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const card = document.getElementById('card');
+            
+            // 隐藏下载按钮
+            button.style.display = 'none';
+            
+            try {
+                // 等待字体和图标加载
+                await document.fonts.ready;
+                
+                // 等待渲染完成
+                await new Promise(resolve => setTimeout(resolve, 300));
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: null,
+                    logging: false,
+                    onclone: function(clonedDoc) {
+                        // 确保克隆文档中的样式正确应用
+                        const clonedCard = clonedDoc.getElementById('card');
+                        if (clonedCard) {
+                            // 确保所有Font Awesome图标正确显示
+                            const icons = clonedCard.querySelectorAll('i[class*="fa"]');
+                            icons.forEach(icon => {
+                                icon.style.fontFamily = 'Font Awesome 6 Free, Font Awesome 6 Brands';
+                                icon.style.fontWeight = '900';
+                                icon.style.fontStyle = 'normal';
+                                icon.style.display = 'inline-block';
+                                icon.style.textRendering = 'auto';
+                                icon.style.webkitFontSmoothing = 'antialiased';
+                            });
+                        }
+                    }
+                });
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = 'AI赋能小红书运营体系搭建指南.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                
+                // 触发下载
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示成功消息
+                button.innerHTML = '<i class="fas fa-check"></i> 保存成功';
+                button.style.background = 'linear-gradient(135deg, #00b894 0%, #00a085 100%)';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-download"></i> 保存卡片';
+                    button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('保存失败:', error);
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 保存失败';
+                button.style.background = 'linear-gradient(135deg, #e17055 0%, #d63031 100%)';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-download"></i> 保存卡片';
+                    button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+                }, 2000);
+            } finally {
+                // 恢复下载按钮显示
+                button.style.display = 'block';
+            }
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 预加载字体和图标
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2';
+            link.as = 'font';
+            link.type = 'font/woff2';
+            link.crossOrigin = 'anonymous';
+            document.head.appendChild(link);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚马逊卖家六大核心难点实战攻略</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .header-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .author-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff9500;
+        }
+        
+        .author-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .author-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            text-align: center;
+        }
+        
+        .data-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #ff9500;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #ff9500;
+            font-size: 22px;
+        }
+        
+        .problem-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .problem-item {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .problem-item:hover {
+            border-color: #ff9500;
+            box-shadow: 0 5px 15px rgba(255, 149, 0, 0.1);
+        }
+        
+        .problem-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .problem-number {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b35 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .problem-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .problem-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .solution-box {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            padding: 15px;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .solution-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .solution-title i {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .solution-content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        .highlight-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .key-points {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .key-points li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
+        .key-points li::before {
+            content: '👉';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .strategy-card {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .strategy-icon {
+            font-size: 24px;
+            color: #ff9500;
+            margin-bottom: 8px;
+        }
+        
+        .strategy-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .strategy-desc {
+            font-size: 13px;
+            color: #7f8c8d;
+            line-height: 1.3;
+        }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .tips-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .source {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .download-btn i {
+            font-size: 18px;
+        }
+        
+        @media (max-width: 850px) {
+            .card {
+                width: 95%;
+                margin: 0 auto;
+            }
+            
+            .data-grid,
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fab fa-amazon"></i>
+                </div>
+                <div class="header-title">亚马逊卖家六大核心难点实战攻略</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    5年亚马逊实战经验，200万美金GMV操盘手深度复盘六大核心难点与解决方案
+                </div>
+            </div>
+            
+            <div class="author-info">
+                <div class="author-name">张子卿 - 97年计算机出身</div>
+                <div class="author-desc">5年亚马逊创业经验，杭州GMV 200万美金，4个店铺，5-6人团队</div>
+            </div>
+            
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-number">200万</div>
+                    <div class="data-label">美金GMV</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">5年</div>
+                    <div class="data-label">实战经验</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    六大核心难点解析
+                </div>
+                <ul class="problem-list">
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">1</div>
+                            <div class="problem-title">选品难题</div>
+                        </div>
+                        <div class="problem-desc">
+                            选品是伴随终身的问题，需要找到适合自己能力圈的生存空间
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                建立Stop doing list + 三要素模型：ROI>2且生命周期长、竞争格局未固化、消费者痛点未满足
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">2</div>
+                            <div class="problem-title">现金流问题</div>
+                        </div>
+                        <div class="problem-desc">
+                            精品卖家生意越好越危险，反脆弱性差，实际ROI远低于预期
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                转向轻小件，提升周转速度，将大链接拆分成20-30条小链接分散风险
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">3</div>
+                            <div class="problem-title">标准化SOP</div>
+                        </div>
+                        <div class="problem-desc">
+                            产品经理难以批量复制，核心人才培养困难
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                简化产品难度，产品运营一体化，建立完整SOP和模板教程
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">4</div>
+                            <div class="problem-title">人才招聘留任</div>
+                        </div>
+                        <div class="problem-desc">
+                            优秀人才难招聘，留任率低，团队建设困难
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                校招+实习筛选模式，15k+薪资，良好企业文化，职业发展前景
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">5</div>
+                            <div class="problem-title">运营体系化</div>
+                        </div>
+                        <div class="problem-desc">
+                            传统运营打法效果下降，需要全新的推广体系
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                构建标准化轻小件运营流程，根据数据反馈做调整判断
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="problem-item">
+                        <div class="problem-header">
+                            <div class="problem-number">6</div>
+                            <div class="problem-title">系统化提升</div>
+                        </div>
+                        <div class="problem-desc">
+                            各个模块需要持续优化，建立长期护城河
+                        </div>
+                        <div class="solution-box">
+                            <div class="solution-title">
+                                <i class="fas fa-lightbulb"></i>
+                                解决方案
+                            </div>
+                            <div class="solution-content">
+                                模块化优化，每个环节提升5%，积少成多形成竞争优势
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-target"></i>
+                    核心策略要点
+                </div>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="strategy-name">能力圈选品</div>
+                        <div class="strategy-desc">只做75分以下竞争赛道，找到生态位</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <div class="strategy-name">轻小件策略</div>
+                        <div class="strategy-desc">提升周转速度，降低风险</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="strategy-name">人才培养</div>
+                        <div class="strategy-desc">校招+实习+筛选模式</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="strategy-name">系统优化</div>
+                        <div class="strategy-desc">每个环节提升5%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <i class="fas fa-shield-alt"></i>
+                    护城河思考
+                </div>
+                <p>亚马逊链接的真正护城河不是产品本身，而是文案、图片、视频、关键词、供应链等综合内功，这些是无法轻易模仿的核心竞争力。</p>
+            </div>
+            
+            <div class="tips-box">
+                <div class="tips-title">
+                    <i class="fas fa-compass"></i>
+                    实操建议
+                </div>
+                <ul class="tips-list">
+                    <li>建立Stop doing list，明确自己的能力圈边界</li>
+                    <li>优先选择轻小件产品，提升资金周转速度</li>
+                    <li>通过校招+实习模式培养和筛选人才</li>
+                    <li>建立完整的SOP体系，降低对核心人员依赖</li>
+                    <li>持续优化各个模块，每次提升5%积累优势</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>
+        保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const card = document.getElementById('card');
+            
+            // 禁用按钮并显示加载状态
+            button.style.display = 'none';
+            button.disabled = true;
+            
+            try {
+                // 等待字体和资源加载完成
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // 强制重新计算布局
+                card.getBoundingClientRect();
+                
+                // 获取卡片的实际高度
+                const cardHeight = Math.max(
+                    card.scrollHeight,
+                    card.offsetHeight,
+                    card.clientHeight,
+                    card.getBoundingClientRect().height
+                );
+                
+                // 动态计算缓冲区
+                const sourceElement = card.querySelector('.source');
+                const sourceRect = sourceElement.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const distanceFromBottom = cardRect.bottom - sourceRect.bottom;
+                
+                let bufferZone;
+                if (distanceFromBottom < 20) {
+                    bufferZone = 80;
+                } else if (distanceFromBottom < 40) {
+                    bufferZone = 50;
+                } else {
+                    bufferZone = 30;
+                }
+                
+                // 临时调整底部内边距
+                const originalPadding = card.style.paddingBottom;
+                card.style.paddingBottom = bufferZone + 'px';
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: cardHeight + bufferZone,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: function(clonedDoc) {
+                        // 确保克隆文档中的图标正确显示
+                        const clonedCard = clonedDoc.getElementById('card');
+                        if (clonedCard) {
+                            // 调整所有图标的位置
+                            const icons = clonedCard.querySelectorAll('i');
+                            icons.forEach(icon => {
+                                icon.style.display = 'inline-block';
+                                icon.style.lineHeight = '1';
+                                
+                                // 根据图标类型进行不同的调整
+                                if (icon.closest('.header-icon')) {
+                                    icon.style.transform = 'translateY(2px)';
+                                } else if (icon.closest('.section-title')) {
+                                    icon.style.transform = 'translateY(1px)';
+                                } else if (icon.closest('.solution-title, .highlight-title, .tips-title')) {
+                                    icon.style.transform = 'translateY(1px)';
+                                } else if (icon.closest('.strategy-icon')) {
+                                    icon.style.transform = 'translateY(0px)';
+                                }
+                            });
+                        }
+                    }
+                });
+                
+                // 恢复原始样式
+                card.style.paddingBottom = originalPadding;
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '亚马逊卖家六大核心难点实战攻略.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                
+                // 触发下载
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示成功提示
+                showToast('卡片保存成功！', 'success');
+                
+            } catch (error) {
+                console.error('保存失败:', error);
+                showToast('保存失败，请重试', 'error');
+            } finally {
+                // 恢复按钮状态
+                button.style.display = 'flex';
+                button.disabled = false;
+            }
+        }
+        
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: ${type === 'success' ? '#00b894' : '#e74c3c'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: 600;
+                z-index: 10000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                animation: fadeInOut 3s ease-in-out;
+            `;
+            
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // 添加动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => {
+                document.body.removeChild(toast);
+                document.head.removeChild(style);
+            }, 3000);
+        }
+        
+        // 页面加载完成后预热渲染引擎
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B站用AI通过小说剧本打造短视频，两周涨粉2万</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuit" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="%23ffffff" opacity="0.1"/><line x1="5" y1="10" x2="15" y2="10" stroke="%23ffffff" stroke-width="0.5" opacity="0.15"/><line x1="10" y1="5" x2="10" y2="15" stroke="%23ffffff" stroke-width="0.5" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23circuit)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #00b894;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .tools-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .tools-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #e17055;
+        }
+        
+        .tool-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .tool-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        
+        .tool-price {
+            background: #e17055;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: inline-block;
+        }
+        
+        .workflow {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #bee5eb;
+        }
+        
+        .workflow-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .workflow-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+            position: relative;
+        }
+        
+        .workflow-step {
+            font-weight: bold;
+            color: #17a2b8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .workflow-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .tips {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .tips-title {
+            font-size: 20px;
+            color: #155724;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tip-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .warning {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .warning-title {
+            font-size: 18px;
+            color: #d63031;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">B站用AI通过小说剧本打造短视频，两周涨粉2万</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-video icon"></i> 利用<span class="highlight">AI工具将小说剧本转化为短视频</span>，在B站平台<span class="highlight">两周内涨粉2万</span>，通过<span class="highlight">批量化生产和精准投放</span>实现快速增长
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2万</div>
+                    <div class="stat-label">两周涨粉</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">AI制作</div>
+                    <div class="stat-label">视频生产</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">小说改编</div>
+                    <div class="stat-label">内容来源</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">B站</div>
+                    <div class="stat-label">主要平台</div>
+                </div>
+            </div>
+            
+            <div class="tools-section">
+                <h3 class="tools-title">
+                    <i class="fas fa-tools"></i> 核心AI工具
+                </h3>
+                <div class="tool-item">
+                    <div class="tool-name">ChatGPT/Claude</div>
+                    <div class="tool-desc">用于剧本改编、对话优化、情节调整</div>
+                    <div class="tool-price">免费/付费</div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-name">Midjourney/Stable Diffusion</div>
+                    <div class="tool-desc">生成角色形象、场景背景图片</div>
+                    <div class="tool-price">$10-30/月</div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-name">D-ID/Synthesia</div>
+                    <div class="tool-desc">将静态图片转换为说话的视频</div>
+                    <div class="tool-price">$29-99/月</div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-name">ElevenLabs/Azure TTS</div>
+                    <div class="tool-desc">生成高质量的AI语音配音</div>
+                    <div class="tool-price">$5-99/月</div>
+                </div>
+                <div class="tool-item">
+                    <div class="tool-name">剪映/CapCut</div>
+                    <div class="tool-desc">视频剪辑、字幕添加、特效处理</div>
+                    <div class="tool-price">免费</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 制作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">选择小说素材</div>
+                        </div>
+                        <div class="step-content">
+                            选择热门小说或经典作品，重点关注情节紧凑、对话丰富的章节片段
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">AI剧本改编</div>
+                        </div>
+                        <div class="step-content">
+                            使用ChatGPT将小说文本转换为视频剧本格式，优化对话和场景描述
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">角色形象生成</div>
+                        </div>
+                        <div class="step-content">
+                            用Midjourney生成符合小说描述的角色形象和场景背景
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">语音配音制作</div>
+                        </div>
+                        <div class="step-content">
+                            使用ElevenLabs为不同角色生成独特的AI语音，注意情感表达
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <div class="step-title">视频合成</div>
+                        </div>
+                        <div class="step-content">
+                            用D-ID将静态角色图片制作成说话视频，同步语音和口型
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">6</div>
+                            <div class="step-title">后期剪辑</div>
+                        </div>
+                        <div class="step-content">
+                            使用剪映进行视频剪辑，添加字幕、背景音乐和转场效果
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow">
+                <h3 class="workflow-title">
+                    <i class="fas fa-chart-line"></i> 运营策略
+                </h3>
+                <div class="workflow-item">
+                    <div class="workflow-step">内容规划</div>
+                    <div class="workflow-desc">选择热门小说IP，制作连载系列视频，保持更新频率</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">标题优化</div>
+                    <div class="workflow-desc">使用吸引眼球的标题，包含热门关键词和悬念元素</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">封面设计</div>
+                    <div class="workflow-desc">制作高质量封面，突出角色形象和情节冲突点</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">发布时机</div>
+                    <div class="workflow-desc">选择用户活跃时段发布，通常是晚上7-10点</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">互动维护</div>
+                    <div class="workflow-desc">及时回复评论，引导用户关注和分享</div>
+                </div>
+            </div>
+            
+            <div class="tips">
+                <h3 class="tips-title">
+                    <i class="fas fa-lightbulb"></i> 成功要点
+                </h3>
+                <div class="tip-item">
+                    <div class="tip-content">选择有版权或公版的小说作品，避免侵权风险</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-content">保持角色形象和声音的一致性，建立用户认知</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-content">控制视频时长在1-3分钟，适合B站用户观看习惯</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-content">在关键情节处设置悬念，引导用户关注下一集</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-content">建立固定的更新时间，培养用户观看习惯</div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <div class="warning-title">
+                    <i class="fas fa-exclamation-triangle"></i> 注意事项
+                </div>
+                <div class="warning-content">
+                    注意版权问题，选择公版小说或获得授权的作品。AI生成的内容需要人工审核，确保质量和合规性。同时要关注平台政策变化，避免因违规导致账号受限。
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">AI视频</span>
+                <span class="tag">小说改编</span>
+                <span class="tag">B站涨粉</span>
+                <span class="tag">短视频</span>
+                <span class="tag">批量制作</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：内容创作者、自媒体运营、视频制作团队
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = 'B站用AI通过小说剧本打造短视频_两周涨粉2万.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

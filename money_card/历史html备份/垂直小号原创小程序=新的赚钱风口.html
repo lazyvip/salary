@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直小号+原创小程序=新的赚钱风口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #333;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.3)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.3)"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 30px 25px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e74c3c;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '🚀';
+            margin-right: 8px;
+        }
+        
+        .subsection {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .success-box {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .success-box::before {
+            content: '💰 ';
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .tip-box::before {
+            content: '💡 ';
+        }
+        
+        .step-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .step-header {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 15px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .step-content {
+            padding: 15px;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin: 12px 0;
+            padding: 12px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #e74c3c;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .data-highlight {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .data-highlight::before {
+            content: '📊';
+            font-size: 24px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .big-number {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .ai-workflow {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+        
+        .ai-workflow h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .workflow-item {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .tool-showcase {
+            background: #2d3436;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+        
+        .tool-showcase h4 {
+            color: #00cec9;
+            margin-bottom: 15px;
+        }
+        
+        .code-step {
+            background: rgba(0,206,201,0.1);
+            border: 1px solid #00cec9;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .save-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(231,76,60,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231,76,60,0.4);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        .formula {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1>垂直小号+小程序赚钱攻略</h1>
+            <div class="subtitle">AI时代的新风口实操指南</div>
+        </div>
+        
+        <div class="content">
+            <div class="formula">
+                垂直定位 + AI内容 + 小程序工具 = 稳定收入
+            </div>
+            
+            <div class="data-highlight">
+                <span class="big-number">700粉</span>
+                <div>推荐流量占比80%</div>
+                <div>日收入100+元</div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">垂直定位三步法</div>
+                
+                <div class="step-container">
+                    <div class="step-header">第一步：切最小切口</div>
+                    <div class="step-content">
+                        <div class="process-step">
+                            <div class="step-number">❌</div>
+                            <div class="step-text"><strong>错误：</strong>做"母婴号"太泛化</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">✅</div>
+                            <div class="step-text"><strong>正确：</strong>"怀孕1-10月每周注意事项+政策福利"</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">第二步：精准用户画像</div>
+                    <div class="step-content">
+                        <ul>
+                            <li><strong>年龄：</strong>25-32岁新手孕妈</li>
+                            <li><strong>职业：</strong>上班族</li>
+                            <li><strong>痛点：</strong>少花钱、少踩坑、不焦虑</li>
+                            <li><strong>内容策略：</strong>不讲废话，只说实用干货</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step-container">
+                    <div class="step-header">第三步：数据验证定位</div>
+                    <div class="step-content">
+                        <div class="tip-box">
+                            <strong>验证信号：</strong><br>
+                            • 推荐流量占比>50%<br>
+                            • 用户留言集中在同一问题<br>
+                            • 3篇内容后有明确反馈
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">AI内容批量生产</div>
+                
+                <div class="ai-workflow">
+                    <h4>🤖 AI创作流程（每天2小时出3篇）</h4>
+                    
+                    <div class="workflow-item">
+                        <strong>步骤1：AI找高价值选题</strong><br>
+                        关键词："怀孕妈妈高频问题+2025政策"<br>
+                        筛选标准：用户留言区问过的真需求
+                    </div>
+                    
+                    <div class="workflow-item">
+                        <strong>步骤2：AI出框架，人工填细节</strong><br>
+                        框架：申请条件+材料清单+线上步骤+常见问题<br>
+                        细节：地域化、场景化信息（如沈阳vs长春政策差异）
+                    </div>
+                    
+                    <div class="workflow-item">
+                        <strong>步骤3：AI优化传播性</strong><br>
+                        钩子结尾："符合这3个条件的孕妈，补贴能多领2000元"<br>
+                        效果：关注率比纯干货高3倍
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>核心原则：</strong>批量不等于敷衍，必须让用户觉得"有用"！
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">小程序开发实战</div>
+                
+                <div class="tool-showcase">
+                    <h4>🛠️ 零基础3步搞定小程序</h4>
+                    
+                    <div class="code-step">
+                        <strong>工具选择：</strong>腾讯CodeBuddy AI编程软件<br>
+                        • 下载安装后配置中文界面<br>
+                        • 创建专用文件夹管理代码
+                    </div>
+                    
+                    <div class="code-step">
+                        <strong>功能描述：</strong>详细描述小程序需求<br>
+                        • 用AI优化需求描述<br>
+                        • AI自动编程生成代码<br>
+                        • 持续优化直到满意效果
+                    </div>
+                    
+                    <div class="code-step">
+                        <strong>发布上线：</strong>微信开发者工具<br>
+                        • 导入代码文件夹<br>
+                        • 完成资料认证和备案<br>
+                        • 提交审核等待上线
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">双重变现模式</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📈 收入构成</div>
+                    <ul>
+                        <li><strong>公众号广告：</strong>基础流量变现</li>
+                        <li><strong>小程序工具：</strong>增值服务收费</li>
+                        <li><strong>用户粘性：</strong>"离了你不行"的依赖感</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box">
+                    <strong>实战效果：</strong>700粉垂直号日入100+，超越几万粉泛号收益
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">成功关键要素</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🎯 内容策略</div>
+                    <ul>
+                        <li><strong>选题精准：</strong>解决用户真实痛点</li>
+                        <li><strong>内容实用：</strong>可操作的干货指南</li>
+                        <li><strong>地域化：</strong>结合当地政策细节</li>
+                        <li><strong>钩子设计：</strong>引导关注和互动</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🔧 工具价值</div>
+                    <ul>
+                        <li><strong>解决痛点：</strong>补贴计算复杂问题</li>
+                        <li><strong>提升粘性：</strong>实用工具增加依赖</li>
+                        <li><strong>流量放大：</strong>工具传播带动账号增长</li>
+                        <li><strong>变现增值：</strong>多元化收入来源</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">风口机会分析</div>
+                
+                <div class="tip-box">
+                    <strong>微信扶持政策：</strong>大力推荐垂直类优质内容，"小而美"账号获得更多流量倾斜
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>核心逻辑：</strong>不是"做号"，而是用"精准内容+实用工具"让用户产生依赖
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="save-btn" onclick="saveAsImage()">💾 保存卡片</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function saveAsImage() {
+            const button = document.querySelector('.save-btn');
+            button.style.display = 'none';
+            
+            const card = document.getElementById('card');
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                width: card.offsetWidth,
+                height: card.offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '垂直小号原创小程序赚钱风口.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                button.style.display = 'block';
+            }).catch(err => {
+                console.error('保存失败:', err);
+                button.style.display = 'block';
+                alert('保存失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

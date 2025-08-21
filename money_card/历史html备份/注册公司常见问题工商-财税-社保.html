@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册公司常见问题【工商/财税/社保】</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 30px 25px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 30px 25px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '📋';
+            margin-right: 8px;
+        }
+        
+        .subsection {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #fdcb6e, #e17055);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .warning-box::before {
+            content: '⚠️ ';
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .tip-box::before {
+            content: '💡 ';
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-row {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-cell {
+            flex: 1;
+            padding: 12px;
+            font-size: 14px;
+        }
+        
+        .comparison-header {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .tax-formula {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .save-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,184,148,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,184,148,0.4);
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1>注册公司实操指南</h1>
+            <div class="subtitle">工商/财税/社保全流程解析</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <div class="section-title">企业类型选择</div>
+                
+                <div class="comparison-table">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">类型</div>
+                        <div class="comparison-cell comparison-header">责任</div>
+                        <div class="comparison-cell comparison-header">推荐度</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell"><strong>个人独资</strong></div>
+                        <div class="comparison-cell">无限责任</div>
+                        <div class="comparison-cell">❌ 不推荐</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell"><strong>个体工商户</strong></div>
+                        <div class="comparison-cell">无限责任</div>
+                        <div class="comparison-cell">⚡ 适合门店</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell"><strong>有限责任</strong></div>
+                        <div class="comparison-cell">有限责任</div>
+                        <div class="comparison-cell">✅ 推荐</div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>推荐选择：</strong>有限责任公司承担有限责任，小可0申报，大可发展成上市公司，是最佳选择。
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">注册流程与费用</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📋 所需材料</div>
+                    <ul>
+                        <li><strong>园区地址：</strong>仅需身份证正反面照片</li>
+                        <li><strong>实地注册：</strong>需增加租房合同、房产证等产权证明</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">💰 费用参考（上海）</div>
+                    <ul>
+                        <li><strong>找财税公司：</strong>注册免费，收代账费</li>
+                        <li><strong>园区挂靠：</strong>1000-5000元/年（市区贵，郊区免费）</li>
+                        <li><strong>纯代办：</strong>500-2000元</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🔄 注册流程</div>
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div>工商注册 → 刻章</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div>税务登记 → 银行开户</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div>社保开户 → 公积金开户</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">实缴政策解读</div>
+                
+                <div class="warning-box">
+                    <strong>新公司法要求：</strong>2024年7月1日后新注册公司5年内实缴，老公司3年过渡期。
+                </div>
+                
+                <div class="tip-box">
+                    <strong>实缴操作：</strong>股东银行卡打款至公司账户，备注"投资款"，通知财务处理即可。
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">纳税人类型选择</div>
+                
+                <div class="comparison-table">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">类型</div>
+                        <div class="comparison-cell comparison-header">适用场景</div>
+                        <div class="comparison-cell comparison-header">税率</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell"><strong>小规模</strong></div>
+                        <div class="comparison-cell">开普票，季度30万内</div>
+                        <div class="comparison-cell">1%或3%</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell"><strong>一般纳税人</strong></div>
+                        <div class="comparison-cell">需开专票</div>
+                        <div class="comparison-cell">13%/9%/6%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">核心税种解析</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🏷️ 增值税（小规模）</div>
+                    <div class="highlight-box">
+                        季度30万内普票免征增值税
+                    </div>
+                    <div class="warning-box">
+                        超过30万是全额纳税，不是超出部分！避免连续3季度在25-30万区间。
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🏢 企业所得税</div>
+                    <div class="tax-formula">
+                        企业所得税 = (收入 - 成本 - 费用) × 税率
+                    </div>
+                    <ul>
+                        <li><strong>利润≤300万：</strong>税率5%（小微企业优惠）</li>
+                        <li><strong>利润>300万：</strong>税率25%</li>
+                        <li><strong>合规成本：</strong>进项发票 + 员工工资</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">👤 个人所得税</div>
+                    <ul>
+                        <li><strong>月度：</strong>5000元以内免征</li>
+                        <li><strong>年度：</strong>6万元以内免征</li>
+                        <li><strong>年终奖：</strong>可选择单独计税</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">资金提取方式</div>
+                
+                <div class="comparison-table">
+                    <div class="comparison-row">
+                        <div class="comparison-cell comparison-header">方式</div>
+                        <div class="comparison-cell comparison-header">个税率</div>
+                        <div class="comparison-cell comparison-header">推荐度</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">发工资</div>
+                        <div class="comparison-cell">阶梯税率</div>
+                        <div class="comparison-cell">✅ 推荐</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">费用报销</div>
+                        <div class="comparison-cell">0%</div>
+                        <div class="comparison-cell">✅ 推荐</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">股东借款</div>
+                        <div class="comparison-cell">0%</div>
+                        <div class="comparison-cell">⚠️ 需归还</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">劳务费</div>
+                        <div class="comparison-cell">20%</div>
+                        <div class="comparison-cell">❌ 不推荐</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-cell">股东分红</div>
+                        <div class="comparison-cell">20%</div>
+                        <div class="comparison-cell">❌ 税负重</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">申报时间表</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📅 申报周期</div>
+                    <ul>
+                        <li><strong>个人所得税：</strong>按月申报</li>
+                        <li><strong>增值税：</strong>小规模按季，一般纳税人按月</li>
+                        <li><strong>企业所得税：</strong>按季申报 + 年报</li>
+                    </ul>
+                </div>
+                
+                <div class="warning-box">
+                    申报期限：次月15日前（遇节假日顺延）<br>
+                    逾期滞纳金：万分之五/日
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">发票开具要点</div>
+                
+                <div class="tip-box">
+                    <strong>贸易类：</strong>进销一致，买进什么开出什么<br>
+                    <strong>服务类：</strong>开对应服务类目，主要是人工成本
+                </div>
+                
+                <div class="warning-box">
+                    贸易类"有销无进"风险极大，税务大数据会重点监控，可能被判定虚开发票！
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">财税代理选择</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🏢 代理公司类型</div>
+                    <ul>
+                        <li><strong>大型公司：</strong>流程规范，费用较高，服务标准化</li>
+                        <li><strong>会计事务所：</strong>专业性强，适合复杂业务，价格高</li>
+                        <li><strong>中小型公司：</strong>性价比高，老板亲自服务更佳</li>
+                        <li><strong>小作坊：</strong>价格低但风险高，需谨慎选择</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="save-btn" onclick="saveAsImage()">💾 保存卡片</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function saveAsImage() {
+            const button = document.querySelector('.save-btn');
+            button.style.display = 'none';
+            
+            const card = document.getElementById('card');
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                width: card.offsetWidth,
+                height: card.offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '注册公司常见问题工商-财税-社保.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                button.style.display = 'block';
+            }).catch(err => {
+                console.error('保存失败:', err);
+                button.style.display = 'block';
+                alert('保存失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

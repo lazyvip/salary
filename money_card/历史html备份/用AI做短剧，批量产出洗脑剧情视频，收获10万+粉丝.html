@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI短剧制作：批量产出洗脑剧情收获10万+粉丝</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="video" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="6" y="6" width="8" height="8" fill="%23ffffff" opacity="0.1" rx="1"/><polygon points="8,8 8,12 12,10" fill="%23ffffff" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23video)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .ai-tools {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .tools-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .tool-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ff7f50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tool-icon {
+            background: #ff7f50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .script-types {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #bee5eb;
+        }
+        
+        .types-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .type-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .type-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .type-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .success-tips {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .tips-title {
+            font-size: 20px;
+            color: #155724;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tip-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .tip-title {
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 5px;
+        }
+        
+        .tip-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .risk-warning {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .risk-title {
+            font-size: 18px;
+            color: #d63031;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .risk-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">AI短剧制作：批量产出洗脑剧情收获10万+粉丝</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-video icon"></i> 利用AI工具批量制作<span class="highlight">洗脑剧情短剧</span>，通过<span class="highlight">反转剧情</span>和<span class="highlight">情感共鸣</span>快速涨粉<span class="highlight">10万+</span>，单条视频播放量突破百万
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">10万+</div>
+                    <div class="stat-label">粉丝增长</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100万+</div>
+                    <div class="stat-label">单条播放</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30秒</div>
+                    <div class="stat-label">视频时长</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">日更5条</div>
+                    <div class="stat-label">发布频率</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 制作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">剧本生成</div>
+                        </div>
+                        <div class="step-content">
+                            使用ChatGPT或Claude生成30秒短剧剧本，重点设计反转情节和情感冲突点
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">角色设计</div>
+                        </div>
+                        <div class="step-content">
+                            用Midjourney或Stable Diffusion生成角色形象，保持风格统一
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">视频制作</div>
+                        </div>
+                        <div class="step-content">
+                            使用Runway ML或Pika Labs将静态图片转换为动态视频片段
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">后期剪辑</div>
+                        </div>
+                        <div class="step-content">
+                            用剪映或CapCut添加字幕、音效和背景音乐，增强戏剧效果
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <div class="step-title">批量发布</div>
+                        </div>
+                        <div class="step-content">
+                            每天发布5条视频，覆盖不同时间段和用户群体
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ai-tools">
+                <h3 class="tools-title">
+                    <i class="fas fa-robot"></i> 核心AI工具
+                </h3>
+                <div class="tool-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-pen"></i>
+                        </div>
+                        <span>ChatGPT：剧本创作和对话生成</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <span>Midjourney：角色形象设计</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <span>Runway ML：图片转视频</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span>ElevenLabs：AI语音合成</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <span>剪映：视频剪辑和特效</span>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <span>Suno AI：背景音乐生成</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="script-types">
+                <h3 class="types-title">
+                    <i class="fas fa-theater-masks"></i> 热门剧情类型
+                </h3>
+                <div class="type-item">
+                    <div class="type-title">职场逆袭</div>
+                    <div class="type-content">小职员通过智慧战胜上司，获得升职加薪的反转故事</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">情感纠葛</div>
+                    <div class="type-content">恋人之间的误会与和解，突出情感冲突和温馨结局</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">家庭温情</div>
+                    <div class="type-content">父母与子女的代沟化解，展现家庭和睦的温暖画面</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">社会现象</div>
+                    <div class="type-content">反映当下热点话题，引发观众共鸣和讨论</div>
+                </div>
+            </div>
+            
+            <div class="success-tips">
+                <h3 class="tips-title">
+                    <i class="fas fa-lightbulb"></i> 爆款秘诀
+                </h3>
+                <div class="tip-item">
+                    <div class="tip-title">黄金3秒</div>
+                    <div class="tip-content">开头3秒必须抓住眼球，设置悬念或冲突点</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">情感共鸣</div>
+                    <div class="tip-content">选择大众都能理解的情感主题，如亲情、爱情、友情</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">反转设计</div>
+                    <div class="tip-content">在20-25秒处设置反转，让观众产生意外惊喜</div>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-title">字幕优化</div>
+                    <div class="tip-content">使用大字体、高对比度字幕，确保手机端清晰可读</div>
+                </div>
+            </div>
+            
+            <div class="risk-warning">
+                <div class="risk-title">
+                    <i class="fas fa-exclamation-triangle"></i> 注意事项
+                </div>
+                <div class="risk-content">
+                    避免涉及敏感话题，注意内容健康向上。同时要保持原创性，避免同质化内容导致限流。建议定期更新剧情类型，保持观众新鲜感。
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">AI短剧</span>
+                <span class="tag">批量制作</span>
+                <span class="tag">洗脑剧情</span>
+                <span class="tag">反转设计</span>
+                <span class="tag">快速涨粉</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：短视频创作者、内容运营者、自媒体从业者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = 'AI短剧制作_批量产出洗脑剧情收获10万粉丝.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

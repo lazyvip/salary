@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书AI智能体制作全攻略 - 去除AI味的核心方法</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .card-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2c3e50;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ff6b6b" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23a8edea" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23fed6e3" opacity="0.1"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 40px;
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b6b;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #a8edea;
+        }
+        
+        .subsection {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .subsection-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '🤖';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+        }
+        
+        .step-item {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid #ff6b6b;
+            position: relative;
+        }
+        
+        .step-item::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            background: #ff6b6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+        
+        .step-content {
+            margin-left: 20px;
+            color: #555;
+        }
+        
+        .prompt-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: auto;
+        }
+        
+        .prompt-box::before {
+            content: '💬 提示词';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .warning-box::before {
+            content: '⚠️';
+            margin-right: 8px;
+        }
+        
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #00b894;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+        }
+        
+        .success-box::before {
+            content: '✅';
+            margin-right: 8px;
+        }
+        
+        .model-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .model-name {
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 8px;
+        }
+        
+        .model-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255,107,107,0.4);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin: 2px 4px;
+            font-weight: 500;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        strong {
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .header {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .model-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="header">
+            <h1>小红书AI智能体制作全攻略</h1>
+            <div class="subtitle">去除AI味的核心方法与实战提示词</div>
+        </div>
+        
+        <div class="content">
+            <div class="highlight-box">
+                <strong>核心理念：</strong>智能体 = 提示词封装 + 上下文/知识库，关键在于对业务的理解和对提示词的精准控制
+            </div>
+            
+            <div class="section">
+                <div class="section-title">一、智能体基础认知</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🎯 什么是智能体</div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">本质定义</div>
+                            <div class="step-content">
+                                对于新手用户：<strong>智能体 = 提示词封装 + 上下文/知识库</strong><br>
+                                针对具体场景写专属提示词，就是你的专属智能体
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">成功关键</div>
+                            <div class="step-content">
+                                • 对业务的深度理解<br>
+                                • 对提示词的精准掌控<br>
+                                • 给AI足够多的限制条件
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🤖 大模型选择策略</div>
+                    <div class="model-comparison">
+                        <div class="model-card">
+                            <div class="model-name">Claude</div>
+                            <div class="model-desc">文字生成最佳选择</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">Gemini</div>
+                            <div class="model-desc">文字处理优秀</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">GPT-image-1</div>
+                            <div class="model-desc">图像生成专用</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">Flux</div>
+                            <div class="model-desc">图像生成备选</div>
+                        </div>
+                    </div>
+                    
+                    <div class="success-box">
+                        <strong>推荐方案：</strong>购买POE会员，一次付费使用全球所有大模型，可生成美观网页界面
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">二、去除AI味的核心方法</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">❌ 为什么AI生成内容有AI味</div>
+                    <div class="warning-box">
+                        <strong>根本原因：</strong>给AI的自由度太大，导致AI无法理解你的真正需求
+                    </div>
+                    
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">问题分析</div>
+                            <div class="step-content">
+                                • 大模型学到的是语言模式的统计分布<br>
+                                • 生成内容趋向于"平均水平"<br>
+                                • "安全生成"机制与创意表达天然冲突<br>
+                                • 选择空间过于庞大，容易选中平庸组合
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">解决思路</div>
+                            <div class="step-content">
+                                <strong>核心策略：</strong>给AI一个参考文案 → 拆解文案结构 → 结合新主题生成<br>
+                                <span class="tag">变成填词游戏</span>
+                                <span class="tag">缩小选择空间</span>
+                                <span class="tag">提供质量标杆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">✅ 让AI做填空题而非作文</div>
+                    <div class="highlight-box">
+                        <strong>黄金法则：</strong>去除AI味的关键是让AI做填空题，而不是让它写作文！
+                    </div>
+                    
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">操作流程</div>
+                            <div class="step-content">
+                                1. 提供优质参考文案<br>
+                                2. 让AI进行极致颗粒度拆解<br>
+                                3. 结合新主题和关键词<br>
+                                4. 基于拆解结构生成新内容
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">核心优势</div>
+                            <div class="step-content">
+                                • 提供明确参照系，避免盲选<br>
+                                • 进行少样本学习，质量至少75分<br>
+                                • 限制想象力，增强可控性<br>
+                                • 向上对齐优质标杆
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">三、实战提示词模板</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📝 文案拆解提示词（模板一）</div>
+                    <div class="prompt-box">
+请提供以下详细分析（颗粒度要非常细致）：
+
+标题解构：
+• 标题的组成部分和词语选择
+• 标题中的关键词和吸引点
+• 标题使用的修辞手法
+
+开场白分析：
+• 第一段的具体写作方式和句式特点
+• 如何建立共鸣或引起好奇
+• 使用的表达技巧和句型
+
+正文段落结构：
+• 每个段落的写作目的和功能
+• 段落的长短控制和节奏变化
+• 每段的句式模式和关键表达
+• 衔接词和过渡句的使用方法
+
+叙事手法：
+• 故事性元素的编排
+• 情感调动的具体表达方式
+• 话语权建立的细节
+
+关键词和修饰词：
+• 频繁使用的形容词和副词分析
+• 强调词和限定词的使用模式
+• 数字和具体细节的呈现方式
+
+互动设计：
+• 互动引导语的具体句式
+• 设问和悬念的创建方法
+• 评论转化的语言策略
+
+套用模板：
+• 将整篇文章转换为可套用的详细模板
+• 用[方括号]标注需要替换的内容
+• 保留原文的句式结构和表达方式
+
+请避免使用表情符号，语言要简洁专业，不要有AI风格的解释和客套话。
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📋 结构分析提示词（模板二）</div>
+                    <div class="prompt-box">
+标题构造：
+• 标题包含哪些元素组成
+• 使用了什么吸引注意的技巧
+• 关键词的选择和排列方式
+
+开头设计：
+• 第一句话的写法和功能
+• 开场白的句式结构
+• 如何快速吸引读者注意
+
+文章框架：
+• 每个段落的具体功能
+• 段落之间如何衔接过渡
+• 不同段落的长度和密度安排
+
+句式分析：
+• 常用句型和句式模式
+• 重复使用的句式结构
+• 短句与长句的搭配节奏
+
+词汇使用：
+• 高频使用的形容词和动词
+• 关键修饰词的使用模式
+• 如何选词来增强表达效果
+
+互动技巧：
+• 文中设置的问题和引导
+• 互动语句的具体写法
+• 如何鼓励读者评论和点赞
+
+可套用模板：
+• 提供一个精确到句式的完整模板
+• 用[方括号]标注需要替换的部分
+• 保留原文的语言风格和结构特点
+
+请直接给出分析结果，不要加入AI风格的客套话，也不要使用表情符号。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">四、场景思考法提效策略</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🎯 场景思考法核心理念</div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">避免一招鲜思维</div>
+                            <div class="step-content">
+                                <strong>错误做法：</strong>想要一劳永逸，把复杂工作全部交给AI<br>
+                                <strong>正确做法：</strong>从场景入手，思考哪些重复动作可以AI替换
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">三步提效法</div>
+                            <div class="step-content">
+                                1. <strong>梳理工作流：</strong>特别是从0-1的完整流程<br>
+                                2. <strong>识别卡点：</strong>找出重复工作，思考AI替代可能性<br>
+                                3. <strong>打造AI团队：</strong>把AI看作co-founder和专属员工
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">👥 AI员工团队构建</div>
+                    <div class="highlight-box">
+                        <strong>团队配置示例：</strong>爆文拆解助手 + SEO专家 + 图片处理专家 + 选题助手 + 爆文仿写专家
+                    </div>
+                    
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">工作分工</div>
+                            <div class="step-content">
+                                • <strong>你的职责：</strong>发牌、提需求、校验结果<br>
+                                • <strong>AI职责：</strong>处理0-0.1、0.1-0.3、0.3-0.5等节点工作<br>
+                                • <strong>协作模式：</strong>硅基员工team协同完成复杂任务
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">节点创新优势</div>
+                            <div class="step-content">
+                                不追求AI完全覆盖0-1流程，而是在关键节点发挥AI优势：<br>
+                                <span class="tag">极致颗粒度拆解</span>
+                                <span class="tag">快速多维度分析</span>
+                                <span class="tag">发现人类盲点</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">五、实战应用案例</div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">📊 小红书内容创作流程</div>
+                    <div class="step-list">
+                        <div class="step-item">
+                            <div class="step-title">找对标环节优化</div>
+                            <div class="step-content">
+                                <strong>传统做法：</strong>手工拆解，写分析报告，进步缓慢<br>
+                                <strong>AI优化：</strong>让AI进行极致颗粒度拆解，多维度分析爆文
+                            </div>
+                        </div>
+                        
+                        <div class="step-item">
+                            <div class="step-title">内容生成流程</div>
+                            <div class="step-content">
+                                1. 提供参考爆文给AI<br>
+                                2. AI拆解文案结构和套路<br>
+                                3. 输入新主题和关键词<br>
+                                4. AI基于结构生成新内容<br>
+                                5. 人工校验和微调
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="subsection">
+                    <div class="subsection-title">🔧 其他实用场景</div>
+                    <div class="success-box">
+                        <strong>口语化内容书面化：</strong>将逐字稿等口语内容转换为高可读性文章，保持原汁原味的同时优化逻辑结构
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">六、关键成功要素</div>
+                
+                <div class="step-list">
+                    <div class="step-item">
+                        <div class="step-title">给足够多的限制条件</div>
+                        <div class="step-content">
+                            不要让AI发挥创意，而要给它明确的框架和参考
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-title">提供丰富的上下文</div>
+                        <div class="step-content">
+                            让AI理解具体语境下什么样的表达是有效的
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-title">业务场景深度结合</div>
+                        <div class="step-content">
+                            不要脱离业务追求技术，要成为懂业务懂AI的复合型人才
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <strong>终极目标：</strong>让AI成为你的得力助手，而不是替代品。通过精准的提示词和合理的工作分工，实现人机协作的最大效能！
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">💾 保存卡片</button>
+    
+    <script>
+        function downloadCard() {
+            // 隐藏下载按钮
+            const downloadBtn = document.querySelector('.download-btn');
+            downloadBtn.style.display = 'none';
+            
+            // 使用html2canvas截图
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script.onload = function() {
+                html2canvas(document.querySelector('.card-container'), {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: null
+                }).then(canvas => {
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.download = '小红书AI智能体制作全攻略-去除AI味的核心方法.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
+                    
+                    // 恢复下载按钮
+                    downloadBtn.style.display = 'block';
+                });
+            };
+            document.head.appendChild(script);
+        }
+    </script>
+</body>
+</html>

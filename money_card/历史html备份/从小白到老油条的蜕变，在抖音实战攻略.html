@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音电商从小白到老油条实战攻略</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .header-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header-icon {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.4;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .author-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #e17055;
+        }
+        
+        .author-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .author-desc {
+            font-size: 14px;
+            color: #7f8c8d;
+            line-height: 1.4;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .data-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #e17055;
+            text-align: center;
+        }
+        
+        .data-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #e17055;
+            margin-bottom: 5px;
+        }
+        
+        .data-label {
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #e17055;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #e17055;
+            font-size: 22px;
+        }
+        
+        .journey-timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .journey-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #e17055, #d63031);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-left: 15px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #e17055;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #e17055;
+        }
+        
+        .timeline-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            color: white;
+        }
+        
+        .highlight-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .highlight-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .strategy-card {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-card:hover {
+            border-color: #e17055;
+            box-shadow: 0 5px 15px rgba(225, 112, 85, 0.1);
+        }
+        
+        .strategy-icon {
+            font-size: 24px;
+            color: #e17055;
+            margin-bottom: 8px;
+        }
+        
+        .strategy-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .strategy-desc {
+            font-size: 13px;
+            color: #7f8c8d;
+            line-height: 1.3;
+        }
+        
+        .process-steps {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .process-step {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover {
+            border-color: #e17055;
+            box-shadow: 0 5px 15px rgba(225, 112, 85, 0.1);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .step-desc {
+            font-size: 15px;
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        
+        .profit-analysis {
+            background: linear-gradient(135deg, #00b894 0%, #00a085 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .profit-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profit-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .profit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .profit-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .profit-number {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .profit-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .tips-box {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .tips-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tips-title i {
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        
+        .tips-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tips-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
+        .tips-list li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .source {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e9ecef;
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .download-btn i {
+            font-size: 18px;
+        }
+        
+        @media (max-width: 850px) {
+            .card {
+                width: 95%;
+                margin: 0 auto;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .strategy-grid,
+            .profit-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fab fa-tiktok"></i>
+                </div>
+                <div class="header-title">抖音电商从小白到老油条实战攻略</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    3个月亏掉50万到首月营业额184万的逆袭之路，抖音商品卡实战保姆级攻略
+                </div>
+            </div>
+            
+            <div class="author-info">
+                <div class="author-name">子贤 - 广州人，生财有术117天</div>
+                <div class="author-desc">深耕抖音电商，主营家具、女装、百货赛道</div>
+            </div>
+            
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-number">184万</div>
+                    <div class="data-label">首月营业额</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">50万</div>
+                    <div class="data-label">前期亏损</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-number">10万</div>
+                    <div class="data-label">月净利润</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-route"></i>
+                    从小白到老油条的蜕变历程
+                </div>
+                <div class="journey-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">2022年 - 离职创业</div>
+                        <div class="timeline-desc">从深圳继电保护公司研发岗离职，厌倦996，追求自由</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">2023年初 - 进入抖音直播</div>
+                        <div class="timeline-desc">在朋友扶持下进入红酒直播赛道，搭建直播团队</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">前3个月 - 惨痛教训</div>
+                        <div class="timeline-desc">场地3.4万/月，设备7.5万，团队成本10万/月，亏损50万</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">8月转折 - 抓住商品卡红利</div>
+                        <div class="timeline-desc">抖音扶持货架电商，商品卡免佣，迅速入局家具赛道</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">7月开店 - 实现逆袭</div>
+                        <div class="timeline-desc">女装无货源铺货模式，首月营业额184万，净利润10万</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    抖音商品卡核心优势
+                </div>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="strategy-name">运营成本低</div>
+                        <div class="strategy-desc">一张营业执照+一个人+一台电脑+500元保证金</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="strategy-name">流量大增速快</div>
+                        <div class="strategy-desc">2024年双11商品卡GMV同比增长64%</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="strategy-name">平台补贴升级</div>
+                        <div class="strategy-desc">2025年全年免佣补贴135亿，面向全量商家</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="strategy-name">操作简单</div>
+                        <div class="strategy-desc">上架即可出单，可SOP流程化运作</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-list-ol"></i>
+                    184万营业额实操步骤
+                </div>
+                <ul class="process-steps">
+                    <li class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">选择女装无货源铺货</div>
+                        </div>
+                        <div class="step-desc">
+                            女装是全平台流量最大类目，属于非标品不用担心比价，通过软件选3-5万个链接铺货
+                        </div>
+                    </li>
+                    
+                    <li class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">快速拉升体验分</div>
+                        </div>
+                        <div class="step-desc">
+                            利用10元以内福利商品快速累计30单，达到70分体验分，一天拉500单直接出体验分
+                        </div>
+                    </li>
+                    
+                    <li class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">上架利润款</div>
+                        </div>
+                        <div class="step-desc">
+                            提前准备链接放仓库，统一上架，设置全店优惠券，毛利控制在50%左右
+                        </div>
+                    </li>
+                    
+                    <li class="process-step">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">淘宝以图搜款拍单</div>
+                        </div>
+                        <div class="step-desc">
+                            出单后在淘宝以图搜款找合适商家拍单，当天早上开始出单，最高峰一天卖8.4万
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <div class="highlight-title">
+                    <i class="fas fa-lightbulb"></i>
+                    核心成功要素
+                </div>
+                <p>跟着平台政策走，抓住红利期。当同行都在卷直播时做商品卡，当同行不知道商品卡可以投放时通投拉满，没有技巧，随便都有十几的投产。</p>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-calculator"></i>
+                    财务利润分析
+                </div>
+                <div class="profit-analysis">
+                    <div class="profit-title">
+                        <i class="fas fa-chart-pie"></i>
+                        单店月度财务数据
+                    </div>
+                    <div class="profit-grid">
+                        <div class="profit-item">
+                            <div class="profit-number">184万</div>
+                            <div class="profit-label">总GMV</div>
+                        </div>
+                        <div class="profit-item">
+                            <div class="profit-number">74%</div>
+                            <div class="profit-label">退货率</div>
+                        </div>
+                        <div class="profit-item">
+                            <div class="profit-number">36万</div>
+                            <div class="profit-label">实际签收</div>
+                        </div>
+                        <div class="profit-item">
+                            <div class="profit-number">10万</div>
+                            <div class="profit-label">净利润</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-users"></i>
+                    团队配置与成本
+                </div>
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="strategy-name">运营助理 x2</div>
+                        <div class="strategy-desc">月薪3500元，负责上架链接、维护店铺、拍单等</div>
+                    </div>
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="strategy-name">售后客服 x1</div>
+                        <div class="strategy-desc">月薪5000元，负责退货管理、客服接待等</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips-box">
+                <div class="tips-title">
+                    <i class="fas fa-compass"></i>
+                    实操关键要点
+                </div>
+                <ul class="tips-list">
+                    <li>小白创业选择低试错成本项目，失败了还有重来机会</li>
+                    <li>跟着平台政策走，抓住红利期比技巧更重要</li>
+                    <li>女装虽然退货率高，但流量大且不用比价</li>
+                    <li>一组团队可独立运营3个店铺，可复制性极强</li>
+                    <li>建立完整SOP流程，新人也能快速上手操作</li>
+                </ul>
+            </div>
+            
+            <div class="source">
+                来源：公众号@懒人搜索
+            </div>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>
+        保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const card = document.getElementById('card');
+            
+            // 禁用按钮并显示加载状态
+            button.style.display = 'none';
+            button.disabled = true;
+            
+            try {
+                // 等待字体和资源加载完成
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // 强制重新计算布局
+                card.getBoundingClientRect();
+                
+                // 获取卡片的实际高度
+                const cardHeight = Math.max(
+                    card.scrollHeight,
+                    card.offsetHeight,
+                    card.clientHeight,
+                    card.getBoundingClientRect().height
+                );
+                
+                // 动态计算缓冲区
+                const sourceElement = card.querySelector('.source');
+                const sourceRect = sourceElement.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const distanceFromBottom = cardRect.bottom - sourceRect.bottom;
+                
+                let bufferZone;
+                if (distanceFromBottom < 20) {
+                    bufferZone = 80;
+                } else if (distanceFromBottom < 40) {
+                    bufferZone = 50;
+                } else {
+                    bufferZone = 30;
+                }
+                
+                // 临时调整底部内边距
+                const originalPadding = card.style.paddingBottom;
+                card.style.paddingBottom = bufferZone + 'px';
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: cardHeight + bufferZone,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: function(clonedDoc) {
+                        // 确保克隆文档中的图标正确显示
+                        const clonedCard = clonedDoc.getElementById('card');
+                        if (clonedCard) {
+                            // 调整所有图标的位置
+                            const icons = clonedCard.querySelectorAll('i');
+                            icons.forEach(icon => {
+                                icon.style.display = 'inline-block';
+                                icon.style.lineHeight = '1';
+                                
+                                // 根据图标类型进行不同的调整
+                                if (icon.closest('.header-icon')) {
+                                    icon.style.transform = 'translateY(2px)';
+                                } else if (icon.closest('.section-title')) {
+                                    icon.style.transform = 'translateY(1px)';
+                                } else if (icon.closest('.highlight-title, .profit-title, .tips-title')) {
+                                    icon.style.transform = 'translateY(1px)';
+                                } else if (icon.closest('.strategy-icon')) {
+                                    icon.style.transform = 'translateY(0px)';
+                                }
+                            });
+                        }
+                    }
+                });
+                
+                // 恢复原始样式
+                card.style.paddingBottom = originalPadding;
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = '抖音电商从小白到老油条实战攻略.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                
+                // 触发下载
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // 显示成功提示
+                showToast('卡片保存成功！', 'success');
+                
+            } catch (error) {
+                console.error('保存失败:', error);
+                showToast('保存失败，请重试', 'error');
+            } finally {
+                // 恢复按钮状态
+                button.style.display = 'flex';
+                button.disabled = false;
+            }
+        }
+        
+        function showToast(message, type) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: ${type === 'success' ? '#00b894' : '#e74c3c'};
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-size: 16px;
+                font-weight: 600;
+                z-index: 10000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                animation: fadeInOut 3s ease-in-out;
+            `;
+            
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // 添加动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInOut {
+                    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => {
+                document.body.removeChild(toast);
+                document.head.removeChild(style);
+            }, 3000);
+        }
+        
+        // 页面加载完成后预热渲染引擎
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

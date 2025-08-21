@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书教务PPT流量期：单日收入可达2000+的季节性商机</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ppt" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="6" y="6" width="8" height="6" fill="%23ffffff" opacity="0.1" rx="1"/><rect x="6" y="13" width="8" height="1" fill="%23ffffff" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23ppt)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #00b894;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #0984e3;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #74b9ff;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .timing-analysis {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .timing-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .timing-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #e17055;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timing-icon {
+            background: #e17055;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .ppt-types {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #bee5eb;
+        }
+        
+        .types-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .type-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .type-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .type-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .pricing-strategy {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .pricing-title {
+            font-size: 20px;
+            color: #155724;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .pricing-level {
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 5px;
+        }
+        
+        .pricing-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .risk-warning {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .risk-title {
+            font-size: 18px;
+            color: #d63031;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .risk-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(116, 185, 255, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(116, 185, 255, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">小红书教务PPT流量期：单日收入可达2000+的季节性商机</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-presentation icon"></i> 抓住<span class="highlight">开学季流量红利</span>，在小红书销售<span class="highlight">教务PPT模板</span>，单日收入可达<span class="highlight">2000+</span>，季节性爆发的高利润项目
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">2000+</div>
+                    <div class="stat-label">单日收入</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8-9月</div>
+                    <div class="stat-label">流量高峰</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">19.9元</div>
+                    <div class="stat-label">平均客单价</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">利润率</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 操作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">模板制作</div>
+                        </div>
+                        <div class="step-content">
+                            使用PowerPoint或Canva制作各类教务PPT模板，包括课程介绍、教学计划、成绩统计等
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">包装设计</div>
+                        </div>
+                        <div class="step-content">
+                            制作精美的封面图和详情页，突出专业性和实用性，增加购买欲望
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">时机发布</div>
+                        </div>
+                        <div class="step-content">
+                            在8-9月开学季前后密集发布，抓住教师备课的刚需时机
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">客服转化</div>
+                        </div>
+                        <div class="step-content">
+                            提供专业的售前咨询，根据客户需求推荐合适的模板套餐
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timing-analysis">
+                <h3 class="timing-title">
+                    <i class="fas fa-calendar-alt"></i> 流量时机分析
+                </h3>
+                <div class="timing-grid">
+                    <div class="timing-item">
+                        <div class="timing-icon">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                        <span>8月中旬：流量开始上升，教师开始备课</span>
+                    </div>
+                    <div class="timing-item">
+                        <div class="timing-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <span>8月底-9月初：流量峰值，开学前冲刺</span>
+                    </div>
+                    <div class="timing-item">
+                        <div class="timing-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span>9月中旬：流量回落，但仍有补充需求</span>
+                    </div>
+                    <div class="timing-item">
+                        <div class="timing-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <span>10月后：进入淡季，可转向其他项目</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ppt-types">
+                <h3 class="types-title">
+                    <i class="fas fa-list"></i> 热门PPT类型
+                </h3>
+                <div class="type-item">
+                    <div class="type-title">课程介绍PPT</div>
+                    <div class="type-content">新学期课程大纲、教学目标、考核方式等介绍模板</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">教学计划PPT</div>
+                    <div class="type-content">学期教学进度安排、重点难点分析、时间分配等</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">家长会PPT</div>
+                    <div class="type-content">班级情况汇报、学生表现分析、家校合作方案</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">成绩分析PPT</div>
+                    <div class="type-content">考试成绩统计、学情分析、改进措施建议</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">班会主题PPT</div>
+                    <div class="type-content">安全教育、品德教育、节日庆祝等主题班会</div>
+                </div>
+                <div class="type-item">
+                    <div class="type-title">教研汇报PPT</div>
+                    <div class="type-content">教学经验分享、课题研究成果、教改实践总结</div>
+                </div>
+            </div>
+            
+            <div class="pricing-strategy">
+                <h3 class="pricing-title">
+                    <i class="fas fa-tags"></i> 定价策略
+                </h3>
+                <div class="pricing-item">
+                    <div class="pricing-level">单套模板：9.9-19.9元</div>
+                    <div class="pricing-desc">精品单套PPT，适合有特定需求的用户</div>
+                </div>
+                <div class="pricing-item">
+                    <div class="pricing-level">套餐组合：39.9-69.9元</div>
+                    <div class="pricing-desc">3-5套相关主题PPT打包，性价比更高</div>
+                </div>
+                <div class="pricing-item">
+                    <div class="pricing-level">全年会员：99.9-199.9元</div>
+                    <div class="pricing-desc">全年无限下载，适合长期使用的教师</div>
+                </div>
+                <div class="pricing-item">
+                    <div class="pricing-level">定制服务：200-500元</div>
+                    <div class="pricing-desc">根据客户需求定制专属PPT模板</div>
+                </div>
+            </div>
+            
+            <div class="risk-warning">
+                <div class="risk-title">
+                    <i class="fas fa-exclamation-triangle"></i> 注意事项
+                </div>
+                <div class="risk-content">
+                    注意版权问题，使用正版素材和字体。同时要关注教育政策变化，及时调整内容方向。建议提前准备，在流量高峰期前完成所有准备工作。
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">教务PPT</span>
+                <span class="tag">开学季</span>
+                <span class="tag">季节性商机</span>
+                <span class="tag">小红书</span>
+                <span class="tag">高利润</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：设计师、教育从业者、虚拟商品创业者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = '小红书教务PPT流量期_单日收入2000季节性商机.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

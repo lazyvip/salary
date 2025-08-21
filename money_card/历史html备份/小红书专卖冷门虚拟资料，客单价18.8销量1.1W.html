@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书冷门虚拟资料：88天1.1万件的爆款秘籍</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="virtual" width="20" height="20" patternUnits="userSpaceOnUse"><rect x="6" y="6" width="8" height="10" fill="%23ffffff" opacity="0.1" rx="1"/><circle cx="10" cy="4" r="1" fill="%23ffffff" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23virtual)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e17055;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .product-categories {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .categories-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .category-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4caf50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-icon {
+            background: #4caf50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .success-factors {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #bee5eb;
+        }
+        
+        .factors-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .factor-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .factor-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .factor-content {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .risk-warning {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .risk-title {
+            font-size: 18px;
+            color: #d63031;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .risk-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">小红书冷门虚拟资料：88天1.1万件的爆款秘籍</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-file-alt icon"></i> 小红书虚拟电商<span class="highlight">88天</span>售出<span class="highlight">1.1万件</span>冷门虚拟资料，客单价<span class="highlight">18.8元</span>，每天发帖十几篇的高效变现模式
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">88天</div>
+                    <div class="stat-label">开店时长</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1.1万</div>
+                    <div class="stat-label">销售件数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">18.8元</div>
+                    <div class="stat-label">平均客单价</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">20万+</div>
+                    <div class="stat-label">总销售额</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 操作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">资源收集</div>
+                        </div>
+                        <div class="step-content">
+                            从淘宝、拼多多等平台收集各类冷门虚拟资料，整理分类打包
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">产品包装</div>
+                        </div>
+                        <div class="step-content">
+                            将资料重新包装，制作吸引人的封面和详情页，突出稀缺性和实用性
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">批量发布</div>
+                        </div>
+                        <div class="step-content">
+                            每天发布十几篇商品笔记，覆盖不同关键词和用户群体
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">客服转化</div>
+                        </div>
+                        <div class="step-content">
+                            及时回复用户咨询，提供专业建议，提升转化率和复购率
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="product-categories">
+                <h3 class="categories-title">
+                    <i class="fas fa-list"></i> 热门产品类别
+                </h3>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span>学习资料：考试真题、学习笔记、教程合集</span>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <span>职场工具：简历模板、PPT模板、表格工具</span>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <span>设计素材：图标库、字体包、背景图片</span>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <span>生活百科：健康养生、美食菜谱、育儿指南</span>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span>技术资源：编程教程、软件工具、源码包</span>
+                    </div>
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <span>娱乐资源：游戏攻略、影视资源、音乐合集</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success-factors">
+                <h3 class="factors-title">
+                    <i class="fas fa-key"></i> 成功关键因素
+                </h3>
+                <div class="factor-item">
+                    <div class="factor-title">高频发布</div>
+                    <div class="factor-content">每天发布十几篇内容，保持账号活跃度和曝光量</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-title">精准定价</div>
+                    <div class="factor-content">18.8元的价格既不会让用户觉得太贵，也能保证合理利润</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-title">多元化产品</div>
+                    <div class="factor-content">覆盖多个领域，满足不同用户需求，降低单一产品风险</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-title">快速响应</div>
+                    <div class="factor-content">及时回复用户咨询，提供优质客服体验</div>
+                </div>
+            </div>
+            
+            <div class="risk-warning">
+                <div class="risk-title">
+                    <i class="fas fa-exclamation-triangle"></i> 风险提示
+                </div>
+                <div class="risk-content">
+                    注意版权问题，建议销售自己整理的资料或获得授权的内容。同时要关注平台政策变化，避免违规操作导致店铺被封。
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">小红书</span>
+                <span class="tag">虚拟商品</span>
+                <span class="tag">冷门资料</span>
+                <span class="tag">批量发布</span>
+                <span class="tag">高频变现</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：资源整合者、知识付费创业者、兼职从业者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = '小红书冷门虚拟资料_88天1万件爆款秘籍.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code SEO实战：24小时冲榜谷歌第一</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .steps-container {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .prompt-box {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #0c5460;
+        }
+        
+        .result-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .result-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-text {
+            font-size: 16px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">Claude Code SEO实战：24小时冲榜谷歌第一</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-rocket icon"></i> 营销人James用AI工具Claude Code，为卡车维修网站在<span class="highlight">24小时内</span>冲上谷歌多个核心关键词前三名，立即获得<span class="highlight">3000美金</span>真实收入
+                </div>
+            </div>
+            
+            <div class="steps-container">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 四步SEO冲榜法
+                </h2>
+                
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">定义战场 - AI驱动关键词洞察</div>
+                    </div>
+                    <div class="step-content">
+                        通过AI分析获取25-50个核心关键词，精准定位目标市场
+                        <div class="prompt-box">
+                            "嘿，这是我的网站 [网站URL]，我的业务是 [例如：为本地卡车提供紧急维修服务]。请给我一个25到50个关键词的列表，让我的网站可以围绕它们进行优化。"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">构建内容壁垒 - 深度本地化落地页</div>
+                    </div>
+                    <div class="step-content">
+                        创建超越竞争对手的详尽落地页，融入本地独特信息
+                        <div class="prompt-box">
+                            "请为关键词'mobile diesel mechanic Charlotte'创建一个极其详尽的落地页。内容必须超越竞争对手，包含：[当地著名地标]、[本地因素如天气/路况]、[当地文化特色]、[本地客户FAQ]。确保内容结构清晰，对SEO友好。"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">技术基础优化 - 全站技术诊断</div>
+                    </div>
+                    <div class="step-content">
+                        AI自动化诊断并修复影响Google排名的技术问题
+                        <div class="prompt-box">
+                            "请使用'Ultra think'模式，对我的整个网站代码库进行全面的技术SEO诊断。找出所有影响Google排名的问题：robots.txt、sitemap.xml、网站加载速度、Schema结构化数据、移动端适配等。请列出问题清单，然后直接在代码库中修复它们。"
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">极致加速 - 网站性能优化</div>
+                    </div>
+                    <div class="step-content">
+                        AI驱动的网站性能优化，提升PageSpeed得分
+                        <div class="prompt-box">
+                            "我的网站在Google PageSpeed Insights上的移动端性能得分很低。这是报告中的问题：[粘贴PageSpeed报告]。请分析并自动执行优化：将图片转换为WebP格式、压缩文件、优化代码等。目标是显著提升性能得分。"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="result-section">
+                <h3 class="result-title">
+                    <i class="fas fa-trophy"></i> 实战效果
+                </h3>
+                <div class="result-text">
+                    <i class="fas fa-check-circle icon"></i> 24小时内多个关键词冲上谷歌前三名<br>
+                    <i class="fas fa-dollar-sign icon"></i> 立即产生3000美金真实收入<br>
+                    <i class="fas fa-chart-line icon"></i> 战略、内容、技术、性能全方位优化
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">Claude Code</span>
+                <span class="tag">SEO优化</span>
+                <span class="tag">AI营销</span>
+                <span class="tag">关键词排名</span>
+                <span class="tag">本地化SEO</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：网站运营者、SEO从业者、AI工具使用者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                // 等待字体和图标加载
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                
+                // 强制重新计算布局
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        // 确保克隆文档中的图标正确显示
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        // 调整图标位置
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = 'Claude_Code_SEO实战_24小时冲榜谷歌第一.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 做案件改编视频，流量破百</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuit" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="%23ffffff" opacity="0.1"/><line x1="5" y1="10" x2="15" y2="10" stroke="%23ffffff" stroke-width="0.5" opacity="0.15"/><line x1="10" y1="5" x2="10" y2="15" stroke="%23ffffff" stroke-width="0.5" opacity="0.15"/></pattern></defs><rect width="100" height="100" fill="url(%23circuit)"/></svg>') repeat;
+        }
+        
+        .title {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #00b894;
+        }
+        
+        .summary-text {
+            font-size: 18px;
+            color: #2c3e50;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .stat-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .core-concept {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .concept-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .concept-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #e17055;
+        }
+        
+        .concept-text {
+            color: #2c3e50;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .concept-quote {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid #e17055;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .step-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .step-content {
+            color: #555;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        
+        .tools-workflow {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #bee5eb;
+        }
+        
+        .workflow-title {
+            font-size: 20px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .workflow-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .workflow-step {
+            font-weight: bold;
+            color: #17a2b8;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .workflow-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .success-factors {
+            background: #d4edda;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #c3e6cb;
+        }
+        
+        .factors-title {
+            font-size: 20px;
+            color: #155724;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .factor-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .factor-name {
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .factor-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .monetization {
+            background: #fff3cd;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ffeaa7;
+        }
+        
+        .monetization-title {
+            font-size: 20px;
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .monetization-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .monetization-method {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .monetization-desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .warning {
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .warning-title {
+            font-size: 18px;
+            color: #d63031;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <h1 class="title">AI 做案件改编视频，流量破百</h1>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <div class="summary-text">
+                    <i class="fas fa-video icon"></i> 利用<span class="highlight">AI技术制作真实案件改编视频</span>，通过<span class="highlight">8个场景+背景音乐+字幕</span>的简单组合，实现<span class="highlight">流量破百</span>并获得商业变现机会
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">8个</div>
+                    <div class="stat-label">视频场景</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">AI制作</div>
+                    <div class="stat-label">制作方式</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">流量破百</div>
+                    <div class="stat-label">传播效果</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">商单变现</div>
+                    <div class="stat-label">盈利模式</div>
+                </div>
+            </div>
+            
+            <div class="core-concept">
+                <h3 class="concept-title">
+                    <i class="fas fa-lightbulb"></i> 核心理念
+                </h3>
+                <div class="concept-content">
+                    <div class="concept-text">
+                        <strong>真实案件改编视频</strong> - 选择具有话题性的真实案件，通过AI技术进行视觉化改编，制作成短视频内容。
+                    </div>
+                    <div class="concept-quote">
+                        "真实案件天然具备话题性和传播力，AI技术让普通人也能轻松制作专业级视频内容。"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-cogs"></i> 制作流程
+                </h2>
+                
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <div class="step-title">案件选择</div>
+                        </div>
+                        <div class="step-content">
+                            选择具有话题性、争议性或教育意义的真实案件作为素材
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">2</div>
+                            <div class="step-title">脚本编写</div>
+                        </div>
+                        <div class="step-content">
+                            将案件梳理成8个关键场景，编写简洁有力的文案脚本
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <div class="step-title">AI生成画面</div>
+                        </div>
+                        <div class="step-content">
+                            使用Midjourney、Stable Diffusion等工具生成对应场景图片
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">4</div>
+                            <div class="step-title">视频合成</div>
+                        </div>
+                        <div class="step-content">
+                            将AI生成的图片制作成视频，添加转场效果和动态元素
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">5</div>
+                            <div class="step-title">音频制作</div>
+                        </div>
+                        <div class="step-content">
+                            添加背景音乐，选择符合案件氛围的音效
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">6</div>
+                            <div class="step-title">字幕添加</div>
+                        </div>
+                        <div class="step-content">
+                            添加关键信息字幕，增强视频的可读性和传播力
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">7</div>
+                            <div class="step-title">真实素材</div>
+                        </div>
+                        <div class="step-content">
+                            在最后加入真实的新闻画面，增加可信度和冲击力
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-header">
+                            <div class="step-number">8</div>
+                            <div class="step-title">发布优化</div>
+                        </div>
+                        <div class="step-content">
+                            选择合适的发布时间和平台，优化标题和标签
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tools-workflow">
+                <h3 class="workflow-title">
+                    <i class="fas fa-tools"></i> 工具推荐
+                </h3>
+                <div class="workflow-item">
+                    <div class="workflow-step">图像生成：Midjourney + DALL-E</div>
+                    <div class="workflow-desc">生成案件相关的场景图片和人物形象</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">视频制作：CapCut + 剪映</div>
+                    <div class="workflow-desc">将静态图片制作成动态视频</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">音效素材：爱给网 + Freesound</div>
+                    <div class="workflow-desc">获取免费的背景音乐和音效</div>
+                </div>
+                <div class="workflow-item">
+                    <div class="workflow-step">字幕制作：字幕通 + Arctime</div>
+                    <div class="workflow-desc">快速添加和编辑视频字幕</div>
+                </div>
+            </div>
+            
+            <div class="success-factors">
+                <h3 class="factors-title">
+                    <i class="fas fa-star"></i> 成功要素
+                </h3>
+                <div class="factor-item">
+                    <div class="factor-name">案件选择</div>
+                    <div class="factor-desc">选择具有话题性、时效性的真实案件</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-name">视觉冲击</div>
+                    <div class="factor-desc">AI生成的画面要有视觉冲击力和代入感</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-name">节奏把控</div>
+                    <div class="factor-desc">8个场景的节奏要紧凑，保持观众注意力</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-name">真实性</div>
+                    <div class="factor-desc">结合真实新闻画面增加可信度</div>
+                </div>
+                <div class="factor-item">
+                    <div class="factor-name">情感共鸣</div>
+                    <div class="factor-desc">触发观众的正义感、同情心等情感</div>
+                </div>
+            </div>
+            
+            <div class="monetization">
+                <h3 class="monetization-title">
+                    <i class="fas fa-dollar-sign"></i> 变现方式
+                </h3>
+                <div class="monetization-item">
+                    <div class="monetization-method">商单赞助</div>
+                    <div class="monetization-desc">接受品牌方赞助，在视频中植入广告</div>
+                </div>
+                <div class="monetization-item">
+                    <div class="monetization-method">平台分成</div>
+                    <div class="monetization-desc">通过平台的创作者激励计划获得收益</div>
+                </div>
+                <div class="monetization-item">
+                    <div class="monetization-method">知识付费</div>
+                    <div class="monetization-desc">开设法律科普课程或案例分析付费内容</div>
+                </div>
+                <div class="monetization-item">
+                    <div class="monetization-method">IP打造</div>
+                    <div class="monetization-desc">打造个人IP，后续可拓展更多变现渠道</div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <div class="warning-title">
+                    <i class="fas fa-exclamation-triangle"></i> 注意事项
+                </div>
+                <div class="warning-content">
+                    制作案件改编视频时要注意保护当事人隐私，避免二次伤害。同时要确保内容的客观性和准确性，不能为了流量而歪曲事实。建议在视频中加入正面的法律科普和社会教育意义。
+                </div>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">AI视频</span>
+                <span class="tag">案件改编</span>
+                <span class="tag">流量破百</span>
+                <span class="tag">商单变现</span>
+                <span class="tag">内容创作</span>
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                <i class="fas fa-users icon"></i> 适合：内容创作者、自媒体人、法律从业者、视频制作者
+            </div>
+        </div>
+        
+        <div class="footer">
+            来源：公众号@懒人搜索
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i> 保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+            button.disabled = true;
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                const card = document.getElementById('card');
+                card.getBoundingClientRect();
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: card.scrollHeight,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        const icons = clonedCard.querySelectorAll('.fas, .far, .fab');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.fontFamily = 'Font Awesome 6 Free';
+                            icon.style.fontWeight = '900';
+                            icon.style.lineHeight = '1';
+                        });
+                        
+                        const iconElements = clonedCard.querySelectorAll('.icon');
+                        iconElements.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.width = '20px';
+                            icon.style.textAlign = 'center';
+                            icon.style.verticalAlign = 'middle';
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = 'AI做案件改编视频_流量破百.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
