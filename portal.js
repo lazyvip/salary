@@ -41,29 +41,55 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     
-    // 添加鼠标移动效果
-    document.addEventListener('mousemove', function(e) {
-        const cards = document.querySelectorAll('.card');
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+    // 为每个卡片添加鼠标跟随效果
+    document.querySelectorAll('.card-wrap').forEach(cardWrap => {
+        const card = cardWrap.querySelector('.card');
+        const cardBg = cardWrap.querySelector('.card-bg');
+        let width = cardWrap.offsetWidth;
+        let height = cardWrap.offsetHeight;
+        let mouseX = 0;
+        let mouseY = 0;
+        let mouseLeaveDelay = null;
         
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const cardX = rect.left + rect.width / 2;
-            const cardY = rect.top + rect.height / 2;
-            
-            const angleX = (mouseY - cardY) / 30;
-            const angleY = (mouseX - cardX) / -30;
-            
-            card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+        // 更新尺寸
+        function updateSize() {
+            width = cardWrap.offsetWidth;
+            height = cardWrap.offsetHeight;
+        }
+        
+        cardWrap.addEventListener('mouseenter', function() {
+            clearTimeout(mouseLeaveDelay);
+            updateSize();
         });
-    });
-    
-    // 重置卡片位置
-    document.addEventListener('mouseleave', function() {
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        
+        cardWrap.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            mouseX = e.clientX - rect.left - width / 2;
+            mouseY = e.clientY - rect.top - height / 2;
+            
+            const mousePX = mouseX / width;
+            const mousePY = mouseY / height;
+            
+            // 卡片3D旋转
+            const rX = mousePX * 30;
+            const rY = mousePY * -30;
+            card.style.transform = `rotateY(${rX}deg) rotateX(${rY}deg)`;
+            
+            // 背景视差移动
+            const tX = mousePX * -40;
+            const tY = mousePY * -40;
+            if (cardBg) {
+                cardBg.style.transform = `translateX(${tX}px) translateY(${tY}px)`;
+            }
+        });
+        
+        cardWrap.addEventListener('mouseleave', function() {
+            mouseLeaveDelay = setTimeout(() => {
+                card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                if (cardBg) {
+                    cardBg.style.transform = 'translateX(0px) translateY(0px)';
+                }
+            }, 1000);
         });
     });
 });
