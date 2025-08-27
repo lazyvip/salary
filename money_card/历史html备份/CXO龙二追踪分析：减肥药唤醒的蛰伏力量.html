@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CXO龙二减肥药投资机会解析</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card-container {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .header-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .summary-box .summary-text {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            color: #3498db;
+            font-size: 22px;
+        }
+        
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .highlight-item {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        
+        .highlight-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .highlight-text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .key-points {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .point-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .point-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .point-icon {
+            color: #e74c3c;
+            margin-right: 10px;
+            margin-top: 2px;
+            font-size: 14px;
+        }
+        
+        .drug-comparison {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .drug-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .drug-item:last-child {
+            border-bottom: none;
+        }
+        
+        .drug-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .drug-feature {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .investment-analysis {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .analysis-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+        }
+        
+        .analysis-title {
+            font-weight: bold;
+            color: #d63031;
+            margin-bottom: 8px;
+        }
+        
+        .analysis-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d3436;
+        }
+        
+        .target-audience {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        
+        .audience-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .audience-text {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .source {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 12px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .download-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        @media (max-width: 850px) {
+            .card-container {
+                width: 95%;
+                max-width: 800px;
+            }
+            
+            .highlight-grid,
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="cardContainer">
+        <div class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-pills"></i> CXO龙二减肥药投资机会</h1>
+                <div class="subtitle">凯莱英：减肥药赛道的隐形冠军</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary-box">
+                <div class="summary-text">
+                    后疫情时代CXO行业复苏，凯莱英凭借减肥药玛仕度肽项目重新崛起
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-chart-line"></i>
+                    核心数据表现
+                </div>
+                <div class="highlight-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-number">+10.1%</div>
+                        <div class="highlight-text">2025Q1营收增长</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">456个</div>
+                        <div class="highlight-text">临床阶段项目总数</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">73个</div>
+                        <div class="highlight-text">临床3期项目数量</div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-number">30000L</div>
+                        <div class="highlight-text">2025年多肽产能目标</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    减肥药市场机会
+                </div>
+                <div class="key-points">
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>亚洲人向心型肥胖特征：</strong>脂肪优先堆积腹部，对减肥药需求更迫切</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>玛仕度肽独特优势：</strong>全球首个GCG/GLP-1双靶点药物，减重+护肝</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>临床效果显著：</strong>48周体重降幅15%，肝脏脂肪减少80%</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>专利到期机会：</strong>2026年GLP-1专利到期，多靶点药物优势凸显</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-flask"></i>
+                    减肥药技术对比
+                </div>
+                <div class="drug-comparison">
+                    <div class="drug-item">
+                        <div>
+                            <div class="drug-name">司美格鲁肽</div>
+                            <div class="drug-feature">单靶点GLP-1，抑制食欲</div>
+                        </div>
+                        <div style="color: #e74c3c; font-weight: bold;">基础版</div>
+                    </div>
+                    <div class="drug-item">
+                        <div>
+                            <div class="drug-name">替尔泊肽</div>
+                            <div class="drug-feature">GLP-1/GIP双靶点，减重更强</div>
+                        </div>
+                        <div style="color: #f39c12; font-weight: bold;">升级版</div>
+                    </div>
+                    <div class="drug-item">
+                        <div>
+                            <div class="drug-name">玛仕度肽</div>
+                            <div class="drug-feature">GCG/GLP-1双靶点，减重+护肝</div>
+                        </div>
+                        <div style="color: #27ae60; font-weight: bold;">针对版</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-rocket"></i>
+                    投资价值分析
+                </div>
+                <div class="investment-analysis">
+                    <div class="analysis-grid">
+                        <div class="analysis-item">
+                            <div class="analysis-title">产能扩张</div>
+                            <div class="analysis-value">3倍增长</div>
+                        </div>
+                        <div class="analysis-item">
+                            <div class="analysis-title">业务复合增速</div>
+                            <div class="analysis-value">18.67%</div>
+                        </div>
+                        <div class="analysis-item">
+                            <div class="analysis-title">化学大分子收入</div>
+                            <div class="analysis-value">预计翻倍</div>
+                        </div>
+                        <div class="analysis-item">
+                            <div class="analysis-title">股价表现</div>
+                            <div class="analysis-value">+113%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-lightbulb"></i>
+                    核心投资逻辑
+                </div>
+                <div class="key-points">
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>行业复苏确定性：</strong>CXO行业走出疫情低谷，订单恢复增长</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>减肥药爆发期：</strong>千亿美元市场，国产替代空间巨大</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>技术护城河深：</strong>多肽合成技术壁垒高，先发优势明显</span>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-arrow-right point-icon"></i>
+                        <span><strong>全球化布局：</strong>收购英国产能，欧美市场直接覆盖</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="target-audience">
+                <div class="audience-title">
+                    <i class="fas fa-users"></i> 适合人群
+                </div>
+                <div class="audience-text">
+                    关注医药创新投资机会、看好减肥药赛道长期发展、
+                    <br>寻找CXO行业复苏标的的价值投资者
+                </div>
+            </div>
+        </div>
+        
+        <div class="source">公众号@懒人搜索</div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()" id="downloadBtn">
+        <i class="fas fa-download"></i> 下载知识卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.getElementById('downloadBtn');
+            const card = document.getElementById('cardContainer');
+            
+            try {
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
+                
+                // 等待字体和资源加载
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                // 强制重新计算布局
+                card.getBoundingClientRect();
+                
+                // 动态计算卡片高度
+                const cardHeight = Math.max(
+                    card.scrollHeight,
+                    card.offsetHeight,
+                    card.clientHeight
+                );
+                
+                // 计算缓冲区
+                const sourceElement = card.querySelector('.source');
+                const sourceRect = sourceElement.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const distanceFromBottom = cardRect.bottom - sourceRect.bottom;
+                
+                let bufferSize;
+                if (distanceFromBottom < 20) {
+                    bufferSize = 80;
+                } else if (distanceFromBottom < 40) {
+                    bufferSize = 50;
+                } else {
+                    bufferSize = 30;
+                }
+                
+                const finalHeight = cardHeight + bufferSize;
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: finalHeight,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: function(clonedDoc) {
+                        // 图标位置精确调整
+                        const clonedCard = clonedDoc.getElementById('cardContainer');
+                        if (clonedCard) {
+                            // 强制应用所有样式
+                            const allElements = clonedCard.querySelectorAll('*');
+                            allElements.forEach(el => {
+                                const computedStyle = window.getComputedStyle(el);
+                                el.style.cssText = computedStyle.cssText;
+                            });
+                            
+                            // 图标位置调整
+                            const icons = clonedCard.querySelectorAll('i');
+                            icons.forEach(icon => {
+                                icon.style.display = 'inline-block';
+                                icon.style.lineHeight = '1';
+                                icon.style.verticalAlign = 'middle';
+                                
+                                // 根据图标类型进行微调
+                                if (icon.closest('.header')) {
+                                    icon.style.transform = 'translateY(-1px)';
+                                } else if (icon.closest('.section-title')) {
+                                    icon.style.transform = 'translateY(-1px)';
+                                } else if (icon.closest('.point-icon')) {
+                                    icon.style.transform = 'translateY(1px)';
+                                }
+                            });
+                            
+                            // 强制重新渲染
+                            clonedCard.style.transform = 'translateZ(0)';
+                        }
+                        
+                        return clonedDoc;
+                    }
+                });
+                
+                // 下载图片
+                const link = document.createElement('a');
+                link.download = 'CXO龙二减肥药投资机会解析.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+            } catch (error) {
+                console.error('下载失败:', error);
+                alert('下载失败，请重试');
+            } finally {
+                button.disabled = false;
+                button.innerHTML = '<i class="fas fa-download"></i> 下载知识卡片';
+            }
+        }
+        
+        // 页面加载完成后预热渲染引擎
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const card = document.getElementById('cardContainer');
+                card.getBoundingClientRect();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
