@@ -18,267 +18,50 @@
 	</style>
 
     <style>
-        /* 优化后的CSS样式 */
-        * {
-            box-sizing: border-box;
-        }
-        
+        /* add your CSS styles here */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-        }
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
 
-        h2 {
-            color: #fff;
-            font-size: 2.5em;
-            text-align: center;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* 表格容器 */
-        .table-container {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin: 20px auto;
-            max-width: 1200px;
-        }
-        
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 0;
-            background: #fff;
-        }
-        
-        thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        th {
-            color: #fff;
-            font-weight: 600;
-            padding: 16px 12px;
-            text-align: left;
-            font-size: 16px;
-            border: none;
-        }
-        
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #e9ecef;
-            vertical-align: middle;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        tr:hover {
-            background-color: #e3f2fd;
-            transform: translateY(-1px);
-            transition: all 0.2s ease;
-        }
-        
-        /* 链接样式 */
-        td a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 6px 12px;
-            border-radius: 6px;
-            background: #f0f4ff;
-            display: inline-block;
-            transition: all 0.2s ease;
-            word-break: break-all;
-        }
-        
-        td a:hover {
-            background: #667eea;
-            color: #fff;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-        
-        /* 按钮样式 */
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        /* 搜索框样式 */
-        input[type="text"], input[type="password"] {
-            padding: 12px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 25px;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-            font-size: 16px;
-            color: #333;
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        /* 搜索控制区域 */
-        .search-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        /* 密码表单样式 */
-        #passwordForm {
-            background: rgba(255,255,255,0.95);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        #passwordForm label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: #333;
-        }
-        
-        #passwordForm p {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* 移动端适配 */
-        @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            h2 {
-                font-size: 1.8em;
-                margin-bottom: 20px;
-            }
-            
-            .table-container {
-                margin: 10px 0;
-                border-radius: 8px;
-                overflow-x: auto;
-            }
-            
-            table {
-                min-width: 600px;
-            }
-            
-            th, td {
-                padding: 8px 6px;
-                font-size: 14px;
-            }
-            
-            th:first-child, td:first-child {
-                min-width: 200px;
-                max-width: 250px;
-                word-wrap: break-word;
-            }
-            
-            th:last-child, td:last-child {
-                min-width: 150px;
-            }
-            
-            td a {
-                font-size: 12px;
-                padding: 4px 8px;
-                word-break: break-all;
-            }
-            
-            .search-controls {
-                flex-direction: column;
-                gap: 15px;
-                margin: 20px 0;
-            }
-            
-            input[type="text"] {
-                width: 100%;
-                max-width: none;
-            }
-            
-            button {
-                width: 100%;
-                max-width: 200px;
-            }
-            
-            #passwordForm {
-                padding: 20px;
-                margin: 10px;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            h2 {
-                font-size: 1.5em;
-            }
-            
-            th, td {
-                padding: 6px 4px;
-                font-size: 12px;
-            }
-            
-            th:first-child, td:first-child {
-                min-width: 150px;
-                max-width: 180px;
-            }
-            
-            td a {
-                font-size: 11px;
-                padding: 3px 6px;
-            }
-        }
-        
-        /* 滚动条样式 */
-        .table-container::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .table-container::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 4px;
-        }
-        
-        .table-container::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 4px;
-        }
-        
-        .table-container::-webkit-scrollbar-thumb:hover {
-            background: #5a6fd8;
-        }
+h2 {
+  color: #333;
+  font-size: 2em;
+  text-align: center;
+}
+table {
+			border-collapse: collapse;
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+		
+		tr:hover {background-color:#f5f5f5;}
+button {
+			background-color: #4CAF50;
+			color: white;
+			padding: 6px 12px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+input[type="text"] {
+			padding: 10px;
+			border: none;
+			border-radius: 20px;
+			background-color: #f2f2f2;
+			box-shadow: 0 0 5px rgba(0,0,0,0.1);
+			width: 300px;
+			font-size: 18px;
+			color: #333;
+			outline: none;
+		}
       </style>
 
 	  
@@ -308,7 +91,7 @@
 		function checkPassword() {
 			var password = document.getElementById('password').value;
 			
-			if (password == '1818') {
+			if (password == '8866') {
 				document.getElementById('content').style.display = 'block';
 				document.getElementById('passwordForm').style.display = 'none';
 			} else {
@@ -347,13 +130,12 @@
 	<div id="content" style="display: none;">
 		<p></p>
 	
-		<div class="search-controls">
+		<div style="display: flex; justify-content: center; align-items: center; gap: 50px;">
 			<input type="text" id="searchInput" onkeyup="search()" placeholder="直接输入关键词搜索，群友们不限量下载">
 			<button onclick="openRandomLink()">随机查看</button>
 		</div>
 
-	<div class="table-container">
-		<table id="dataTable">
+	<table id="dataTable" style="margin: 20px auto; max-width: 1200px;">
 		<thead>
 			<tr>
 				<th>标题</th>
@@ -362,178 +144,6 @@
 			</tr>
 		</thead>
 		<tbody>
-<tr><td>250829专属群《七夕特刊：那些离大谱的爱情故事》.pdf</td><td><a href="https://lazymans.lanzoue.com/iDDcY3543uhi" target="_blank">https://lazymans.lanzoue.com/iDDcY3543uhi</a></td></tr>
-<tr><td>250829卢克文星球《李在明访美，真的要站队了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i1TWW3543uef" target="_blank">https://lazymans.lanzoue.com/i1TWW3543uef</a></td></tr>
-<tr><td>250828专属群《重磅政策出台，看懂“AI大红利”时代的上车路径》.pdf</td><td><a href="https://lazymans.lanzoue.com/i194t3543ucd" target="_blank">https://lazymans.lanzoue.com/i194t3543ucd</a></td></tr>
-<tr><td>250828专属群《一系列税收新政动作不断，更大影响还在后面》.pdf</td><td><a href="https://lazymans.lanzoue.com/ix4bl3543u8j" target="_blank">https://lazymans.lanzoue.com/ix4bl3543u8j</a></td></tr>
-<tr><td>250828专属群《黄仁勋的2025：布局英伟达的10年前途》.pdf</td><td><a href="https://lazymans.lanzoue.com/ieoNC3543u6h" target="_blank">https://lazymans.lanzoue.com/ieoNC3543u6h</a></td></tr>
-<tr><td>250828卢克文星球《超过茅台，中国芯价值正被重新定义》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNeNy3543u2d" target="_blank">https://lazymans.lanzoue.com/iNeNy3543u2d</a></td></tr>
-<tr><td>250827专属群《五星级酒店摆地摊，图的不止那点钱》.pdf</td><td><a href="https://lazymans.lanzoue.com/iLhC23543tza" target="_blank">https://lazymans.lanzoue.com/iLhC23543tza</a></td></tr>
-<tr><td>250827专属群《山姆和中产，到底谁背刺谁啊？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMZkS3543twh" target="_blank">https://lazymans.lanzoue.com/iMZkS3543twh</a></td></tr>
-<tr><td>250827专属群《两大关键税收新规动向明确，税收征管强化合规》.pdf</td><td><a href="https://lazymans.lanzoue.com/itLld3543tte" target="_blank">https://lazymans.lanzoue.com/itLld3543tte</a></td></tr>
-<tr><td>250827专属群《黄仁勋的2025：在中美之间端水》.pdf</td><td><a href="https://lazymans.lanzoue.com/iymUb3543tpa" target="_blank">https://lazymans.lanzoue.com/iymUb3543tpa</a></td></tr>
-<tr><td>250827新闻实验室《如何减少世界的撕裂》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNNvn3543tmh" target="_blank">https://lazymans.lanzoue.com/iNNvn3543tmh</a></td></tr>
-<tr><td>250827秦小明55元付费《什么时候离场？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iCrkW3543thc" target="_blank">https://lazymans.lanzoue.com/iCrkW3543thc</a></td></tr>
-<tr><td>250827卢克文星球《上台先抱美日大腿，李在明在中美间做出了选择？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iRiSJ3543tfa" target="_blank">https://lazymans.lanzoue.com/iRiSJ3543tfa</a></td></tr>
-<tr><td>250827卢克文星球《大连一高校工资停发，暴露了中国民办高校什么问题？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iM1tA3543tbg" target="_blank">https://lazymans.lanzoue.com/iM1tA3543tbg</a></td></tr>
-<tr><td>250826专属群《中美博弈咬死关键领域，特朗普政府开启罕见先例》.pdf</td><td><a href="https://lazymans.lanzoue.com/iOxsE3543t9e" target="_blank">https://lazymans.lanzoue.com/iOxsE3543t9e</a></td></tr>
-<tr><td>250826专属群《黄仁勋的2025：争取特朗普》.pdf</td><td><a href="https://lazymans.lanzoue.com/io1ZM3543t6b" target="_blank">https://lazymans.lanzoue.com/io1ZM3543t6b</a></td></tr>
-<tr><td>250826生财精华《怎样做公众号？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iqQOA3543t2h" target="_blank">https://lazymans.lanzoue.com/iqQOA3543t2h</a></td></tr>
-<tr><td>250826青云读书会《下半年宏观经济与资产配置展望》.pdf</td><td><a href="https://lazymans.lanzoue.com/iIvtw3543sti" target="_blank">https://lazymans.lanzoue.com/iIvtw3543sti</a></td></tr>
-<tr><td>250825专属群《最容易“被资本做局”的职业，如何好好工作？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iaGOb3543sgf" target="_blank">https://lazymans.lanzoue.com/iaGOb3543sgf</a></td></tr>
-<tr><td>250825专属群《中国超级工程密集出台，发展格局的关键转变》.pdf</td><td><a href="https://lazymans.lanzoue.com/ii8UM3543scb" target="_blank">https://lazymans.lanzoue.com/ii8UM3543scb</a></td></tr>
-<tr><td>250825专属群《日本第五消费时代对中国有何参考》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNGOU3543s8h" target="_blank">https://lazymans.lanzoue.com/iNGOU3543s8h</a></td></tr>
-<tr><td>250825守夜总司令《要贷款吗？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iZtqp3543s6f" target="_blank">https://lazymans.lanzoue.com/iZtqp3543s6f</a></td></tr>
-<tr><td>250825卢克文星球《一盘更大的棋：马斯克组党按下刹车键，或押注万斯？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNYtj3543s3c" target="_blank">https://lazymans.lanzoue.com/iNYtj3543s3c</a></td></tr>
-<tr><td>250825老端付费《老百姓怎么开离岸账户最方便？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iI2903543rzi" target="_blank">https://lazymans.lanzoue.com/iI2903543rzi</a></td></tr>
-<tr><td>250825安民深度分析付费《CXO龙二追踪分析：减肥药唤醒的蛰伏力量》.pdf</td><td><a href="https://lazymans.lanzoue.com/i6zQr3543rxg" target="_blank">https://lazymans.lanzoue.com/i6zQr3543rxg</a></td></tr>
-<tr><td>250824记忆承载付费《为什么如今的孩子努力学习十几年，长大后却赚不到钱？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i7bWz3543rmf" target="_blank">https://lazymans.lanzoue.com/i7bWz3543rmf</a></td></tr>
-<tr><td>250822专属群《跟着“天气预报”，学习“风险管理”，可还行？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iJ3zH3543rjc" target="_blank">https://lazymans.lanzoue.com/iJ3zH3543rjc</a></td></tr>
-<tr><td>250822卢克文星球《中印外长达成共识，两国关系要大幅好转？》.pdf</td><td><a href="https://lazymans.lanzoue.com/inno03543rha" target="_blank">https://lazymans.lanzoue.com/inno03543rha</a></td></tr>
-<tr><td>250822九边《印度被美国修理了，可以联印制美吗？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i84Pn3543reh" target="_blank">https://lazymans.lanzoue.com/i84Pn3543reh</a></td></tr>
-<tr><td>250821专属群《教育孩子，爱是爱，规矩是规矩》.pdf</td><td><a href="https://lazymans.lanzoue.com/ia91V3543rcf" target="_blank">https://lazymans.lanzoue.com/ia91V3543rcf</a></td></tr>
-<tr><td>250821专属群《国家强力改造金融业，让巨量资源注入新型工业化》.pdf</td><td><a href="https://lazymans.lanzoue.com/iWClL3543r9c" target="_blank">https://lazymans.lanzoue.com/iWClL3543r9c</a></td></tr>
-<tr><td>250821专属群《“提振消费”为什么必要且急迫？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ii1rw3543r6j" target="_blank">https://lazymans.lanzoue.com/ii1rw3543r6j</a></td></tr>
-<tr><td>250821新闻实验室《你问我答》.pdf</td><td><a href="https://lazymans.lanzoue.com/i48rY3543r2f" target="_blank">https://lazymans.lanzoue.com/i48rY3543r2f</a></td></tr>
-<tr><td>250821新闻实验室《Anas al-Sharif》.pdf</td><td><a href="https://lazymans.lanzoue.com/immKs3543qyb" target="_blank">https://lazymans.lanzoue.com/immKs3543qyb</a></td></tr>
-<tr><td>250821生财精华《普通 2 个月靠小红书做香港代购，每天花 2 小时留言信获客，净利润 15000+》.pdf</td><td><a href="https://lazymans.lanzoue.com/iT64Y3543qvi" target="_blank">https://lazymans.lanzoue.com/iT64Y3543qvi</a></td></tr>
-<tr><td>250821生财精华《大一如何独立发掘小众赛道赚到第一桶2K？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iftGQ3543qsf" target="_blank">https://lazymans.lanzoue.com/iftGQ3543qsf</a></td></tr>
-<tr><td>250821生财精华《创业公司活命手册：从现金流到身体健康的6+1条生存法则》.pdf</td><td><a href="https://lazymans.lanzoue.com/iJrsW3543qgd" target="_blank">https://lazymans.lanzoue.com/iJrsW3543qgd</a></td></tr>
-<tr><td>250821卢克文星球《希音总部要搬回中国，是怎么回事？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ifT9Y3543qda" target="_blank">https://lazymans.lanzoue.com/ifT9Y3543qda</a></td></tr>
-<tr><td>250820专属群《重磅文件宣示工业立国，背后风向非常关键》.pdf</td><td><a href="https://lazymans.lanzoue.com/imRKv3543qah" target="_blank">https://lazymans.lanzoue.com/imRKv3543qah</a></td></tr>
-<tr><td>250820专属群《战略产业新趋势：央企“组局”，民企“找位子”》.pdf</td><td><a href="https://lazymans.lanzoue.com/isp023543q6d" target="_blank">https://lazymans.lanzoue.com/isp023543q6d</a></td></tr>
-<tr><td>250820专属群《稳定币落地，和普通人到底有什么关系？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iDTio3543q3a" target="_blank">https://lazymans.lanzoue.com/iDTio3543q3a</a></td></tr>
-<tr><td>250820专属群《腾讯：重新成为成长型公司？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNZa53543q1i" target="_blank">https://lazymans.lanzoue.com/iNZa53543q1i</a></td></tr>
-<tr><td>250820专属群《嘉立创的生态雄心》.pdf</td><td><a href="https://lazymans.lanzoue.com/ilggK3543pzg" target="_blank">https://lazymans.lanzoue.com/ilggK3543pzg</a></td></tr>
-<tr><td>250820猫哥《认真给大家聊一聊中国经济》.pdf</td><td><a href="https://lazymans.lanzoue.com/i9AKq3543pxe" target="_blank">https://lazymans.lanzoue.com/i9AKq3543pxe</a></td></tr>
-<tr><td>250820卢克文星球《普京罕见让步，泽连斯基态度转变，大交易真的要来了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/inBsw3543pvc" target="_blank">https://lazymans.lanzoue.com/inBsw3543pvc</a></td></tr>
-<tr><td>250819专属群《稳定币“第一课”：是什么？从哪来？到哪去？》.pdf</td><td><a href="https://lazymans.lanzoue.com/irVrb3543pta" target="_blank">https://lazymans.lanzoue.com/irVrb3543pta</a></td></tr>
-<tr><td>250819专属群《嘉立创：电子工业版的药明康德与拼多多》.pdf</td><td><a href="https://lazymans.lanzoue.com/iEGym3543pri" target="_blank">https://lazymans.lanzoue.com/iEGym3543pri</a></td></tr>
-<tr><td>250819专属群《拨开迷雾，“社保新规”背后最可能的意图是什么？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ir7cQ3543pof" target="_blank">https://lazymans.lanzoue.com/ir7cQ3543pof</a></td></tr>
-<tr><td>250819守夜总司令《标的提醒》.pdf</td><td><a href="https://lazymans.lanzoue.com/i5JTB3543pja" target="_blank">https://lazymans.lanzoue.com/i5JTB3543pja</a></td></tr>
-<tr><td>250819生财精华《亚马逊的六大核心难点问题和对应解决方案》.pdf</td><td><a href="https://lazymans.lanzoue.com/iWl9W3543phi" target="_blank">https://lazymans.lanzoue.com/iWl9W3543phi</a></td></tr>
-<tr><td>250819生财精华《微信问一问SEO搜索玩法》.pdf</td><td><a href="https://lazymans.lanzoue.com/iWK8r3543p9a" target="_blank">https://lazymans.lanzoue.com/iWK8r3543p9a</a></td></tr>
-<tr><td>250819生财精华《垂直小号+原创小程序=新的赚钱风口》.pdf</td><td><a href="https://lazymans.lanzoue.com/iHSLw3543p5g" target="_blank">https://lazymans.lanzoue.com/iHSLw3543p5g</a></td></tr>
-<tr><td>250819卢克文星球《著名画家范曾失联？凸显中国富一代传承难题》.pdf</td><td><a href="https://lazymans.lanzoue.com/iu5t43543ovg" target="_blank">https://lazymans.lanzoue.com/iu5t43543ovg</a></td></tr>
-<tr><td>250818卢克文星球《特朗普普京会晤，能否结束俄乌战争？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iQp8V353x8eh" target="_blank">https://lazymans.lanzoue.com/iQp8V353x8eh</a></td></tr>
-<tr><td>250818卢克文星球《美国打击俾路支解放军，南亚格局要颠覆了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iXxiB353x84h" target="_blank">https://lazymans.lanzoue.com/iXxiB353x84h</a></td></tr>
-<tr><td>250818安民分析付费《大盘分析6：18周预判兑现，四大原因决定各板块啥时走牛》.pdf</td><td><a href="https://lazymans.lanzoue.com/ibXfO353x7mj" target="_blank">https://lazymans.lanzoue.com/ibXfO353x7mj</a></td></tr>
-<tr><td>250817A视野付费《一场史诗级的金融实验，要来了！》.pdf</td><td><a href="https://lazymans.lanzoue.com/iJxlq353x6zg" target="_blank">https://lazymans.lanzoue.com/iJxlq353x6zg</a></td></tr>
-<tr><td>250816灏泽神棍付费《字字如金皆是重点，看完后你就清楚该怎么在大A布局了》.pdf</td><td><a href="https://lazymans.lanzoue.com/ijDdO353x6pg" target="_blank">https://lazymans.lanzoue.com/ijDdO353x6pg</a></td></tr>
-<tr><td>250815专属群《影响深远：房租普降，不止关系到房东和租客》.pdf</td><td><a href="https://lazymans.lanzoue.com/ilIsP353x6de" target="_blank">https://lazymans.lanzoue.com/ilIsP353x6de</a></td></tr>
-<tr><td>250815雪球花甲老头付费《顺势而为！严谨的逻辑思考，才能拥有稳定的心态-万字》.pdf</td><td><a href="https://lazymans.lanzoue.com/iSv5Z353x6ab" target="_blank">https://lazymans.lanzoue.com/iSv5Z353x6ab</a></td></tr>
-<tr><td>250815卢克文星球《调查金建希，李在明要对尹锡悦动手了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i1n3h353x66h" target="_blank">https://lazymans.lanzoue.com/i1n3h353x66h</a></td></tr>
-<tr><td>250815北游付费《（深度长文）中国如何融入世界秩序？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iiq0H353x62d" target="_blank">https://lazymans.lanzoue.com/iiq0H353x62d</a></td></tr>
-<tr><td>250814专属群《中国强市上海突然大力抢“网红”，到底要干什么？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iZWu4353x5xi" target="_blank">https://lazymans.lanzoue.com/iZWu4353x5xi</a></td></tr>
-<tr><td>250814专属群《中国的RWA产业展望（下）》.pdf</td><td><a href="https://lazymans.lanzoue.com/iBP0j353x5vg" target="_blank">https://lazymans.lanzoue.com/iBP0j353x5vg</a></td></tr>
-<tr><td>250814新闻实验室《大图书馆事件》.pdf</td><td><a href="https://lazymans.lanzoue.com/iv5Xy353x5pa" target="_blank">https://lazymans.lanzoue.com/iv5Xy353x5pa</a></td></tr>
-<tr><td>250814生财精华《一篇讲透AI客服：百万级实战心法》.pdf</td><td><a href="https://lazymans.lanzoue.com/ikE9U353x5lg" target="_blank">https://lazymans.lanzoue.com/ikE9U353x5lg</a></td></tr>
-<tr><td>250814生财精华《业绩实现100倍增长，小红书高效变现路径全解析！》.pdf</td><td><a href="https://lazymans.lanzoue.com/igTCO353x5di" target="_blank">https://lazymans.lanzoue.com/igTCO353x5di</a></td></tr>
-<tr><td>250814生财精华《公众号流量主民生赛道，小绿书起号转型，万阅读，十万加爆款很多，一次6-8条》.pdf</td><td><a href="https://lazymans.lanzoue.com/i7MkV353x46f" target="_blank">https://lazymans.lanzoue.com/i7MkV353x46f</a></td></tr>
-<tr><td>250814生财精华《从零到一的首单复盘：一个普通程序员的105天淘金之路》.pdf</td><td><a href="https://lazymans.lanzoue.com/iHXV6353x41a" target="_blank">https://lazymans.lanzoue.com/iHXV6353x41a</a></td></tr>
-<tr><td>250814生财精华《不投信息流广告，如何让一个工具类App日下载破2万？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iQVis353x3kd" target="_blank">https://lazymans.lanzoue.com/iQVis353x3kd</a></td></tr>
-<tr><td>250814群分享《“元年”到来，脑机接口这回真的“与你有关”了》.pdf</td><td><a href="https://lazymans.lanzoue.com/iUuRN353x2jg" target="_blank">https://lazymans.lanzoue.com/iUuRN353x2jg</a></td></tr>
-<tr><td>250814卢克文星球《县长还是土匪，英伟达对华出口要被抽成15%》.pdf</td><td><a href="https://lazymans.lanzoue.com/ijWgq353x13e" target="_blank">https://lazymans.lanzoue.com/ijWgq353x13e</a></td></tr>
-<tr><td>250813专属群《中国的RWA产业展望（中）》.pdf</td><td><a href="https://lazymans.lanzoue.com/irTqT353x10b" target="_blank">https://lazymans.lanzoue.com/irTqT353x10b</a></td></tr>
-<tr><td>250813专属群《一场“蔬菜战争”，关系到你的“三餐四季”》.pdf</td><td><a href="https://lazymans.lanzoue.com/iSm6f353x0yj" target="_blank">https://lazymans.lanzoue.com/iSm6f353x0yj</a></td></tr>
-<tr><td>250813专属群《城投的未来和中国地方发展模式的新巨变》.pdf</td><td><a href="https://lazymans.lanzoue.com/iyQfb353x0vg" target="_blank">https://lazymans.lanzoue.com/iyQfb353x0vg</a></td></tr>
-<tr><td>250813生财精华《6 年老圈友复盘：用 AI 改造业务的 2 年实战 —— 从替代 30 人审核团队到支撑 50 国运营》.pdf</td><td><a href="https://lazymans.lanzoue.com/i2o14353x0te" target="_blank">https://lazymans.lanzoue.com/i2o14353x0te</a></td></tr>
-<tr><td>250813卢克文星球《索赔1000万，爱康国宾的灾难性公关，有什么幕后原因？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iswJr353x0pa" target="_blank">https://lazymans.lanzoue.com/iswJr353x0pa</a></td></tr>
-<tr><td>250813卢克文星球《南海撞船事件，是怎么回事？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iTpIw353x0lg" target="_blank">https://lazymans.lanzoue.com/iTpIw353x0lg</a></td></tr>
-<tr><td>250813大树乡谈《谈谈宗庆后财产分割的看法》.pdf</td><td><a href="https://lazymans.lanzoue.com/ifdpn353x0gb" target="_blank">https://lazymans.lanzoue.com/ifdpn353x0gb</a></td></tr>
-<tr><td>250812专属群《眼高手低，是一种精致的“自我破坏”》.pdf</td><td><a href="https://lazymans.lanzoue.com/iylFp353x0ch" target="_blank">https://lazymans.lanzoue.com/iylFp353x0ch</a></td></tr>
-<tr><td>250812生财精华《谷歌投放从放弃到入门》.pdf</td><td><a href="https://lazymans.lanzoue.com/i8YDA353x09e" target="_blank">https://lazymans.lanzoue.com/i8YDA353x09e</a></td></tr>
-<tr><td>250812生财精华《AI + 一人公司：普通人也能玩的创业路》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMQtV353x02h" target="_blank">https://lazymans.lanzoue.com/iMQtV353x02h</a></td></tr>
-<tr><td>250812卢克文星球《澳洲杨兰兰事件屏，真是“天龙”的手笔？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iZTRy353wzze" target="_blank">https://lazymans.lanzoue.com/iZTRy353wzze</a></td></tr>
-<tr><td>250812九边《叫停外卖大战的真相：夫妻店快被打没了》.pdf</td><td><a href="https://lazymans.lanzoue.com/isdwQ353wzva" target="_blank">https://lazymans.lanzoue.com/isdwQ353wzva</a></td></tr>
-<tr><td>250811专属群《中央加速让城投出清，所谓“第二财政”进入倒计时》.pdf</td><td><a href="https://lazymans.lanzoue.com/icruY353wzsh" target="_blank">https://lazymans.lanzoue.com/icruY353wzsh</a></td></tr>
-<tr><td>250811专属群《中国的RWA产业展望（上）》.pdf</td><td><a href="https://lazymans.lanzoue.com/in5c6353wzpe" target="_blank">https://lazymans.lanzoue.com/in5c6353wzpe</a></td></tr>
-<tr><td>250811专属群《稳定币+RWA：加密行业终于跑通了？（下）》.pdf</td><td><a href="https://lazymans.lanzoue.com/iEaGT353wzkj" target="_blank">https://lazymans.lanzoue.com/iEaGT353wzkj</a></td></tr>
-<tr><td>250811专属群《黑马杀出：《南京照相馆》背后的“全民监制”时代》.pdf</td><td><a href="https://lazymans.lanzoue.com/itxqZ353wz4d" target="_blank">https://lazymans.lanzoue.com/itxqZ353wz4d</a></td></tr>
-<tr><td>250811专属群《地方政府怎样把各方都绑在同一辆经济战车上？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iuGv8353wyqj" target="_blank">https://lazymans.lanzoue.com/iuGv8353wyqj</a></td></tr>
-<tr><td>250811守夜总司令《一个如何在面对任何困境的时候都不崩溃呢？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ibQQ2353wygj" target="_blank">https://lazymans.lanzoue.com/ibQQ2353wygj</a></td></tr>
-<tr><td>250811生财精华《凌晨3点，5个Claude Code同时工作，老板以为我组了个团队》.pdf</td><td><a href="https://lazymans.lanzoue.com/iXi1O353wy2f" target="_blank">https://lazymans.lanzoue.com/iXi1O353wy2f</a></td></tr>
-<tr><td>250811青云读书《神秘的北京特科》.pdf</td><td><a href="https://lazymans.lanzoue.com/i0rxl353wxda" target="_blank">https://lazymans.lanzoue.com/i0rxl353wxda</a></td></tr>
-<tr><td>250811青云读书《神秘的北京特科》.epub</td><td><a href="https://lazymans.lanzoue.com/ibkbv353wxah" target="_blank">https://lazymans.lanzoue.com/ibkbv353wxah</a></td></tr>
-<tr><td>250811卢克文星球《总统亲自迫营企业CEO辞职，是怎么回事？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iAEjk353wx4b" target="_blank">https://lazymans.lanzoue.com/iAEjk353wx4b</a></td></tr>
-<tr><td>250811卢克文星球《民办本科高校倒闭潮来临，是怎么回事？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iOae2353wwij" target="_blank">https://lazymans.lanzoue.com/iOae2353wwij</a></td></tr>
-<tr><td>250811观雨大神经付费《万字长文说透稳定币：既是末日也是希望，更是属于每个人的全新起跑线》.pdf</td><td><a href="https://lazymans.lanzoue.com/itIw1353ww0b" target="_blank">https://lazymans.lanzoue.com/itIw1353ww0b</a></td></tr>
-<tr><td>250810记忆承载付费《个人未来的出路，就隐藏在分配与债务的经济周期律当中》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMMHR353wu6f" target="_blank">https://lazymans.lanzoue.com/iMMHR353wu6f</a></td></tr>
-<tr><td>250818专属群《中国正转向消费型社会，这是几十年来难得的重大转变》.pdf</td><td><a href="https://lazymans.lanzoue.com/isTl7353wtdg" target="_blank">https://lazymans.lanzoue.com/isTl7353wtdg</a></td></tr>
-<tr><td>250818专属群《外卖大战第三阶段：立秋茶战役》.pdf</td><td><a href="https://lazymans.lanzoue.com/i3Oby353wt6j" target="_blank">https://lazymans.lanzoue.com/i3Oby353wt6j</a></td></tr>
-<tr><td>250818专属群《社会越功利，我们越要“超越工具视角”》.pdf</td><td><a href="https://lazymans.lanzoue.com/iBtkE353wsyb" target="_blank">https://lazymans.lanzoue.com/iBtkE353wsyb</a></td></tr>
-<tr><td>250818专属群《大型漫展：消费新战场》.pdf</td><td><a href="https://lazymans.lanzoue.com/itXiJ353wsqd" target="_blank">https://lazymans.lanzoue.com/itXiJ353wsqd</a></td></tr>
-<tr><td>250818专属群《“社保新规”争论激烈，但新规跟社保本身其实没关系》.pdf</td><td><a href="https://lazymans.lanzoue.com/iZ714353wsob" target="_blank">https://lazymans.lanzoue.com/iZ714353wsob</a></td></tr>
-<tr><td>250818守夜总司令《与日韩、欧盟的冲突会越来越大！》.pdf</td><td><a href="https://lazymans.lanzoue.com/i9vn2353ws5c" target="_blank">https://lazymans.lanzoue.com/i9vn2353ws5c</a></td></tr>
-<tr><td>250818生财精华《做了100个垂直小号得到的经验：踩在风口，一周内新人也能10w+,日入1000》.pdf</td><td><a href="https://lazymans.lanzoue.com/ixR1B353wrhi" target="_blank">https://lazymans.lanzoue.com/ixR1B353wrhi</a></td></tr>
-<tr><td>250818生财精华《从小白到老油条的蜕变，在抖音，我是如何从3个月亏掉了50w的小白到开店第一个月做到184w营业额的老油条，实战保姆级攻略分享》.pdf...</td><td><a href="https://lazymans.lanzoue.com/im4rF353wquf" target="_blank">https://lazymans.lanzoue.com/im4rF353wquf</a></td></tr>
-<tr><td>250818猫哥《分享两个实用有效的知识点》.pdf</td><td><a href="https://lazymans.lanzoue.com/iSlOc353wowf" target="_blank">https://lazymans.lanzoue.com/iSlOc353wowf</a></td></tr>
-<tr><td>250808专属群《中部将成中国交通第五极，各城市的新剧本和新位次》.pdf</td><td><a href="https://lazymans.lanzoue.com/iR5dw353w7ri" target="_blank">https://lazymans.lanzoue.com/iR5dw353w7ri</a></td></tr>
-<tr><td>250808专属群《稳定币+RWA：加密行业终于跑通了？（上）》.pdf</td><td><a href="https://lazymans.lanzoue.com/iFrk5353w7of" target="_blank">https://lazymans.lanzoue.com/iFrk5353w7of</a></td></tr>
-<tr><td>250808专属群《本科不好的“原罪”，读到博士能还清吗？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iU3ZE353w7md" target="_blank">https://lazymans.lanzoue.com/iU3ZE353w7md</a></td></tr>
-<tr><td>250808专属群《爱康国宾引发的“体检疑虑”，怎么破？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ivTV0353w7ij" target="_blank">https://lazymans.lanzoue.com/ivTV0353w7ij</a></td></tr>
-<tr><td>250808珍大户《政策解读住房租赁条例》.pdf</td><td><a href="https://lazymans.lanzoue.com/iAqv4353w7gh" target="_blank">https://lazymans.lanzoue.com/iAqv4353w7gh</a></td></tr>
-<tr><td>250808新闻实验室《视频播客》.pdf</td><td><a href="https://lazymans.lanzoue.com/ikGYm353w7de" target="_blank">https://lazymans.lanzoue.com/ikGYm353w7de</a></td></tr>
-<tr><td>250808生财精华《我是如何用1年4个月赚到人生第一个100w的（补充版）》.pdf</td><td><a href="https://lazymans.lanzoue.com/iX40q353w7ab" target="_blank">https://lazymans.lanzoue.com/iX40q353w7ab</a></td></tr>
-<tr><td>250808生财精华《从大厂牛马到创业：我这一年踩过的坑与悟的道》.pdf</td><td><a href="https://lazymans.lanzoue.com/iTwZW353w71c" target="_blank">https://lazymans.lanzoue.com/iTwZW353w71c</a></td></tr>
-<tr><td>250808卢克文星球《儿园免保教费，能为家庭降低多少负担？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i99Yp353w6yj" target="_blank">https://lazymans.lanzoue.com/i99Yp353w6yj</a></td></tr>
-<tr><td>250808卢克文星球《美国和印度要分道扬镳了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/imAiG353w6vg" target="_blank">https://lazymans.lanzoue.com/imAiG353w6vg</a></td></tr>
-<tr><td>250807专属群《“特朗普爱上在白宫做保洁的我”？并没有》.pdf</td><td><a href="https://lazymans.lanzoue.com/itWqK353w6te" target="_blank">https://lazymans.lanzoue.com/itWqK353w6te</a></td></tr>
-<tr><td>250807生财精华《小红书虚拟店，冷门虚拟品方可速成（共4套方法）》.pdf</td><td><a href="https://lazymans.lanzoue.com/izDuK353w6rc" target="_blank">https://lazymans.lanzoue.com/izDuK353w6rc</a></td></tr>
-<tr><td>250807生财精华《公众号垂直小号变现，窄、专、粘是关键》.pdf</td><td><a href="https://lazymans.lanzoue.com/icTAc353w6kf" target="_blank">https://lazymans.lanzoue.com/icTAc353w6kf</a></td></tr>
-<tr><td>250807猫哥《武汉大学事件背后，让人不寒而栗》.pdf</td><td><a href="https://lazymans.lanzoue.com/iTWVE353w6fa" target="_blank">https://lazymans.lanzoue.com/iTWVE353w6fa</a></td></tr>
-<tr><td>250807猫哥《技术性捷径》.pdf</td><td><a href="https://lazymans.lanzoue.com/iub07353w68d" target="_blank">https://lazymans.lanzoue.com/iub07353w68d</a></td></tr>
-<tr><td>250807卢克文星球《武汉大学诬告事件，还有境外势力的影子？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i3yqs353w63i" target="_blank">https://lazymans.lanzoue.com/i3yqs353w63i</a></td></tr>
-<tr><td>250806专属群《许倬云：找到你自己的桃花源，哪怕世界永远不平静》.pdf</td><td><a href="https://lazymans.lanzoue.com/ij9Ty353w5yd" target="_blank">https://lazymans.lanzoue.com/ij9Ty353w5yd</a></td></tr>
-<tr><td>250806卢克文星球《“亮证姐”的官方通报，为什么难以服众？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iw42P353w5sh" target="_blank">https://lazymans.lanzoue.com/iw42P353w5sh</a></td></tr>
-<tr><td>250805子明解读付费《非农造假后的资本市场》.pdf</td><td><a href="https://lazymans.lanzoue.com/iZcgr353w5nc" target="_blank">https://lazymans.lanzoue.com/iZcgr353w5nc</a></td></tr>
-<tr><td>250805子明解读付费《730政治局会议解读》.pdf</td><td><a href="https://lazymans.lanzoue.com/iAbim353w5ih" target="_blank">https://lazymans.lanzoue.com/iAbim353w5ih</a></td></tr>
-<tr><td>250805专属群《最新政治局会议定调下半年，看懂关键表态和背后影响》.pdf</td><td><a href="https://lazymans.lanzoue.com/iVVu6353w5hg" target="_blank">https://lazymans.lanzoue.com/iVVu6353w5hg</a></td></tr>
-<tr><td>250805专属群《物价持续低迷影响很大，为什么和怎么办？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iIs74353w5dc" target="_blank">https://lazymans.lanzoue.com/iIs74353w5dc</a></td></tr>
-<tr><td>250805专属群《基孔肯雅热，也许只是蚊子开的第一发冷枪》.pdf</td><td><a href="https://lazymans.lanzoue.com/ikrd6353w58h" target="_blank">https://lazymans.lanzoue.com/ikrd6353w58h</a></td></tr>
-<tr><td>250805专属群《《南京照相馆》：电影业的新旧产能轮换》.pdf</td><td><a href="https://lazymans.lanzoue.com/i29s0353w53c" target="_blank">https://lazymans.lanzoue.com/i29s0353w53c</a></td></tr>
-<tr><td>250805卢克文星球《娃哈哈财产案裁定：宗庆后设信托，宗馥不得挪用》.pdf</td><td><a href="https://lazymans.lanzoue.com/i1aeR353w4zi" target="_blank">https://lazymans.lanzoue.com/i1aeR353w4zi</a></td></tr>
-<tr><td>250805卢克文星球《美国非农就业数据造假，吓坏市场？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iFrLG353w4ud" target="_blank">https://lazymans.lanzoue.com/iFrLG353w4ud</a></td></tr>
-<tr><td>250805安民付费文《再次布局战略投资》.pdf</td><td><a href="https://lazymans.lanzoue.com/ii8D2353w4ng" target="_blank">https://lazymans.lanzoue.com/ii8D2353w4ng</a></td></tr>
-<tr><td>250805A视野付费《中美不欢而散，大A后面怎么走？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMrPu353w22d" target="_blank">https://lazymans.lanzoue.com/iMrPu353w22d</a></td></tr>
-<tr><td>250804专属群《假如人生重开，这一局会更好吗？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ieymu353w1xi" target="_blank">https://lazymans.lanzoue.com/ieymu353w1xi</a></td></tr>
-<tr><td>250804专属群《7月政治局会议：四个风向》.pdf</td><td><a href="https://lazymans.lanzoue.com/i0u6B353w1sd" target="_blank">https://lazymans.lanzoue.com/i0u6B353w1sd</a></td></tr>
-<tr><td>250804生财精华《一人公司想要做的轻松，2个关键不能少》.pdf</td><td><a href="https://lazymans.lanzoue.com/iVZBX353w1oj" target="_blank">https://lazymans.lanzoue.com/iVZBX353w1oj</a></td></tr>
-<tr><td>250804生财精华《跨境新手看利润，投资人却看这几个关键指标》.pdf</td><td><a href="https://lazymans.lanzoue.com/iIpYO353w1kf" target="_blank">https://lazymans.lanzoue.com/iIpYO353w1kf</a></td></tr>
-<tr><td>250804生财精华《借助AI，洞察内心需求》.pdf</td><td><a href="https://lazymans.lanzoue.com/ifsln353w1hc" target="_blank">https://lazymans.lanzoue.com/ifsln353w1hc</a></td></tr>
-<tr><td>250804卢克文星球《武汉大学诬告事件，最后会如何收场？》.pdf</td><td><a href="https://lazymans.lanzoue.com/islgk353w1di" target="_blank">https://lazymans.lanzoue.com/islgk353w1di</a></td></tr>
-<tr><td>250804卢克文星球《电影《南京照相馆》的开创意义，在哪里？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ifhx6353w19e" target="_blank">https://lazymans.lanzoue.com/ifhx6353w19e</a></td></tr>
-<tr><td>250804局外人的视界付费《八月必看：从指数行情到个股行情》.pdf</td><td><a href="https://lazymans.lanzoue.com/i0CYr353w13i" target="_blank">https://lazymans.lanzoue.com/i0CYr353w13i</a></td></tr>
-<tr><td>250804洪灝的宏观策略《特朗普怒斩局座——是开启暴跌，还是。。？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i8B5y353w0yd" target="_blank">https://lazymans.lanzoue.com/i8B5y353w0yd</a></td></tr>
-<tr><td>250804大树乡谈《谈谈宗庆后财产分割的看法》.pdf</td><td><a href="https://lazymans.lanzoue.com/igggd353w0sh" target="_blank">https://lazymans.lanzoue.com/igggd353w0sh</a></td></tr>
-<tr><td>250804大佳投资笔记付费《非农数据不及预期？从全球市场昨晚的一惨绿说起》.pdf</td><td><a href="https://lazymans.lanzoue.com/iUX3Q353w0od" target="_blank">https://lazymans.lanzoue.com/iUX3Q353w0od</a></td></tr>
-<tr><td>250802守夜总司令《有本事的最后都因道德问题身败名裂！》.pdf</td><td><a href="https://lazymans.lanzoue.com/it27R353w0ji" target="_blank">https://lazymans.lanzoue.com/it27R353w0ji</a></td></tr>
-<tr><td>250802猫哥《海南自贸港封关运行，会带来哪些影响》.pdf</td><td><a href="https://lazymans.lanzoue.com/ibFid353w0gf" target="_blank">https://lazymans.lanzoue.com/ibFid353w0gf</a></td></tr>
-<tr><td>250802灏泽神棍付费《我的这些提醒，的确是透露了太多内幕》.pdf</td><td><a href="https://lazymans.lanzoue.com/ih281353w0fe" target="_blank">https://lazymans.lanzoue.com/ih281353w0fe</a></td></tr>
-<tr><td>250802大树乡谈《关于北京未来房价走势、政策看法以及小镇个人决策示例》.pdf</td><td><a href="https://lazymans.lanzoue.com/iIUwB353w0cb" target="_blank">https://lazymans.lanzoue.com/iIUwB353w0cb</a></td></tr>
-<tr><td>250801专属群《做大事的三重境界，你在第几层？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iG8J1353w0ba" target="_blank">https://lazymans.lanzoue.com/iG8J1353w0ba</a></td></tr>
-<tr><td>250801专属群《未来五年，两万座加油站将被淘汰》.pdf</td><td><a href="https://lazymans.lanzoue.com/iBrd9353w05e" target="_blank">https://lazymans.lanzoue.com/iBrd9353w05e</a></td></tr>
-<tr><td>250801专属群《嵌入：中国哲学里的生存策略》.pdf</td><td><a href="https://lazymans.lanzoue.com/iDmGl353vzud" target="_blank">https://lazymans.lanzoue.com/iDmGl353vzud</a></td></tr>
-<tr><td>250801新闻实验室《台湾“大罢免”》.pdf</td><td><a href="https://lazymans.lanzoue.com/iyu9t353vzmf" target="_blank">https://lazymans.lanzoue.com/iyu9t353vzmf</a></td></tr>
-<tr><td>250801卢克文星球《中美瑞典谈判，是不是谈成了？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i1TRB353vz9c" target="_blank">https://lazymans.lanzoue.com/i1TRB353vz9c</a></td></tr>
-<tr><td>230404记忆承载付费《假如孔乙己脱下长衫，又没有像祥子一样埋头拉车》.pdf</td><td><a href="https://lazymans.lanzoue.com/ioKns353vyyb" target="_blank">https://lazymans.lanzoue.com/ioKns353vyyb</a></td></tr>
-<tr><td>230131记忆承载付费《预期管理之最高境界：控你板的预期》 .pdf</td><td><a href="https://lazymans.lanzoue.com/iymlv353vyif" target="_blank">https://lazymans.lanzoue.com/iymlv353vyif</a></td></tr>
-<tr><td>230111记忆承载付费《我想聊隐，一群却忙着围观绿帽》.pdf</td><td><a href="https://lazymans.lanzoue.com/iAX4J353vy7e" target="_blank">https://lazymans.lanzoue.com/iAX4J353vy7e</a></td></tr>
-<tr><td>230101记忆承载付费《放开后仨话题，出国定居，国内买房，2023内外经济形势展望》 .pdf</td><td><a href="https://lazymans.lanzoue.com/ikoqs353vxxe" target="_blank">https://lazymans.lanzoue.com/ikoqs353vxxe</a></td></tr>
-<tr><td>221215记忆承载付费《有些秘密，决策者永远都不会告诉你》 .pdf</td><td><a href="https://lazymans.lanzoue.com/isMO5353vxne" target="_blank">https://lazymans.lanzoue.com/isMO5353vxne</a></td></tr>
-<tr><td>221202记忆承载付费《没敢聊的那件事，我来吧》.pdf</td><td><a href="https://lazymans.lanzoue.com/iufsF353vxef" target="_blank">https://lazymans.lanzoue.com/iufsF353vxef</a></td></tr>
-<tr><td>221112记忆承载付费《赚钱的秘密》.pdf</td><td><a href="https://lazymans.lanzoue.com/iNTne353vx5g" target="_blank">https://lazymans.lanzoue.com/iNTne353vx5g</a></td></tr>
-<tr><td>221102记忆承载付费《机会在于人事变动》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMu0Q353vwte" target="_blank">https://lazymans.lanzoue.com/iMu0Q353vwte</a></td></tr>
-<tr><td>221026记忆承载付费《大环境已经变了》.pdf</td><td><a href="https://lazymans.lanzoue.com/izCdz353vwfa" target="_blank">https://lazymans.lanzoue.com/izCdz353vwfa</a></td></tr>
-<tr><td>221009记忆承载付费《有些事儿，水太深，不说四两重，说出来，一千斤都打不住》.pdf</td><td><a href="https://lazymans.lanzoue.com/iE1cP353vvxc" target="_blank">https://lazymans.lanzoue.com/iE1cP353vvxc</a></td></tr>
-<tr><td>221005记忆承载付费《读者问，如果像茶一样思考，拆迁户和阿里P8之间选谁？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iwX3I353vvla" target="_blank">https://lazymans.lanzoue.com/iwX3I353vvla</a></td></tr>
-<tr><td>220912记忆承载付费《李易峰是小瓜，提前还贷是中瓜，那什么是大瓜？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iDGxq353vvdc" target="_blank">https://lazymans.lanzoue.com/iDGxq353vvdc</a></td></tr>
-<tr><td>220821记忆承载付费《司马南为什么被禁言？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iL1Ba353vv6f" target="_blank">https://lazymans.lanzoue.com/iL1Ba353vv6f</a></td></tr>
-<tr><td>220817记忆承载付费《问某地大学城的，实际上就是在问，回报怎么才能对得起自己的付出》.pdf</td><td><a href="https://lazymans.lanzoue.com/iY1S9353vuve" target="_blank">https://lazymans.lanzoue.com/iY1S9353vuve</a></td></tr>
-<tr><td>220811记忆承载被删文《澎湃点的火，似乎犯不着把三亚与上海一起搭进去》.pdf</td><td><a href="https://lazymans.lanzoue.com/i3GNR353vujc" target="_blank">https://lazymans.lanzoue.com/i3GNR353vujc</a></td></tr>
-<tr><td>220804记忆承载付费《我们想要的不是佩洛西是台湾，那么你想要的又是什么呢？》.pdf</td><td><a href="https://lazymans.lanzoue.com/ij49K353vudg" target="_blank">https://lazymans.lanzoue.com/ij49K353vudg</a></td></tr>
-<tr><td>220801记忆承载付费《富人在炫富，穷人无路可走？》.pdf</td><td><a href="https://lazymans.lanzoue.com/izcyO353vu5i" target="_blank">https://lazymans.lanzoue.com/izcyO353vu5i</a></td></tr>
-<tr><td>250808专属群《中美两大稳定币法律正式生效，新财富浪潮将到来？》.pdf</td><td><a href="https://lazymans.lanzoue.com/i2Qm1353vu1e" target="_blank">https://lazymans.lanzoue.com/i2Qm1353vu1e</a></td></tr>
 <tr><td>250730专属群《人生意义有公式：做自己=被需要》.pdf</td><td><a href="https://lazymans.lanzoue.com/iI8Qc32b2qvg" target="_blank">https://lazymans.lanzoue.com/iI8Qc32b2qvg</a></td></tr>
 <tr><td>250730专属群《海南封关背后的真红利和真逻辑，以及重要提醒》.pdf</td><td><a href="https://lazymans.lanzoue.com/iMWKZ32b2qqb" target="_blank">https://lazymans.lanzoue.com/iMWKZ32b2qqb</a></td></tr>
 <tr><td>250728大树乡谈《高速上智能驾驶，我们不再遥遥领先了吗？》.pdf</td><td><a href="https://lazymans.lanzoue.com/iRTsK32b2qpa" target="_blank">https://lazymans.lanzoue.com/iRTsK32b2qpa</a></td></tr>
@@ -2290,7 +1900,6 @@
       
 	</tbody>
 	</table>
-	</div>
 </div>
 </div>
 </body>
