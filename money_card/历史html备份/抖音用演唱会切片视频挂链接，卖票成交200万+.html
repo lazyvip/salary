@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抖音用演唱会切片视频挂链接，卖票成交200万+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .content {
+            padding: 40px 30px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #ff6b6b;
+        }
+        
+        .summary h2 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary h2 i {
+            margin-right: 10px;
+            color: #ff6b6b;
+        }
+        
+        .summary p {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .business-model {
+            margin-bottom: 30px;
+        }
+        
+        .business-model h3 {
+            color: #2d3748;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .business-model h3 i {
+            margin-right: 10px;
+            color: #ff6b6b;
+        }
+        
+        .model-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .step-item {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            border-color: #ff6b6b;
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.15);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            color: #2d3748;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #38a169;
+        }
+        
+        .key-points h3 {
+            color: #276749;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-points h3 i {
+            margin-right: 10px;
+        }
+        
+        .points-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .point-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .point-item i {
+            color: #38a169;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .point-text {
+            color: #2f855a;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #fffbf0 0%, #fef5e7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #d69e2e;
+        }
+        
+        .warning h3 {
+            color: #b7791f;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .warning h3 i {
+            margin-right: 10px;
+        }
+        
+        .warning p {
+            color: #975a16;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .target-audience {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #319795;
+        }
+        
+        .target-audience h3 {
+            color: #234e52;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .target-audience h3 i {
+            margin-right: 10px;
+        }
+        
+        .target-audience p {
+            color: #285e61;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: right;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer .source {
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <h1>抖音演唱会门票销售</h1>
+                <div class="subtitle">切片视频+官方链接变现模式</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <h2><i class="fas fa-fire"></i>案例概述</h2>
+                <p>通过发布演唱会切片视频并挂上官方售票链接，某抖音账号成功销售演唱会门票220万元。这种模式利用了演唱会热度和抖音流量红利，实现了内容与电商的完美结合。</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">220万</div>
+                    <div class="stat-label">总销售额</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">团购</div>
+                    <div class="stat-label">销售模式</div>
+                </div>
+            </div>
+            
+            <div class="business-model">
+                <h3><i class="fas fa-cogs"></i>操作流程</h3>
+                <div class="model-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">选择热门演唱会</div>
+                            <div class="step-desc">关注即将开售的热门明星演唱会，提前准备相关素材</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">制作切片视频</div>
+                            <div class="step-desc">剪辑该明星其他场次演唱会的精彩片段，制作吸引人的短视频</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">挂载购票链接</div>
+                            <div class="step-desc">在视频中添加官方售票链接，利用抖音团购功能进行销售</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">批量发布推广</div>
+                            <div class="step-desc">持续发布相关内容，抓住开售时机获取最大流量</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <h3><i class="fas fa-key"></i>成功关键</h3>
+                <div class="points-list">
+                    <div class="point-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="point-text"><strong>时机把握：</strong>提前布局，在开售前就开始预热，抢占先机</div>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-video"></i>
+                        <div class="point-text"><strong>内容质量：</strong>选择最精彩的演唱会片段，激发用户购买欲望</div>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-link"></i>
+                        <div class="point-text"><strong>官方渠道：</strong>确保使用官方售票链接，保证票源真实性</div>
+                    </div>
+                    <div class="point-item">
+                        <i class="fas fa-users"></i>
+                        <div class="point-text"><strong>粉丝经济：</strong>利用明星粉丝的强烈购买需求和传播力</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="warning">
+                <h3><i class="fas fa-exclamation-triangle"></i>注意事项</h3>
+                <p><strong>👉 版权风险：</strong>使用演唱会视频需注意版权问题<br>
+                <strong>👉 平台规则：</strong>遵守抖音相关销售和推广规定<br>
+                <strong>👉 售后服务：</strong>做好退换票等售后服务工作</p>
+            </div>
+            
+            <div class="target-audience">
+                <h3><i class="fas fa-users"></i>适合人群</h3>
+                <p>有一定视频剪辑能力的创作者、熟悉演出行业的从业者、拥有一定粉丝基础的抖音博主、对热点事件敏感度高的营销人员。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="source">公众号@懒人搜索</div>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const card = document.getElementById('card');
+            
+            button.style.display = 'none';
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                card.getBoundingClientRect();
+                
+                const cardHeight = Math.max(
+                    card.scrollHeight,
+                    card.offsetHeight,
+                    card.clientHeight
+                );
+                
+                const sourceElement = document.querySelector('.footer .source');
+                const sourceRect = sourceElement.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const distanceFromBottom = cardRect.bottom - sourceRect.bottom;
+                
+                let bufferSize;
+                if (distanceFromBottom < 20) {
+                    bufferSize = 80;
+                } else if (distanceFromBottom < 40) {
+                    bufferSize = 50;
+                } else {
+                    bufferSize = 30;
+                }
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: cardHeight + bufferSize,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        if (clonedCard) {
+                            clonedCard.style.paddingBottom = bufferSize + 'px';
+                        }
+                        
+                        const icons = clonedDoc.querySelectorAll('i');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.lineHeight = '0';
+                            icon.style.position = 'relative';
+                            
+                            if (icon.closest('.header')) {
+                                icon.style.transform = 'translateY(-1px)';
+                            } else if (icon.closest('.stat-card')) {
+                                icon.style.transform = 'translateY(0px)';
+                            } else {
+                                icon.style.transform = 'translateY(-2px)';
+                            }
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = '抖音用演唱会切片视频挂链接卖票成交200万+.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>

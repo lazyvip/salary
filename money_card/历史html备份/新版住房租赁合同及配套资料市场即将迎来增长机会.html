@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新版住房租赁合同及配套资料市场即将迎来增长机会</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+        
+        .card {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.2"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.2"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.2"/></svg>');
+        }
+        
+        .header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 25px 20px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section h3::before {
+            content: '';
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            border-radius: 2px;
+        }
+        
+        .section p, .section li {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .section ul {
+            padding-left: 16px;
+        }
+        
+        .section li {
+            margin-bottom: 6px;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #f093fb;
+            margin: 15px 0;
+        }
+        
+        .highlight p {
+            margin: 0;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            position: relative;
+        }
+        
+        .footer p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+        
+        .save-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+        }
+        
+        .date-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            color: #333;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 15px 0;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .date-box .date {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .date-box .desc {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .opportunity-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+        }
+        
+        .opportunity-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        
+        .opportunity-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .opportunity-number {
+            background: #ff6b6b;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .opportunity-content {
+            flex: 1;
+        }
+        
+        .opportunity-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        
+        .opportunity-desc {
+            color: #555;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>🏠 新版住房租赁合同变现机会</h1>
+            <p class="subtitle">政策红利下的虚拟资料商机</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3>💡 项目概述</h3>
+                <p>《住房租赁条例》将于9月15日正式实施，旧版合同将失效，市场对新版合规住房租赁合同及配套资料需求将集中爆发，这是一个绝佳的虚拟资料变现机会。</p>
+            </div>
+            
+            <div class="date-box">
+                <div class="date">9月15日</div>
+                <div class="desc">《住房租赁条例》正式实施</div>
+            </div>
+            
+            <div class="section">
+                <h3>🎯 市场需求</h3>
+                <ul>
+                    <li><strong>租客群体：</strong>需要新版合规租赁合同</li>
+                    <li><strong>房东群体：</strong>急需更新合同模板</li>
+                    <li><strong>房产中介：</strong>需要标准化合同资料</li>
+                    <li><strong>租房平台：</strong>需要合规的合同模板</li>
+                    <li><strong>法务需求：</strong>需要权责清单和纠纷处理指南</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>💰 变现机会</h3>
+                <div class="opportunity-box">
+                    <div class="opportunity-item">
+                        <div class="opportunity-number">1</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">虚拟资料直销</div>
+                            <div class="opportunity-desc">在电商平台、社交渠道售卖新版合同及配套资料包</div>
+                        </div>
+                    </div>
+                    <div class="opportunity-item">
+                        <div class="opportunity-number">2</div>
+                        <div class="opportunity-content">
+                            <div class="opportunity-title">网盘拉新变现</div>
+                            <div class="opportunity-desc">免费提供合同模板，通过网盘拉新获得佣金收益</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>📦 产品组合</h3>
+                <ul>
+                    <li><strong>核心产品：</strong>新版住房租赁合同模板</li>
+                    <li><strong>配套资料：</strong>合同填写指南</li>
+                    <li><strong>权责清单：</strong>租客/房东权责明细</li>
+                    <li><strong>纠纷处理：</strong>租房纠纷处理要点</li>
+                    <li><strong>法律条款：</strong>相关法律条文解读</li>
+                    <li><strong>案例分析：</strong>常见租房问题案例</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>🚀 操作策略</h3>
+                <ul>
+                    <li><strong>提前布局：</strong>在9月15日前完成产品准备</li>
+                    <li><strong>多平台分发：</strong>电商平台、社交媒体同步推广</li>
+                    <li><strong>SEO优化：</strong>针对"新版租赁合同"等关键词优化</li>
+                    <li><strong>内容营销：</strong>制作相关科普内容引流</li>
+                    <li><strong>社群推广：</strong>在租房、房产相关群组推广</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <p><strong>💡 市场验证：</strong>目前电商平台已有商家在售卖类似资料，部分销量可观，证明需求真实存在。随着政策实施临近，需求将迎来爆发期。</p>
+            </div>
+            
+            <div class="section">
+                <h3>⏰ 时间窗口</h3>
+                <ul>
+                    <li><strong>准备期：</strong>现在-8月底，完成产品制作和渠道布局</li>
+                    <li><strong>预热期：</strong>9月初-9月14日，加大推广力度</li>
+                    <li><strong>爆发期：</strong>9月15日前后，需求集中释放</li>
+                    <li><strong>持续期：</strong>政策实施后，持续有新增需求</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>✅ 成功要素</h3>
+                <ul>
+                    <li><strong>合规性：</strong>确保合同内容符合新条例要求</li>
+                    <li><strong>专业性：</strong>提供专业、实用的配套指导</li>
+                    <li><strong>时效性：</strong>抓住政策实施前的关键时间窗口</li>
+                    <li><strong>完整性：</strong>提供完整的解决方案而非单一产品</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h3>⚠️ 注意事项</h3>
+                <ul>
+                    <li>确保合同内容的法律合规性</li>
+                    <li>及时关注政策细则的更新变化</li>
+                    <li>避免夸大宣传，提供真实有效的资料</li>
+                    <li>注意知识产权，避免直接抄袭他人作品</li>
+                </ul>
+            </div>
+            
+            <div class="tags">
+                <span class="tag">政策红利</span>
+                <span class="tag">虚拟资料</span>
+                <span class="tag">租赁合同</span>
+                <span class="tag">时效性强</span>
+                <span class="tag">刚需市场</span>
+            </div>
+            
+            <div class="section">
+                <h3>👥 适合人群</h3>
+                <p>适合有一定法律常识、了解房产租赁市场、具备资料整理能力的个人或团队。特别适合能够快速响应政策变化、抓住时间窗口的敏锐创业者。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>来源：公众号@懒人搜索</p>
+        </div>
+    </div>
+    
+    <button class="save-btn" onclick="saveAsImage()">💾 保存卡片</button>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function saveAsImage() {
+            const button = document.querySelector('.save-btn');
+            button.style.display = 'none';
+            
+            const card = document.querySelector('.card');
+            const originalHeight = card.style.height;
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: null,
+                width: card.offsetWidth,
+                height: card.scrollHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '新版住房租赁合同变现机会-知识卡片.png';
+                link.href = canvas.toDataURL();
+                link.click();
+                
+                button.style.display = 'block';
+                card.style.height = originalHeight;
+            }).catch(err => {
+                console.error('保存失败:', err);
+                button.style.display = 'block';
+                card.style.height = originalHeight;
+                alert('保存失败，请重试');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号分享对《天道》的见解，阅读量高达5000万+</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .card {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .content {
+            padding: 40px 30px 30px;
+        }
+        
+        .summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e53e3e;
+        }
+        
+        .summary h2 {
+            color: #2d3748;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .summary h2 i {
+            margin-right: 10px;
+            color: #e53e3e;
+        }
+        
+        .summary p {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content-strategy {
+            margin-bottom: 30px;
+        }
+        
+        .content-strategy h3 {
+            color: #2d3748;
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-strategy h3 i {
+            margin-right: 10px;
+            color: #e53e3e;
+        }
+        
+        .strategy-steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .step-item {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step-item:hover {
+            border-color: #e53e3e;
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.15);
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-title {
+            color: #2d3748;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-desc {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .content-types {
+            background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #38a169;
+        }
+        
+        .content-types h3 {
+            color: #276749;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .content-types h3 i {
+            margin-right: 10px;
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .type-item {
+            background: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .type-icon {
+            font-size: 24px;
+            color: #38a169;
+            margin-bottom: 10px;
+        }
+        
+        .type-name {
+            color: #276749;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .type-desc {
+            color: #2f855a;
+            font-size: 13px;
+        }
+        
+        .key-insights {
+            background: linear-gradient(135deg, #ede9fe 0%, #c4b5fd 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #8b5cf6;
+        }
+        
+        .key-insights h3 {
+            color: #553c9a;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .key-insights h3 i {
+            margin-right: 10px;
+        }
+        
+        .insights-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .insight-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .insight-item i {
+            color: #8b5cf6;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .insight-text {
+            color: #6b46c1;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .monetization {
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #f59e0b;
+        }
+        
+        .monetization h3 {
+            color: #92400e;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .monetization h3 i {
+            margin-right: 10px;
+        }
+        
+        .monetization-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .monetization-item {
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .monetization-item i {
+            color: #f59e0b;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .monetization-text {
+            color: #d97706;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .target-audience {
+            background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #319795;
+        }
+        
+        .target-audience h3 {
+            color: #234e52;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .target-audience h3 i {
+            margin-right: 10px;
+        }
+        
+        .target-audience p {
+            color: #285e61;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: right;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer .source {
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <div class="header">
+            <div class="header-content">
+                <h1>《天道》见解分享</h1>
+                <div class="subtitle">公众号影视解读爆款内容策略</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="summary">
+                <h2><i class="fas fa-tv"></i>项目概述</h2>
+                <p>某公众号通过深度解读经典电视剧《天道》，分享其中的商业智慧和人生哲理，单篇文章阅读量突破5000万，展现了影视内容解读的巨大流量潜力。</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5000万+</div>
+                    <div class="stat-label">单篇阅读量</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100万+</div>
+                    <div class="stat-label">粉丝增长</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">80%</div>
+                    <div class="stat-label">用户留存率</div>
+                </div>
+            </div>
+            
+            <div class="content-strategy">
+                <h3><i class="fas fa-lightbulb"></i>内容策略</h3>
+                <div class="strategy-steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">选择经典IP</div>
+                            <div class="step-desc">选择具有深度内涵和广泛影响力的经典影视作品</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">深度解读</div>
+                            <div class="step-desc">从商业、哲学、人性等多个维度进行深入分析</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">现实关联</div>
+                            <div class="step-desc">将剧中智慧与现实生活、商业实践相结合</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">情感共鸣</div>
+                            <div class="step-desc">触发读者的情感共鸣和思考，引发广泛讨论</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-types">
+                <h3><i class="fas fa-film"></i>热门解读类型</h3>
+                <div class="types-grid">
+                    <div class="type-item">
+                        <div class="type-icon"><i class="fas fa-chart-line"></i></div>
+                        <div class="type-name">商业智慧</div>
+                        <div class="type-desc">商业模式、投资理念</div>
+                    </div>
+                    <div class="type-item">
+                        <div class="type-icon"><i class="fas fa-heart"></i></div>
+                        <div class="type-name">人生哲理</div>
+                        <div class="type-desc">人性洞察、生活智慧</div>
+                    </div>
+                    <div class="type-item">
+                        <div class="type-icon"><i class="fas fa-users"></i></div>
+                        <div class="type-name">人际关系</div>
+                        <div class="type-desc">社交技巧、情感处理</div>
+                    </div>
+                    <div class="type-item">
+                        <div class="type-icon"><i class="fas fa-brain"></i></div>
+                        <div class="type-name">思维模式</div>
+                        <div class="type-desc">认知升级、思维框架</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-insights">
+                <h3><i class="fas fa-key"></i>成功要素</h3>
+                <div class="insights-list">
+                    <div class="insight-item">
+                        <i class="fas fa-search"></i>
+                        <div class="insight-text"><strong>独特视角：</strong>从不同角度解读经典，提供新的思考维度</div>
+                    </div>
+                    <div class="insight-item">
+                        <i class="fas fa-pen"></i>
+                        <div class="insight-text"><strong>文字功底：</strong>具备深厚的文字表达能力和逻辑思维</div>
+                    </div>
+                    <div class="insight-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="insight-text"><strong>时机把握：</strong>选择合适的时机发布，抓住热点话题</div>
+                    </div>
+                    <div class="insight-item">
+                        <i class="fas fa-share"></i>
+                        <div class="insight-text"><strong>传播策略：</strong>利用社交媒体和用户分享实现病毒式传播</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="monetization">
+                <h3><i class="fas fa-dollar-sign"></i>变现方式</h3>
+                <div class="monetization-list">
+                    <div class="monetization-item">
+                        <i class="fas fa-ad"></i>
+                        <div class="monetization-text"><strong>广告收入：</strong>通过高阅读量获得品牌广告投放</div>
+                    </div>
+                    <div class="monetization-item">
+                        <i class="fas fa-book"></i>
+                        <div class="monetization-text"><strong>知识付费：</strong>推出付费课程、电子书等知识产品</div>
+                    </div>
+                    <div class="monetization-item">
+                        <i class="fas fa-handshake"></i>
+                        <div class="monetization-text"><strong>商务合作：</strong>与影视公司、出版社等建立合作关系</div>
+                    </div>
+                    <div class="monetization-item">
+                        <i class="fas fa-users-cog"></i>
+                        <div class="monetization-text"><strong>社群运营：</strong>建立付费社群，提供深度交流服务</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="target-audience">
+                <h3><i class="fas fa-users"></i>适合人群</h3>
+                <p>具备深厚文化底蕴的内容创作者、对影视作品有独特见解的分析师、擅长挖掘深层含义的自媒体人、有丰富人生阅历和商业经验的知识分享者。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="source">公众号@懒人搜索</div>
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">
+        <i class="fas fa-download"></i>保存卡片
+    </button>
+    
+    <script>
+        async function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            const card = document.getElementById('card');
+            
+            button.style.display = 'none';
+            
+            try {
+                await document.fonts.ready;
+                await new Promise(resolve => setTimeout(resolve, 500));
+                
+                card.getBoundingClientRect();
+                
+                const cardHeight = Math.max(
+                    card.scrollHeight,
+                    card.offsetHeight,
+                    card.clientHeight
+                );
+                
+                const sourceElement = document.querySelector('.footer .source');
+                const sourceRect = sourceElement.getBoundingClientRect();
+                const cardRect = card.getBoundingClientRect();
+                const distanceFromBottom = cardRect.bottom - sourceRect.bottom;
+                
+                let bufferSize;
+                if (distanceFromBottom < 20) {
+                    bufferSize = 80;
+                } else if (distanceFromBottom < 40) {
+                    bufferSize = 50;
+                } else {
+                    bufferSize = 30;
+                }
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    width: 800,
+                    height: cardHeight + bufferSize,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: function(clonedDoc) {
+                        const clonedCard = clonedDoc.getElementById('card');
+                        if (clonedCard) {
+                            clonedCard.style.paddingBottom = bufferSize + 'px';
+                        }
+                        
+                        const icons = clonedDoc.querySelectorAll('i');
+                        icons.forEach(icon => {
+                            icon.style.display = 'inline-block';
+                            icon.style.lineHeight = '0';
+                            icon.style.position = 'relative';
+                            
+                            if (icon.closest('.header')) {
+                                icon.style.transform = 'translateY(-1px)';
+                            } else if (icon.closest('.stat-card')) {
+                                icon.style.transform = 'translateY(0px)';
+                            } else {
+                                icon.style.transform = 'translateY(-2px)';
+                            }
+                        });
+                    }
+                });
+                
+                const link = document.createElement('a');
+                link.download = '公众号分享对《天道》的见解，阅读量高达5000万+.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+            } catch (error) {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+            } finally {
+                button.style.display = 'flex';
+            }
+        }
+    </script>
+</body>
+</html>
