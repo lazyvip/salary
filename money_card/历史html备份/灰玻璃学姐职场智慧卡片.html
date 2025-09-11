@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灰玻璃学姐职场智慧精华</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card-container {
+            width: 800px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 40px 50px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+        
+        .title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .source {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 45px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 5px solid #4facfe;
+            position: relative;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: #4facfe;
+            border-radius: 50%;
+        }
+        
+        .insight-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4facfe;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .insight-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.15);
+        }
+        
+        .insight-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+        
+        .insight-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .quote {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 18px;
+            line-height: 1.7;
+            font-style: italic;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            font-size: 60px;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+        }
+        
+        .quote::after {
+            content: '"';
+            font-size: 60px;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            opacity: 0.3;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .key-points-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d63031;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .key-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .key-point-number {
+            background: #d63031;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        @media (max-width: 850px) {
+            .card-container {
+                width: 95%;
+                margin: 0 10px;
+            }
+            
+            .content {
+                padding: 30px 25px;
+            }
+            
+            .header {
+                padding: 30px 25px 20px;
+            }
+            
+            .title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container" id="card">
+        <div class="header">
+            <h1 class="title">灰玻璃学姐职场智慧精华</h1>
+            <p class="source">公众号@懒人搜索</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">职场向上管理核心法则</h2>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🎯 帮助老板成功是向上管理的基础</div>
+                    <div class="insight-content">
+                        核心打法：<span class="highlight">实用价值 + 情绪价值（含忠诚）</span>。你越帮领导分担得多，领导越容易向上走，只有领导晋升了，才会腾出空间拉你一把。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🎭 高手装菜鸟的艺术</div>
+                    <div class="insight-content">
+                        被领导批评时，要配合领导的情绪管理。游刃有余的"能干"和战战兢兢的"真诚、敬畏"，按领导口味调个合适配比。不能全是战战兢兢让领导觉得你太菜，也不能太波澜不惊让领导觉得你太油。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">⚖️ 制衡术的智慧</div>
+                    <div class="insight-content">
+                        管理者对强者打压、拉弱者是符合人性规律的制衡术。管理者要确保权力安全，投资人要的是利润。理解这个逻辑，才能在职场中找准自己的位置。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote">
+                职场中、情感中，请务必能逃就逃，很多糟糕关系里都能看到权力的影子。如果逃无可逃，就用灰岩法则——像一块灰色的岩石一样不动声色。
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">体制内晋升实战指南</h2>
+                
+                <div class="insight-item">
+                    <div class="insight-title">📝 三大核心能力</div>
+                    <div class="insight-content">
+                        体制内必备：<span class="highlight">写作能力、专业业务能力、表达能力</span>。写得一手好材料是稀缺人才，是普通人的核心竞争力，也是遴选的必备技能。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🎯 平台决定上限</div>
+                    <div class="insight-content">
+                        平台越高，上限就越高，提拔也就越容易。两办、组织部、纪委这些单位天然机会多。第一步起点就输了，天花板本就比别人低，一步输步步输。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">⚡ 危机就是机遇</div>
+                    <div class="insight-content">
+                        40岁后想向上走，背后没贵人的话，只能靠重大危机事件的机会把握。抢占有重大显示度、能在高量级领导面前露脸的机会，危机危机，危就是机。
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <div class="key-points-title">💡 职场生存黄金法则</div>
+                
+                <div class="key-point">
+                    <div class="key-point-number">1</div>
+                    <div>商业世界越来越透明，诚信越来越重要。靠忽悠的公司交付跟不上迟早淘汰。</div>
+                </div>
+                
+                <div class="key-point">
+                    <div class="key-point-number">2</div>
+                    <div>女性职场要去除"漂亮"标签，打扮低调朴素，体制内讲究规规矩矩、收起锋芒、听话出活。</div>
+                </div>
+                
+                <div class="key-point">
+                    <div class="key-point-number">3</div>
+                    <div>攻略女领导：控制分享欲，避免育儿话题，忠诚度和情绪包容度要做得更好。</div>
+                </div>
+                
+                <div class="key-point">
+                    <div class="key-point-number">4</div>
+                    <div>职场强人都缺乏同理心，这样推动力强。慈不将兵、义不掌财，走到中高层必须如此。</div>
+                </div>
+                
+                <div class="key-point">
+                    <div class="key-point-number">5</div>
+                    <div>利益捆绑不是和上司睡，而是成为有用且忠诚的人。有锅主动扛，主打忠诚、可控、好用。</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">深度思考与实操建议</h2>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🧠 人性洞察</div>
+                    <div class="insight-content">
+                        大多数员工只会站在自己位置思考问题，不会把公司利益放首位。理解这个人性，才能在博弈中占据主动。董事长视角vs管理者视角vs员工视角，各有各的利益诉求。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🎪 暧昧管理术</div>
+                    <div class="insight-content">
+                        无数男性管理者对有能力女下属采用"暧昧管理术"，让女下属得到暗示：你在我心中是特别的。女人是情感动物，被重视了很容易额外回报忠诚和付出。
+                    </div>
+                </div>
+                
+                <div class="insight-item">
+                    <div class="insight-title">🔄 明褒暗贬技巧</div>
+                    <div class="insight-content">
+                        当遇到抢夺成果的同事时，可以在有领导的群里"恭喜"对方，同时点出自己的贡献和工作量，让对方进退两难。这种技巧既表明了贡献度，也让对方承担相应责任。
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            职场如战场，智慧是最好的武器<br>
+            愿每个职场人都能在博弈中找到属于自己的位置
+        </div>
+    </div>
+    
+    <button class="download-btn" onclick="downloadCard()">💾 保存卡片</button>
+    
+    <script>
+        function downloadCard() {
+            const button = document.querySelector('.download-btn');
+            button.style.display = 'none';
+            
+            const card = document.getElementById('card');
+            
+            html2canvas(card, {
+                scale: 2,
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#ffffff',
+                width: card.offsetWidth,
+                height: card.offsetHeight
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = '灰玻璃学姐职场智慧精华.png';
+                link.href = canvas.toDataURL('image/png', 1.0);
+                link.click();
+                
+                button.style.display = 'block';
+            }).catch(error => {
+                console.error('生成图片失败:', error);
+                alert('生成图片失败，请重试');
+                button.style.display = 'block';
+            });
+        }
+        
+        // 页面加载完成后的优化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加滚动动画效果
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // 为所有insight-item添加动画
+            document.querySelectorAll('.insight-item').forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(20px)';
+                item.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>

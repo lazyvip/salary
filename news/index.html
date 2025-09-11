@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懒人日报 - 每日新闻早报</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="back-btn" onclick="window.location.href='../index.html'" title="返回首页">
+                <span class="back-icon">←</span>
+                <span class="back-text">返回</span>
+            </button>
+            <div class="nav-brand">
+                <span class="brand-icon">📰</span>
+                <span class="brand-text">懒人日报</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-item active" data-tab="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">首页</span>
+                </a>
+                <a href="#history" class="nav-item" data-tab="history">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">历史早报</span>
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="settings-btn" onclick="toggleSettings()" title="语音设置">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 首页内容 -->
+        <section id="home" class="tab-content active">
+            <div class="container">
+                <div class="news-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <span class="title-icon">📰</span>
+                            每日新闻早报
+                        </h1>
+                        <p class="section-subtitle">60秒读懂世界</p>
+                    </div>
+
+                    <!-- 加载状态 -->
+                    <div id="loading" class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p class="loading-text">正在加载今日早报...</p>
+                    </div>
+
+                    <!-- 错误状态 -->
+                    <div id="error" class="error-container" style="display: none;">
+                        <div class="error-icon">⚠️</div>
+                        <p class="error-text">加载失败，请稍后重试</p>
+                        <button class="retry-btn" onclick="loadTodayNews()">重新加载</button>
+                    </div>
+
+                    <!-- 新闻内容 -->
+                    <div id="news-content" class="news-content" style="display: none;">
+                        <div class="news-card">
+                            <div class="news-header">
+                                <div class="news-date" id="news-date"></div>
+                                <div class="news-time" id="news-time"></div>
+                            </div>
+                            
+                            <div class="news-image-container">
+                                <img id="news-image" class="news-image" alt="每日新闻早报" />
+                            </div>
+
+                            <!-- 操作按钮区域 -->
+                            <div class="news-actions-bar">
+                                <button class="action-btn speak-btn" onclick="speakCurrentNews()" title="朗读新闻">
+                                    <i class="fas fa-volume-up"></i>
+                                    <span class="btn-text">朗读新闻</span>
+                                </button>
+                                <button class="action-btn copy-btn" onclick="copyNewsText()" title="复制文本">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">复制文本</span>
+                                </button>
+                                <button class="action-btn" onclick="saveImage()" title="保存图片">
+                                    <span class="btn-icon">💾</span>
+                                    <span class="btn-text">保存图片</span>
+                                </button>
+                                <button class="action-btn" onclick="shareNews()" title="分享">
+                                    <span class="btn-icon">📤</span>
+                                    <span class="btn-text">分享</span>
+                                </button>
+                            </div>
+
+                            <div class="news-text-content">
+                                <h3 class="news-text-title">新闻内容</h3>
+                                <div id="news-text" class="news-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 历史早报内容 -->
+        <section id="history" class="tab-content">
+            <div class="container">
+                <div class="history-section">
+                    <div class="section-header">
+                        <h1 class="section-title">
+                            <span class="title-icon">📚</span>
+                            历史早报
+                        </h1>
+                        <p class="section-subtitle">回顾往日新闻</p>
+                    </div>
+
+                    <div class="history-controls">
+                        <button class="refresh-btn" onclick="loadHistoryData()">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">刷新</span>
+                        </button>
+                    </div>
+
+                    <!-- 历史记录列表 -->
+                    <div id="history-list" class="history-list">
+                        <!-- 历史记录将通过JavaScript动态生成 -->
+                    </div>
+
+                    <!-- 空状态 -->
+                    <div id="history-empty" class="empty-state" style="display: none;">
+                        <div class="empty-icon">📰</div>
+                        <p class="empty-text">暂无历史早报</p>
+                        <p class="empty-desc">每日早报会自动保存到这里</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部信息 -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span class="footer-icon">📱</span>
+                关注公众号：懒人搜索
+            </p>
+            <p class="footer-copyright">
+                © 2024 懒人日报 - 每天60秒读懂世界
+            </p>
+        </div>
+    </footer>
+
+    <!-- 新闻详情模态框 -->
+    <div id="news-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title"></h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modal-image" class="modal-image" alt="历史早报" />
+                </div>
+                <div class="modal-text-content">
+                    <div id="modal-text" class="modal-text"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn speak-btn" onclick="speakModalNews()" title="朗读新闻">
+                    <i class="fas fa-volume-up"></i>
+                    朗读新闻
+                </button>
+                <button class="modal-btn" onclick="saveModalImage()">
+                    <span class="btn-icon">💾</span>
+                    保存图片
+                </button>
+                <button class="modal-btn" onclick="copyModalText()">
+                    <span class="btn-icon">📋</span>
+                    复制文本
+                </button>
+                <button class="modal-btn" onclick="shareModalNews()">
+                    <span class="btn-icon">📤</span>
+                    分享
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 语音设置面板 -->
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3><i class="fas fa-volume-up"></i> 语音设置</h3>
+                <button class="close-btn" onclick="toggleSettings()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="settings-body">
+                <div class="setting-item">
+                    <label for="voice-rate">语速</label>
+                    <div class="slider-container">
+                        <input type="range" id="voice-rate" min="0.5" max="2" step="0.1" value="0.9">
+                        <span class="slider-value" id="rate-value">0.9</span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="voice-pitch">音调</label>
+                    <div class="slider-container">
+                        <input type="range" id="voice-pitch" min="0.5" max="2" step="0.1" value="1">
+                        <span class="slider-value" id="pitch-value">1.0</span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="voice-volume">音量</label>
+                    <div class="slider-container">
+                        <input type="range" id="voice-volume" min="0" max="1" step="0.1" value="1">
+                        <span class="slider-value" id="volume-value">1.0</span>
+                    </div>
+                </div>
+                <div class="setting-item">
+                    <label for="voice-select">语音选择</label>
+                    <select id="voice-select">
+                        <option value="">默认语音</option>
+                    </select>
+                </div>
+                <div class="settings-actions">
+                    <button class="test-btn" onclick="testVoice()">
+                        <i class="fas fa-play"></i> 测试语音
+                    </button>
+                    <button class="reset-btn" onclick="resetVoiceSettings()">
+                        <i class="fas fa-undo"></i> 重置设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

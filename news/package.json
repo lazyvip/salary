@@ -1,0 +1,34 @@
+{
+  "name": "lazy-daily-news",
+  "version": "1.0.0",
+  "description": "懒人日报网页版 - 每日新闻早报，60秒读懂世界",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "build": "echo 'Static site, no build needed'",
+    "dev": "npx live-server --port=3000 --open=/index.html",
+    "preview": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "news",
+    "daily",
+    "lazy",
+    "早报",
+    "新闻",
+    "懒人日报"
+  ],
+  "author": "懒人搜索",
+  "license": "MIT",
+  "homepage": "https://github.com/lazy-search/lazy-daily-news",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lazy-search/lazy-daily-news.git"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
