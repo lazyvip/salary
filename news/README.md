@@ -1,38 +1,166 @@
-# 懒人日报网页版
+# 懒人日报 - 部署指南
 
-📰 每日新闻早报，60秒读懂世界
+## 概述
 
-## 项目简介
-
-懒人日报网页版是基于微信小程序版本开发的响应式网站，提供每日新闻早报和历史早报查看功能。采用现代化的设计风格，支持多种设备访问。
+这是一个静态新闻网站，支持多用户共享历史数据。使用云存储服务实现数据持久化，完全适合部署到 Vercel 等静态托管平台。
 
 ## 功能特性
 
-### 核心功能
-- 📱 **每日早报**: 自动获取最新的每日新闻早报
-- 📚 **历史早报**: 查看历史新闻记录，支持本地存储
-- 🎨 **响应式设计**: 适配手机、平板、桌面等多种设备
-- 💾 **本地存储**: 自动保存历史记录，离线也能查看
+- 📰 每日新闻早报展示
+- 📚 历史数据查看和搜索
+- 🔊 语音播报功能
+- 💾 云端数据同步
+- 📱 响应式设计
+- 🚀 静态部署友好
 
-### 交互功能
-- 🖼️ **图片预览**: 点击图片可全屏查看
-- 📋 **一键复制**: 复制新闻文本到剪贴板
-- 💾 **图片保存**: 下载新闻图片到本地
-- 📤 **分享功能**: 支持多种分享方式
-- 🔄 **自动刷新**: 定时获取最新新闻内容
+## 部署到 Vercel
 
-### 用户体验
-- ⚡ **快速加载**: 优化的加载速度和缓存策略
-- 🎯 **直观导航**: 简洁明了的标签页切换
-- 🌈 **美观界面**: 渐变背景和卡片式设计
-- 📱 **移动优先**: 针对移动设备优化的交互体验
+### 1. 准备工作
+
+#### 选择云存储服务
+
+**方案一：JSONBin.io（推荐）**
+1. 访问 [JSONBin.io](https://jsonbin.io/)
+2. 注册账号并获取 API Key
+3. 创建一个新的 Bin，记录 Bin ID
+
+**方案二：GitHub Gist**
+1. 在 GitHub 创建 Personal Access Token
+2. 创建一个新的 Gist，记录 Gist ID
+
+### 2. 配置设置
+
+编辑 `config.js` 文件：
+
+```javascript
+const CONFIG = {
+    JSONBIN: {
+        API_KEY: '$2a$10$YOUR_ACTUAL_API_KEY',  // 替换为真实的 API Key
+        BIN_ID: 'YOUR_ACTUAL_BIN_ID',          // 替换为真实的 Bin ID
+        BASE_URL: 'https://api.jsonbin.io/v3'
+    },
+    STORAGE: {
+        TYPE: 'jsonbin',  // 使用 JSONBin.io
+        CACHE_EXPIRE: 5 * 60 * 1000,
+        MAX_RETRIES: 3,
+        RETRY_DELAY: 1000
+    }
+};
+```
+
+### 3. 部署步骤
+
+1. **Fork 或下载项目**
+   ```bash
+   git clone <your-repo-url>
+   cd salary/news
+   ```
+
+2. **配置云存储**
+   - 按照上述步骤配置 `config.js`
+
+3. **部署到 Vercel**
+   - 方法一：通过 Vercel CLI
+     ```bash
+     npm i -g vercel
+     vercel --prod
+     ```
+   
+   - 方法二：通过 Vercel 网站
+     1. 访问 [vercel.com](https://vercel.com)
+     2. 连接你的 Git 仓库
+     3. 设置项目根目录为 `salary/news`
+     4. 点击部署
+
+### 4. 环境变量（可选）
+
+为了安全起见，可以将敏感信息设置为环境变量：
+
+在 Vercel 项目设置中添加：
+- `JSONBIN_API_KEY`: 你的 JSONBin API Key
+- `JSONBIN_BIN_ID`: 你的 Bin ID
+
+然后修改 `config.js` 使用环境变量：
+```javascript
+const CONFIG = {
+    JSONBIN: {
+        API_KEY: process.env.JSONBIN_API_KEY || '$2a$10$fallback_key',
+        BIN_ID: process.env.JSONBIN_BIN_ID || 'fallback_bin_id',
+        BASE_URL: 'https://api.jsonbin.io/v3'
+    }
+};
+```
+
+## 本地开发
+
+1. **启动本地服务器**
+   ```bash
+   # 使用 Python
+   python -m http.server 8000
+   
+   # 或使用 Node.js
+   npx serve .
+   ```
+
+2. **访问应用**
+   打开浏览器访问 `http://localhost:8000`
+
+## 数据存储说明
+
+### 存储架构
+- **云存储**: 主要数据存储，支持多用户共享
+- **本地存储**: 缓存和备份，离线时可用
+- **双重保障**: 云存储失败时自动降级到本地存储
+
+### 数据格式
+```javascript
+{
+    "date": "2024-01-15",
+    "news": [
+        {
+            "title": "新闻标题",
+            "content": "新闻内容",
+            "source": "来源"
+        }
+    ],
+    "image": "base64_image_data",
+    "source": "api"
+}
+```
+
+## 故障排除
+
+### 常见问题
+
+1. **云存储连接失败**
+   - 检查 API Key 是否正确
+   - 确认网络连接正常
+   - 查看浏览器控制台错误信息
+
+2. **数据不同步**
+   - 清除浏览器缓存
+   - 检查云存储服务状态
+   - 验证配置文件设置
+
+3. **部署失败**
+   - 确认所有文件都已上传
+   - 检查 Vercel 构建日志
+   - 验证项目结构正确
+
+### 调试模式
+
+在浏览器控制台中启用详细日志：
+```javascript
+localStorage.setItem('debug', 'true');
+```
 
 ## 技术栈
 
-- **前端**: HTML5 + CSS3 + JavaScript (ES6+)
-- **样式**: CSS Grid + Flexbox + CSS动画
-- **数据**: LocalStorage + REST API
-- **部署**: 静态网站托管 (Netlify/Vercel)
+- **前端**: HTML5, CSS3, JavaScript (ES6+)
+- **存储**: JSONBin.io / GitHub Gist
+- **部署**: Vercel / Netlify / GitHub Pages
+- **样式**: 原生 CSS + Flexbox/Grid
+- **API**: Fetch API + Async/Await
 
 ## 项目结构
 

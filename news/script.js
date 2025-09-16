@@ -118,9 +118,12 @@ async function loadTodayNews() {
         console.log('API响应数据:', data);
         
         if (data && data.success && data.data) {
+            // 标记数据来源为API
+            data.data.source = 'api';
             currentNewsData = data.data;
             displayTodayNews(currentNewsData);
             saveToHistory(currentNewsData);
+            console.log('API数据加载成功并已保存到历史记录');
         } else {
             throw new Error('API返回数据格式错误');
         }
@@ -170,12 +173,156 @@ function loadMockData() {
                 <rect x="80" y="1080" width="640" height="60" rx="30" fill="#667eea" fill-opacity="0.1"/>
                 <text x="400" y="1120" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#667eea">关注公众号：懒人搜索</text>
             </svg>
-        `)
+        `),
+        source: 'mock' // 标记为模拟数据
     };
     
     currentNewsData = mockData;
     displayTodayNews(currentNewsData);
     saveToHistory(currentNewsData);
+    console.log('模拟数据加载完成并已保存到历史记录');
+}
+
+// 生成历史数据（如果需要）
+function generateHistoryDataIfNeeded() {
+    try {
+        const historyKey = 'newsHistory';
+        let history = JSON.parse(localStorage.getItem(historyKey) || '[]');
+        
+        // 如果历史数据少于7天，生成一些历史数据
+        if (history.length < 7) {
+            console.log('历史数据不足，生成模拟历史数据');
+            
+            const newsTemplates = [
+                [
+                    '1、央行：12月LPR保持不变，1年期为3.1%，5年期以上为3.6%。',
+                    '2、统计局：11月CPI同比上涨0.2%，PPI同比下降2.8%。',
+                    '3、工信部：前11月全国规模以上工业增加值同比增长4.3%。',
+                    '4、商务部：1-11月全国实际使用外资金额1.09万亿元。',
+                    '5、交通部：预计元旦假期全国发送旅客超1.5亿人次。',
+                    '6、教育部：2024年全国高考报名人数1353万，再创历史新高。',
+                    '7、住建部：11月70个大中城市房价环比下降0.5%。',
+                    '8、农业部：全年粮食产量预计超1.39万亿斤，实现"二十连丰"。',
+                    '9、文旅部：预计元旦假期国内旅游出游1.35亿人次。',
+                    '10、卫健委：全国医疗机构床位使用率保持在75%左右。'
+                ],
+                [
+                    '1、发改委：11月全社会用电量同比增长8.4%，经济运行稳中向好。',
+                    '2、财政部：1-11月全国一般公共预算收入20.1万亿元。',
+                    '3、人社部：11月全国城镇调查失业率为5.0%，保持稳定。',
+                    '4、生态环境部：11月全国空气质量优良天数比例为85.2%。',
+                    '5、市场监管总局：前11月新设经营主体3200万户。',
+                    '6、海关总署：11月进出口总值3.7万亿元，同比增长1.2%。',
+                    '7、银保监会：11月末银行业金融机构总资产417万亿元。',
+                    '8、证监会：持续推进资本市场高质量发展。',
+                    '9、外汇局：11月末外汇储备规模31718亿美元。',
+                    '10、国资委：央企前11月营业收入同比增长2.9%。'
+                ],
+                [
+                    '1、科技部：我国研发经费投入强度达到2.64%，创历史新高。',
+                    '2、工信部：5G基站总数达337.7万个，覆盖所有地级市。',
+                    '3、网信办：持续净化网络环境，维护网络安全。',
+                    '4、能源局：11月全社会用电量7417亿千瓦时。',
+                    '5、水利部：南水北调工程累计调水超600亿立方米。',
+                    '6、自然资源部：严格耕地保护，坚守18亿亩红线。',
+                    '7、应急部：全年安全生产形势总体稳定。',
+                    '8、税务总局：前11月全国税收收入15.5万亿元。',
+                    '9、邮政局：11月快递业务量完成139.0亿件。',
+                    '10、气象局：预计今冬气温偏高，降水偏少。'
+                ],
+                [
+                    '1、外交部：中方愿与各国加强合作，共建人类命运共同体。',
+                    '2、国防部：中国军队将坚决维护国家主权和领土完整。',
+                    '3、公安部：持续推进"百日行动"，社会治安持续向好。',
+                    '4、司法部：深化司法体制改革，提升司法公信力。',
+                    '5、民政部：全国共有社会组织90万个，发挥重要作用。',
+                    '6、人社部：企业职工基本养老保险基金累计结余5.1万亿元。',
+                    '7、退役军人部：做好退役军人服务保障工作。',
+                    '8、应急部：加强应急管理体系和能力现代化建设。',
+                    '9、审计署：持续加大对重大政策落实情况审计力度。',
+                    '10、统计局：经济运行总体平稳，稳中有进。'
+                ],
+                [
+                    '1、最高法：深化司法改革，让人民群众感受到公平正义。',
+                    '2、最高检：依法履职尽责，维护社会公平正义。',
+                    '3、全国人大：完善立法工作，推进全面依法治国。',
+                    '4、全国政协：发挥人民政协专门协商机构作用。',
+                    '5、中科院：加强基础研究，推动科技自立自强。',
+                    '6、社科院：加强哲学社会科学研究，服务国家建设。',
+                    '7、工程院：发挥国家工程科技思想库作用。',
+                    '8、中医药局：传承发展中医药事业，服务人民健康。',
+                    '9、文物局：加强文物保护利用，传承中华优秀传统文化。',
+                    '10、体育总局：推动体育强国建设，促进全民健身。'
+                ]
+            ];
+            
+            // 生成过去几天的数据
+            for (let i = 1; i <= 10; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                
+                // 检查是否已存在该日期的记录
+                const existingIndex = history.findIndex(item => item.date === dateStr);
+                if (existingIndex >= 0) continue;
+                
+                const newsIndex = (i - 1) % newsTemplates.length;
+                const newsData = newsTemplates[newsIndex];
+                
+                const historyItem = {
+                    date: dateStr,
+                    news: newsData,
+                    image: generateHistoryImage(date, newsData),
+                    timestamp: date.getTime()
+                };
+                
+                history.unshift(historyItem);
+            }
+            
+            // 按日期排序并保存
+            history = history.sort((a, b) => new Date(b.date) - new Date(a.date));
+            history = history.slice(0, 30); // 只保留最近30天
+            
+            localStorage.setItem(historyKey, JSON.stringify(history));
+            console.log('历史数据生成完成，共', history.length, '条记录');
+        }
+    } catch (error) {
+        console.error('生成历史数据失败:', error);
+    }
+}
+
+// 生成历史图片
+function generateHistoryImage(date, newsData) {
+    const dateStr = date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+    
+    return 'data:image/svg+xml;base64,' + btoa(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+            <defs>
+                <linearGradient id="bg${date.getTime()}" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#${getRandomColor(date)};stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#${getRandomColor(date, 1)};stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <rect width="800" height="1200" fill="url(#bg${date.getTime()})"/>
+            <rect x="40" y="40" width="720" height="1120" rx="20" fill="white" fill-opacity="0.95"/>
+            <text x="400" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#333">📰 每日新闻早报</text>
+            <text x="400" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666">${dateStr}</text>
+            <text x="400" y="220" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#999">60秒读懂世界</text>
+            <line x1="80" y1="260" x2="720" y2="260" stroke="#eee" stroke-width="2"/>
+            ${newsData.map((item, index) => `
+                <text x="100" y="${320 + index * 80}" font-family="Arial, sans-serif" font-size="16" fill="#333">${item}</text>
+            `).join('')}
+            <rect x="80" y="1080" width="640" height="60" rx="30" fill="#667eea" fill-opacity="0.1"/>
+            <text x="400" y="1120" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#667eea">关注公众号：懒人搜索</text>
+        </svg>
+    `);
+}
+
+// 根据日期生成随机颜色
+function getRandomColor(date, offset = 0) {
+    const colors = ['667eea', '764ba2', 'f093fb', 'f5576c', '4facfe', '00f2fe', 'a8edea', 'fed6e3', 'ffecd2', 'fcb69f'];
+    const index = (date.getDay() + offset) % colors.length;
+    return colors[index];
 }
 
 // 显示今日新闻
@@ -246,22 +393,31 @@ function saveToHistory(newsData) {
             date: dateStr,
             news: newsData.news || [],
             image: newsData.image || '',
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            source: newsData.source || 'api' // 标记数据来源
         };
         
         if (existingIndex >= 0) {
-            // 更新现有记录
+            // 更新现有记录，但保留原有的source信息
+            const existingItem = history[existingIndex];
+            historyItem.source = existingItem.source || historyItem.source;
             history[existingIndex] = historyItem;
+            console.log('更新历史记录:', historyItem);
         } else {
             // 添加新记录
             history.unshift(historyItem);
+            console.log('添加新历史记录:', historyItem);
         }
         
         // 只保留最近30天的记录
         history = history.slice(0, 30);
         
         localStorage.setItem(historyKey, JSON.stringify(history));
-        console.log('历史记录已保存:', historyItem);
+        
+        // 重新加载历史数据显示
+        if (document.querySelector('.tab-button.active')?.textContent === '历史早报') {
+            loadHistoryData();
+        }
         
     } catch (error) {
         console.error('保存历史记录失败:', error);
