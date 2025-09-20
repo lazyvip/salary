@@ -52,6 +52,8 @@ function renderPrompts() {
   }
   promptListEl.innerHTML = '';
   list.forEach((p, idx) => {
+    // 获取当前项在原始数据中的真实索引
+    const originalIdx = window.promptsData.indexOf(p);
     const card = document.createElement('div');
     card.className = 'prompt-card';
     card.innerHTML = `
@@ -59,7 +61,7 @@ function renderPrompts() {
       <div class="prompt-category">${p['提示词分类']?.trim() || '未分类'}</div>
       <div class="prompt-desc">${p['提示词描述']?.trim() || ''}</div>
       <div class="card-actions">
-        <button class="action-btn" onclick="showPromptDetail(${idx})">使用</button>
+        <button class="action-btn" onclick="showPromptDetail(${originalIdx})">使用</button>
       </div>
     `;
     promptListEl.appendChild(card);
@@ -128,4 +130,4 @@ modalEl.onclick = e => { if (e.target === modalEl) modalEl.classList.add('hidden
 searchInputEl.addEventListener('input', e => {
   searchKeyword = e.target.value;
   renderPrompts();
-}); 
+});
