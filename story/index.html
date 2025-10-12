@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小故事铺 - 最全的故事阅读平台</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>小故事铺</h1>
+                    <p>博文天下，遍理人间！</p>
+                </div>
+                <nav class="nav">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="故事搜索" class="search-input">
+                        <button class="search-btn" onclick="searchStories()">搜索</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- 侧边栏 -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <h3>基础功能</h3>
+                        <div class="function-buttons">
+                            <button class="function-btn" onclick="showAllStories()">显示全部</button>
+                            <button class="function-btn" onclick="resetFilters()">重置筛选</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>分类设置</h3>
+                        <div class="category-filters" id="categoryFilters">
+                            <!-- 分类按钮将通过JavaScript动态生成 -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- 主内容区 -->
+                <div class="main-content">
+                    <div class="content-header">
+                        <h2>精选故事</h2>
+                        <div class="story-count">
+                            共 <span id="storyCount">0</span> 个故事
+                        </div>
+                    </div>
+                    
+                    <!-- 故事卡片容器 -->
+                    <div class="stories-grid" id="storiesGrid">
+                        <!-- 故事卡片将通过JavaScript动态生成 -->
+                    </div>
+                    
+                    <!-- 加载更多按钮 -->
+                    <div class="load-more-container">
+                        <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreStories()">
+                            加载更多故事
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 故事详情模态框 -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">故事标题</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="story-meta">
+                    <span class="story-category" id="modalCategory">分类</span>
+                    <span class="story-word-count" id="modalWordCount">字数</span>
+                </div>
+                <div class="story-content" id="modalContent">
+                    故事内容...
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 小故事铺. 博文天下，遍理人间！</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
