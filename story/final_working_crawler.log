@@ -1,0 +1,327 @@
+2025-10-13 01:07:16,085 - INFO - Starting Final Working Crawler...
+2025-10-13 01:07:18,743 - INFO - WebDriver setup successful with local ChromeDriver
+2025-10-13 01:07:18,751 - INFO - Starting to crawl all stories...
+2025-10-13 01:07:18,751 - INFO - Navigating to https://storynook.cn/
+2025-10-13 01:07:21,332 - INFO - Document ready state: complete
+2025-10-13 01:07:21,420 - INFO - jQuery loaded
+2025-10-13 01:07:21,619 - INFO - loadStoryDetail function loaded
+2025-10-13 01:07:24,622 - INFO - Extracting story list...
+2025-10-13 01:08:12,872 - INFO - Found 50 story cards with onclick
+2025-10-13 01:08:56,403 - INFO - Extracted story: 小老鼠打电话
+2025-10-13 01:08:57,356 - INFO - Extracted story: 小狗穿鞋
+2025-10-13 01:08:57,660 - INFO - Extracted story: 魔笔
+2025-10-13 01:08:58,480 - INFO - Extracted story: 狒狒的雨伞
+2025-10-13 01:08:59,222 - INFO - Extracted story: 小胖猪哭了
+2025-10-13 01:08:59,662 - INFO - Extracted story: 皮鞭下的猴子
+2025-10-13 01:09:00,740 - INFO - Extracted story: 小蜜蜂与花儿
+2025-10-13 01:09:01,214 - INFO - Extracted story: 艾丽莎王后
+2025-10-13 01:09:01,865 - INFO - Extracted story: 小兔学长跑
+2025-10-13 01:09:02,283 - INFO - Extracted story: 世界上最可爱的人
+2025-10-13 01:09:03,433 - INFO - Extracted story: 漂亮的小狗
+2025-10-13 01:09:04,647 - INFO - Extracted story: 天空将要塌下来了
+2025-10-13 01:09:05,368 - INFO - Extracted story: 寻猫布告
+2025-10-13 01:09:06,481 - INFO - Extracted story: 鼹鼠找面包
+2025-10-13 01:09:06,487 - INFO - Extracted story: 小骡子身世
+2025-10-13 01:09:07,256 - INFO - Extracted story: 神笔
+2025-10-13 01:09:07,770 - INFO - Extracted story: 肥猫嘟嘟
+2025-10-13 01:09:09,106 - INFO - Extracted story: 是谁打碎了花瓶
+2025-10-13 01:09:09,546 - INFO - Extracted story: 小熊住山洞
+2025-10-13 01:09:10,313 - INFO - Extracted story: 月亮妈妈和星星孩子
+2025-10-13 01:09:11,810 - INFO - Extracted story: 老鼠学猫叫
+2025-10-13 01:09:12,224 - INFO - Extracted story: 唱歌的树
+2025-10-13 01:09:12,359 - INFO - Extracted story: 猴子骗桃子
+2025-10-13 01:09:13,057 - INFO - Extracted story: 花羽毛的小松鸡
+2025-10-13 01:09:13,967 - INFO - Extracted story: 箭猪也开心地笑了
+2025-10-13 01:09:14,243 - INFO - Extracted story: 小胖胖熊,你真幸福
+2025-10-13 01:09:14,716 - INFO - Extracted story: 森林中的小河
+2025-10-13 01:09:14,826 - INFO - Extracted story: 小熊红红的苹果
+2025-10-13 01:09:15,339 - INFO - Extracted story: 老爷爷的一棵榕树
+2025-10-13 01:09:16,243 - INFO - Extracted story: 小灰狼和狼妈妈
+2025-10-13 01:09:40,644 - INFO - Extracted story: 小灰狼和狼妈妈
+2025-10-13 01:09:41,724 - INFO - Extracted story: 贪吃的小猫咪咪
+2025-10-13 01:09:43,098 - INFO - Extracted story: 聪聪和他的好朋友
+2025-10-13 01:09:43,878 - INFO - Extracted story: 百灵鸟和棕熊
+2025-10-13 01:09:44,052 - INFO - Extracted story: 兔弟弟和月亮婆婆
+2025-10-13 01:09:44,373 - INFO - Extracted story: 老公公种萝卜
+2025-10-13 01:09:44,773 - INFO - Extracted story: 不光彩的孔雀
+2025-10-13 01:09:45,549 - INFO - Extracted story: 小羽毛的故事
+2025-10-13 01:09:46,585 - INFO - Extracted story: 圣诞老人传说
+2025-10-13 01:09:47,112 - INFO - Extracted story: 黑熊卖砖
+2025-10-13 01:09:47,708 - INFO - Extracted story: 小牧童与小猴的故事
+2025-10-13 01:09:48,911 - INFO - Extracted story: 不睡觉的星星
+2025-10-13 01:09:49,626 - INFO - Extracted story: 智慧的老公公
+2025-10-13 01:09:50,545 - INFO - Extracted story: 提心吊胆地小老鼠
+2025-10-13 01:09:51,417 - INFO - Extracted story: 狐狸家的晚餐
+2025-10-13 01:09:52,204 - INFO - Extracted story: 小刺猬真勇敢
+2025-10-13 01:09:53,110 - INFO - Extracted story: 狐狸和鹤的宴会
+2025-10-13 01:09:53,838 - INFO - Extracted story: 兔子的友谊
+2025-10-13 01:09:54,557 - INFO - Extracted story: 母鸡妈妈下的大鸡蛋
+2025-10-13 01:09:55,246 - INFO - Extracted story: 老鼠的礼物
+2025-10-13 01:09:55,249 - INFO - Successfully extracted 50 stories
+2025-10-13 01:09:55,250 - INFO - Found 50 stories, now getting content...
+2025-10-13 01:09:55,250 - INFO - Processing story 1/10: 小老鼠打电话
+2025-10-13 01:09:55,252 - INFO - Getting content for story ID: 1
+2025-10-13 01:10:25,761 - ERROR - Error getting story content for ID 1: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:10:42,013 - INFO - Processing story 2/10: 小狗穿鞋
+2025-10-13 01:10:43,526 - INFO - Getting content for story ID: 2
+2025-10-13 01:11:27,516 - ERROR - Error getting story content for ID 2: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:11:29,704 - INFO - Processing story 3/10: 魔笔
+2025-10-13 01:11:49,011 - INFO - Getting content for story ID: 3
+2025-10-13 01:12:23,129 - ERROR - Error getting story content for ID 3: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:12:25,156 - INFO - Processing story 4/10: 狒狒的雨伞
+2025-10-13 01:12:44,418 - INFO - Getting content for story ID: 4
+2025-10-13 01:13:31,182 - ERROR - Error getting story content for ID 4: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:13:33,185 - INFO - Processing story 5/10: 小胖猪哭了
+2025-10-13 01:13:33,190 - INFO - Getting content for story ID: 5
+2025-10-13 01:14:03,906 - ERROR - Error getting story content for ID 5: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:14:05,956 - INFO - Processing story 6/10: 皮鞭下的猴子
+2025-10-13 01:14:06,060 - INFO - Getting content for story ID: 6
+2025-10-13 01:14:36,362 - ERROR - Error getting story content for ID 6: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:14:38,368 - INFO - Processing story 7/10: 小蜜蜂与花儿
+2025-10-13 01:14:38,669 - INFO - Getting content for story ID: 7
+2025-10-13 01:15:10,808 - ERROR - Error getting story content for ID 7: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:15:12,811 - INFO - Processing story 8/10: 艾丽莎王后
+2025-10-13 01:15:12,887 - INFO - Getting content for story ID: 8
+2025-10-13 01:15:43,467 - ERROR - Error getting story content for ID 8: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:15:45,472 - INFO - Processing story 9/10: 小兔学长跑
+2025-10-13 01:15:45,472 - INFO - Getting content for story ID: 9
+2025-10-13 01:16:16,050 - ERROR - Error getting story content for ID 9: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:16:18,104 - INFO - Processing story 10/10: 世界上最可爱的人
+2025-10-13 01:16:18,109 - INFO - Getting content for story ID: 10
+2025-10-13 01:16:48,368 - ERROR - Error getting story content for ID 10: Message: script timeout
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0xa0e237]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-13 01:16:50,374 - INFO - Successfully crawled 0 story contents
+2025-10-13 01:16:55,633 - INFO - Saved 50 stories to database
+2025-10-13 01:16:55,699 - INFO - Saved data to JSON files
+2025-10-13 01:16:55,752 - INFO - Generated crawl report
+2025-10-13 01:16:56,223 - INFO - Crawling completed successfully
+2025-10-13 01:18:00,348 - INFO - WebDriver closed

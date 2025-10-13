@@ -1,0 +1,1231 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="../img/story.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小故事铺</title>
+
+    <!-- SEO优化meta标签 -->
+    <meta name="description" content="小故事铺是专业的故事阅读平台，提供睡前故事、儿童故事、历史故事、恐怖故事、爱情故事、励志故事等各类精彩小故事。免费在线阅读，每日更新优质故事内容。">
+    <meta name="keywords" content="故事,小故事,故事平台,睡前故事,儿童故事,历史故事,恐怖故事,爱情故事,励志故事,故事大全,在线阅读,免费故事,故事网站,短篇故事,经典故事,温馨故事,感人故事">
+    <meta name="author" content="小故事铺">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="bingbot" content="index,follow">
+
+    <!-- Open Graph标签 -->
+    <meta property="og:title" content="小故事铺 - 各类精彩故事在线阅读平台">
+    <meta property="og:description" content="汇集睡前故事、儿童故事、历史故事、恐怖故事等各类精彩小故事，免费在线阅读，每日更新">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:image" content="../img/story.png">
+    <meta property="og:site_name" content="小故事铺">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- Twitter Card标签 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="小故事铺 - 各类精彩故事在线阅读平台">
+    <meta name="twitter:description" content="汇集睡前故事、儿童故事、历史故事、恐怖故事等各类精彩小故事">
+    <meta name="twitter:image" content="../img/story.png">
+
+    <!-- 其他SEO标签 -->
+    <meta name="theme-color" content="#4A90E2">
+    <meta name="msapplication-TileColor" content="#4A90E2">
+    <meta name="application-name" content="小故事铺">
+    <link rel="canonical" href="https://storynook.cn">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Supabase CDN 引用 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+     <script defer="" src="https://cloud.umami.is/script.js" data-website-id="9ff3dec1-fc8a-41cd-8de1-84e40212d86b"></script>
+    <!-- live2d -->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="../live2d/css/live2d.css">
+
+    <!-- 移动端检测脚本 -->
+    <script>
+        // 检测移动端设备并跳转
+        function detectMobileAndRedirect() {
+            // 检测屏幕宽度
+            const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            // 检测用户代理字符串
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isMobileDevice = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+
+            // 如果屏幕宽度小于768px或检测到移动设备，则跳转到appIndex.html
+            if (screenWidth <= 768 || isMobileDevice) {
+                // 避免无限重定向，检查当前页面是否已经是appIndex.html
+                if (!window.location.pathname.includes('appIndex.html')) {
+                    window.location.href = 'appIndex.html';
+                }
+            }
+        }
+
+        // 页面加载时检测
+        detectMobileAndRedirect();
+
+        // 监听窗口大小变化
+        window.addEventListener('resize', detectMobileAndRedirect);
+    </script>
+</head>
+<body class="simple-mode">
+    <!-- SEO隐藏内容区域 - 供搜索引擎抓取 -->
+    <div style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+        <h1>小故事铺 - 最全的故事阅读平台</h1>
+        <p>小故事铺汇集了各种类型的精彩故事，包括睡前故事、儿童故事、历史故事、恐怖故事、爱情故事、励志故事、神话故事、寓言故事、童话故事、民间故事、科幻故事、悬疑故事、温馨故事、感人故事等。我们致力于为读者提供优质的故事内容，让每个人都能在这里找到属于自己的故事。</p>
+        <p>无论您是想要为孩子寻找有趣的儿童故事，还是想在睡前听一些温馨的睡前故事，或者对历史故事、恐怖故事感兴趣，小故事铺都能满足您的需求。我们的故事平台每日更新，为您带来最新最好的故事内容。</p>
+        <p>故事分类包括：睡前故事大全、儿童故事集、历史故事精选、恐怖故事合集、爱情故事专区、励志故事频道、经典故事回顾、短篇故事精华、长篇故事连载、原创故事投稿等。</p>
+        <p>小故事铺是您身边的故事专家，为您提供免费的在线故事阅读服务。无论何时何地，只要您想听故事、读故事，小故事铺都在这里等您。</p>
+        <ul>
+            <li>睡前故事 - 温馨治愈的睡前小故事</li>
+            <li>儿童故事 - 适合孩子的有趣故事</li>
+            <li>历史故事 - 了解历史的精彩故事</li>
+            <li>恐怖故事 - 惊险刺激的恐怖小说</li>
+            <li>爱情故事 - 浪漫感人的爱情小说</li>
+            <li>励志故事 - 激励人心的正能量故事</li>
+            <li>神话故事 - 古代神话传说故事</li>
+            <li>寓言故事 - 富含哲理的寓言故事</li>
+            <li>童话故事 - 经典童话故事大全</li>
+            <li>民间故事 - 传统民间故事集</li>
+        </ul>
+    </div>
+
+    <!-- 侧边栏切换按钮（在收缩状态下可见） -->
+    <div class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-chevron-right" style="transform: rotate(180deg);"></i>
+    </div>
+
+    <!-- 左侧侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-inner">
+            <!-- 侧边栏顶部 -->
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../img/story.png" alt="小故事铺" class="logo-img">
+                    <span>小故事铺</span>
+                </div>
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+
+            <!-- 功能按钮区 -->
+            <div class="sidebar-actions">
+                <!-- 多功能按钮 -->
+                <div class="multi-function-button" id="multiFunctionButton">
+                    <button class="action-button">
+                        <i class="fas fa-cog"></i>
+                        <span>基础功能</span>
+                        <i class="fas fa-chevron-down function-dropdown-icon"></i>
+                    </button>
+                    <!-- 功能下拉菜单 -->
+                    <div class="function-dropdown" id="functionDropdown">
+<!--                        <div class="function-item" id="searchButton">-->
+<!--                            <i class="fas fa-search"></i>-->
+<!--                            <span>故事搜索</span>-->
+<!--                        </div>-->
+                        <div class="function-item" id="viewModeToggle" title="切换到图片模式"><i class="fas fa-th"></i><span>切换视图</span></div>
+<!--                        <div class="function-item" id="categorySettingsButton">-->
+<!--                            <i class="fas fa-sliders-h"></i>-->
+<!--                            <span>分类设置</span>-->
+<!--                        </div>-->
+                        <div class="function-item" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                            <span>切换主题</span>
+                        </div>
+                        <div class="function-item" id="refreshButton">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>重置刷新</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="action-button" id="categorySettingsButton">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>分类设置</span>
+                </button>
+
+
+                <button class="action-button" id="searchButton">
+                    <i class="fas fa-search"></i>
+                    <span>故事搜索</span>
+                </button>
+
+                <!-- 即时热榜按钮 -->
+<!--                <a href="https://nowhots.com/" target="_blank" rel="noopener noreferrer" class="hot-news-button">-->
+<!--                    <button class="action-button">-->
+<!--                        <img src="../img/host.png" alt="即时热榜" class="hot-news-icon">-->
+<!--                        <span>即时热榜</span>-->
+<!--                    </button>-->
+<!--                </a>-->
+            </div>
+
+            <!-- 分类区域 -->
+            <div class="sidebar-categories">
+                <!-- <h3 class="sidebar-title">分类</h3> -->
+                <div class="sidebar-category-list" id="categoryTags">
+            <div class="filter-tag active" data-id="1" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">睡前故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="2" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">儿童故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="3" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">格林童话</span>
+            </div>
+        
+            <div class="filter-tag " data-id="4" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">民间故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="5" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">益智故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="6" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">历史故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="7" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">寓言故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="8" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">经典童话</span>
+            </div>
+        
+            <div class="filter-tag " data-id="9" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">成语故事</span>
+            </div>
+        
+            <div class="filter-tag " data-id="10" style="opacity: 1; transform: translateY(0px); transition: 0.3s;">
+                
+                <span class="tag-text">童话作文</span>
+            </div>
+        </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-container" id="mainContainer">
+    <!-- 悬浮搜索框 -->
+    <div class="floating-search" id="floatingSearch">
+<!--        <p style="position:fixed;bottom:10%;right:46%;color:#8f8f8f">支持搜索当前分类下的所有故事</p>-->
+        <button class="search-close" id="searchClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="floating-search-container">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="支持搜索当前分类下的所有故事，按回车键搜索...">
+            </div>
+        </div>
+
+        <div id="landlord">
+            <div class="message" style="opacity: 0;">你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？</div>
+            <canvas id="live2d" width="560" height="500" class="live2d"></canvas>
+            <div class="hide-button">隐藏</div>
+        </div>
+    </div>
+
+    <!-- 分类设置弹窗 -->
+    <div class="category-settings-modal" id="categorySettingsModal">
+        <div class="category-settings-container">
+            <div class="settings-header">
+                <h3>分类设置</h3>
+                <button class="settings-close" id="settingsClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="settings-description">
+                选择您想在导航栏显示的分类（最多10个）
+            </div>
+            <div class="category-list" id="categorySettingsList">
+                <!-- 分类选择项将通过JS动态加载 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 首页视图 -->
+        <div class="home-view">
+            <div class="layout">
+                <!-- 主内容区域 -->
+                <div class="main-content">
+                    <!-- 内容卡片区域 -->
+                    <div class="content-grid" id="storyGrid">
+                <div class="content-card" onclick="loadStoryDetail({'id':1,'category_id':1,'title':'小老鼠打电话','excerpt':'冬天到了，天气也越来越冷了，小老鼠们都挤在一块，可暖和了。但天虽冷，总得要吃饭吧，这不吃饭可是会饿死的啊。可这么冷的天，叫谁出去找吃的呢？小老鼠们你推我，我推你...','category_name':'睡前故事','length':467})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小老鼠打电话</div>
+                        <div class="card-excerpt">冬天到了，天气也越来越冷了，小老鼠们都挤在一块，可暖和了。但天虽冷，总得要吃饭吧，这不吃饭可是会饿死的啊。可这么冷的天，叫谁出去找吃的呢？小老鼠们你推我，我推你...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 467字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':2,'category_id':1,'title':'小狗穿鞋','excerpt':'妈妈给三岁的浩浩买了一双新鞋，浩浩穿上后左看看，右瞧瞧。家里的小狗跑了过来，舔了舔浩浩的鞋。\n浩浩仰起头来，天真地问：“妈妈，狗狗冷吗？他怎么不穿鞋？”妈妈顺口...','category_name':'睡前故事','length':334})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小狗穿鞋</div>
+                        <div class="card-excerpt">妈妈给三岁的浩浩买了一双新鞋，浩浩穿上后左看看，右瞧瞧。家里的小狗跑了过来，舔了舔浩浩的鞋。
+浩浩仰起头来，天真地问：“妈妈，狗狗冷吗？他怎么不穿鞋？”妈妈顺口...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 334字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':3,'category_id':1,'title':'魔笔','excerpt':'吃早饭的时候，妈妈说了一件发生在夜里的事情。今天是农历三十，可她在上厕所的时候，看见了圆圆的月亮。那是夜里一点多钟，月亮好大，像个大锅盖，照得屋里就跟白天一样，...','category_name':'睡前故事','length':2881})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">魔笔</div>
+                        <div class="card-excerpt">吃早饭的时候，妈妈说了一件发生在夜里的事情。今天是农历三十，可她在上厕所的时候，看见了圆圆的月亮。那是夜里一点多钟，月亮好大，像个大锅盖，照得屋里就跟白天一样，...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 2881字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':4,'category_id':1,'title':'狒狒的雨伞','excerpt':'狒狒撑着一把雨伞在树中散步，路上它碰见了长臂猿。长臂猿非常热情地同它打着招呼：“你好啊！狒狒！好些天没见到你了，身体好吧？哟！这么大晴的天儿怎么打伞哪？”狒狒回...','category_name':'睡前故事','length':249})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">狒狒的雨伞</div>
+                        <div class="card-excerpt">狒狒撑着一把雨伞在树中散步，路上它碰见了长臂猿。长臂猿非常热情地同它打着招呼：“你好啊！狒狒！好些天没见到你了，身体好吧？哟！这么大晴的天儿怎么打伞哪？”狒狒回...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 249字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':5,'category_id':1,'title':'小胖猪哭了','excerpt':'小胖猪一回到家就哇哇地哭了：“我太胖了，哇！”\n猪妈妈很奇怪，说：“胖有什么不好？谁说你了，我去批评它！”\n小胖猪不说话，只是哭。猪妈妈急了：“是河马讲你了，是...','category_name':'睡前故事','length':777})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小胖猪哭了</div>
+                        <div class="card-excerpt">小胖猪一回到家就哇哇地哭了：“我太胖了，哇！”
+猪妈妈很奇怪，说：“胖有什么不好？谁说你了，我去批评它！”
+小胖猪不说话，只是哭。猪妈妈急了：“是河马讲你了，是...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 777字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':6,'category_id':1,'title':'皮鞭下的猴子','excerpt':'楚国有个好吃懒做的人，他整天思谋着怎样不出力气，或者少出点力就可以拣到大便宜的窍门。他想，养蜜蜂的人能得到蜂蜜，养鱼鹰的人能得到鱼，我为什么不养些猴子呢？猴子会...','category_name':'睡前故事','length':1305})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">皮鞭下的猴子</div>
+                        <div class="card-excerpt">楚国有个好吃懒做的人，他整天思谋着怎样不出力气，或者少出点力就可以拣到大便宜的窍门。他想，养蜜蜂的人能得到蜂蜜，养鱼鹰的人能得到鱼，我为什么不养些猴子呢？猴子会...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1305字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':7,'category_id':1,'title':'小蜜蜂与花儿','excerpt':'在地球的某一个角落，孤零零地开着一朵美丽的小花。它的身边虽然有绿叶相伴，但它总觉得那些叶子对她好像有敌意，所以它虽然有点闷，可也不愿意主动找它们聊天。后来有一天...','category_name':'睡前故事','length':786})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小蜜蜂与花儿</div>
+                        <div class="card-excerpt">在地球的某一个角落，孤零零地开着一朵美丽的小花。它的身边虽然有绿叶相伴，但它总觉得那些叶子对她好像有敌意，所以它虽然有点闷，可也不愿意主动找它们聊天。后来有一天...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 786字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':8,'category_id':1,'title':'艾丽莎王后','excerpt':'艾丽莎每天仍在织衣服，又织好两件，荨麻没有了，刚好，又遇见国王外出，便由弟弟代理国王。他发现艾丽莎每晚出去，就对大臣们说：“王后不说话，是因为她是一个女巫，为了...','category_name':'睡前故事','length':740})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">艾丽莎王后</div>
+                        <div class="card-excerpt">艾丽莎每天仍在织衣服，又织好两件，荨麻没有了，刚好，又遇见国王外出，便由弟弟代理国王。他发现艾丽莎每晚出去，就对大臣们说：“王后不说话，是因为她是一个女巫，为了...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 740字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':9,'category_id':1,'title':'小兔学长跑','excerpt':'小兔灰灰跟着马老师学习长跑。马老师带着灰灰一边跑一边讲解，他们穿过了一片小树林，又越过了一座小山坡，不久灰灰就累得汗流浃背了。他多么希望能够停下来，好好休息一会...','category_name':'睡前故事','length':290})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小兔学长跑</div>
+                        <div class="card-excerpt">小兔灰灰跟着马老师学习长跑。马老师带着灰灰一边跑一边讲解，他们穿过了一片小树林，又越过了一座小山坡，不久灰灰就累得汗流浃背了。他多么希望能够停下来，好好休息一会...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 290字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':10,'category_id':1,'title':'世界上最可爱的人','excerpt':'谢大城，是一个老实的商人，他专门收集各式各样的皮货到市场去卖。那天，谢大城看到刘三爷有一批漂亮的皮货，一口气把所有的都买了下来。\n第二天，他一大早起来，把皮货整...','category_name':'睡前故事','length':507})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">世界上最可爱的人</div>
+                        <div class="card-excerpt">谢大城，是一个老实的商人，他专门收集各式各样的皮货到市场去卖。那天，谢大城看到刘三爷有一批漂亮的皮货，一口气把所有的都买了下来。
+第二天，他一大早起来，把皮货整...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 507字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':11,'category_id':1,'title':'漂亮的小狗','excerpt':'小狗波波，模样长得很不好看。小伙伴们都叫他丑小狗，谁也不肯和他玩，波波多伤心呀！\n一天晚上，波波独自跑到河边上，对着河水呜呜地哭起来。一只老河蚌听见他的哭声，游...','category_name':'睡前故事','length':453})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">漂亮的小狗</div>
+                        <div class="card-excerpt">小狗波波，模样长得很不好看。小伙伴们都叫他丑小狗，谁也不肯和他玩，波波多伤心呀！
+一天晚上，波波独自跑到河边上，对着河水呜呜地哭起来。一只老河蚌听见他的哭声，游...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 453字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':12,'category_id':1,'title':'天空将要塌下来了','excerpt':'一天，一只狐狸在树林里寻找食物，不小心掉进一个沉坑里。它害怕从此再也出不去，说不定要死在坑里。后来，狐狸听到上面有脚步声，像是有人在附近走动。狐狸立即想出了一条...','category_name':'睡前故事','length':734})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">天空将要塌下来了</div>
+                        <div class="card-excerpt">一天，一只狐狸在树林里寻找食物，不小心掉进一个沉坑里。它害怕从此再也出不去，说不定要死在坑里。后来，狐狸听到上面有脚步声，像是有人在附近走动。狐狸立即想出了一条...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 734字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':13,'category_id':1,'title':'寻猫布告','excerpt':'有一天，在一个没有猫的国家里，来了一个外国客人，他送给国王一只可爱的小猫。国王把小猫送给了心爱的女儿娜娜公主。娜那公主别提多喜欢这只小猫了，天天和它在一起玩儿。...','category_name':'睡前故事','length':578})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">寻猫布告</div>
+                        <div class="card-excerpt">有一天，在一个没有猫的国家里，来了一个外国客人，他送给国王一只可爱的小猫。国王把小猫送给了心爱的女儿娜娜公主。娜那公主别提多喜欢这只小猫了，天天和它在一起玩儿。...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 578字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':14,'category_id':1,'title':'鼹鼠找面包','excerpt':'鼹鼠妈妈找啊找，找到一小块面包。她想：这面包香喷喷的，我的小鼹鼠一定爱吃。她拖啊拖啊，把面包拖回家。\n小鼹鼠抱住面包，咬了起来：“这面包真香！真好吃！”\n鼹鼠妈...','category_name':'睡前故事','length':747})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">鼹鼠找面包</div>
+                        <div class="card-excerpt">鼹鼠妈妈找啊找，找到一小块面包。她想：这面包香喷喷的，我的小鼹鼠一定爱吃。她拖啊拖啊，把面包拖回家。
+小鼹鼠抱住面包，咬了起来：“这面包真香！真好吃！”
+鼹鼠妈...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 747字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':15,'category_id':1,'title':'小骡子身世','excerpt':'草地上，—片欢乐的情景。\n小牛蹶着蹄子在妈妈跟前撒着欢，小羊偎在妈妈怀里吃奶，猪爸爸猪妈妈领着一群小猪在做游戏，小兔和爸爸妈妈一起赛跑。\n小骡子孤单地站在一旁，...','category_name':'睡前故事','length':1065})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小骡子身世</div>
+                        <div class="card-excerpt">草地上，—片欢乐的情景。
+小牛蹶着蹄子在妈妈跟前撒着欢，小羊偎在妈妈怀里吃奶，猪爸爸猪妈妈领着一群小猪在做游戏，小兔和爸爸妈妈一起赛跑。
+小骡子孤单地站在一旁，...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1065字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':16,'category_id':1,'title':'神笔','excerpt':'有个老爷爷给小丰一支铅笔。这不是普通的铅笔，而是支神笔。\n晚上，小丰睡觉了。铅笔就自己站起来，在纸上画了一只老鼠。刚画完，老鼠打了个哈欠，伸伸懒腰，活了。\n老鼠...','category_name':'睡前故事','length':725})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">神笔</div>
+                        <div class="card-excerpt">有个老爷爷给小丰一支铅笔。这不是普通的铅笔，而是支神笔。
+晚上，小丰睡觉了。铅笔就自己站起来，在纸上画了一只老鼠。刚画完，老鼠打了个哈欠，伸伸懒腰，活了。
+老鼠...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 725字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':17,'category_id':1,'title':'肥猫嘟嘟','excerpt':'肥猫嘟嘟住在郊区的一幢三层楼房里。房前有一个一百多平方米的小院子。院子里除了一棵樟树外，还有一个近六平方米的花坛。男主人在城里一家大公司里任采购经理，女主人在供...','category_name':'睡前故事','length':720})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">肥猫嘟嘟</div>
+                        <div class="card-excerpt">肥猫嘟嘟住在郊区的一幢三层楼房里。房前有一个一百多平方米的小院子。院子里除了一棵樟树外，还有一个近六平方米的花坛。男主人在城里一家大公司里任采购经理，女主人在供...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 720字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':18,'category_id':1,'title':'是谁打碎了花瓶','excerpt':'熊爸爸出差回来，带回几枝腊梅花。熊妈妈喜爱极了，捧出珍藏多年的花瓶，小心翼翼地把花插在里面。下午，小黑熊从外面回来，见到花瓶里的花，“咦，花瓶里没有水，花不是渴...','category_name':'睡前故事','length':669})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">是谁打碎了花瓶</div>
+                        <div class="card-excerpt">熊爸爸出差回来，带回几枝腊梅花。熊妈妈喜爱极了，捧出珍藏多年的花瓶，小心翼翼地把花插在里面。下午，小黑熊从外面回来，见到花瓶里的花，“咦，花瓶里没有水，花不是渴...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 669字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':19,'category_id':1,'title':'小熊住山洞','excerpt':'小熊一家住在山洞里.熊爷爷对小熊说:\'你去造间木头房子住吧.\'\n春天,小熊走进树林.树上长满了绿叶,他舍不得砍.\n夏天,小熊又走进了树林.树上开满了鲜花,小熊舍...','category_name':'睡前故事','length':226})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小熊住山洞</div>
+                        <div class="card-excerpt">小熊一家住在山洞里.熊爷爷对小熊说:"你去造间木头房子住吧."
+春天,小熊走进树林.树上长满了绿叶,他舍不得砍.
+夏天,小熊又走进了树林.树上开满了鲜花,小熊舍...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 226字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':20,'category_id':1,'title':'月亮妈妈和星星孩子','excerpt':'夜深了，月亮妈妈的宝宝们盖着软绵绵的云被睡着了。\n看，这个星星宝宝的嘴角还挂着微笑呢，她做了什么好梦吧？\n天上只有月亮妈妈在工作了。\n“唉，怎么找不着了呢？那可...','category_name':'睡前故事','length':233})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">月亮妈妈和星星孩子</div>
+                        <div class="card-excerpt">夜深了，月亮妈妈的宝宝们盖着软绵绵的云被睡着了。
+看，这个星星宝宝的嘴角还挂着微笑呢，她做了什么好梦吧？
+天上只有月亮妈妈在工作了。
+“唉，怎么找不着了呢？那可...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 233字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':21,'category_id':1,'title':'老鼠学猫叫','excerpt':'自从横行霸道的大老虎吃了老母鸡的蛋，在肚子里孵出了一只会打鸣儿的小公鸡，又被动物们抬进了动物园，这下可热闹了。在为大家都想听一听老虎“喔喔喔——”打鸣儿嘛。\n可...','category_name':'睡前故事','length':813})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">老鼠学猫叫</div>
+                        <div class="card-excerpt">自从横行霸道的大老虎吃了老母鸡的蛋，在肚子里孵出了一只会打鸣儿的小公鸡，又被动物们抬进了动物园，这下可热闹了。在为大家都想听一听老虎“喔喔喔——”打鸣儿嘛。
+可...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 813字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':22,'category_id':1,'title':'唱歌的树','excerpt':'小冬冬爬上凳子去拿桌上的大花瓶玩儿。\n这是妈妈昨天才买的大花瓶，亮晶晶的，真好看！小冬冬抱着花瓶跳下凳子，\'砰！\'花瓶掉到地上，摔成了碎片。\n小冬冬傻眼了，他拾...','category_name':'睡前故事','length':1094})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">唱歌的树</div>
+                        <div class="card-excerpt">小冬冬爬上凳子去拿桌上的大花瓶玩儿。
+这是妈妈昨天才买的大花瓶，亮晶晶的，真好看！小冬冬抱着花瓶跳下凳子，"砰！"花瓶掉到地上，摔成了碎片。
+小冬冬傻眼了，他拾...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1094字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':23,'category_id':1,'title':'猴子骗桃子','excerpt':'白兔大婶种的桃树结果了。那抿着红嘴儿的大桃子藏在绿色的树叶中，真惹人喜爱呀！小猴子见了这满树的桃子馋得口水直流。他对白兔大婶说：\'这树的桃子结得真多，味道一定不...','category_name':'睡前故事','length':1110})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">猴子骗桃子</div>
+                        <div class="card-excerpt">白兔大婶种的桃树结果了。那抿着红嘴儿的大桃子藏在绿色的树叶中，真惹人喜爱呀！小猴子见了这满树的桃子馋得口水直流。他对白兔大婶说："这树的桃子结得真多，味道一定不...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1110字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':24,'category_id':1,'title':'花羽毛的小松鸡','excerpt':'—只叫花羽毛的小松鸡，为一颗松子吵架啦。松鸡红冠冠捡到一颗又大又圆的松子，喊着附近的瘸瘸腿：“瘸瘸腿，快来呀，我捡到一颗大松子。”\n花羽毛听见了，忙乍开小翅膀，...','category_name':'睡前故事','length':984})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">花羽毛的小松鸡</div>
+                        <div class="card-excerpt">—只叫花羽毛的小松鸡，为一颗松子吵架啦。松鸡红冠冠捡到一颗又大又圆的松子，喊着附近的瘸瘸腿：“瘸瘸腿，快来呀，我捡到一颗大松子。”
+花羽毛听见了，忙乍开小翅膀，...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 984字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':25,'category_id':1,'title':'箭猪也开心地笑了','excerpt':'小兔子、小鸭子、小猴子是好朋友，他们在草地上愉快地跳皮筋儿。这时来了一个全身插箭的动物，看上去他就像在地上滚动的巨大毛栗，走起路来簌簌作响。\n“你们好，让我们一...','category_name':'睡前故事','length':1086})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">箭猪也开心地笑了</div>
+                        <div class="card-excerpt">小兔子、小鸭子、小猴子是好朋友，他们在草地上愉快地跳皮筋儿。这时来了一个全身插箭的动物，看上去他就像在地上滚动的巨大毛栗，走起路来簌簌作响。
+“你们好，让我们一...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1086字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':26,'category_id':1,'title':'小胖胖熊,你真幸福','excerpt':'小胖胖熊的爸爸出去干活去了。\n小胖胖熊的妈妈呢，在屋后种菜。\n小胖胖熊独自在家坐着。没有爸爸的逗乐，没有妈妈的搂抱，小胖胖熊觉得真孤单，真无聊。\n这时，他听见有...','category_name':'睡前故事','length':379})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小胖胖熊,你真幸福</div>
+                        <div class="card-excerpt">小胖胖熊的爸爸出去干活去了。
+小胖胖熊的妈妈呢，在屋后种菜。
+小胖胖熊独自在家坐着。没有爸爸的逗乐，没有妈妈的搂抱，小胖胖熊觉得真孤单，真无聊。
+这时，他听见有...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 379字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':27,'category_id':1,'title':'森林中的小河','excerpt':'森林中有一条小小的河。河不宽，小猴子、小狗熊一跃就过去了；可小白兔、小老鼠就不行，他们太小了，跳不过河去，常呆在河边发愁。\n大象看见了，心想，我该帮帮他们呀。他...','category_name':'睡前故事','length':758})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">森林中的小河</div>
+                        <div class="card-excerpt">森林中有一条小小的河。河不宽，小猴子、小狗熊一跃就过去了；可小白兔、小老鼠就不行，他们太小了，跳不过河去，常呆在河边发愁。
+大象看见了，心想，我该帮帮他们呀。他...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 758字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':28,'category_id':1,'title':'小熊红红的苹果','excerpt':'小熊在院子里种了一棵苹果树。小熊给苹果树浇水，小猴子看见了忙过来帮他抬水。小熊乐呵呵地对小猴子说：“等苹果熟了，我请你吃甜苹果。”\n小熊给苹果树施肥，小花鹿看见...','category_name':'睡前故事','length':863})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小熊红红的苹果</div>
+                        <div class="card-excerpt">小熊在院子里种了一棵苹果树。小熊给苹果树浇水，小猴子看见了忙过来帮他抬水。小熊乐呵呵地对小猴子说：“等苹果熟了，我请你吃甜苹果。”
+小熊给苹果树施肥，小花鹿看见...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 863字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':29,'category_id':1,'title':'老爷爷的一棵榕树','excerpt':'种树的老爷爷，老爷爷的一棵榕树好大好大。\n每天，老爷爷都在榕树下乘凉。\n有一天，老爷爷不来乘凉了？\n树上的蝉儿说：“知道吗？知道吗？种树的老爷爷生病了。”鹅妈妈...','category_name':'睡前故事','length':211})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">老爷爷的一棵榕树</div>
+                        <div class="card-excerpt">种树的老爷爷，老爷爷的一棵榕树好大好大。
+每天，老爷爷都在榕树下乘凉。
+有一天，老爷爷不来乘凉了？
+树上的蝉儿说：“知道吗？知道吗？种树的老爷爷生病了。”鹅妈妈...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 211字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':30,'category_id':1,'title':'小灰狼和狼妈妈','excerpt':'小灰狼和狼妈妈住在一栋快要倒塌的房子里,房子的屋顶和墙壁上,有很多的破洞。\n有一天,小灰狼的脚卡在地板的破洞里,他哭了起来,狼妈妈说:「我受不了了!我要去买钉子...','category_name':'睡前故事','length':491})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小灰狼和狼妈妈</div>
+                        <div class="card-excerpt">小灰狼和狼妈妈住在一栋快要倒塌的房子里,房子的屋顶和墙壁上,有很多的破洞。
+有一天,小灰狼的脚卡在地板的破洞里,他哭了起来,狼妈妈说:「我受不了了!我要去买钉子...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 491字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':31,'category_id':1,'title':'小灰狼和狼妈妈','excerpt':'小灰狼和狼妈妈住在一栋快要倒塌的房子里,房子的屋顶和墙壁上,有很多的破洞。\n有一天,小灰狼的脚卡在地板的破洞里,他哭了起来,狼妈妈说:「我受不了了!我要去买钉子...','category_name':'睡前故事','length':491})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小灰狼和狼妈妈</div>
+                        <div class="card-excerpt">小灰狼和狼妈妈住在一栋快要倒塌的房子里,房子的屋顶和墙壁上,有很多的破洞。
+有一天,小灰狼的脚卡在地板的破洞里,他哭了起来,狼妈妈说:「我受不了了!我要去买钉子...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 491字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':32,'category_id':1,'title':'贪吃的小猫咪咪','excerpt':'从前,有一只吃不饱的猫,它叫做咪咪,它吃了主人还有牧羊人和三十只小羊,但是不管它吃过多少的东西,还是吃不饱。\n有一天,咪咪到森林里找东西吃,忽然看见小红帽,正提...','category_name':'睡前故事','length':380})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">贪吃的小猫咪咪</div>
+                        <div class="card-excerpt">从前,有一只吃不饱的猫,它叫做咪咪,它吃了主人还有牧羊人和三十只小羊,但是不管它吃过多少的东西,还是吃不饱。
+有一天,咪咪到森林里找东西吃,忽然看见小红帽,正提...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 380字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':33,'category_id':1,'title':'聪聪和他的好朋友','excerpt':'聪聪的好朋友是谁呢？是校园里那棵长鼻子树呀。\n聪聪为什么喜欢这棵树呢？对，就是因为这棵树，有一个光溜溜的长鼻子。长鼻子树用长鼻子跟聪聪说话，用长鼻子跟聪聪握手。...','category_name':'睡前故事','length':606})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">聪聪和他的好朋友</div>
+                        <div class="card-excerpt">聪聪的好朋友是谁呢？是校园里那棵长鼻子树呀。
+聪聪为什么喜欢这棵树呢？对，就是因为这棵树，有一个光溜溜的长鼻子。长鼻子树用长鼻子跟聪聪说话，用长鼻子跟聪聪握手。...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 606字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':34,'category_id':1,'title':'百灵鸟和棕熊','excerpt':'百灵鸟和棕熊是好朋友。百灵鸟在树枝上唱歌，棕熊在下面的树洞里睡觉。\n冬天来了，百灵鸟要飞到温暖的南方去了，棕熊也要进树洞里睡觉了。它俩约定，明年春天再见面。\n第...','category_name':'睡前故事','length':600})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">百灵鸟和棕熊</div>
+                        <div class="card-excerpt">百灵鸟和棕熊是好朋友。百灵鸟在树枝上唱歌，棕熊在下面的树洞里睡觉。
+冬天来了，百灵鸟要飞到温暖的南方去了，棕熊也要进树洞里睡觉了。它俩约定，明年春天再见面。
+第...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 600字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':35,'category_id':1,'title':'兔弟弟和月亮婆婆','excerpt':'有一天晚上，兔弟弟不想睡觉。他要去找小青蛙玩。兔妈妈摇摇头说：“乖孩子，睡觉吧。明天早些起来，找小青蛙玩去！”\n兔弟弟不听妈妈的话，他说：“我要去，我要去，我不...','category_name':'睡前故事','length':1128})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">兔弟弟和月亮婆婆</div>
+                        <div class="card-excerpt">有一天晚上，兔弟弟不想睡觉。他要去找小青蛙玩。兔妈妈摇摇头说：“乖孩子，睡觉吧。明天早些起来，找小青蛙玩去！”
+兔弟弟不听妈妈的话，他说：“我要去，我要去，我不...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1128字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':36,'category_id':1,'title':'老公公种萝卜','excerpt':'老公公种了个萝卜，他对萝卜说：“长吧，长吧，萝卜啊，长得甜呐！长吧，长吧，萝卜啊，长得大啊！”萝卜越长越大，大得不得了。\n老公公就去拔萝卜。他拉住萝卜的叶子，“...','category_name':'睡前故事','length':627})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">老公公种萝卜</div>
+                        <div class="card-excerpt">老公公种了个萝卜，他对萝卜说：“长吧，长吧，萝卜啊，长得甜呐！长吧，长吧，萝卜啊，长得大啊！”萝卜越长越大，大得不得了。
+老公公就去拔萝卜。他拉住萝卜的叶子，“...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 627字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':37,'category_id':1,'title':'不光彩的孔雀','excerpt':'原先，孔雀的羽毛并不是百鸟中最美的，绿斑鸠才漂亮呢：它有一个长长的尾巴，这个尾巴呀，是由100种不同颜色的羽毛组成的，在阳光下一抖，就如同宝石般五色斑斓，光彩照...','category_name':'睡前故事','length':395})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">不光彩的孔雀</div>
+                        <div class="card-excerpt">原先，孔雀的羽毛并不是百鸟中最美的，绿斑鸠才漂亮呢：它有一个长长的尾巴，这个尾巴呀，是由100种不同颜色的羽毛组成的，在阳光下一抖，就如同宝石般五色斑斓，光彩照...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 395字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':38,'category_id':1,'title':'小羽毛的故事','excerpt':'高高的悬崖上，住着鹰的一家。鹰妈妈就要生蛋了，她拔下一些羽毛，准备为她的小宝宝们布置一张既温暖又舒适的床。\n一阵风吹过，一根羽毛趁机飞了起来。它想：“我可不愿呆...','category_name':'睡前故事','length':682})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小羽毛的故事</div>
+                        <div class="card-excerpt">高高的悬崖上，住着鹰的一家。鹰妈妈就要生蛋了，她拔下一些羽毛，准备为她的小宝宝们布置一张既温暖又舒适的床。
+一阵风吹过，一根羽毛趁机飞了起来。它想：“我可不愿呆...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 682字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':39,'category_id':1,'title':'圣诞老人传说','excerpt':'从前有一个心地善良的贵族，他的妻子因病去逝，抛下他和他的三个女儿。这个贵族尝试了不少发明，都失败了，但也因此耗尽了钱财，所以他们不得不搬到一家农舍里生活，他的女...','category_name':'睡前故事','length':422})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">圣诞老人传说</div>
+                        <div class="card-excerpt">从前有一个心地善良的贵族，他的妻子因病去逝，抛下他和他的三个女儿。这个贵族尝试了不少发明，都失败了，但也因此耗尽了钱财，所以他们不得不搬到一家农舍里生活，他的女...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 422字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':40,'category_id':1,'title':'黑熊卖砖','excerpt':'黑熊是个大富翁，小老鼠却很穷。\n有一天，黑熊用他所有的钱，买下了一座别墅。\n可是，小老鼠用他所有的钱，却只能买下一块砖。\n他说：“黑熊，现在我已经有一块砖了，以...','category_name':'睡前故事','length':474})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">黑熊卖砖</div>
+                        <div class="card-excerpt">黑熊是个大富翁，小老鼠却很穷。
+有一天，黑熊用他所有的钱，买下了一座别墅。
+可是，小老鼠用他所有的钱，却只能买下一块砖。
+他说：“黑熊，现在我已经有一块砖了，以...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 474字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':41,'category_id':1,'title':'小牧童与小猴的故事','excerpt':'勇敢的小牧童\n经过了长远的路途，撒母耳终于来到伯利恒，耶西家的门口。耶西和他的儿子们，恭敬地接待老先知撒母耳。\n撒母耳看了一个又一个心里想：「他们之中，那一个是...','category_name':'睡前故事','length':1094})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小牧童与小猴的故事</div>
+                        <div class="card-excerpt">勇敢的小牧童
+经过了长远的路途，撒母耳终于来到伯利恒，耶西家的门口。耶西和他的儿子们，恭敬地接待老先知撒母耳。
+撒母耳看了一个又一个心里想：「他们之中，那一个是...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1094字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':42,'category_id':1,'title':'不睡觉的星星','excerpt':'夜晚来临了，大家都困了，要睡觉了。\n太阳把热量收起来，这样就会让自己睡得暖暖和和的。月亮把身子变成弯弯的船一样的摇篮，自己摇着自己入睡。风儿呢，把自己吹成细细的...','category_name':'睡前故事','length':426})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">不睡觉的星星</div>
+                        <div class="card-excerpt">夜晚来临了，大家都困了，要睡觉了。
+太阳把热量收起来，这样就会让自己睡得暖暖和和的。月亮把身子变成弯弯的船一样的摇篮，自己摇着自己入睡。风儿呢，把自己吹成细细的...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 426字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':43,'category_id':1,'title':'智慧的老公公','excerpt':'从前在印度地方，有一个遗弃老人的国家，那里的国王是非常任性的一个人物。\n“年老的人实在叫讨厌，嘴上老是噜里噜苏，却不能干些什么。且看那副老丑难看的模样，牙齿脱了...','category_name':'睡前故事','length':2604})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">智慧的老公公</div>
+                        <div class="card-excerpt">从前在印度地方，有一个遗弃老人的国家，那里的国王是非常任性的一个人物。
+“年老的人实在叫讨厌，嘴上老是噜里噜苏，却不能干些什么。且看那副老丑难看的模样，牙齿脱了...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 2604字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':44,'category_id':1,'title':'提心吊胆地小老鼠','excerpt':'一只小老鼠，提心吊胆地从洞里爬出来，向四周瞧瞧：有没有猫和其他的敌人？\n突然，他吓了一跳，就在自己的身边，蹲伏着一个黑乎乎的家伙。\n“猫？黄鼠狼？或者猫头鹰？”...','category_name':'睡前故事','length':641})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">提心吊胆地小老鼠</div>
+                        <div class="card-excerpt">一只小老鼠，提心吊胆地从洞里爬出来，向四周瞧瞧：有没有猫和其他的敌人？
+突然，他吓了一跳，就在自己的身边，蹲伏着一个黑乎乎的家伙。
+“猫？黄鼠狼？或者猫头鹰？”...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 641字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':45,'category_id':1,'title':'狐狸家的晚餐','excerpt':'狐狸先生好贪吃，傍晚回家，他大老远就开始叫：“太太，太太，今天晚饭吃什么？”\n狐狸太太说：“哎，今天晚饭，吃烤鸡——”\n狐狸先生一听，马上跑得飞快，“太太，太太...','category_name':'睡前故事','length':1048})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">狐狸家的晚餐</div>
+                        <div class="card-excerpt">狐狸先生好贪吃，傍晚回家，他大老远就开始叫：“太太，太太，今天晚饭吃什么？”
+狐狸太太说：“哎，今天晚饭，吃烤鸡——”
+狐狸先生一听，马上跑得飞快，“太太，太太...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 1048字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':46,'category_id':1,'title':'小刺猬真勇敢','excerpt':'在这么多的小伙伴中，小猴顶顶瞧不起的就是小刺猬了。瞧他那丑样儿：满身插着大针，又尖又小的脑袋，老是缩在肚子下面，一副胆小怕事的样子。\n有一天，小伙伴们在玩捉迷藏...','category_name':'睡前故事','length':775})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">小刺猬真勇敢</div>
+                        <div class="card-excerpt">在这么多的小伙伴中，小猴顶顶瞧不起的就是小刺猬了。瞧他那丑样儿：满身插着大针，又尖又小的脑袋，老是缩在肚子下面，一副胆小怕事的样子。
+有一天，小伙伴们在玩捉迷藏...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 775字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':47,'category_id':1,'title':'狐狸和鹤的宴会','excerpt':'有一天，狐狸送了一张邀请卡给鹤。\n“晚上请来舍下用餐。”\n“哇！真罕见！狐狸先生会准备什么酒菜请我呢？”\n鹤很高兴的前去狐狸的家。“呀！鹤先生，欢迎！\n欢迎。请...','category_name':'睡前故事','length':518})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">狐狸和鹤的宴会</div>
+                        <div class="card-excerpt">有一天，狐狸送了一张邀请卡给鹤。
+“晚上请来舍下用餐。”
+“哇！真罕见！狐狸先生会准备什么酒菜请我呢？”
+鹤很高兴的前去狐狸的家。“呀！鹤先生，欢迎！
+欢迎。请...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 518字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':48,'category_id':1,'title':'兔子的友谊','excerpt':'兔子把脚给扎破了，整整一个星期它不能走动。刺猬便用身上的刺替兔子背来了浆果、菜叶子，送来了许多干粮，直到兔子痊愈。于是兔子说：“谢谢你，刺猬。让我与你交个朋友，...','category_name':'睡前故事','length':966})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">兔子的友谊</div>
+                        <div class="card-excerpt">兔子把脚给扎破了，整整一个星期它不能走动。刺猬便用身上的刺替兔子背来了浆果、菜叶子，送来了许多干粮，直到兔子痊愈。于是兔子说：“谢谢你，刺猬。让我与你交个朋友，...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 966字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':49,'category_id':1,'title':'母鸡妈妈下的大鸡蛋','excerpt':'母鸡妈妈下的蛋让她自己都感到特别的奇怪——其中的一个蛋特别的大，而其它的都很小。\n——这不是我的蛋！鸡妈妈\n鸡妈妈找到了猫妈妈，问：这个是你的蛋吗？\n猫妈妈说：...','category_name':'睡前故事','length':625})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">母鸡妈妈下的大鸡蛋</div>
+                        <div class="card-excerpt">母鸡妈妈下的蛋让她自己都感到特别的奇怪——其中的一个蛋特别的大，而其它的都很小。
+——这不是我的蛋！鸡妈妈
+鸡妈妈找到了猫妈妈，问：这个是你的蛋吗？
+猫妈妈说：...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 625字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="content-card" onclick="loadStoryDetail({'id':50,'category_id':1,'title':'老鼠的礼物','excerpt':'鼠老大说：“今天是妈妈的生日，我们给她买个蛋糕，让她高兴高兴。”\n“好呀，好呀！”鼠老二和鼠老三齐声说。\n老大、老二、老三好不容易凑起了一小把硬币。\n来到商店，...','category_name':'睡前故事','length':636})" style="opacity: 1; transform: translateY(0px); transition: opacity 0.3s, transform 0.3s;">
+
+                    <div class="card-info">
+                        <div class="card-category">睡前故事</div>
+                        <div class="card-title">老鼠的礼物</div>
+                        <div class="card-excerpt">鼠老大说：“今天是妈妈的生日，我们给她买个蛋糕，让她高兴高兴。”
+“好呀，好呀！”鼠老二和鼠老三齐声说。
+老大、老二、老三好不容易凑起了一小把硬币。
+来到商店，...</div>
+                        <div class="card-meta">
+                            <div class="account-name">睡前故事</div>
+                            <div class="card-stats">
+                                <span><i class="far fa-file-alt"></i> 636字</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 阅读页面视图 -->
+        <div class="article-view">
+            <div class="article-header">
+                <button class="back-btn" onclick="showHome(false)">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>返回</span>
+                </button>
+
+                <h1 class="article-title" id="storyTitle"></h1>
+
+                <div class="article-meta">
+                    <div class="article-account">
+                        <!-- <div class="article-account-avatar">
+                            <i class="fas fa-book-reader"></i>
+                        </div> -->
+                        <div class="article-account-info">
+                            <div class="article-account-name" id="storyType"></div>
+                            <div class="article-date" id="storyReadTime"></div>
+                        </div>
+                    </div>
+
+                    <!-- 语音朗读控制按钮 -->
+                    <div class="tts-controls">
+                        <button class="tts-button" id="ttsPlayButton" title="开始朗读">
+                            <img src="../img/play.png" alt="开始朗读" class="play-icon">
+                        </button>
+
+                        <button class="tts-button" id="ttsReplayButton" title="重播">
+                            <img src="../img/replay.png" alt="重播" class="replay-icons">
+                        </button>
+                    </div>
+
+                    <!-- <div class="article-stats">
+                        <span><i class="far fa-file-alt"></i> <span id="storyLength"></span> 字</span>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="article-content" id="storyContent">
+                <!-- 故事内容将通过API动态加载 -->
+            </div>
+        </div>
+
+        <!-- 全局加载遮罩 -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-content">
+                <div class="bouncing-loader">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+
+    <a href="https://support.qq.com/product/774893" target="_blank" rel="noopener noreferrer" class="feedback-fab" id="feedbackFab" title="意见反馈" aria-label="意见反馈">
+        <img src="../img/opinion.png" alt="意见反馈">
+    </a>
+
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/app.js"></script>
+
+    <!-- 结构化数据标记 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "小故事铺",
+        "alternateName": "故事阅读平台",
+        "url": "https://storynook.cn",
+        "description": "小故事铺是专业的故事阅读平台，提供睡前故事、儿童故事、历史故事、恐怖故事、爱情故事、励志故事等各类精彩小故事",
+        "keywords": "小故事,故事平台,睡前故事,儿童故事,历史故事,恐怖故事,爱情故事,励志故事",
+        "inLanguage": "zh-CN",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://storynook.cn/#search={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "小故事铺",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://storynook.cn/img/story.png"
+            }
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "故事分类",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "睡前故事",
+                    "description": "温馨治愈的睡前小故事，帮助您安然入睡"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "儿童故事",
+                    "description": "适合孩子阅读的有趣故事，寓教于乐"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "历史故事",
+                    "description": "了解历史的精彩故事，增长知识"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "name": "恐怖故事",
+                    "description": "惊险刺激的恐怖小说，挑战胆量"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "name": "爱情故事",
+                    "description": "浪漫感人的爱情小说，触动心灵"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "name": "励志故事",
+                    "description": "激励人心的正能量故事，传递力量"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "name": "规则怪谈",
+                    "description": "规则怪谈，鬼怪传说"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <script type="text/javascript" src="../live2d/js/live2d.js"></script>
+    <script type="text/javascript" src="../live2d/js/message.js"></script>
+    <script type="text/javascript">
+        loadlive2d("live2d", "../live2d/model/xiaoban/model.json");
+    </script>
+
+
+<div class="sidebar-overlay"></div></body></html>

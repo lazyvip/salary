@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小故事铺 - 儿童睡前故事大全</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>小故事铺</h1>
+                </div>
+                
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="搜索故事...">
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="category-settings-btn" id="categorySettingsBtn">
+                        <i class="fas fa-cog"></i>
+                        分类设置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 问候区域 -->
+            <div class="greeting-section">
+                <div class="greeting-card">
+                    <h2 class="greeting-text" id="greetingText">晚上好，今天过得怎么样？</h2>
+                    <button class="hide-greeting-btn" id="hideGreetingBtn">隐藏</button>
+                </div>
+            </div>
+
+            <!-- 分类设置面板 -->
+            <div class="category-settings-panel" id="categorySettingsPanel">
+                <div class="settings-header">
+                    <h3>分类设置</h3>
+                    <button class="close-settings-btn" id="closeSettingsBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <p class="settings-description">选择您想在导航栏显示的分类（最多10个）</p>
+                <div class="category-checkboxes">
+                    <label class="category-checkbox">
+                        <input type="checkbox" value="睡前故事" checked>
+                        <span>睡前故事</span>
+                    </label>
+                    <label class="category-checkbox">
+                        <input type="checkbox" value="童话故事" checked>
+                        <span>童话故事</span>
+                    </label>
+                    <label class="category-checkbox">
+                        <input type="checkbox" value="寓言故事" checked>
+                        <span>寓言故事</span>
+                    </label>
+                    <label class="category-checkbox">
+                        <input type="checkbox" value="成语故事" checked>
+                        <span>成语故事</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 导航分类 -->
+            <nav class="category-nav">
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="category-tab active" data-category="all">全部</button>
+                    <button class="category-tab" data-category="睡前故事">睡前故事</button>
+                    <button class="category-tab" data-category="童话故事">童话故事</button>
+                    <button class="category-tab" data-category="寓言故事">寓言故事</button>
+                    <button class="category-tab" data-category="成语故事">成语故事</button>
+                </div>
+            </nav>
+            
+            <!-- 分类筛选 -->
+            <div class="category-filter">
+                <h2>故事分类</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">全部</button>
+                    <button class="filter-btn" data-category="睡前故事">睡前故事</button>
+                    <button class="filter-btn" data-category="童话故事">童话故事</button>
+                    <button class="filter-btn" data-category="寓言故事">寓言故事</button>
+                    <button class="filter-btn" data-category="成语故事">成语故事</button>
+                </div>
+            </div>
+
+            <!-- 高级筛选 -->
+            <div class="advanced-filter">
+                <h2>高级筛选</h2>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="lengthRange">字数范围:</label>
+                        <select id="lengthRange">
+                            <option value="all">不限</option>
+                            <option value="0-500">500字以内</option>
+                            <option value="500-1000">500-1000字</option>
+                            <option value="1000-2000">1000-2000字</option>
+                            <option value="2000+">2000字以上</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="readingTime">阅读时间:</label>
+                        <select id="readingTime">
+                            <option value="all">不限</option>
+                            <option value="0-3">3分钟内</option>
+                            <option value="3-5">3-5分钟</option>
+                            <option value="5-10">5-10分钟</option>
+                            <option value="10+">10分钟以上</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortBy">排序方式:</label>
+                        <select id="sortBy">
+                            <option value="default">默认排序</option>
+                            <option value="title">按标题</option>
+                            <option value="length">按字数</option>
+                            <option value="category">按分类</option>
+                            <option value="created_at">按创建时间</option>
+                        </select>
+                    </div>
+                    <button id="clearFilters" class="clear-btn">
+                        <i class="fas fa-times"></i>
+                        清除筛选
+                    </button>
+                </div>
+            </div>
+
+            <!-- 故事统计 -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalStories">0</div>
+                    <div class="stat-label">总故事数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCategories">0</div>
+                    <div class="stat-label">分类数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="avgLength">0</div>
+                    <div class="stat-label">平均字数</div>
+                </div>
+            </div>
+
+            <!-- 故事列表 -->
+            <div class="stories-section">
+                <div class="section-header">
+                    <h2>精选故事</h2>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+
+                <!-- 加载指示器 -->
+                <div class="loading" id="loadingIndicator">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>正在加载故事...</p>
+                </div>
+
+                <!-- 故事网格 -->
+                <div class="stories-grid" id="storiesGrid">
+                    <!-- 故事卡片将通过JavaScript动态生成 -->
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination" id="pagination">
+                    <!-- 分页按钮将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 故事详情模态框 -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">故事标题</h2>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="story-meta">
+                    <span class="category-tag" id="modalCategory">分类</span>
+                    <span class="length-info" id="modalLength">字数</span>
+                </div>
+                <div class="story-content" id="modalContent">
+                    <p>故事内容加载中...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="readAloudBtn">
+                    <i class="fas fa-volume-up"></i> 朗读故事
+                </button>
+                <button class="btn btn-secondary" id="favoriteBtn">
+                    <i class="fas fa-heart"></i> 收藏
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>小故事铺</h3>
+                    <p>为孩子们提供最优质的睡前故事，让每个夜晚都充满温馨与想象。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>故事分类</h3>
+                    <ul>
+                        <li><a href="#">睡前故事</a></li>
+                        <li><a href="#">童话故事</a></li>
+                        <li><a href="#">寓言故事</a></li>
+                        <li><a href="#">成语故事</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p><i class="fas fa-envelope"></i> contact@storynook.cn</p>
+                    <p><i class="fas fa-phone"></i> 400-123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 小故事铺. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
