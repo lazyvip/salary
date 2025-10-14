@@ -1,0 +1,83 @@
+2025-10-13 01:01:28,178 - INFO - Starting page structure analysis...
+2025-10-13 01:01:29,217 - WARNING - There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+2025-10-13 01:01:34,183 - ERROR - Failed to setup WebDriver: Message: session not created: This version of ChromeDriver only supports Chrome version 136
+Current browser version is 141.0.7390.66 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Stacktrace:
+	GetHandleVerifier [0x00007FF657CECF25+75717]
+	GetHandleVerifier [0x00007FF657CECF80+75808]
+	(No symbol) [0x00007FF657AB8F9A]
+	(No symbol) [0x00007FF657AFD1DF]
+	(No symbol) [0x00007FF657AFC22B]
+	(No symbol) [0x00007FF657AF6518]
+	(No symbol) [0x00007FF657AF1ADD]
+	(No symbol) [0x00007FF657B452D8]
+	(No symbol) [0x00007FF657B448B0]
+	(No symbol) [0x00007FF657B37153]
+	(No symbol) [0x00007FF657B00421]
+	(No symbol) [0x00007FF657B011B3]
+	GetHandleVerifier [0x00007FF657FED6FD+3223453]
+	GetHandleVerifier [0x00007FF657FE7CA2+3200322]
+	GetHandleVerifier [0x00007FF658005AD3+3322739]
+	GetHandleVerifier [0x00007FF657D069FA+180890]
+	GetHandleVerifier [0x00007FF657D0E0FF+211359]
+	GetHandleVerifier [0x00007FF657CF5274+109332]
+	GetHandleVerifier [0x00007FF657CF5422+109762]
+	GetHandleVerifier [0x00007FF657CDBA39+4825]
+	BaseThreadInitThunk [0x00007FFF06BF7374+20]
+	RtlUserThreadStart [0x00007FFF07E5CC91+33]
+
+2025-10-13 01:01:34,187 - ERROR - Analysis failed: Message: session not created: This version of ChromeDriver only supports Chrome version 136
+Current browser version is 141.0.7390.66 with binary path C:\Program Files\Google\Chrome\Application\chrome.exe
+Stacktrace:
+	GetHandleVerifier [0x00007FF657CECF25+75717]
+	GetHandleVerifier [0x00007FF657CECF80+75808]
+	(No symbol) [0x00007FF657AB8F9A]
+	(No symbol) [0x00007FF657AFD1DF]
+	(No symbol) [0x00007FF657AFC22B]
+	(No symbol) [0x00007FF657AF6518]
+	(No symbol) [0x00007FF657AF1ADD]
+	(No symbol) [0x00007FF657B452D8]
+	(No symbol) [0x00007FF657B448B0]
+	(No symbol) [0x00007FF657B37153]
+	(No symbol) [0x00007FF657B00421]
+	(No symbol) [0x00007FF657B011B3]
+	GetHandleVerifier [0x00007FF657FED6FD+3223453]
+	GetHandleVerifier [0x00007FF657FE7CA2+3200322]
+	GetHandleVerifier [0x00007FF658005AD3+3322739]
+	GetHandleVerifier [0x00007FF657D069FA+180890]
+	GetHandleVerifier [0x00007FF657D0E0FF+211359]
+	GetHandleVerifier [0x00007FF657CF5274+109332]
+	GetHandleVerifier [0x00007FF657CF5422+109762]
+	GetHandleVerifier [0x00007FF657CDBA39+4825]
+	BaseThreadInitThunk [0x00007FFF06BF7374+20]
+	RtlUserThreadStart [0x00007FFF07E5CC91+33]
+
+2025-10-13 01:01:58,697 - INFO - Starting page structure analysis...
+2025-10-13 01:01:58,701 - ERROR - Failed to setup WebDriver: WebDriver.__init__() got an unexpected keyword argument 'executable_path'
+2025-10-13 01:01:58,705 - ERROR - Analysis failed: WebDriver.__init__() got an unexpected keyword argument 'executable_path'
+2025-10-13 01:03:31,784 - INFO - Starting page structure analysis...
+2025-10-13 01:03:34,497 - INFO - WebDriver setup successful with local ChromeDriver
+2025-10-13 01:03:34,531 - INFO - Navigating to https://storynook.cn/
+2025-10-13 01:03:37,573 - INFO - Document ready state: complete
+2025-10-13 01:03:37,594 - INFO - jQuery loaded
+2025-10-13 01:03:37,821 - INFO - Page title loaded: 小故事铺
+2025-10-13 01:04:05,937 - INFO - Page source length: 68126
+2025-10-13 01:04:11,113 - INFO - Not found: #story-grid
+2025-10-13 01:04:11,459 - INFO - Not found: .story-grid
+2025-10-13 01:04:14,580 - INFO - Found .content-card: 50 elements
+2025-10-13 01:04:15,307 - INFO - Not found: .story-card
+2025-10-13 01:04:16,124 - INFO - Not found: .story-item
+2025-10-13 01:04:16,630 - INFO - Not found: .story-list
+2025-10-13 01:04:17,392 - INFO - Not found: #main-content
+2025-10-13 01:04:42,273 - INFO - Found .main-content: 1 elements
+2025-10-13 01:04:42,920 - INFO - Not found: #content
+2025-10-13 01:04:44,030 - INFO - Not found: .content
+2025-10-13 01:04:48,138 - INFO - Found main: 1 elements
+2025-10-13 01:04:51,859 - INFO - Found .container: 1 elements
+2025-10-13 01:04:51,960 - INFO - Not found: #app
+2025-10-13 01:04:52,080 - INFO - Not found: .app
+2025-10-13 01:04:52,542 - INFO - Found 51 elements with onclick attributes
+2025-10-13 01:05:31,296 - INFO - Current state: None
+2025-10-13 01:05:31,313 - INFO - Page structure analysis completed
+2025-10-13 01:05:51,097 - INFO - Analysis completed successfully
+2025-10-13 01:06:23,144 - INFO - WebDriver closed

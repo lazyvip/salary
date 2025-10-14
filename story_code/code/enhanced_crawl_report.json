@@ -1,0 +1,17 @@
+{
+  "crawl_time": "2025-10-13T09:03:19.611831",
+  "total_stories": 94,
+  "total_contents": 0,
+  "categories_found": [
+    "睡前故事"
+  ],
+  "category_stats": {
+    "睡前故事": 94
+  },
+  "length_stats": {
+    "min": 211,
+    "max": 2881,
+    "avg": 744.3191489361702
+  },
+  "content_success_rate": 0.0
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "睡前故事",
+    "sort_id": 15,
+    "is_book": 1
+  },
+  {
+    "id": 2,
+    "name": "儿童故事",
+    "sort_id": 14,
+    "is_book": 1
+  },
+  {
+    "id": 3,
+    "name": "格林童话",
+    "sort_id": 13,
+    "is_book": 1
+  },
+  {
+    "id": 4,
+    "name": "民间故事",
+    "sort_id": 12,
+    "is_book": 1
+  },
+  {
+    "id": 5,
+    "name": "益智故事",
+    "sort_id": 11,
+    "is_book": 1
+  },
+  {
+    "id": 6,
+    "name": "历史故事",
+    "sort_id": 10,
+    "is_book": 1
+  },
+  {
+    "id": 7,
+    "name": "寓言故事",
+    "sort_id": 9,
+    "is_book": 1
+  },
+  {
+    "id": 8,
+    "name": "经典童话",
+    "sort_id": 8,
+    "is_book": 1
+  },
+  {
+    "id": 9,
+    "name": "成语故事",
+    "sort_id": 7,
+    "is_book": 1
+  },
+  {
+    "id": 10,
+    "name": "童话作文",
+    "sort_id": 6,
+    "is_book": 1
+  },
+  {
+    "id": 11,
+    "name": "恐怖故事",
+    "sort_id": 5,
+    "is_book": 1
+  },
+  {
+    "id": 12,
+    "name": "知乎故事",
+    "sort_id": 4,
+    "is_book": 1
+  },
+  {
+    "id": 13,
+    "name": "聊斋志异",
+    "sort_id": 3,
+    "is_book": 1
+  },
+  {
+    "id": 14,
+    "name": "规则怪谈",
+    "sort_id": 2,
+    "is_book": 1
+  },
+  {
+    "id": 15,
+    "name": "推理小说",
+    "sort_id": 1,
+    "is_book": 1
+  }
+]

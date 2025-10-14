@@ -1,0 +1,21 @@
+{
+  "tables": [],
+  "apis": [
+    "https://cxtvmolpayeplvdxcjvf.supabase.co"
+  ],
+  "functions": [
+    "showWelcomeAnimation",
+    "loadUserCategorySettings",
+    "showHome",
+    "loadCategories",
+    "loadMoreStories",
+    "loadStories",
+    "loadStoryDetail",
+    "hideLoading",
+    "showToast",
+    "showLoading",
+    "getRandomInt",
+    "showArticle",
+    "fetchData"
+  ]
+}

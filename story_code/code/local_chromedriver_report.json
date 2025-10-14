@@ -1,0 +1,16 @@
+{
+  "crawl_time": "2025-10-13T00:01:51.940717",
+  "chromedriver_path": "F:\\个人文档\\website\\salary\\story\\chromedriver_exe\\chromedriver.exe",
+  "total_stories": 5,
+  "successful_stories": 0,
+  "failed_stories": 5,
+  "success_rate": "0.00%",
+  "failed_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "stories_sample": []
+}

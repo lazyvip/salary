@@ -66,27 +66,9 @@
     "is_book": 1
   },
   {
-    "id": 12,
-    "name": "知乎故事",
-    "sort_id": 4,
-    "is_book": 1
-  },
-  {
     "id": 13,
     "name": "聊斋志异",
     "sort_id": 3,
-    "is_book": 1
-  },
-  {
-    "id": 14,
-    "name": "规则怪谈",
-    "sort_id": 2,
-    "is_book": 1
-  },
-  {
-    "id": 15,
-    "name": "推理小说",
-    "sort_id": 1,
     "is_book": 1
   }
 ]

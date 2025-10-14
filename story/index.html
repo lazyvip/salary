@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小故事铺</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>小故事铺</h1>
+            </div>
+            <nav class="menu">
+                <div class="menu-group">
+                    <h2 class="menu-title">基础功能</h2>
+                    <ul>
+                        <li><a href="#" onclick="showAllStories()"> <span class="icon">📚</span> 全部故事 </a></li>
+                        <li><a href="#" onclick="toggleSearch()"> <span class="icon">🔍</span> 故事搜索 </a></li>
+                    </ul>
+                </div>
+                <div class="menu-group">
+                    <h2 class="menu-title">故事分类</h2>
+                    <ul id="categoryMenu">
+                        <!-- 分类菜单将通过JavaScript动态生成 -->
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <main class="content">
+            <div class="search-container" id="searchContainer" style="display: none;">
+                <input type="text" id="searchInput" placeholder="搜索故事标题..." onkeyup="searchStories()">
+            </div>
+            <div class="current-category">
+                <h2 id="currentCategoryTitle">全部故事</h2>
+                <span id="storyCount">加载中...</span>
+            </div>
+            <div class="story-grid" id="storyGrid">
+                <!-- 故事卡片将通过JavaScript动态生成 -->
+            </div>
+        </main>
+    </div>
+
+    <!-- 故事详情模态框 -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="story-meta">
+                    <span id="modalCategory"></span>
+                    <span id="modalLength"></span>
+                </div>
+                <div class="story-content" id="modalContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 全局变量
+        let categories = [];
+        let stories = [];
+        let allStoryContents = new Map(); // 改为Map存储，按需加载
+        let loadedBatches = new Set(); // 记录已加载的批次
+        let currentCategory = null;
+        let filteredStories = [];
+        let currentPage = 1;
+        const storiesPerPage = 20; // 每页显示20个故事
+        let isLoading = false;
+
+        // 分类图标映射
+        const categoryIcons = {
+            '睡前故事': '🌙',
+            '儿童故事': '🧒',
+            '格林童话': '🌳',
+            '民间故事': '📜',
+            '益智故事': '🧩',
+            '历史故事': '🏛️',
+            '寓言故事': '🦊',
+            '经典童话': '👑',
+            '成语故事': '📖',
+            '童话作文': '✍️',
+            '聊斋志异': '👻'
+        };
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+
+        // 加载基础数据（不包含故事内容）
+        async function loadData() {
+            try {
+                // 使用优化后的JSON文件
+                const [categoriesResponse, storiesResponse] = await Promise.all([
+                    fetch('supabase_categories.json'),
+                    fetch('stories_optimized.json')
+                ]);
+
+                categories = await categoriesResponse.json();
+                stories = await storiesResponse.json();
+
+                // 按sort_id排序分类
+                categories.sort((a, b) => b.sort_id - a.sort_id);
+
+                // 初始化界面
+                generateCategoryMenu();
+                showAllStories();
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                // 如果优化文件不存在，回退到原始文件
+                try {
+                    const [categoriesResponse, storiesResponse] = await Promise.all([
+                        fetch('supabase_categories.json'),
+                        fetch('supabase_stories.json')
+                    ]);
+
+                    categories = await categoriesResponse.json();
+                    stories = await storiesResponse.json();
+
+                    // 按sort_id排序分类
+                    categories.sort((a, b) => b.sort_id - a.sort_id);
+
+                    // 初始化界面
+                    generateCategoryMenu();
+                    showAllStories();
+                } catch (fallbackError) {
+                    console.error('加载数据失败:', fallbackError);
+                    document.getElementById('storyGrid').innerHTML = '<p>加载数据失败，请刷新页面重试。</p>';
+                }
+            }
+        }
+
+        // 懒加载故事内容
+        async function loadStoryContent(storyId) {
+            if (allStoryContents.has(storyId)) {
+                return allStoryContents.get(storyId);
+            }
+
+            try {
+                // 计算故事ID所在的批次
+                const batchSize = 100;
+                const batchNumber = Math.ceil(storyId / batchSize);
+                
+                // 检查是否已经加载过这个批次
+                const batchKey = `batch_${batchNumber}`;
+                if (!loadedBatches.has(batchKey)) {
+                    const response = await fetch(`contents/batch_${batchNumber}.json`);
+                    if (response.ok) {
+                        const contents = await response.json();
+                        
+                        contents.forEach(content => {
+                            allStoryContents.set(content.story_id, content);
+                        });
+                        
+                        loadedBatches.add(batchKey);
+                    } else {
+                        // 如果批次文件不存在，回退到加载所有内容
+                        const fallbackResponse = await fetch('supabase_story_contents.json');
+                        const allContents = await fallbackResponse.json();
+                        
+                        allContents.forEach(content => {
+                            allStoryContents.set(content.story_id, content);
+                        });
+                    }
+                }
+
+                return allStoryContents.get(storyId);
+            } catch (error) {
+                console.error('加载故事内容失败:', error);
+                return null;
+            }
+        }
+
+        // 生成分类菜单
+        function generateCategoryMenu() {
+            const menuContainer = document.getElementById('categoryMenu');
+            menuContainer.innerHTML = '';
+
+            categories.forEach(category => {
+                const li = document.createElement('li');
+                const icon = categoryIcons[category.name] || '📚';
+                li.innerHTML = `
+                    <a href="#" onclick="filterByCategory(${category.id}, '${category.name}')">
+                        <span class="icon">${icon}</span> ${category.name}
+                    </a>
+                `;
+                menuContainer.appendChild(li);
+            });
+        }
+
+        // 显示所有故事
+        function showAllStories() {
+            currentCategory = null;
+            filteredStories = stories;
+            updateActiveMenu('all');
+            document.getElementById('currentCategoryTitle').textContent = '全部故事';
+            renderStories();
+        }
+
+        // 按分类筛选故事
+        function filterByCategory(categoryId, categoryName) {
+            currentCategory = categoryId;
+            filteredStories = stories.filter(story => story.category_id === categoryId);
+            updateActiveMenu(categoryId);
+            document.getElementById('currentCategoryTitle').textContent = categoryName;
+            renderStories();
+        }
+
+        // 更新活跃菜单项
+        function updateActiveMenu(activeId) {
+            // 移除所有活跃状态
+            document.querySelectorAll('.menu li').forEach(li => li.classList.remove('active'));
+            
+            // 添加活跃状态
+            if (activeId === 'all') {
+                document.querySelector('.menu a[onclick="showAllStories()"]').parentElement.classList.add('active');
+            } else {
+                document.querySelector(`.menu a[onclick="filterByCategory(${activeId}, '${categories.find(c => c.id === activeId)?.name}')"]`)?.parentElement.classList.add('active');
+            }
+        }
+
+        // 渲染故事卡片（分页）
+        function renderStories(append = false) {
+            const grid = document.getElementById('storyGrid');
+            const storyCount = document.getElementById('storyCount');
+            
+            storyCount.textContent = `共 ${filteredStories.length} 个故事`;
+
+            if (filteredStories.length === 0) {
+                grid.innerHTML = '<p class="no-stories">没有找到相关故事</p>';
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * storiesPerPage;
+            const endIndex = startIndex + storiesPerPage;
+            const currentPageStories = filteredStories.slice(startIndex, endIndex);
+
+            // 使用文档片段优化DOM操作
+            const fragment = document.createDocumentFragment();
+            
+            currentPageStories.forEach(story => {
+                const storyCard = document.createElement('div');
+                storyCard.className = 'story-card';
+                storyCard.onclick = () => openStoryModal(story.id);
+                
+                storyCard.innerHTML = `
+                    <h3>${story.title}</h3>
+                    <p>${story.excerpt}</p>
+                    <div class="card-footer">
+                        <span>${story.category_name}</span>
+                        <span>${story.length}字</span>
+                    </div>
+                `;
+                
+                fragment.appendChild(storyCard);
+            });
+
+            // 添加加载更多按钮
+            if (endIndex < filteredStories.length) {
+                const loadMoreContainer = document.createElement('div');
+                loadMoreContainer.className = 'load-more-container';
+                
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.className = 'load-more-btn';
+                loadMoreBtn.textContent = `加载更多 (${filteredStories.length - endIndex} 个故事)`;
+                loadMoreBtn.disabled = isLoading;
+                loadMoreBtn.onclick = loadMoreStories;
+                
+                loadMoreContainer.appendChild(loadMoreBtn);
+                fragment.appendChild(loadMoreContainer);
+            }
+
+            if (append) {
+                // 移除旧的加载更多按钮
+                const oldLoadMore = grid.querySelector('.load-more-container');
+                if (oldLoadMore) {
+                    oldLoadMore.remove();
+                }
+                grid.appendChild(fragment);
+            } else {
+                // 一次性更新DOM
+                grid.innerHTML = '';
+                grid.appendChild(fragment);
+            }
+        }
+
+        // 加载更多故事
+        function loadMoreStories() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const loadMoreBtn = document.querySelector('.load-more-btn');
+            if (loadMoreBtn) {
+                loadMoreBtn.textContent = '加载中...';
+                loadMoreBtn.disabled = true;
+            }
+
+            // 模拟网络延迟
+            setTimeout(() => {
+                currentPage++;
+                renderStories(true);
+                isLoading = false;
+            }, 300);
+        }
+
+        // 打开故事详情模态框（懒加载内容）
+        async function openStoryModal(storyId) {
+            const story = stories.find(s => s.id === storyId);
+            
+            if (!story) return;
+
+            document.getElementById('modalTitle').textContent = story.title;
+            document.getElementById('modalCategory').textContent = story.category_name;
+            document.getElementById('modalLength').textContent = `${story.length}字`;
+            
+            // 显示加载状态
+            document.getElementById('modalContent').innerHTML = '<div class="loading">正在加载故事内容...</div>';
+            document.getElementById('storyModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            // 异步加载故事内容
+            try {
+                const contentObj = await loadStoryContent(storyId);
+                if (contentObj && contentObj.content) {
+                    document.getElementById('modalContent').innerHTML = contentObj.content.replace(/\n/g, '<br>');
+                } else {
+                    document.getElementById('modalContent').innerHTML = '<p>内容加载失败，请重试</p>';
+                }
+            } catch (error) {
+                document.getElementById('modalContent').innerHTML = '<p>内容加载失败，请重试</p>';
+            }
+        }
+
+        // 关闭模态框
+        function closeModal() {
+            document.getElementById('storyModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // 切换搜索框显示
+        function toggleSearch() {
+            const searchContainer = document.getElementById('searchContainer');
+            const searchInput = document.getElementById('searchInput');
+            
+            if (searchContainer.style.display === 'none') {
+                searchContainer.style.display = 'block';
+                searchInput.focus();
+            } else {
+                searchContainer.style.display = 'none';
+                searchInput.value = '';
+                // 如果当前有分类筛选，恢复分类筛选，否则显示全部
+                if (currentCategory) {
+                    const category = categories.find(c => c.id === currentCategory);
+                    filterByCategory(currentCategory, category.name);
+                } else {
+                    showAllStories();
+                }
+            }
+        }
+
+        // 获取过滤后的故事
+        function getFilteredStories() {
+            let filtered = stories;
+            
+            // 按分类过滤
+            if (currentCategory !== null) {
+                filtered = filtered.filter(story => story.category_id === currentCategory);
+            }
+            
+            // 按搜索词过滤
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (searchTerm) {
+                filtered = filtered.filter(story => 
+                    story.title.toLowerCase().includes(searchTerm) || 
+                    story.excerpt.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            return filtered;
+        }
+
+        // 搜索故事
+        function searchStories() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                // 如果搜索框为空，恢复当前分类的故事
+                if (currentCategory) {
+                    const category = categories.find(c => c.id === currentCategory);
+                    filterByCategory(currentCategory, category.name);
+                } else {
+                    showAllStories();
+                }
+                return;
+            }
+
+            // 在当前分类中搜索
+            const baseStories = currentCategory ? 
+                stories.filter(story => story.category_id === currentCategory) : 
+                stories;
+            
+            filteredStories = baseStories.filter(story => 
+                story.title.toLowerCase().includes(searchTerm) ||
+                story.excerpt.toLowerCase().includes(searchTerm)
+            );
+
+            currentPage = 1; // 重置分页
+            document.getElementById('currentCategoryTitle').textContent = 
+                `搜索结果: "${searchTerm}"`;
+            renderStories();
+        }
+
+        // 点击模态框外部关闭
+        window.onclick = function(event) {
+            const modal = document.getElementById('storyModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // ESC键关闭模态框
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

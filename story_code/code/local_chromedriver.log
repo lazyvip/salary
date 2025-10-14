@@ -1,0 +1,151 @@
+2025-10-12 23:55:30,617 - INFO - ✅ 找到ChromeDriver: F:\个人文档\website\salary\story\chromedriver_exe\chromedriver.exe
+2025-10-12 23:55:30,662 - INFO - ✅ 数据库初始化完成
+2025-10-12 23:55:30,695 - INFO - 🚀 开始测试网站可访问性...
+2025-10-12 23:55:34,126 - INFO - ✅ WebDriver创建成功
+2025-10-12 23:55:34,178 - INFO - 🔍 测试网站可访问性...
+2025-10-12 23:56:37,776 - INFO - 📖 主页标题: 小故事铺
+2025-10-12 23:56:39,887 - INFO - 🔗 当前URL: https://storynook.cn/
+2025-10-12 23:56:40,191 - INFO - 📏 页面源码长度: 68115
+2025-10-12 23:56:40,377 - INFO - 🔍 测试故事页面: https://storynook.cn/story/1
+2025-10-12 23:56:41,179 - ERROR -   ❌ 测试故事 1 失败: Message: unknown error: net::ERR_CONNECTION_CLOSED
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97dc48]
+	(No symbol) [0x0x97b147]
+	(No symbol) [0x0x96e422]
+	(No symbol) [0x0x96fe1e]
+	(No symbol) [0x0x96e930]
+	(No symbol) [0x0x96e1e4]
+	(No symbol) [0x0x96deef]
+	(No symbol) [0x0x96be60]
+	(No symbol) [0x0x96c7fb]
+	(No symbol) [0x0x9817ce]
+	(No symbol) [0x0xa0d7f7]
+	(No symbol) [0x0x9eb1cc]
+	(No symbol) [0x0xa0cba7]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-12 23:56:41,186 - INFO - 🔍 测试故事页面: https://storynook.cn/story/2
+2025-10-12 23:56:45,728 - INFO -   故事 2 - 标题: 404: NOT_FOUND
+2025-10-12 23:56:45,728 - INFO -   故事 2 - 页面长度: 3790
+2025-10-12 23:56:45,728 - WARNING -   ❌ 故事 2 可能不可访问
+2025-10-12 23:56:45,729 - INFO - 🔍 测试故事页面: https://storynook.cn/story/3
+2025-10-12 23:56:50,052 - INFO -   故事 3 - 标题: 404: NOT_FOUND
+2025-10-12 23:56:50,064 - INFO -   故事 3 - 页面长度: 3790
+2025-10-12 23:56:50,069 - WARNING -   ❌ 故事 3 可能不可访问
+2025-10-12 23:56:50,087 - INFO - 🔍 测试故事页面: https://storynook.cn/story/5
+2025-10-12 23:56:54,352 - INFO -   故事 5 - 标题: 404: NOT_FOUND
+2025-10-12 23:56:54,352 - INFO -   故事 5 - 页面长度: 3790
+2025-10-12 23:56:54,353 - WARNING -   ❌ 故事 5 可能不可访问
+2025-10-12 23:56:54,353 - INFO - 🔍 测试故事页面: https://storynook.cn/story/10
+2025-10-12 23:56:57,802 - INFO -   故事 10 - 标题: 404: NOT_FOUND
+2025-10-12 23:56:57,802 - INFO -   故事 10 - 页面长度: 3790
+2025-10-12 23:56:57,803 - WARNING -   ❌ 故事 10 可能不可访问
+2025-10-12 23:56:57,804 - INFO - 🎉 网站可访问性测试完成
+2025-10-12 23:56:57,805 - INFO - 可访问的故事: []
+2025-10-12 23:57:02,612 - INFO - ✅ 网站可访问性测试通过，开始爬取故事...
+2025-10-12 23:57:02,613 - INFO - 🚀 开始爬取故事 1 到 5
+2025-10-12 23:57:08,416 - INFO - ✅ WebDriver创建成功
+2025-10-12 23:57:08,417 - INFO - 🔍 正在爬取故事 1: https://storynook.cn/story/1
+2025-10-12 23:57:10,282 - INFO - ⏳ 等待JavaScript执行...
+2025-10-12 23:57:18,777 - INFO - 📄 页面状态: complete
+2025-10-12 23:57:20,821 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:57:23,042 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:57:25,145 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:57:25,305 - INFO - 📖 页面标题: 404: NOT_FOUND
+2025-10-12 23:57:25,376 - INFO - 🔗 页面URL: https://storynook.cn/story/1
+2025-10-12 23:57:25,377 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:57:25,383 - WARNING - ⚠️ 故事 1 页面返回404
+2025-10-12 23:57:29,927 - WARNING - ❌ 故事 1 爬取失败
+2025-10-12 23:57:51,705 - INFO - ✅ WebDriver创建成功
+2025-10-12 23:57:51,758 - INFO - 🔍 正在爬取故事 2: https://storynook.cn/story/2
+2025-10-12 23:57:53,825 - INFO - ⏳ 等待JavaScript执行...
+2025-10-12 23:58:01,899 - INFO - 📄 页面状态: complete
+2025-10-12 23:58:03,988 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:06,309 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:08,477 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:08,659 - INFO - 📖 页面标题: 404: NOT_FOUND
+2025-10-12 23:58:08,701 - INFO - 🔗 页面URL: https://storynook.cn/story/2
+2025-10-12 23:58:08,701 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:08,702 - WARNING - ⚠️ 故事 2 页面返回404
+2025-10-12 23:58:11,117 - WARNING - ❌ 故事 2 爬取失败
+2025-10-12 23:58:25,481 - INFO - ✅ WebDriver创建成功
+2025-10-12 23:58:25,488 - INFO - 🔍 正在爬取故事 3: https://storynook.cn/story/3
+2025-10-12 23:58:35,270 - INFO - ⏳ 等待JavaScript执行...
+2025-10-12 23:58:43,355 - INFO - 📄 页面状态: complete
+2025-10-12 23:58:48,640 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:51,004 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:53,101 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:53,267 - INFO - 📖 页面标题: 404: NOT_FOUND
+2025-10-12 23:58:53,370 - INFO - 🔗 页面URL: https://storynook.cn/story/3
+2025-10-12 23:58:53,387 - INFO - 📏 页面源码长度: 3790
+2025-10-12 23:58:53,534 - WARNING - ⚠️ 故事 3 页面返回404
+2025-10-12 23:59:01,774 - WARNING - ❌ 故事 3 爬取失败
+2025-10-12 23:59:10,483 - ERROR - ❌ 创建WebDriver失败: Message: target frame detached
+  (failed to check if window was closed: disconnected: Unable to receive message from renderer)
+  (Session info: chrome=141.0.7390.66)
+Stacktrace:
+	GetHandleVerifier [0x0xb8fea3+66515]
+	GetHandleVerifier [0x0xb8fee4+66580]
+	(No symbol) [0x0x97da6b]
+	(No symbol) [0x0x96de7d]
+	(No symbol) [0x0x96d03a]
+	(No symbol) [0x0x98b81b]
+	(No symbol) [0x0x98ab11]
+	(No symbol) [0x0xa0cedf]
+	(No symbol) [0x0x9eafc6]
+	(No symbol) [0x0x9bc2ca]
+	(No symbol) [0x0x9bd154]
+	GetHandleVerifier [0x0xde73d3+2521347]
+	GetHandleVerifier [0x0xde2353+2500739]
+	GetHandleVerifier [0x0xbb7cf4+229924]
+	GetHandleVerifier [0x0xba8258+165768]
+	GetHandleVerifier [0x0xbaed0d+193085]
+	GetHandleVerifier [0x0xb981b8+100072]
+	GetHandleVerifier [0x0xb98350+100480]
+	GetHandleVerifier [0x0xb8260a+11066]
+	BaseThreadInitThunk [0x0x765cfcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa82ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77aa827e+238]
+
+2025-10-12 23:59:10,530 - ERROR - ❌ 无法创建WebDriver，跳过故事 4
+2025-10-12 23:59:10,555 - WARNING - ❌ 故事 4 爬取失败
+2025-10-12 23:59:55,751 - INFO - ✅ WebDriver创建成功
+2025-10-12 23:59:55,752 - INFO - 🔍 正在爬取故事 5: https://storynook.cn/story/5
+2025-10-13 00:00:16,760 - INFO - ⏳ 等待JavaScript执行...
+2025-10-13 00:00:29,099 - INFO - 📄 页面状态: complete
+2025-10-13 00:00:35,586 - INFO - 📏 页面源码长度: 3790
+2025-10-13 00:00:57,789 - INFO - 📏 页面源码长度: 3790
+2025-10-13 00:01:10,064 - INFO - 📏 页面源码长度: 3790
+2025-10-13 00:01:35,045 - INFO - 📖 页面标题: 404: NOT_FOUND
+2025-10-13 00:01:35,463 - INFO - 🔗 页面URL: https://storynook.cn/story/5
+2025-10-13 00:01:35,488 - INFO - 📏 页面源码长度: 3790
+2025-10-13 00:01:35,505 - WARNING - ⚠️ 故事 5 页面返回404
+2025-10-13 00:01:49,870 - WARNING - ❌ 故事 5 爬取失败
+2025-10-13 00:01:55,890 - INFO - 
+=== 🎉 爬取完成 ===
+ChromeDriver路径: F:\个人文档\website\salary\story\chromedriver_exe\chromedriver.exe
+总计故事: 5
+成功爬取: 0
+失败数量: 5
+成功率: 0.00%
+报告已保存到: local_chromedriver_report.json
+故事数据已保存到: local_chromedriver_stories.json
+数据库: local_chromedriver_stories.db
+        
+2025-10-13 00:01:55,972 - WARNING - ⚠️ 没有故事数据可分析
