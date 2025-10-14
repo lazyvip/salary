@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 汉堡菜单按钮 -->
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    
+    <!-- 侧边栏遮罩 -->
+    <div class="sidebar-overlay" onclick="closeSidebar()"></div>
+    
     <div class="container">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="logo">
                 <h1>小故事铺</h1>
             </div>
@@ -304,6 +310,16 @@
                 currentPage++;
                 renderStories(true);
                 isLoading = false;
+                
+                // 重新启用按钮并更新文本
+                const newLoadMoreBtn = document.querySelector('.load-more-btn');
+                if (newLoadMoreBtn) {
+                    newLoadMoreBtn.disabled = false;
+                    const remainingStories = filteredStories.length - (currentPage * storiesPerPage);
+                    if (remainingStories > 0) {
+                        newLoadMoreBtn.textContent = `加载更多 (${remainingStories} 个故事)`;
+                    }
+                }
             }, 300);
         }
 
@@ -427,6 +443,35 @@
             if (event.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // 移动端侧边栏控制函数
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        }
+
+        function closeSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        // 点击侧边栏内的链接后自动关闭侧边栏（移动端）
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar a');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        closeSidebar();
+                    }
+                });
+            });
         });
     </script>
 </body>
