@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT 提示词大全 | ExplainThis</title>
+    <meta name="description" content="精选 ChatGPT 提示词大全，涵盖求职面试、程式开发、写作助手、英语学习等多个领域，助力高效AI对话">
+    <meta name="keywords" content="ChatGPT,提示词,Prompt,AI,人工智能,求职,面试,编程,写作">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../index.html" class="home-link" style="position: absolute; top: 20px; left: 20px; text-decoration: none; color: #2563eb; font-weight: 500; display: flex; align-items: center;">
+        <span style="margin-right: 5px;">←</span> 返回主页
+    </a>
+    <header>
+        <h1>ChatGPT 提示词大全 <span class="subtitle">（精选收录）</span></h1>
+        <div class="desc">探索高质量 ChatGPT 提示词，涵盖工作生活各个场景</div>
+        <div class="stats" id="stats-info">
+            <span>共收录 <strong id="total-prompts">94</strong> 个提示词</span>
+            <span>分布在 <strong id="total-categories">19</strong> 个分类</span>
+        </div>
+        <div class="toolbar main-container">
+            <div id="category-list"></div>
+            <input type="text" id="search-input" placeholder="搜索提示词标题、内容或参数...">
+        </div>
+    </header>
+    <main class="main-container">
+        <h2 class="fav-title">精选提示词 <span class="fav-heart">✨</span></h2>
+        <div id="prompt-list" class="prompt-list"></div>
+        <div id="no-results" class="no-results hidden">
+            <div class="no-results-icon">🔍</div>
+            <div class="no-results-text">未找到匹配的提示词</div>
+            <div class="no-results-desc">尝试调整搜索关键词或选择其他分类</div>
+        </div>
+    </main>
+    <div id="prompt-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal-btn">×</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+    <footer class="footer">
+        <p>© 2025 ChatGPT 提示词大全 | 数据来源：<a href="https://www.explainthis.io/zh-hans/chatgpt" target="_blank" rel="noopener">ExplainThis</a></p>
+    </footer>
+</body>
+</html>
