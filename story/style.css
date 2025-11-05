@@ -41,6 +41,7 @@ body {
 
 .logo h1 {
     font-size: 24px;
+    margin-top: 60px;
     margin-bottom: 30px;
     padding-left: 10px;
 }
@@ -398,6 +399,26 @@ body {
     background-color: var(--active-bg);
 }
 
+/* 返回工具箱按钮 */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background-color: var(--card-bg);
+    border: none;
+    color: var(--text-color);
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-button:hover {
+    background-color: var(--active-bg);
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     body {
@@ -411,6 +432,12 @@ body {
     
     .menu-toggle {
         display: block;
+    }
+    /* 移动端时将返回按钮右移，避免与汉堡按钮重叠 */
+    .back-button {
+        left: 70px;
+        font-size: 12px;
+        padding: 6px 10px;
     }
     
     .sidebar {

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 返回工具箱按钮 -->
+    <button class="back-button" onclick="goBackToTools()">返回工具箱</button>
     <!-- 汉堡菜单按钮 -->
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
     
@@ -460,6 +462,12 @@
             
             sidebar.classList.remove('open');
             overlay.classList.remove('show');
+        }
+
+        // 返回工具箱（跳转到上级目录首页）
+        function goBackToTools() {
+            // 使用相对路径返回到工具箱首页
+            window.location.href = '../index.html';
         }
 
         // 点击侧边栏内的链接后自动关闭侧边栏（移动端）
