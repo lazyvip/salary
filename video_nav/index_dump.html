@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>视频导航 · 手绘风</title>
+    <meta name="description" content="汇总视频素材、图片素材、制作工具、字幕配音、音乐素材等14类资源的手绘风静态导航站" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>懒人视频制作导航</h1>
+      <p class="subtitle">致力打造好用的视频创作导航</p>
+      <div class="controls">
+        <label class="control">
+          <span>分类</span>
+          <select id="categorySelect"></select>
+        </label>
+        <label class="control full">
+          <span>搜索</span>
+          <input id="searchInput" type="search" placeholder="输入站点名或描述关键字…" />
+        </label>
+      </div>
+    </header>
+
+    <main id="content" class="content" aria-live="polite"></main>
+
+    <footer class="site-footer">
+      <div class="source">数据来源：<a href="https://www.aewz.com/" target="_blank" rel="noopener">AEWZ</a> · 本地版整理</div>
+      <div class="copyright">© 2025 导航整理 | 仅作学习交流使用</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

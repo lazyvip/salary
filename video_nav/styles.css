@@ -1,0 +1,124 @@
+/* 手绘风配色与变量 */
+:root {
+  --bg: #fffbea;
+  --ink: #2b2b2b;
+  --accent: #ff7b72;
+  --accent-2: #60a5fa;
+  --card: #ffffff;
+  --muted: #6b7280;
+}
+
+* { box-sizing: border-box }
+html, body { height: 100% }
+body {
+  margin: 0;
+  font-family: "Patrick Hand", "Caveat", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0; width: 100%;
+  z-index: 100;
+  background: var(--bg);
+  padding: 24px 20px 12px;
+  border-bottom: 3px dashed rgba(0,0,0,0.08);
+}
+.site-header h1 {
+  margin: 0;
+  font-size: 32px;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px #fff;
+  text-align: center;
+}
+.subtitle { margin: 4px 0 16px; color: var(--muted); text-align: center }
+
+.controls { display: grid; grid-template-columns: 180px 1fr; gap: 12px }
+.control { display: grid; gap: 6px }
+.control.full { grid-column: 2 / 3 }
+.control span { font-size: 14px; color: var(--muted) }
+.controls select, .controls input[type="search"] {
+  height: 40px; padding: 8px 12px; border-radius: 12px;
+  border: 2px solid #0001; background: var(--card);
+  box-shadow: 3px 3px 0 #0001;
+  outline: none;
+}
+.controls select:focus, .controls input[type="search"]:focus {
+  border-color: var(--accent-2);
+  box-shadow: 4px 4px 0 var(--accent-2);
+}
+
+.tip { margin-top: 10px; font-size: 13px; color: var(--muted) }
+
+.content { padding: 18px 20px 80px; max-width: 1200px; margin: var(--header-h, 140px) auto 0 }
+
+.category { margin: 22px 0; padding: 14px; border: 2px dashed #0002; border-radius: 16px; background: #fff; }
+.category h2 {
+  margin: 0 0 12px; font-size: 22px; display: inline-flex; gap: 8px;
+}
+.category h2 .badge {
+  display: inline-block; padding: 2px 10px; border-radius: 999px;
+  background: var(--accent-2); color: white; font-size: 14px;
+}
+.grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+}
+.card {
+  background: var(--card);
+  border: 2px solid #0001;
+  border-radius: 14px;
+  padding: 12px 12px 14px;
+  box-shadow: 4px 4px 0 #0001;
+  transition: transform .08s ease, box-shadow .2s ease;
+  position: relative;
+}
+.card:hover { transform: rotate(-0.5deg) translateY(-2px); box-shadow: 6px 6px 0 var(--accent-2) }
+.card h3 { margin: 0 0 8px; font-size: 18px }
+.card p { margin: 0 0 10px; color: var(--muted); font-size: 14px; line-height: 1.4 }
+
+/* 卡片作为链接使用时的样式 */
+a.card { text-decoration: none; color: inherit; display: block }
+a.card:visited { color: inherit }
+
+/* 付费/半付费/免费 标注 */
+.fee-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: #f3f4f6; color: #374151; border: 1px solid #0002;
+  border-radius: 999px; padding: 2px 8px; font-size: 12px; font-weight: 700;
+}
+.fee-badge.free { background: #10b981; color: #fff; border-color: transparent }
+.fee-badge.semi { background: #f59e0b; color: #fff; border-color: transparent }
+.fee-badge.paid { background: #ef4444; color: #fff; border-color: transparent }
+
+/* 语言徽标（EN/CH）- 浅色配色 */
+.lang-badge {
+  position: absolute; bottom: 10px; right: 10px;
+  background: #f8fafc; color: #374151; border: 1px solid #0002;
+  border-radius: 999px; padding: 2px 8px; font-size: 12px; font-weight: 700; z-index: 1;
+}
+.lang-badge.en { background: #dbeafe; color: #1f2937; border-color: transparent }
+.lang-badge.ch { background: #ffe7e2; color: #1f2937; border-color: transparent }
+
+.footer { margin-top: 40px }
+.site-footer { border-top: 3px dashed rgba(0,0,0,0.08); padding: 16px 20px 40px; color: var(--muted) }
+.site-footer a { color: var(--accent-2); text-decoration: none }
+
+/* 返回工具箱按钮 */
+.back-btn {
+  position: absolute; left: 16px; top: 16px;
+  display: inline-block; padding: 6px 10px;
+  background: var(--card); border: 2px solid #0001; border-radius: 10px;
+  color: var(--ink); text-decoration: none; font-weight: 700; box-shadow: 3px 3px 0 #0001;
+}
+.back-btn:hover { box-shadow: 4px 4px 0 var(--accent-2) }
+
+/* 折叠动画 */
+.collapsed .grid { display: none }
+.category h2 { cursor: pointer }
+
+/* 响应式调整 */
+@media (max-width: 720px) {
+  .controls { grid-template-columns: 1fr; }
+  .control.full { grid-column: auto }
+}
