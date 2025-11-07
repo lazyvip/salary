@@ -13,11 +13,71 @@ async function init() {
   // 根据头部高度为内容区预留空间，避免固定头部遮挡
   const header = document.querySelector('.site-header');
   const updateHeaderOffset = () => {
-    const h = header ? header.offsetHeight : 140;
+    if (!header) return;
+    // 隐藏时减少占位，避免出现大面积空白
+    if (header.classList.contains('hidden')) {
+      document.documentElement.style.setProperty('--header-h', '8px');
+      return;
+    }
+    const h = header.offsetHeight || 140;
     document.documentElement.style.setProperty('--header-h', h + 'px');
   };
   updateHeaderOffset();
   window.addEventListener('resize', updateHeaderOffset);
+
+  // 滚动交互：下滑隐藏，上滑显示（苹果风格的平滑过渡）
+  if (header) {
+    let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let hidden = false;
+    let ticking = false;
+    const threshold = 6; // 防抖阈值，避免细微滚动抖动
+    // 若初始并非顶部，进入紧凑模式
+    if (lastY > 0) {
+      header.classList.add('compact');
+      updateHeaderOffset();
+    }
+
+    const showHeader = () => {
+      if (hidden) {
+        header.classList.remove('hidden');
+        hidden = false;
+      }
+    };
+    const hideHeader = () => {
+      if (!hidden) {
+        header.classList.add('hidden');
+        hidden = true;
+      }
+    };
+
+    const onScroll = () => {
+      const currentY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      const delta = currentY - lastY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // 顶部始终显示（并恢复完整头部）
+          if (currentY <= 0) {
+            showHeader();
+            header.classList.remove('compact');
+            updateHeaderOffset();
+          } else if (delta > threshold) {
+            // 向下滚动：隐藏头部
+            hideHeader();
+            updateHeaderOffset();
+          } else if (delta < -threshold) {
+            // 向上滚动：显示头部（紧凑模式，仅保留 h1 与 p）
+            showHeader();
+            header.classList.add('compact');
+            updateHeaderOffset();
+          }
+          lastY = currentY;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 
   bindControls();
   try {

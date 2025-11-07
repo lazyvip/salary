@@ -24,7 +24,20 @@ body {
   background: var(--bg);
   padding: 24px 20px 12px;
   border-bottom: 3px dashed rgba(0,0,0,0.08);
+  transition: transform .28s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
+.site-header.hidden { transform: translateY(-110%) }
+
+/* 紧凑模式：滚动时仅显示标题与副标题 */
+.site-header.compact {
+  padding: 10px 16px 8px;
+  border-bottom: 2px dashed rgba(0,0,0,0.06);
+}
+.site-header.compact .controls { display: none }
+.site-header.compact .back-btn { display: none }
+.site-header.compact h1 { font-size: 24px }
+.site-header.compact .subtitle { margin: 2px 0 8px }
 .site-header h1 {
   margin: 0;
   font-size: 32px;
@@ -121,4 +134,12 @@ a.card:visited { color: inherit }
 @media (max-width: 720px) {
   .controls { grid-template-columns: 1fr; }
   .control.full { grid-column: auto }
+  /* 移动端：为返回按钮预留空间，避免遮挡标题 */
+  .site-header { padding-top: 44px; }
+  .site-header h1 { padding-left: 64px; }
+  .back-btn { 
+    top: calc(env(safe-area-inset-top, 0px) + 8px); 
+    left: calc(env(safe-area-inset-left, 0px) + 8px);
+    padding: 5px 10px; font-size: 14px;
+  }
 }

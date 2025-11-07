@@ -1,0 +1,179 @@
+总计: 201 | 可访问: 157 | 失效: 44
+
+[1] 分类(0) 精选推荐 -> 项目(10) 抖音好物联盟
+    URL: https://www.douyin.com/merch
+    状态: 404 | 错误: HTTPError: Not Found
+
+[2] 分类(0) 精选推荐 -> 项目(11) 秒拍号
+    URL: https://creator.miaopai.com/login
+    状态: None | 错误: Error: The read operation timed out
+
+[3] 分类(0) 精选推荐 -> 项目(15) 讯飞快读
+    URL: https://www.ffkuaidu.com/
+    状态: None | 错误: URLError: [Errno 11001] getaddrinfo failed
+
+[4] 分类(0) 精选推荐 -> 项目(18) Vidsplay
+    URL: https://www.vidsplay.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[5] 分类(1) 视频素材 -> 项目(0) Video
+    URL: https://www.videvo.net/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[6] 分类(1) 视频素材 -> 项目(1) Vidsplay
+    URL: https://www.vidsplay.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[7] 分类(1) 视频素材 -> 项目(6) Videezy
+    URL: https://www.videezy.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[8] 分类(1) 视频素材 -> 项目(7) Distill
+    URL: https://wedistill.io/
+    状态: None | 错误: URLError: timed out
+
+[9] 分类(1) 视频素材 -> 项目(10) pexels
+    URL: https://www.pexels.com/videos
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[10] 分类(1) 视频素材 -> 项目(11) monzoom
+    URL: https://www.monzoom.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[11] 分类(1) 视频素材 -> 项目(13) Ignite Motion
+    URL: https://www.ignitemotion.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[12] 分类(1) 视频素材 -> 项目(16) Pond5
+    URL: https://www.pond5.com/
+    状态: None | 错误: URLError: timed out
+
+[13] 分类(1) 视频素材 -> 项目(17) cutestockfootage
+    URL: https://www.cutestockfootage.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[14] 分类(1) 视频素材 -> 项目(19) 傲视网
+    URL: http://www.aoao365.com/
+    状态: None | 错误: URLError: timed out
+
+[15] 分类(2) 图片素材 -> 项目(4) Unsplash
+    URL: https://unsplash.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[16] 分类(2) 图片素材 -> 项目(6) Foter
+    URL: https://foter.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[17] 分类(3) 制作工具 -> 项目(6) GET写作
+    URL: https://getgetai.com/
+    状态: None | 错误: URLError: timed out
+
+[18] 分类(4) 字幕配音 -> 项目(2) 牛片
+    URL: https://www.6pian.cn/zimu.html
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[19] 分类(4) 字幕配音 -> 项目(6) 字说
+    URL: https://h5.zishuovideo.com/#/?ref=aewz.com
+    状态: None | 错误: URLError: [Errno 11001] getaddrinfo failed
+
+[20] 分类(4) 字幕配音 -> 项目(7) 突字幕
+    URL: https://2zimu.com/#/?ref=aewz.com
+    状态: None | 错误: URLError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+
+[21] 分类(4) 字幕配音 -> 项目(9) 讯飞快读
+    URL: https://www.ffkuaidu.com/
+    状态: None | 错误: URLError: [Errno 11001] getaddrinfo failed
+
+[22] 分类(5) 音乐素材 -> 项目(9) Musopen
+    URL: https://musopen.org/music/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[23] 分类(5) 音乐素材 -> 项目(10) Sample Focus
+    URL: https://samplefocus.com/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[24] 分类(5) 音乐素材 -> 项目(11) 曲多多
+    URL: https://agm.haifanwu.com/
+    状态: 405 | 错误: HTTPError: Not Allowed
+
+[25] 分类(5) 音乐素材 -> 项目(12) musopen
+    URL: https://musopen.org/music/
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[26] 分类(5) 音乐素材 -> 项目(15) PremiumBeat
+    URL: https://www.premiumbeat.com/zh/
+    状态: None | 错误: Error: The read operation timed out
+
+[27] 分类(6) 文案脚本 -> 项目(0) 文案迷
+    URL: http://www.wenanmi.com/
+    状态: None | 错误: URLError: timed out
+
+[28] 分类(6) 文案脚本 -> 项目(6) 麦迪逊邦
+    URL: https://www.madisonboom.com/
+    状态: None | 错误: URLError: timed out
+
+[29] 分类(8) 实时热榜 -> 项目(0) 知乎热榜
+    URL: https://www.zhihu.com/billboard
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[30] 分类(8) 实时热榜 -> 项目(5) 知乎话题榜
+    URL: https://www.zhihu.com/topic/19776749/top-answers
+    状态: 403 | 错误: HTTPError: Forbidden
+
+[31] 分类(8) 实时热榜 -> 项目(16) 热映口碑榜
+    URL: https://maoyan.com/board
+    状态: 302 | 错误: HTTPError: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Found
+
+[32] 分类(9) 数据分析 -> 项目(0) 抖抖侠
+    URL: https://www.doudouxia.com/
+    状态: None | 错误: URLError: [Errno 11002] getaddrinfo failed
+
+[33] 分类(9) 数据分析 -> 项目(3) 星榜
+    URL: https://www.starrank.com/
+    状态: None | 错误: URLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1020)
+
+[34] 分类(9) 数据分析 -> 项目(4) 短鱼儿
+    URL: https://www.duanyuer.com/
+    状态: None | 错误: URLError: [Errno 11001] getaddrinfo failed
+
+[35] 分类(10) 创作平台 -> 项目(8) 秒拍号
+    URL: https://creator.miaopai.com/login
+    状态: None | 错误: Error: The read operation timed out
+
+[36] 分类(10) 创作平台 -> 项目(15) 小咖秀
+    URL: http://www.xiaokaxiu.com/
+    状态: None | 错误: URLError: timed out
+
+[37] 分类(10) 创作平台 -> 项目(16) 微信广告服务商系统
+    URL: https://a.weixin.qq.com/
+    状态: None | 错误: URLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'a.weixin.qq.com'. (_ssl.c:1020)
+
+[38] 分类(12) 电商带货 -> 项目(1) 抖音好物联盟
+    URL: https://www.douyin.com/merch
+    状态: 404 | 错误: HTTPError: Not Found
+
+[39] 分类(12) 电商带货 -> 项目(4) 带货助手
+    URL: https://tools.daihuo.com/#/?ref=aewz.com
+    状态: None | 错误: URLError: timed out
+
+[40] 分类(12) 电商带货 -> 项目(5) 快手电商
+    URL: https://www.kwaixiaodian.com/#?ref=aewz.com
+    状态: None | 错误: Error: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+[41] 分类(13) 流量采买 -> 项目(4) 有媒有
+    URL: http://www.weishengsheng.com/index
+    状态: None | 错误: URLError: timed out
+
+[42] 分类(13) 流量采买 -> 项目(5) 兔莱
+    URL: https://www.tolight.com/
+    状态: None | 错误: URLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1020)
+
+[43] 分类(13) 流量采买 -> 项目(8) 城外圈
+    URL: https://www.cwq.com/
+    状态: None | 错误: URLError: [Errno 11001] getaddrinfo failed
+
+[44] 分类(13) 流量采买 -> 项目(12) 传播易
+    URL: https://www.chuanboyi.com/
+    状态: 403 | 错误: HTTPError: Forbidden

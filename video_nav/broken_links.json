@@ -1,0 +1,403 @@
+{
+  "total": 201,
+  "ok": 157,
+  "broken_count": 44,
+  "broken": [
+    {
+      "category_index": 0,
+      "item_index": 10,
+      "category_name": "精选推荐",
+      "item_name": "抖音好物联盟",
+      "url": "https://www.douyin.com/merch",
+      "status_code": 404,
+      "error": "HTTPError: Not Found"
+    },
+    {
+      "category_index": 0,
+      "item_index": 11,
+      "category_name": "精选推荐",
+      "item_name": "秒拍号",
+      "url": "https://creator.miaopai.com/login",
+      "status_code": null,
+      "error": "Error: The read operation timed out"
+    },
+    {
+      "category_index": 0,
+      "item_index": 15,
+      "category_name": "精选推荐",
+      "item_name": "讯飞快读",
+      "url": "https://www.ffkuaidu.com/",
+      "status_code": null,
+      "error": "URLError: [Errno 11001] getaddrinfo failed"
+    },
+    {
+      "category_index": 0,
+      "item_index": 18,
+      "category_name": "精选推荐",
+      "item_name": "Vidsplay",
+      "url": "https://www.vidsplay.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 0,
+      "category_name": "视频素材",
+      "item_name": "Video",
+      "url": "https://www.videvo.net/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 1,
+      "category_name": "视频素材",
+      "item_name": "Vidsplay",
+      "url": "https://www.vidsplay.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 6,
+      "category_name": "视频素材",
+      "item_name": "Videezy",
+      "url": "https://www.videezy.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 7,
+      "category_name": "视频素材",
+      "item_name": "Distill",
+      "url": "https://wedistill.io/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 1,
+      "item_index": 10,
+      "category_name": "视频素材",
+      "item_name": "pexels",
+      "url": "https://www.pexels.com/videos",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 11,
+      "category_name": "视频素材",
+      "item_name": "monzoom",
+      "url": "https://www.monzoom.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 13,
+      "category_name": "视频素材",
+      "item_name": "Ignite Motion",
+      "url": "https://www.ignitemotion.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 16,
+      "category_name": "视频素材",
+      "item_name": "Pond5",
+      "url": "https://www.pond5.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 1,
+      "item_index": 17,
+      "category_name": "视频素材",
+      "item_name": "cutestockfootage",
+      "url": "https://www.cutestockfootage.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 1,
+      "item_index": 19,
+      "category_name": "视频素材",
+      "item_name": "傲视网",
+      "url": "http://www.aoao365.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 2,
+      "item_index": 4,
+      "category_name": "图片素材",
+      "item_name": "Unsplash",
+      "url": "https://unsplash.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 2,
+      "item_index": 6,
+      "category_name": "图片素材",
+      "item_name": "Foter",
+      "url": "https://foter.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 3,
+      "item_index": 6,
+      "category_name": "制作工具",
+      "item_name": "GET写作",
+      "url": "https://getgetai.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 4,
+      "item_index": 2,
+      "category_name": "字幕配音",
+      "item_name": "牛片",
+      "url": "https://www.6pian.cn/zimu.html",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 4,
+      "item_index": 6,
+      "category_name": "字幕配音",
+      "item_name": "字说",
+      "url": "https://h5.zishuovideo.com/#/?ref=aewz.com",
+      "status_code": null,
+      "error": "URLError: [Errno 11001] getaddrinfo failed"
+    },
+    {
+      "category_index": 4,
+      "item_index": 7,
+      "category_name": "字幕配音",
+      "item_name": "突字幕",
+      "url": "https://2zimu.com/#/?ref=aewz.com",
+      "status_code": null,
+      "error": "URLError: [WinError 10061] 由于目标计算机积极拒绝，无法连接。"
+    },
+    {
+      "category_index": 4,
+      "item_index": 9,
+      "category_name": "字幕配音",
+      "item_name": "讯飞快读",
+      "url": "https://www.ffkuaidu.com/",
+      "status_code": null,
+      "error": "URLError: [Errno 11001] getaddrinfo failed"
+    },
+    {
+      "category_index": 5,
+      "item_index": 9,
+      "category_name": "音乐素材",
+      "item_name": "Musopen",
+      "url": "https://musopen.org/music/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 5,
+      "item_index": 10,
+      "category_name": "音乐素材",
+      "item_name": "Sample Focus",
+      "url": "https://samplefocus.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 5,
+      "item_index": 11,
+      "category_name": "音乐素材",
+      "item_name": "曲多多",
+      "url": "https://agm.haifanwu.com/",
+      "status_code": 405,
+      "error": "HTTPError: Not Allowed"
+    },
+    {
+      "category_index": 5,
+      "item_index": 12,
+      "category_name": "音乐素材",
+      "item_name": "musopen",
+      "url": "https://musopen.org/music/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 5,
+      "item_index": 15,
+      "category_name": "音乐素材",
+      "item_name": "PremiumBeat",
+      "url": "https://www.premiumbeat.com/zh/",
+      "status_code": null,
+      "error": "Error: The read operation timed out"
+    },
+    {
+      "category_index": 6,
+      "item_index": 0,
+      "category_name": "文案脚本",
+      "item_name": "文案迷",
+      "url": "http://www.wenanmi.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 6,
+      "item_index": 6,
+      "category_name": "文案脚本",
+      "item_name": "麦迪逊邦",
+      "url": "https://www.madisonboom.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 8,
+      "item_index": 0,
+      "category_name": "实时热榜",
+      "item_name": "知乎热榜",
+      "url": "https://www.zhihu.com/billboard",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 8,
+      "item_index": 5,
+      "category_name": "实时热榜",
+      "item_name": "知乎话题榜",
+      "url": "https://www.zhihu.com/topic/19776749/top-answers",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    },
+    {
+      "category_index": 8,
+      "item_index": 16,
+      "category_name": "实时热榜",
+      "item_name": "热映口碑榜",
+      "url": "https://maoyan.com/board",
+      "status_code": 302,
+      "error": "HTTPError: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+    },
+    {
+      "category_index": 9,
+      "item_index": 0,
+      "category_name": "数据分析",
+      "item_name": "抖抖侠",
+      "url": "https://www.doudouxia.com/",
+      "status_code": null,
+      "error": "URLError: [Errno 11002] getaddrinfo failed"
+    },
+    {
+      "category_index": 9,
+      "item_index": 3,
+      "category_name": "数据分析",
+      "item_name": "星榜",
+      "url": "https://www.starrank.com/",
+      "status_code": null,
+      "error": "URLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1020)"
+    },
+    {
+      "category_index": 9,
+      "item_index": 4,
+      "category_name": "数据分析",
+      "item_name": "短鱼儿",
+      "url": "https://www.duanyuer.com/",
+      "status_code": null,
+      "error": "URLError: [Errno 11001] getaddrinfo failed"
+    },
+    {
+      "category_index": 10,
+      "item_index": 8,
+      "category_name": "创作平台",
+      "item_name": "秒拍号",
+      "url": "https://creator.miaopai.com/login",
+      "status_code": null,
+      "error": "Error: The read operation timed out"
+    },
+    {
+      "category_index": 10,
+      "item_index": 15,
+      "category_name": "创作平台",
+      "item_name": "小咖秀",
+      "url": "http://www.xiaokaxiu.com/",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 10,
+      "item_index": 16,
+      "category_name": "创作平台",
+      "item_name": "微信广告服务商系统",
+      "url": "https://a.weixin.qq.com/",
+      "status_code": null,
+      "error": "URLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'a.weixin.qq.com'. (_ssl.c:1020)"
+    },
+    {
+      "category_index": 12,
+      "item_index": 1,
+      "category_name": "电商带货",
+      "item_name": "抖音好物联盟",
+      "url": "https://www.douyin.com/merch",
+      "status_code": 404,
+      "error": "HTTPError: Not Found"
+    },
+    {
+      "category_index": 12,
+      "item_index": 4,
+      "category_name": "电商带货",
+      "item_name": "带货助手",
+      "url": "https://tools.daihuo.com/#/?ref=aewz.com",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 12,
+      "item_index": 5,
+      "category_name": "电商带货",
+      "item_name": "快手电商",
+      "url": "https://www.kwaixiaodian.com/#?ref=aewz.com",
+      "status_code": null,
+      "error": "Error: [WinError 10054] 远程主机强迫关闭了一个现有的连接。"
+    },
+    {
+      "category_index": 13,
+      "item_index": 4,
+      "category_name": "流量采买",
+      "item_name": "有媒有",
+      "url": "http://www.weishengsheng.com/index",
+      "status_code": null,
+      "error": "URLError: timed out"
+    },
+    {
+      "category_index": 13,
+      "item_index": 5,
+      "category_name": "流量采买",
+      "item_name": "兔莱",
+      "url": "https://www.tolight.com/",
+      "status_code": null,
+      "error": "URLError: [SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1020)"
+    },
+    {
+      "category_index": 13,
+      "item_index": 8,
+      "category_name": "流量采买",
+      "item_name": "城外圈",
+      "url": "https://www.cwq.com/",
+      "status_code": null,
+      "error": "URLError: [Errno 11001] getaddrinfo failed"
+    },
+    {
+      "category_index": 13,
+      "item_index": 12,
+      "category_name": "流量采买",
+      "item_name": "传播易",
+      "url": "https://www.chuanboyi.com/",
+      "status_code": 403,
+      "error": "HTTPError: Forbidden"
+    }
+  ]
+}

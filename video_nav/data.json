@@ -131,13 +131,6 @@
           "lang": "CH"
         },
         {
-          "name": "Vidsplay",
-          "url": "https://www.vidsplay.com/",
-          "description": "一个完全免费的视频素材下载网站",
-          "fee": "免费",
-          "lang": "EN"
-        },
-        {
           "name": "豆瓣热门电视剧",
           "url": "https://movie.douban.com/tv/#!type=tv&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0?ref=aewz.com",
           "description": "实时更新热门，美剧、英剧、韩剧、日剧、国产剧、港剧、日本动画、综艺、纪录片",
@@ -188,13 +181,6 @@
           "name": "Video",
           "url": "https://www.videvo.net/",
           "description": "免费的视频影片与28000多个视频剪辑在4k和高清",
-          "fee": "免费",
-          "lang": "EN"
-        },
-        {
-          "name": "Vidsplay",
-          "url": "https://www.vidsplay.com/",
-          "description": "一个完全免费的视频素材下载网站",
           "fee": "免费",
           "lang": "EN"
         },

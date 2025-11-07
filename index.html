@@ -1,206 +1,138 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>懒人实用工具导航</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>懒人实用工具导航 · 手绘风</title>
+    <meta name="description" content="精选实用工具合集的极简手绘风入口页" />
     <link rel="icon" href="lazy.png" />
-    <link rel="stylesheet" href="portal.css">
-</head>
-<body>
-    <div class="container">
-        <header class="main-header">
-            <h1>懒人实用工具导航</h1>
-            <p class="subtitle">精选实用工具，提升工作效率</p>
-        </header>
-        <div class="card-container">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>懒人实用工具导航</h1>
+      <p class="subtitle">极简手绘风 · 常用工具一站直达</p>
+    </header>
 
-            <div class="card" onclick="window.location.href='money_card/index.html'">
-                <div class="card-content">
-                    <div class="icon">💡</div>
-                    <h2>信息差卡片合集</h2>
-                    <p>精选优质商业案例，深度解析成功模式</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+    <main id="content" class="content" aria-live="polite">
+      <div class="grid">
+        <a class="card" href="money_card/index.html">
+          <div class="icon">💡</div>
+          <h3>信息差卡片合集</h3>
+          <p>精选优质商业案例，深度解析成功模式</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='https://lazytool.top/free/index.html'">
-                <div class="card-content">
-                    <div class="icon">📚</div>
-                    <h2>懒人知识库（粉丝体验版）</h2>
-                    <p>粉丝免费体验专属群部分知识库</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="https://lazytool.top/free/index.html" target="_blank" rel="noopener">
+          <div class="icon">📚</div>
+          <h3>懒人知识库（粉丝体验版）</h3>
+          <p>粉丝免费体验专属群部分知识库</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='salary_count/index.html'">
-                <div class="card-content">
-                    <div class="icon">💰</div>
-                    <h2>工资计算器</h2>
-                    <p>实时计算你的工资收入</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="salary_count/index.html">
+          <div class="icon">💰</div>
+          <h3>工资计算器</h3>
+          <p>实时计算你的工资收入</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='news/index.html'">
-                <div class="card-content">
-                    <div class="icon">📰</div>
-                    <h2>懒人日报</h2>
-                    <p>每日新闻早报，60秒读懂世界</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="news/index.html">
+          <div class="icon">📰</div>
+          <h3>懒人日报</h3>
+          <p>每日新闻早报，60秒读懂世界</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='https://lazypic.lazytool.top/'">
-                <div class="card-content">
-                    <div class="icon">🖼️</div>
-                    <h2>图片工具</h2>
-                    <p>专业的图片压缩与合并功能</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
-            
-            <div class="card" onclick="window.location.href='hacker_simulator/index.html'">
-                <div class="card-content">
-                    <div class="icon">🖥️</div>
-                    <h2>黑客模拟器</h2>
-                    <p>体验电影级黑客效果</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="https://lazypic.lazytool.top/" target="_blank" rel="noopener">
+          <div class="icon">🖼️</div>
+          <h3>图片工具</h3>
+          <p>专业的图片压缩与合并功能</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='fake_update/index.html'">
-                <div class="card-content">
-                    <div class="icon">🔄</div>
-                    <h2>假装系统更新</h2>
-                    <p>模拟各种系统更新界面</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
-            
-            <div class="card" onclick="window.location.href='deepseek_clone/index.html'">
-                <div class="card-content">
-                    <div class="icon">🤖</div>
-                    <h2>AI提示词大全</h2>
-                    <p>DeepSeek常用提示词集合</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="hacker_simulator/index.html">
+          <div class="icon">🖥️</div>
+          <h3>黑客模拟器</h3>
+          <p>体验电影级黑客效果</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='doubao/index.html'">
-                <div class="card-content">
-                    <div class="icon">🧠</div>
-                    <h2>豆包提示词</h2>
-                    <p>豆包常用提示词大全，助力高效创作</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="fake_update/index.html">
+          <div class="icon">🔄</div>
+          <h3>假装系统更新</h3>
+          <p>模拟各种系统更新界面</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='https://logo.lazytool.top/'">
-                <div class="card-content">
-                    <div class="icon">🎨</div>
-                    <h2>P站Logo生成器</h2>
-                    <p>一键生成P站风格Logo</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
-            
-            <div class="card" onclick="window.location.href='story/index.html'">
-                <div class="card-content">
-                    <div class="icon">📖</div>
-                    <h2>故事阅读网站</h2>
-                    <p>精选优质故事，支持分类浏览和搜索</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="deepseek_clone/index.html">
+          <div class="icon">🤖</div>
+          <h3>AI提示词大全</h3>
+          <p>DeepSeek常用提示词集合</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='xifeng/index.html'">
-                <div class="card-content">
-                    <div class="icon">📚</div>
-                    <h2>记忆承载付费文AI解读</h2>
-                    <p>AI智能解读付费文章内容</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="doubao/index.html">
+          <div class="icon">🧠</div>
+          <h3>豆包提示词</h3>
+          <p>豆包常用提示词大全，助力高效创作</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='https://cook.lazytool.top/'">
-                <div class="card-content">
-                    <div class="icon">👨‍🍳</div>
-                    <h2>懒人厨房助手</h2>
-                    <p>智能菜谱推荐，轻松下厨房</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="https://logo.lazytool.top/" target="_blank" rel="noopener">
+          <div class="icon">🎨</div>
+          <h3>P站Logo生成器</h3>
+          <p>一键生成P站风格Logo</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='blog/secret.html'">
-                <div class="card-content">
-                    <div class="icon">🔐</div>
-                    <h2>歪比巴卜密文转换器</h2>
-                    <p>安全的AES加密解密工具</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="story/index.html">
+          <div class="icon">📖</div>
+          <h3>故事阅读网站</h3>
+          <p>精选优质故事，支持分类浏览和搜索</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='https://worthjob.lazytool.top/'">
-                <div class="card-content">
-                    <div class="icon">💼</div>
-                    <h2>工作价值评估（趣味）</h2>
-                    <p>这B班，到底值得不得上！</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="xifeng/index.html">
+          <div class="icon">📚</div>
+          <h3>记忆承载付费文AI解读</h3>
+          <p>AI智能解读付费文章内容</p>
+        </a>
 
-            <div class="card" onclick="window.location.href='video_nav/index.html'">
-                <div class="card-content">
-                    <div class="icon">🎬</div>
-                    <h2>懒人视频制作导航</h2>
-                    <p>视频素材、字幕配音、制作工具、音乐等资源合集</p>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
+        <a class="card" href="https://cook.lazytool.top/" target="_blank" rel="noopener">
+          <div class="icon">👨‍🍳</div>
+          <h3>懒人厨房助手</h3>
+          <p>智能菜谱推荐，轻松下厨房</p>
+        </a>
 
-            <div class="card lazy-handbook-card" onclick="event.stopPropagation();"> 
-                <div class="card-content">
-                    <div class="icon">📖</div>
-                    <h2>懒人手册</h2>
-                    <p>多域名访问，选择最适合的入口</p>
-                    <div class="domain-links">
-                        <a href="https://lazybook.fun" target="_blank" class="domain-link primary" onclick="event.stopPropagation();">主域名: lazybook.fun</a>
-                        <a href="https://lazy2024.top/" target="_blank" class="domain-link backup" onclick="event.stopPropagation();">备用域名1: lazy2024.top</a>
-                        <a href="https://lazy2025.top/" target="_blank" class="domain-link backup" onclick="event.stopPropagation();">备用域名2: lazy2025.top</a>
-                    </div>
-                </div>
-                <div class="hover-effect"></div>
-            </div>
-        </div>
-    </div>
-    <div id="particles"></div>
-    <footer class="footer">
-        <p>© 2025 lazytool made by 公众号@懒人搜索</p>
+        <a class="card" href="blog/secret.html">
+          <div class="icon">🔐</div>
+          <h3>歪比巴卜密文转换器</h3>
+          <p>安全的AES加密解密工具</p>
+        </a>
+
+        <a class="card" href="https://worthjob.lazytool.top/" target="_blank" rel="noopener">
+          <div class="icon">💼</div>
+          <h3>工作价值评估（趣味）</h3>
+          <p>这B班，到底值得不得上！</p>
+        </a>
+
+        <a class="card" href="video_nav/index.html">
+          <div class="icon">🎬</div>
+          <h3>懒人视频制作导航</h3>
+          <p>视频素材、字幕配音、制作工具、音乐等资源合集</p>
+        </a>
+
+        <a class="card" href="https://lazybook.fun" target="_blank" rel="noopener">
+          <div class="icon">📖</div>
+          <h3>懒人手册</h3>
+          <p>多域名访问，选择最适合的入口</p>
+          <div class="domain-links">
+            <a href="https://lazybook.fun" target="_blank" class="domain-link primary">主域名: lazybook.fun</a>
+            <a href="https://lazy2024.top/" target="_blank" class="domain-link">备用域名1: lazy2024.top</a>
+            <a href="https://lazy2025.top/" target="_blank" class="domain-link">备用域名2: lazy2025.top</a>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>© 2025 lazytool · 公众号@懒人搜索</div>
     </footer>
-    <script src="portal.js"></script>
-    <script>
-        // 获取P站Logo生成器卡片元素
-        const logoCard = document.querySelector('.card[onclick*="logo.lazytool.top"]');
-        
-        // 定义跳转函数
-        const goToSubPage = () => {
-            const host = window.location.host;
-            if (host.includes('salarycou.netlify.app')) {
-                // 从 Netlify 主站跳转 -> Netlify 子站
-                window.location.href = 'https://lazylogo.netlify.app';
-            } else if (host.includes('lazytool.top')) {
-                // 从自定义主站跳转 -> 自定义子站
-                window.location.href = 'https://logo.lazytool.top';
-            } else {
-                // 默认行为
-                window.location.href = 'https://logo.lazytool.top';
-            }
-        };
 
-        // 设置点击事件
-        logoCard.setAttribute('onclick', 'goToSubPage()')
-    </script>
-</body>
+    <script src="home.js"></script>
+  </body>
 </html>
             
