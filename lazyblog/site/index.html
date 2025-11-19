@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>懒人收藏夹</title>
+    <meta name="site-password" content="1620">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="lazy.png">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="gate" class="gate hidden">
+      <div class="gate-card">
+        <div class="gate-title">请输入访问密码</div>
+        <input id="gate-input" type="password" placeholder="密码" autocomplete="off">
+        <button id="gate-btn">进入</button>
+        <div id="gate-msg" class="gate-msg"></div>
+      </div>
+    </div>
+    <header class="header">
+      <span class="logo"></span>
+      <h1>懒人收藏夹</h1>
+      <div class="search">
+        <input id="search" type="text" placeholder="搜索标题或内容">
+        <span id="count"></span>
+      </div>
+    </header>
+    <main class="main">
+      <aside class="sidebar">
+        <ul id="list"></ul>
+      </aside>
+      <section class="reader">
+        <article id="article">
+          <h2 id="article-title"></h2>
+          <div id="article-date" class="date"></div>
+          <div id="article-content" class="content"></div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>© 懒人收藏夹</div>
+    </footer>
+    <div id="toc-wrap" class="toc-wrap">
+      <div id="toc-toggle" class="toc-toggle">目录</div>
+      <div id="toc-panel" class="toc-panel"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
