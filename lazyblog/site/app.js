@@ -1,7 +1,17 @@
 const state={posts:[],filtered:[],activeIndex:-1}
 const contentCache=new Map()
+let uiMode='list'
+let listScrollTop=0
+function applyMode(){
+  const b=document.body
+  b.classList.toggle('mode-list',uiMode==='list')
+  b.classList.toggle('mode-reader',uiMode==='reader')
+}
+function setMode(m){uiMode=m;applyMode()}
 function renderMarkdown(md){
   md=groupBlockquotes(md)
+  // collapse multiple blank lines to a single empty line
+  md=md.replace(/(\r?\n\s*){3,}/g,'\n\n')
   let html=md
   html=html.replace(/^\s*[-*_]{3,}\s*$/gm,'<hr>')
   html=html.replace(/^######\s?(.*)$/gm,'<h6>$1</h6>')
@@ -85,7 +95,9 @@ function openPost(i){
   const p=state.filtered[i]
   document.getElementById('article-title').textContent=p.title
   document.getElementById('article-date').textContent=p.date
-  try{location.hash=encodeURIComponent(p.filename)}catch(e){}
+  try{location.hash='#post/'+encodeURIComponent(p.filename)}catch(e){}
+  const sbar=document.querySelector('.sidebar'); if(sbar){listScrollTop=sbar.scrollTop}
+  setMode('reader')
   if(!isAuthorized()){
     document.getElementById('article-content').textContent='请先输入密码'
     showGate()
@@ -96,6 +108,14 @@ function openPost(i){
     buildTOC()
     const reader=document.querySelector('.reader'); if(reader) reader.scrollTop=0
     window.scrollTo({top:0,behavior:'instant'})
+    updatePager()
+    const progressBar=document.getElementById('reading-progress')
+    if(progressBar){progressBar.style.width='0%';progressBar.classList.remove('visible')}
+    const sidebar=document.querySelector('.sidebar'); if(sidebar&&sidebar.classList.contains('mobile-open')){sidebar.classList.remove('mobile-open');document.body.classList.remove('no-scroll')}
+    const mobileBack=document.getElementById('mobile-back')
+    const mobilePager=document.getElementById('mobile-pager')
+    mobileBack?.classList.remove('autohide-hide')
+    mobilePager?.classList.remove('autohide-hide')
   }).catch(()=>{
     document.getElementById('article-content').textContent='加载正文失败'
   })
@@ -119,9 +139,33 @@ function filterPosts(q){
 }
 function setup(){
   const input=document.getElementById('search')
+  const searchToggle=document.getElementById('search-toggle')
+  const searchBox=document.getElementById('search-box')
   input.addEventListener('input',e=>filterPosts(e.target.value))
+  searchToggle?.addEventListener('click',()=>{
+    searchBox?.classList.toggle('active')
+    if(searchBox?.classList.contains('active')){input?.focus()}
+  })
+  document.addEventListener('click',e=>{
+    if(searchBox&&!searchBox.contains(e.target)&&e.target!==searchToggle){
+      searchBox.classList.remove('active')
+    }
+  })
   const tocWrap=document.getElementById('toc-wrap')
   const tocToggle=document.getElementById('toc-toggle')
+  const mobileBack=document.getElementById('mobile-back')
+  const pagerPrev=document.getElementById('pager-prev')
+  const pagerNext=document.getElementById('pager-next')
+  const mobilePager=document.getElementById('mobile-pager')
+  const desktopPagerPrev=document.getElementById('desktop-pager-prev')
+  const desktopPagerNext=document.getElementById('desktop-pager-next')
+  mobileBack?.addEventListener('click',()=>{setMode('list');location.hash='#list';const s=document.querySelector('.sidebar'); if(s) s.scrollTop=listScrollTop})
+  pagerPrev?.addEventListener('click',e=>{e.preventDefault();openPrev()})
+  pagerNext?.addEventListener('click',e=>{e.preventDefault();openNext()})
+  desktopPagerPrev?.addEventListener('click',e=>{e.preventDefault();openPrev()})
+  desktopPagerNext?.addEventListener('click',e=>{e.preventDefault();openNext()})
+  const mobListToggle=document.getElementById('mob-list-toggle')
+  const sidebar=document.querySelector('.sidebar')
   if(tocWrap){
     let tocCloseTimer=null
     const open=()=>{if(tocCloseTimer){clearTimeout(tocCloseTimer);tocCloseTimer=null}tocWrap.classList.add('open')}
@@ -132,6 +176,12 @@ function setup(){
     // touch devices: tap toggles panel
     tocWrap.addEventListener('touchstart',open,{passive:true})
     document.addEventListener('click',e=>{if(!tocWrap.contains(e.target)) tocWrap.classList.remove('open')})
+  }
+  const openMobileList=()=>{if(sidebar){sidebar.classList.add('mobile-open');document.body.classList.add('no-scroll')}}
+  const closeMobileList=()=>{if(sidebar){sidebar.classList.remove('mobile-open');document.body.classList.remove('no-scroll')}}
+  if(mobListToggle){
+    mobListToggle.addEventListener('click',()=>{if(sidebar&&sidebar.classList.contains('mobile-open'))closeMobileList();else openMobileList()})
+    document.addEventListener('click',e=>{if(sidebar&&sidebar.classList.contains('mobile-open') && !sidebar.contains(e.target) && e.target!==mobListToggle) closeMobileList()})
   }
   document.addEventListener('keydown',e=>{
     if(e.key==='ArrowDown'){if(state.activeIndex<state.filtered.length-1){openPost(state.activeIndex+1)}e.preventDefault()}
@@ -145,6 +195,48 @@ function setup(){
   document.addEventListener('copy',e=>{e.preventDefault()})
   document.addEventListener('contextmenu',e=>{e.preventDefault()})
   document.addEventListener('selectstart',e=>{if(!isEditable(e.target))e.preventDefault()})
+
+  const reader=document.querySelector('.reader')
+  const progressBar=document.getElementById('reading-progress')
+  const mobileBackBtn=document.getElementById('mobile-back')
+  const mobilePagerBar=document.getElementById('mobile-pager')
+  let lastY=0
+  let scrollTimer=null
+  const mq=window.matchMedia('(max-width: 768px)')
+  const handleScroll=()=>{
+    if(uiMode!=='reader'||!mq.matches) return
+    const y=reader.scrollTop
+    if(scrollTimer) clearTimeout(scrollTimer)
+    if(y>lastY+20){
+      mobileBackBtn?.classList.add('autohide-hide')
+      mobilePagerBar?.classList.add('autohide-hide')
+    }
+    else if(y<lastY-20){
+      mobileBackBtn?.classList.remove('autohide-hide')
+      mobilePagerBar?.classList.remove('autohide-hide')
+    }
+    if(y<=10){
+      mobileBackBtn?.classList.remove('autohide-hide')
+      mobilePagerBar?.classList.remove('autohide-hide')
+    }
+    scrollTimer=setTimeout(()=>{
+      mobileBackBtn?.classList.remove('autohide-hide')
+      mobilePagerBar?.classList.remove('autohide-hide')
+    },2000)
+    lastY=y
+  }
+  const updateProgress=()=>{
+    if(uiMode!=='reader'||!reader) return
+    const scrollTop=reader.scrollTop
+    const scrollHeight=reader.scrollHeight
+    const clientHeight=reader.clientHeight
+    const scrolled=(scrollTop/(scrollHeight-clientHeight))*100
+    if(progressBar){
+      progressBar.style.width=scrolled+'%'
+      progressBar.classList.toggle('visible',scrollTop>20)
+    }
+  }
+  reader?.addEventListener('scroll',()=>{handleScroll();updateProgress()},{passive:true})
 }
 function isEditable(el){return el&&((el.isContentEditable)||['INPUT','TEXTAREA','SELECT'].includes(el.tagName))}
 async function load(){
@@ -157,9 +249,12 @@ async function load(){
     state.posts=sorted
     state.filtered=[...sorted]
     renderList()
-    const hash=decodeURIComponent(location.hash.replace('#','')||'')
-    const idx=hash?state.filtered.findIndex(p=>p.filename===hash):-1
-    if(idx>=0)openPost(idx); else if(state.filtered.length>0)openPost(0)
+    const rawHash=location.hash||''
+    if(rawHash.startsWith('#post/')){
+      const fn=decodeURIComponent(rawHash.slice(6))
+      const idx=state.filtered.findIndex(p=>p.filename===fn)
+      if(idx>=0){setMode('reader');openPost(idx)} else {setMode('list');location.hash='#list'}
+    }else{setMode('list');location.hash='#list'}
   }catch(e){
     const t=document.getElementById('article-title')
     const c=document.getElementById('article-content')
@@ -250,3 +345,23 @@ function buildTOC(){
   })
 }
 function slug(s){return s.trim().toLowerCase().replace(/[^a-z0-9\u4e00-\u9fa5]+/g,'-').replace(/^-+|-+$/g,'')||('h'+Math.random().toString(36).slice(2))}
+function updatePager(){
+  const i=state.activeIndex
+  const prev=document.getElementById('pager-prev')
+  const next=document.getElementById('pager-next')
+  const pt=document.getElementById('pager-prev-title')
+  const nt=document.getElementById('pager-next-title')
+  const dPrev=document.getElementById('desktop-pager-prev')
+  const dNext=document.getElementById('desktop-pager-next')
+  const dPt=document.getElementById('desktop-pager-prev-title')
+  const dNt=document.getElementById('desktop-pager-next-title')
+  if(!prev||!next||!pt||!nt) return
+  if(i>0){prev.classList.remove('disabled');pt.textContent=state.filtered[i-1].title}else{prev.classList.add('disabled');pt.textContent=''}
+  if(i<state.filtered.length-1){next.classList.remove('disabled');nt.textContent=state.filtered[i+1].title}else{next.classList.add('disabled');nt.textContent=''}
+  if(dPrev&&dNext&&dPt&&dNt){
+    if(i>0){dPrev.classList.remove('disabled');dPt.textContent=state.filtered[i-1].title}else{dPrev.classList.add('disabled');dPt.textContent=''}
+    if(i<state.filtered.length-1){dNext.classList.remove('disabled');dNt.textContent=state.filtered[i+1].title}else{dNext.classList.add('disabled');dNt.textContent=''}
+  }
+}
+function openPrev(){const i=state.activeIndex; if(i>0) openPost(i-1)}
+function openNext(){const i=state.activeIndex; if(i<state.filtered.length-1) openPost(i+1)}

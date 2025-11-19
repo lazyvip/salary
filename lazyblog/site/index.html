@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div id="reading-progress" class="reading-progress"></div>
     <div id="gate" class="gate hidden">
       <div class="gate-card">
         <div class="gate-title">请输入访问密码</div>
@@ -24,20 +25,33 @@
       <span class="logo"></span>
       <h1>懒人收藏夹</h1>
       <div class="search">
-        <input id="search" type="text" placeholder="搜索标题或内容">
-        <span id="count"></span>
+        <button id="search-toggle" class="search-toggle">🔍</button>
+        <div id="search-box" class="search-box">
+          <input id="search" type="text" placeholder="搜索标题或内容">
+          <span id="count"></span>
+        </div>
       </div>
+      <a href="../../index.html" class="toolbox-back">返回工具箱</a>
     </header>
     <main class="main">
       <aside class="sidebar">
         <ul id="list"></ul>
       </aside>
       <section class="reader">
+        <button id="mobile-back" class="mobile-back">返回</button>
         <article id="article">
           <h2 id="article-title"></h2>
           <div id="article-date" class="date"></div>
           <div id="article-content" class="content"></div>
         </article>
+        <div id="desktop-pager" class="desktop-pager">
+          <a id="desktop-pager-prev" class="desktop-pager-card desktop-pager-prev"><span class="label">← 上一篇</span><span id="desktop-pager-prev-title"></span></a>
+          <a id="desktop-pager-next" class="desktop-pager-card desktop-pager-next"><span class="label">下一篇 →</span><span id="desktop-pager-next-title"></span></a>
+        </div>
+        <div id="mobile-pager" class="mobile-pager">
+          <a id="pager-prev" class="pager-card pager-prev"><span class="label">上一篇</span><span id="pager-prev-title"></span></a>
+          <a id="pager-next" class="pager-card pager-next"><span class="label">下一篇</span><span id="pager-next-title"></span></a>
+        </div>
       </section>
     </main>
     <footer class="footer">
@@ -47,6 +61,7 @@
       <div id="toc-toggle" class="toc-toggle">目录</div>
       <div id="toc-panel" class="toc-panel"></div>
     </div>
+    <div id="mob-list-toggle" class="mob-list-toggle">列表</div>
     <script src="app.js"></script>
   </body>
 </html>
