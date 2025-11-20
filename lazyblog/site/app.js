@@ -203,9 +203,10 @@ function setup(){
   let lastY=0
   let scrollTimer=null
   const mq=window.matchMedia('(max-width: 768px)')
+  const getScrollY=()=> mq.matches ? window.scrollY : (reader?.scrollTop||0)
   const handleScroll=()=>{
     if(uiMode!=='reader'||!mq.matches) return
-    const y=reader.scrollTop
+    const y=getScrollY()
     if(scrollTimer) clearTimeout(scrollTimer)
     if(y>lastY+20){
       mobileBackBtn?.classList.add('autohide-hide')
@@ -237,6 +238,7 @@ function setup(){
     }
   }
   reader?.addEventListener('scroll',()=>{handleScroll();updateProgress()},{passive:true})
+  window.addEventListener('scroll',()=>{handleScroll()},{passive:true})
 }
 function isEditable(el){return el&&((el.isContentEditable)||['INPUT','TEXTAREA','SELECT'].includes(el.tagName))}
 async function load(){

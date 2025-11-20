@@ -15,7 +15,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Patrick Hand", "Caveat", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-family: "Patrick Hand", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   line-height: 1.6;
 }
 
@@ -61,21 +61,37 @@ body {
   display: block;
   background: var(--paper);
   border: 2px solid #222;
-  border-radius: 10px;
+  border-radius: var(--r1, 12px) var(--r2, 18px) var(--r3, 12px) var(--r4, 8px);
   padding: 14px 14px 16px;
   text-decoration: none;
   color: var(--ink);
-  box-shadow: 6px 6px 0 var(--shadow);
-  transform: translateY(0);
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.85);
+  transform: rotate(var(--tilt, 0deg)) translateY(0);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  cursor: pointer;
 }
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 8px 8px 0 var(--shadow);
+  transform: rotate(var(--tilt, 0deg)) translateY(-2px);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.95);
+  animation: wobble 220ms ease-in-out;
 }
 .card .icon { font-size: 20px; margin-bottom: 6px; }
 .card h3 { margin: 0 0 6px; font-size: 18px; }
 .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.site-header {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(34,34,34,0.9);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.12);
+}
+
+@keyframes wobble {
+  0% { transform: rotate(calc(var(--tilt, 0deg) - 0.3deg)) translateY(0); }
+  50% { transform: rotate(calc(var(--tilt, 0deg) + 0.4deg)) translateY(-1px); }
+  100% { transform: rotate(var(--tilt, 0deg)) translateY(-2px); }
+}
 
 .domain-links { margin-top: 8px; display: grid; gap: 6px; }
 .domain-link {

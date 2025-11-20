@@ -99,6 +99,7 @@ input, textarea{user-select:text;-webkit-user-select:text}
   body.mode-list .toc-wrap{display:none}
   body.mode-list .footer{display:none}
   body.mode-list .toolbox-back{display:inline-block}
+  body.mode-list .mob-list-toggle{display:none}
 
   body.mode-reader .sidebar{display:none}
   body.mode-reader .reader{display:block}
