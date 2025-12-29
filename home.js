@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { href: 'blog/secret.html', icon: '🔐', title: '歪比巴卜密文转换器', desc: '安全的AES加密解密工具' },
     { href: 'https://worthjob.lazytool.top/', icon: '💼', title: '工作价值评估（趣味）', desc: '这B班，到底值得不得上！', external: true },
     { href: 'video_nav/index.html', icon: '🎬', title: '懒人视频制作导航', desc: '视频素材、字幕配音、制作工具、音乐等资源合集' },
+    { href: 'art/index.html', icon: '🎨', title: 'AI绘画提示词', desc: '精选高质量AI绘画提示词，激发无限灵感' },
     {
       href: 'https://lazybook.fun', icon: '📖', title: '懒人手册', desc: '多域名访问，选择最适合的入口', external: true,
       domains: [
