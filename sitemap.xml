@@ -3,32 +3,150 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://lazytool.top/art/index.html</loc>
-    <lastmod>2025-12-29</lastmod> <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-    
-    <image:image>
-      <image:loc>https://lazytool.top/art/assets/images/a-hyperrealistic-cinematic-movie-poster-of-a-powerful-14.webp</image:loc>
-      <image:title>2026 AI绘画提示词大全 - 赛博朋克风格</image:title>
-      <image:caption>Nano Banana & Midjourney 咒语示例</image:caption>
-    </image:image>
-    
-    <image:image>
-      <image:loc>https://lazytool.top/art/assets/images/-imageprompt-reference-faceidentity-uploaded-reference-16.webp</image:loc>
-      <image:title>AI 人像摄影提示词</image:title>
-    </image:image>
-
+    <loc>https://lazytool.top/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://lazytool.top/deepseek_clone/index.html</loc>
+    <loc>https://lazytool.top/art/</loc>
     <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://lazytool.top/art/assets/images/a-hyperrealistic-cinematic-movie-poster-of-a-powerful-14.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://lazytool.top/art/assets/images/-imageprompt-reference-faceidentity-uploaded-reference-16.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://lazytool.top/art/assets/images/masterpiece-top-quality-ultradetailed-8k-resolution-a-photorealistic-2.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://lazytool.top/art/assets/images/cinematic-portrait-photography-of-a-young-woman-sitting-23.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://lazytool.top/art/assets/images/transform-everyday-object-into-a-massive-realworld-monument-15.webp</image:loc>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/lazyblog/site/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://lazytool.top/doubao/index.html</loc>
+    <loc>https://lazytool.top/video_nav/</loc>
     <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/story/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/doubao/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/gpt_prompt/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/story_code/website/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/money_card/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/news/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/free/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/xifeng/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/salary_count/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/logo/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/hacker_simulator/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/fake_update/themes/windows98/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/fake_update/themes/win10u/js/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/fake_update/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://lazytool.top/deepseek_clone/</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
