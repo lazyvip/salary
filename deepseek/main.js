@@ -37,7 +37,16 @@ const categoryMap = {
   "education": "教育",
   "lifestyle": "生活",
   "philosophy": "哲学",
-  "seo": "SEO"
+  "seo": "SEO",
+  "game": "游戏",
+  "terminal": "终端",
+  "presentation": "演示",
+  "finance": "金融",
+  "music": "音乐",
+  "backend": "后端",
+  "frontend": "前端",
+  "design": "设计",
+  "product": "产品"
 };
 
 function getCategoryName(key) {
