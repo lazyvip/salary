@@ -77,7 +77,7 @@ function renderCategories() {
 function renderPrompts() {
   let list = window.promptsData;
   if (currentCategory !== '全部') {
-    list = list.filter(p => (p.category?.trim() || '未分类') === currentCategory);
+    list = list.filter(p => getCategoryName(p.category?.trim()) === currentCategory);
   }
   if (searchKeyword.trim()) {
     list = list.filter(p =>
@@ -92,9 +92,16 @@ function renderPrompts() {
     const originalIdx = window.promptsData.indexOf(p);
     const card = document.createElement('div');
     card.className = 'prompt-card';
+    card.style.cursor = 'pointer';
+    card.onclick = (e) => {
+       // 防止点击卡片内的按钮时触发两次（虽然目前按钮也调用同一个函数，但为了逻辑清晰）
+       if (e.target.tagName !== 'BUTTON') {
+         showPromptDetail(originalIdx);
+       }
+    };
     card.innerHTML = `
       <div class="prompt-title">${p.name?.trim() || ''}</div>
-      <div class="prompt-category">${p.category?.trim() || '未分类'}</div>
+      <div class="prompt-category">${getCategoryName(p.category?.trim())}</div>
       <div class="prompt-desc">${p.description?.trim() || ''}</div>
       <div class="card-actions">
         <button class="action-btn" onclick="showPromptDetail(${originalIdx})">使用</button>
