@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { href: 'https://lazypic.lazytool.top/', icon: '🖼️', title: '图片工具', desc: '专业的图片压缩与合并功能', external: true },
     { href: 'hacker_simulator/index.html', icon: '🖥️', title: '黑客模拟器', desc: '体验电影级黑客效果' },
     { href: 'fake_update/index.html', icon: '🔄', title: '假装系统更新', desc: '模拟各种系统更新界面' },
-    { href: 'deepseek_clone/index.html', icon: '🤖', title: 'AI提示词大全', desc: 'DeepSeek常用提示词集合' },
+    { href: 'deepseek/index.html', icon: '🤖', title: 'AI提示词大全', desc: 'DeepSeek常用提示词集合' },
     { href: 'doubao/index.html', icon: '🧠', title: '豆包提示词', desc: '豆包常用提示词大全，助力高效创作' },
     { href: 'https://logo.lazytool.top/', icon: '🎨', title: 'P站Logo生成器', desc: '一键生成P站风格Logo', external: true },
     { href: 'story/index.html', icon: '📖', title: '故事阅读网站', desc: '精选优质故事，支持分类浏览和搜索' },

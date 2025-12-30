@@ -67,21 +67,7 @@
   </url>
 
   <url>
-    <loc>https://lazytool.top/story_code/website/</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://lazytool.top/money_card/</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://lazytool.top/news/</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -94,12 +80,6 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://lazytool.top/xifeng/</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
 
   <url>
     <loc>https://lazytool.top/salary_count/</loc>
@@ -122,12 +102,6 @@
     <priority>0.8</priority>
   </url>
 
-  <url>
-    <loc>https://lazytool.top/fake_update/themes/windows98/</loc>
-    <lastmod>2025-12-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
 
   <url>
     <loc>https://lazytool.top/fake_update/</loc>
@@ -137,7 +111,7 @@
   </url>
 
   <url>
-    <loc>https://lazytool.top/deepseek_clone/</loc>
+    <loc>https://lazytool.top/deepseek/</loc>
     <lastmod>2025-12-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
