@@ -23,7 +23,7 @@ function renderMarkdown(md){
   html=html.replace(/`([^`]+)`/g,'<code>$1</code>')
   html=html.replace(/!\[(.*?)\]\((.*?)\)/g,(m,alt,url)=>`<img src="${rewriteImageUrl(url)}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer">`)
   html=html.replace(/<img\s+[^>]*src="([^"]+)"[^>]*>/g,(m,url)=>m.replace(url,rewriteImageUrl(url)))
-  html=html.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1<\/a>')
+  html=html.replace(/\[([\s\S]*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1<\/a>')
   html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
   html=html.replace(/\*(.*?)\*/g,'<em>$1</em>')
   html=html.split(/\n\n+/).map(p=>{
