@@ -20,12 +20,12 @@ function renderMarkdown(md){
   html=html.replace(/^###\s?(.*)$/gm,'<h3>$1</h3>')
   html=html.replace(/^##\s?(.*)$/gm,'<h2>$1</h2>')
   html=html.replace(/^#\s?(.*)$/gm,'<h1>$1</h1>')
-  html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-  html=html.replace(/\*(.*?)\*/g,'<em>$1</em>')
   html=html.replace(/`([^`]+)`/g,'<code>$1</code>')
   html=html.replace(/!\[(.*?)\]\((.*?)\)/g,(m,alt,url)=>`<img src="${rewriteImageUrl(url)}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer">`)
   html=html.replace(/<img\s+[^>]*src="([^"]+)"[^>]*>/g,(m,url)=>m.replace(url,rewriteImageUrl(url)))
   html=html.replace(/\[(.*?)\]\((.*?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1<\/a>')
+  html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+  html=html.replace(/\*(.*?)\*/g,'<em>$1</em>')
   html=html.split(/\n\n+/).map(p=>{
     if(/^<h\d>/.test(p))return p
     if(p.startsWith('<blockquote>'))return p
