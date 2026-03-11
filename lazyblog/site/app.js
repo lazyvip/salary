@@ -285,7 +285,7 @@ function setupDevtoolsGuard(){
     const outerH=window.outerHeight
     const innerW=window.innerWidth
     const innerH=window.innerHeight
-    const invalid=outerW<innerW||outerH<innerH
+    const invalid=outerW<innerW||outerH<innerH||outerW<300||outerH<300
     const gapW=Math.abs(outerW-innerW)
     const gapH=Math.abs(outerH-innerH)
     const opened=!invalid&&(gapW>160||gapH>160)
