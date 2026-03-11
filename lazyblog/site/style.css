@@ -24,6 +24,12 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"SanJiKai","Patr
 #list{list-style:none;margin:0;padding:8px}
 #list li{margin:0 0 10px 0;padding:10px;border:2px dashed var(--border);border-radius:12px;background:#fff;box-shadow:6px 6px 0 0 var(--shadow);cursor:pointer;transition:.15s}
 #list li:hover{transform:translateY(-2px);border-color:var(--accent)}
+#list .list-featured{padding:14px;background:linear-gradient(135deg,#fff 0%,#f6f3eb 100%);border-style:solid}
+#list .list-featured .kicker{display:inline-block;font-size:12px;color:#fff;background:#2f3d6e;border-radius:999px;padding:2px 10px;margin-bottom:8px}
+#list .list-featured .note{display:block;font-size:13px;color:#5e5e5e;margin:6px 0 2px}
+#list .post-item[data-rank="1"]{border-left:4px solid #4d67c6;padding-left:12px}
+#list .post-item[data-rank="2"]{box-shadow:4px 4px 0 0 var(--shadow)}
+#list .post-item[data-rank="3"]{opacity:.95}
 #list .title{display:block;font-size:16px;color:var(--ink)}
 #list .date{display:block;font-size:12px;color:var(--muted)}
 .reader{overflow:auto;padding:16px}
@@ -33,9 +39,13 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"SanJiKai","Patr
 #article-content{line-height:1.8;font-size:18px}
 #article-content{white-space:pre-wrap}
 #article-content img{max-width:100%;display:block;margin:12px auto;border-radius:8px}
-#article-content blockquote{margin:12px 0;padding:10px 14px;border-left:3px dashed var(--border);background:#f9f8f4;border-radius:8px;color:var(--ink)}
+#article-content blockquote{margin:16px 0;padding:14px 16px 12px 18px;border:1px solid #e6dfcf;border-left:4px solid #4d67c6;background:linear-gradient(135deg,#fbf9f2 0%,#f4efe3 100%);border-radius:12px;color:var(--ink);box-shadow:4px 4px 0 0 rgba(0,0,0,.05);position:relative}
+#article-content blockquote::before{content:'“';position:absolute;left:10px;top:-8px;font-size:24px;line-height:1;color:#4d67c6;opacity:.6}
+#article-content blockquote p{margin:6px 0 0 0;padding-left:10px;line-height:1.9}
+#article-content blockquote p:first-child{margin-top:0;font-weight:700}
+#article-content blockquote p:last-child{margin-bottom:0}
 #article-content blockquote:empty{display:none}
-.sidebar, .reader, body{-webkit-user-select:none;-ms-user-select:none;user-select:none}
+.sidebar{-webkit-user-select:none;-ms-user-select:none;user-select:none}
 input, textarea{user-select:text;-webkit-user-select:text}
 #article-content h1,#article-content h2,#article-content h3{margin:20px 0 10px}
 #article-content p{margin:10px 0}

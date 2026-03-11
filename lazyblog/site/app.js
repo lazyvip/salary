@@ -64,7 +64,7 @@ function groupBlockquotes(md){
       }
       i--
       if(buf.length>0){
-        out.push(`<blockquote>${buf.join('<br>')}</blockquote>`)
+        out.push(`<blockquote><p>${buf.join('</p><p>')}</p></blockquote>`)
       }
     }else{
       out.push(lines[i])
@@ -75,11 +75,36 @@ function groupBlockquotes(md){
 function renderList(){
   const ul=document.getElementById('list')
   ul.innerHTML=''
-  state.filtered.forEach((p,i)=>{
-    const li=document.createElement('li')
+  const featuredPost=state.filtered[0]
+  if(featuredPost){
+    const featured=document.createElement('li')
+    featured.className='list-featured'
+    const kicker=document.createElement('span')
+    kicker.className='kicker'
+    kicker.textContent='这周推荐'
     const t=document.createElement('span')
     t.className='title'
-    t.textContent=p.title
+    t.textContent=displayTitle(featuredPost.title)
+    const note=document.createElement('span')
+    note.className='note'
+    note.textContent='先读这一篇，再慢慢翻。'
+    const d=document.createElement('span')
+    d.className='date'
+    d.textContent=featuredPost.date
+    featured.appendChild(kicker)
+    featured.appendChild(t)
+    featured.appendChild(note)
+    featured.appendChild(d)
+    featured.addEventListener('click',()=>openPost(0))
+    ul.appendChild(featured)
+  }
+  state.filtered.forEach((p,i)=>{
+    const li=document.createElement('li')
+    li.className='post-item'
+    if(i<3) li.dataset.rank=String(i+1)
+    const t=document.createElement('span')
+    t.className='title'
+    t.textContent=displayTitle(p.title)
     const d=document.createElement('span')
     d.className='date'
     d.textContent=p.date
@@ -93,7 +118,7 @@ function renderList(){
 function openPost(i){
   state.activeIndex=i
   const p=state.filtered[i]
-  document.getElementById('article-title').textContent=p.title
+  document.getElementById('article-title').textContent=displayTitle(p.title)
   document.getElementById('article-date').textContent=p.date
   try{location.hash='#post/'+encodeURIComponent(p.filename)}catch(e){}
   const sbar=document.querySelector('.sidebar'); if(sbar){listScrollTop=sbar.scrollTop}
@@ -123,7 +148,7 @@ function openPost(i){
 function filterPosts(q){
   const v=q.trim().toLowerCase()
   if(!v){state.filtered=[...state.posts];renderList();return}
-  let out=state.posts.filter(p=>p.title.toLowerCase().includes(v))
+  let out=state.posts.filter(p=>p.title.toLowerCase().includes(v)||displayTitle(p.title).toLowerCase().includes(v))
   state.filtered=out
   renderList()
   state.posts.forEach(p=>{
@@ -190,11 +215,7 @@ function setup(){
     if(k==='f12')e.preventDefault()
     if(e.ctrlKey&&e.shiftKey&&(k==='i'||k==='j'||k==='c'||k==='k'))e.preventDefault()
     if(e.ctrlKey&&k==='u')e.preventDefault()
-    if(e.ctrlKey&&k==='c'&&!isEditable(e.target))e.preventDefault()
   })
-  document.addEventListener('copy',e=>{e.preventDefault()})
-  document.addEventListener('contextmenu',e=>{e.preventDefault()})
-  document.addEventListener('selectstart',e=>{if(!isEditable(e.target))e.preventDefault()})
 
   const reader=document.querySelector('.reader')
   const progressBar=document.getElementById('reading-progress')
@@ -260,8 +281,8 @@ async function load(){
   }catch(e){
     const t=document.getElementById('article-title')
     const c=document.getElementById('article-content')
-    t.textContent='数据加载失败'
-    c.textContent='未能读取 posts.json，请确认服务器运行与路径正确。'
+    t.textContent='今天没刷出来'
+    c.textContent='文章目录还没读到，刷新一下试试；不行的话我再修。'
   }
 }
 function dateKey(title){
@@ -284,6 +305,11 @@ function formatDateFromTitle(title){
   const m6=title.match(/^(\d{6})/)
   if(m6){const s=m6[1];let y='20'+s.slice(0,2);if(s.startsWith('23'))y='2023';else if(s.startsWith('24'))y='2024';return `${y}-${s.slice(2,4)}-${s.slice(4,6)}`}
   return null
+}
+function displayTitle(title){
+  if(!title) return ''
+  const clean=title.replace(/\.md$/i,'').replace(/^\d{8}/,'').replace(/^\d{6}/,'').replace(/^[\s._\-，。、《》：:；;]+/,'').trim()
+  return clean||title.replace(/\.md$/i,'').trim()
 }
 async function fetchContent(p){
   const url=new URL('../files/'+encodeURIComponent(p.filename),location.href).toString()
@@ -358,11 +384,11 @@ function updatePager(){
   const dPt=document.getElementById('desktop-pager-prev-title')
   const dNt=document.getElementById('desktop-pager-next-title')
   if(!prev||!next||!pt||!nt) return
-  if(i>0){prev.classList.remove('disabled');pt.textContent=state.filtered[i-1].title}else{prev.classList.add('disabled');pt.textContent=''}
-  if(i<state.filtered.length-1){next.classList.remove('disabled');nt.textContent=state.filtered[i+1].title}else{next.classList.add('disabled');nt.textContent=''}
+  if(i>0){prev.classList.remove('disabled');pt.textContent=displayTitle(state.filtered[i-1].title)}else{prev.classList.add('disabled');pt.textContent=''}
+  if(i<state.filtered.length-1){next.classList.remove('disabled');nt.textContent=displayTitle(state.filtered[i+1].title)}else{next.classList.add('disabled');nt.textContent=''}
   if(dPrev&&dNext&&dPt&&dNt){
-    if(i>0){dPrev.classList.remove('disabled');dPt.textContent=state.filtered[i-1].title}else{dPrev.classList.add('disabled');dPt.textContent=''}
-    if(i<state.filtered.length-1){dNext.classList.remove('disabled');dNt.textContent=state.filtered[i+1].title}else{dNext.classList.add('disabled');dNt.textContent=''}
+    if(i>0){dPrev.classList.remove('disabled');dPt.textContent=displayTitle(state.filtered[i-1].title)}else{dPrev.classList.add('disabled');dPt.textContent=''}
+    if(i<state.filtered.length-1){dNext.classList.remove('disabled');dNt.textContent=displayTitle(state.filtered[i+1].title)}else{dNext.classList.add('disabled');dNt.textContent=''}
   }
 }
 function openPrev(){const i=state.activeIndex; if(i>0) openPost(i-1)}
