@@ -45,6 +45,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"SanJiKai","Patr
 #article-content blockquote p:first-child{margin-top:0;font-weight:700}
 #article-content blockquote p:last-child{margin-bottom:0}
 #article-content blockquote:empty{display:none}
+body, .reader, #article-content{-webkit-user-select:none;-ms-user-select:none;user-select:none}
 .sidebar{-webkit-user-select:none;-ms-user-select:none;user-select:none}
 input, textarea{user-select:text;-webkit-user-select:text}
 #article-content h1,#article-content h2,#article-content h3{margin:20px 0 10px}
@@ -100,6 +101,11 @@ input, textarea{user-select:text;-webkit-user-select:text}
 #gate-btn{width:100%;padding:10px;border:2px dashed var(--border);border-radius:10px;background:var(--accent);color:#fff;cursor:pointer}
 #gate-btn:hover{filter:brightness(1.05)}
 .gate-msg{margin-top:8px;color:#d33;font-size:13px}
+#devtools-guard{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(255,255,255,.92);backdrop-filter:blur(3px);z-index:10000}
+body.devtools-open #devtools-guard{display:flex}
+#devtools-guard .guard-card{background:#fff;border:2px dashed var(--border);border-radius:16px;box-shadow:8px 8px 0 0 var(--shadow);padding:20px 18px;width:320px;text-align:center}
+#devtools-guard .guard-title{font-size:18px;margin-bottom:8px}
+#devtools-guard .guard-desc{font-size:13px;color:var(--muted)}
 
 /* Mobile modes */
 @media(max-width:768px){
