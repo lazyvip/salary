@@ -123,11 +123,6 @@ function openPost(i){
   try{location.hash='#post/'+encodeURIComponent(p.filename)}catch(e){}
   const sbar=document.querySelector('.sidebar'); if(sbar){listScrollTop=sbar.scrollTop}
   setMode('reader')
-  if(!isAuthorized()){
-    document.getElementById('article-content').textContent='请先输入密码'
-    showGate()
-    return
-  }
   fetchContent(p).then(md=>{
     document.getElementById('article-content').innerHTML=renderMarkdown(md)
     buildTOC()
@@ -334,33 +329,6 @@ init()
 function init(){
   setup()
   load()
-}
-function isAuthorized(){
-  try{const s=localStorage.getItem('lr_auth_until');if(!s)return false;const t=parseInt(s);return Date.now()<t}catch(e){return false}
-}
-function authorize(){
-  const days=7
-  const until=Date.now()+days*24*60*60*1000
-  localStorage.setItem('lr_auth_until',String(until))
-}
-function showGate(){
-  const g=document.getElementById('gate')
-  g.classList.remove('hidden')
-  const input=document.getElementById('gate-input')
-  const btn=document.getElementById('gate-btn')
-  const msg=document.getElementById('gate-msg')
-  const pass=(document.querySelector('meta[name="site-password"]')?.content||'')
-  const submit=()=>{
-    const v=(input.value||'').trim()
-    if(v===pass){authorize();hideGate();load()}else{msg.textContent='密码错误，请查看专属群总链接（每月修改一次），和【懒人知识库】同一个密码'}
-  }
-  btn.addEventListener('click',submit)
-  input.addEventListener('keydown',e=>{if(e.key==='Enter')submit()})
-  input.focus()
-}
-function hideGate(){
-  const g=document.getElementById('gate')
-  g.classList.add('hidden')
 }
 function buildTOC(){
   const panel=document.getElementById('toc-panel')
