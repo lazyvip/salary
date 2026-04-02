@@ -268,32 +268,6 @@ function setup(){
   }
   reader?.addEventListener('scroll',()=>{handleScroll();updateProgress()},{passive:true})
   window.addEventListener('scroll',()=>{handleScroll()},{passive:true})
-  setupDevtoolsGuard()
-}
-function setupDevtoolsGuard(){
-  if(document.getElementById('devtools-guard')) return
-  const guard=document.createElement('div')
-  guard.id='devtools-guard'
-  guard.innerHTML='<div class="guard-card"><div class="guard-title">内容受保护</div><div class="guard-desc">检测到调试工具开启，请关闭后继续阅读。</div></div>'
-  document.body.appendChild(guard)
-  const check=()=>{
-    if(window.top!==window){
-      document.body.classList.remove('devtools-open')
-      return
-    }
-    const outerW=window.outerWidth
-    const outerH=window.outerHeight
-    const innerW=window.innerWidth
-    const innerH=window.innerHeight
-    const invalid=outerW<innerW||outerH<innerH||outerW<300||outerH<300
-    const gapW=Math.abs(outerW-innerW)
-    const gapH=Math.abs(outerH-innerH)
-    const opened=!invalid&&(gapW>160||gapH>160)
-    document.body.classList.toggle('devtools-open',opened)
-  }
-  check()
-  window.addEventListener('resize',check)
-  setInterval(check,1000)
 }
 function isEditable(el){return el&&((el.isContentEditable)||['INPUT','TEXTAREA','SELECT'].includes(el.tagName))}
 async function load(){
