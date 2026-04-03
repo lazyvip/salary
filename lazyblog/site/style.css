@@ -119,6 +119,7 @@ body.devtools-open #devtools-guard{display:flex}
 
   body.mode-reader .sidebar{display:none}
   body.mode-reader .reader{display:block}
+  body.mode-reader .reader{border-top:none}
   body.mode-reader .toc-wrap, body.mode-reader .mob-list-toggle{display:none}
   body.mode-reader .toolbox-back{display:none}
 
