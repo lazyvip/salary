@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>懒人收藏夹</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="lazy.png">
+    <link rel="stylesheet" href="style.css?v=20260403">
+</head>
+  <body>
+    <div id="reading-progress" class="reading-progress"></div>
+    <header class="header">
+      <span class="logo"></span>
+      <h1>懒人收藏夹</h1>
+      <div class="search">
+        <button id="search-toggle" class="search-toggle">🔍</button>
+        <div id="search-box" class="search-box">
+          <input id="search" type="text" placeholder="搜索标题或内容">
+          <span id="count"></span>
+        </div>
+      </div>
+      <a href="../../index.html" class="toolbox-back">返回工具箱</a>
+    </header>
+    <main class="main">
+      <aside class="sidebar">
+        <ul id="list"></ul>
+      </aside>
+      <section class="reader">
+        <button id="mobile-back" class="mobile-back">返回</button>
+        <article id="article">
+          <h2 id="article-title"></h2>
+          <div id="article-date" class="date"></div>
+          <div id="article-content" class="content"></div>
+        </article>
+        <div id="desktop-pager" class="desktop-pager">
+          <a id="desktop-pager-prev" class="desktop-pager-card desktop-pager-prev"><span class="label">← 上一篇</span><span id="desktop-pager-prev-title"></span></a>
+          <a id="desktop-pager-next" class="desktop-pager-card desktop-pager-next"><span class="label">下一篇 →</span><span id="desktop-pager-next-title"></span></a>
+        </div>
+        <div id="mobile-pager" class="mobile-pager">
+          <a id="pager-prev" class="pager-card pager-prev"><span class="label">上一篇</span><span id="pager-prev-title"></span></a>
+          <a id="pager-next" class="pager-card pager-next"><span class="label">下一篇</span><span id="pager-next-title"></span></a>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div>© 懒人收藏夹</div>
+    </footer>
+    <div id="toc-wrap" class="toc-wrap">
+      <div id="toc-toggle" class="toc-toggle">目录</div>
+      <div id="toc-panel" class="toc-panel"></div>
+    </div>
+    <div id="mob-list-toggle" class="mob-list-toggle">列表</div>
+    <script src="app.js?v=20260402"></script>
+  </body>
+</html>

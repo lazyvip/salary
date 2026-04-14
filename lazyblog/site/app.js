@@ -1,7 +1,10 @@
-const state={posts:[],filtered:[],activeIndex:-1}
+const state={posts:[],filtered:[],activeIndex:-1,activeFilename:null}
 const contentCache=new Map()
+const SEARCH_DEBOUNCE_MS=240
 let uiMode='list'
 let listScrollTop=0
+let searchDebounceTimer=null
+let activeSearchToken=0
 function applyMode(){
   const b=document.body
   b.classList.toggle('mode-list',uiMode==='list')
@@ -27,13 +30,21 @@ function renderMarkdown(md){
   html=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
   html=html.replace(/\*(.*?)\*/g,'<em>$1</em>')
   html=html.split(/\n\n+/).map(p=>{
-    if(/^<h\d>/.test(p))return p
-    if(p.startsWith('<blockquote>'))return p
-    if(p.startsWith('```')&&p.endsWith('```')){
-      const c=p.slice(3,-3)
+    const block=(p||'').trim()
+    if(/^<h\d>/.test(block))return block
+    if(block.startsWith('<blockquote>'))return block
+    if(block.startsWith('```')&&block.endsWith('```')){
+      const c=block.slice(3,-3)
       return `<pre><code>${escapeHtml(c)}</code></pre>`
     }
-    return `<p>${p}</p>`
+    const lines=block.split('\n').map(line=>line.trim()).filter(Boolean)
+    if(lines.length&&lines.every(line=>/^[>＞]\s?/.test(line))){
+      const quoteLines=lines.map(line=>line.replace(/^[>＞]\s?/,'')).filter(Boolean)
+      if(quoteLines.length){
+        return `<blockquote><p>${quoteLines.join('</p><p>')}</p></blockquote>`
+      }
+    }
+    return `<p>${block}</p>`
   }).join('')
   return html
 }
@@ -52,11 +63,11 @@ function groupBlockquotes(md){
   const lines=md.split('\n')
   let out=[]
   for(let i=0;i<lines.length;i++){
-    const m=lines[i].match(/^\s*>\s?(.*)$/)
+    const m=lines[i].match(/^\s*[>＞]\s?(.*)$/)
     if(m){
       let buf=[]
       while(i<lines.length){
-        const mm=lines[i].match(/^\s*>\s?(.*)$/)
+        const mm=lines[i].match(/^\s*[>＞]\s?(.*)$/)
         if(!mm)break
         const t=(mm[1]||'').trim()
         if(t.length>0) buf.push(t)
@@ -79,6 +90,7 @@ function renderList(){
   if(featuredPost){
     const featured=document.createElement('li')
     featured.className='list-featured'
+    featured.dataset.filename=featuredPost.filename
     const kicker=document.createElement('span')
     kicker.className='kicker'
     kicker.textContent='这周推荐'
@@ -102,6 +114,7 @@ function renderList(){
     const li=document.createElement('li')
     li.className='post-item'
     if(i<3) li.dataset.rank=String(i+1)
+    li.dataset.filename=p.filename
     const t=document.createElement('span')
     t.className='title'
     t.textContent=displayTitle(p.title)
@@ -114,16 +127,29 @@ function renderList(){
     ul.appendChild(li)
   })
   document.getElementById('count').textContent=`${state.filtered.length}`
+  updateActiveListItem()
+}
+function updateActiveListItem(){
+  const list=document.getElementById('list')
+  if(!list) return
+  const activeFilename=state.activeFilename
+  list.querySelectorAll('li').forEach(li=>li.classList.remove('is-active'))
+  if(!activeFilename) return
+  const activeEl=list.querySelector(`li[data-filename="${CSS.escape(activeFilename)}"]`)
+  activeEl?.classList.add('is-active')
 }
 function openPost(i){
+  if(i<0||i>=state.filtered.length) return
   state.activeIndex=i
   const p=state.filtered[i]
+  state.activeFilename=p.filename
+  updateActiveListItem()
   document.getElementById('article-title').textContent=displayTitle(p.title)
   document.getElementById('article-date').textContent=p.date
   try{location.hash='#post/'+encodeURIComponent(p.filename)}catch(e){}
   const sbar=document.querySelector('.sidebar'); if(sbar){listScrollTop=sbar.scrollTop}
   setMode('reader')
-  fetchContent(p).then(md=>{
+  getContent(p).then(md=>{
     document.getElementById('article-content').innerHTML=renderMarkdown(md)
     buildTOC()
     const reader=document.querySelector('.reader'); if(reader) reader.scrollTop=0
@@ -141,27 +167,64 @@ function openPost(i){
   })
 }
 function filterPosts(q){
-  const v=q.trim().toLowerCase()
+  const token=++activeSearchToken
+  const v=normalizeForSearch(q)
   if(!v){state.filtered=[...state.posts];renderList();return}
-  let out=state.posts.filter(p=>p.title.toLowerCase().includes(v)||displayTitle(p.title).toLowerCase().includes(v))
-  state.filtered=out
-  renderList()
-  state.posts.forEach(p=>{
-    getContent(p).then(md=>{
-      if(md.toLowerCase().includes(v)){
-        if(!state.filtered.includes(p)){
-          state.filtered.push(p)
-          renderList()
-        }
-      }
-    }).catch(()=>{})
+  const matchedSet=new Set()
+  const titleMatches=state.posts.filter(p=>{
+    const hit=postMatchesQuery(p,v)
+    if(hit) matchedSet.add(p.filename)
+    return hit
   })
+  state.filtered=titleMatches
+  renderList()
+  let hasIncrementalUpdate=false
+  // Reuse local cache first so typed queries get near-instant feedback.
+  for(const p of state.posts){
+    if(matchedSet.has(p.filename)) continue
+    const md=contentCache.get(p.filename)
+    if(md&&normalizeForSearch(md).includes(v)){
+      matchedSet.add(p.filename)
+      state.filtered.push(p)
+      hasIncrementalUpdate=true
+    }
+  }
+  if(hasIncrementalUpdate) renderList()
+  ;(async()=>{
+    let pendingRender=false
+    let appended=0
+    for(const p of state.posts){
+      if(token!==activeSearchToken) return
+      if(matchedSet.has(p.filename)) continue
+      if(contentCache.has(p.filename)) continue
+      try{
+        const md=await getContent(p)
+        if(token!==activeSearchToken) return
+        if(normalizeForSearch(md).includes(v)){
+          matchedSet.add(p.filename)
+          state.filtered.push(p)
+          appended++
+          pendingRender=true
+          if(appended%4===0){
+            renderList()
+            pendingRender=false
+            await new Promise(resolve=>setTimeout(resolve,0))
+          }
+        }
+      }catch(e){}
+    }
+    if(token===activeSearchToken&&pendingRender) renderList()
+  })()
 }
 function setup(){
   const input=document.getElementById('search')
   const searchToggle=document.getElementById('search-toggle')
   const searchBox=document.getElementById('search-box')
-  input.addEventListener('input',e=>filterPosts(e.target.value))
+  input.addEventListener('input',e=>{
+    const value=e.target.value
+    if(searchDebounceTimer) clearTimeout(searchDebounceTimer)
+    searchDebounceTimer=setTimeout(()=>filterPosts(value),SEARCH_DEBOUNCE_MS)
+  })
   searchToggle?.addEventListener('click',()=>{
     searchBox?.classList.toggle('active')
     if(searchBox?.classList.contains('active')){input?.focus()}
@@ -265,6 +328,14 @@ function setup(){
   window.addEventListener('scroll',()=>{handleScroll()},{passive:true})
 }
 function isEditable(el){return el&&((el.isContentEditable)||['INPUT','TEXTAREA','SELECT'].includes(el.tagName))}
+function normalizeForSearch(text){return String(text||'').toLowerCase().trim()}
+function postMatchesQuery(post,query){
+  const title=normalizeForSearch(post.title)
+  const prettyTitle=normalizeForSearch(displayTitle(post.title))
+  const filename=normalizeForSearch(post.filename)
+  const date=normalizeForSearch(post.date)
+  return title.includes(query)||prettyTitle.includes(query)||filename.includes(query)||date.includes(query)
+}
 async function load(){
   try{
     const url=new URL('../data/posts.json',location.href).toString()
