@@ -683,6 +683,8 @@ body.mode-list #list {
 
 @media (max-width: 768px) {
   body { padding: 6px; }
+  body.mode-reader { padding: 0; }
+  body.mode-reader .page-a4 { border: none; border-radius: 0; box-shadow: none; }
   .main { transition: none; }
   .sidebar { transition: none; }
   .reader { transition: none; transform: none; }
@@ -761,8 +763,11 @@ body.mode-list #list {
   body.mode-reader .toc-wrap,
   body.mode-reader .mob-list-toggle { display: none; }
   body.mode-reader .toolbox-back { display: none; }
-  body.mode-reader .main { height: calc(100vh - 72px); }
-  body.mode-reader .reader { height: 100%; }
+  body.mode-reader .main { height: calc(100vh - 60px); border: none; border-radius: 0; }
+  body.mode-reader .reader { height: 100%; padding: 0; }
+  body.mode-reader #article { padding: 12px 16px 80px; }
+  body.mode-reader .header { padding: 8px 12px; }
+  body.mode-reader .page-content { padding: 0; }
 
   .mobile-back {
     display: none;
