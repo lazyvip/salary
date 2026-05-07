@@ -91,6 +91,11 @@ button:disabled {
   flex-direction: column;
 }
 
+body.mode-reader .page-a4 {
+  height: calc(100vh - 72px);
+  overflow: hidden;
+}
+
 .page-top-line {
   position: absolute;
   top: 0;
@@ -220,6 +225,10 @@ button:disabled {
   transition: grid-template-columns 0.55s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+body.mode-reader .main {
+  overflow: hidden;
+}
+
 .sidebar {
   border-right: 1px solid var(--line);
   overflow: auto;
@@ -228,6 +237,11 @@ button:disabled {
   padding: 8px;
   background: rgba(255, 255, 255, 0.7);
   transition: border-right-color 0.35s ease;
+}
+
+body.mode-reader .sidebar {
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 #list {
@@ -314,6 +328,12 @@ button:disabled {
   transform: translateX(0);
   transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1),
               transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+body.mode-reader .reader {
+  overflow: auto;
+  border-radius: 0 10px 10px 0;
+  overscroll-behavior: contain;
 }
 
 #article {
@@ -758,8 +778,10 @@ body.mode-list #list {
   body.mode-list .mob-list-toggle { display: none; }
 
   body.mode-reader .sidebar { display: none; }
-  body.mode-reader .reader { display: block; }
+  body.mode-reader .reader { display: block; overflow: auto; }
   body.mode-reader .reader { border-top: none; }
+  body.mode-reader .page-a4 { overflow: hidden; }
+  body.mode-reader .main { overflow: hidden; }
   body.mode-reader .toc-wrap,
   body.mode-reader .mob-list-toggle { display: none; }
   body.mode-reader .toolbox-back { display: none; }

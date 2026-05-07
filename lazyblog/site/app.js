@@ -152,7 +152,7 @@ function openPost(i){
   getContent(p).then(md=>{
     document.getElementById('article-content').innerHTML=renderMarkdown(md)
     buildTOC()
-    const reader=document.querySelector('.reader'); if(reader) reader.scrollTop=0
+    const r=document.querySelector('.reader'); if(r) r.scrollTo({top:0,behavior:'instant'})
     window.scrollTo({top:0,behavior:'instant'})
     updatePager()
     const progressBar=document.getElementById('reading-progress')
@@ -293,7 +293,7 @@ function setup(){
   let lastY=0
   let scrollTimer=null
   const mq=window.matchMedia('(max-width: 768px)')
-  const getScrollY=()=> mq.matches ? window.scrollY : (reader?.scrollTop||0)
+  const getScrollY=()=> reader?.scrollTop||0
   const handleScroll=()=>{
     if(uiMode!=='reader'||!mq.matches) return
     const y=getScrollY()
@@ -317,10 +317,17 @@ function setup(){
     lastY=y
   }
   const updateProgress=()=>{
-    if(uiMode!=='reader'||!reader) return
-    const scrollTop=reader.scrollTop
-    const scrollHeight=reader.scrollHeight
-    const clientHeight=reader.clientHeight
+    if(uiMode!=='reader') return
+    let scrollTop,scrollHeight,clientHeight
+    if(reader){
+      scrollTop=reader.scrollTop
+      scrollHeight=reader.scrollHeight
+      clientHeight=reader.clientHeight
+    }else{
+      scrollTop=window.scrollY
+      scrollHeight=document.documentElement.scrollHeight
+      clientHeight=document.documentElement.clientHeight
+    }
     const scrolled=(scrollTop/(scrollHeight-clientHeight))*100
     if(progressBar){
       progressBar.style.width=scrolled+'%'
@@ -328,7 +335,7 @@ function setup(){
     }
   }
   reader?.addEventListener('scroll',()=>{handleScroll();updateProgress()},{passive:true})
-  window.addEventListener('scroll',()=>{handleScroll()},{passive:true})
+  window.addEventListener('scroll',()=>{handleScroll();updateProgress()},{passive:true})
 }
 function isEditable(el){return el&&((el.isContentEditable)||['INPUT','TEXTAREA','SELECT'].includes(el.tagName))}
 function normalizeForSearch(text){return String(text||'').toLowerCase().trim()}
