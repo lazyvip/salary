@@ -1,0 +1,19 @@
+#!/bin/bash
+set -e
+
+cd "$(dirname "$0")"
+
+echo "=== 📝 检查 git 状态 ==="
+git status
+
+echo -e "\n=== 📦 添加更改 ==="
+git add -A
+
+echo -e "\n=== ✍️  提交 ==="
+commit_msg="update at $(date '+%Y-%m-%d %H:%M:%S')"
+git commit -m "$commit_msg" 2>&1 || echo "无更改需要提交"
+
+echo -e "\n=== 🚀 推送 ==="
+git push origin main 2>&1
+
+echo -e "\n✅ 同步完成！"

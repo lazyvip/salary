@@ -242,7 +242,10 @@ function setup(){
   const mobilePager=document.getElementById('mobile-pager')
   const desktopPagerPrev=document.getElementById('desktop-pager-prev')
   const desktopPagerNext=document.getElementById('desktop-pager-next')
-  mobileBack?.addEventListener('click',()=>{setMode('list');location.hash='#list';const s=document.querySelector('.sidebar'); if(s) s.scrollTop=listScrollTop})
+  const goList=()=>{setMode('list');location.hash='#list';const s=document.querySelector('.sidebar'); if(s) s.scrollTop=listScrollTop}
+  mobileBack?.addEventListener('click',goList)
+  document.querySelector('.header h1')?.addEventListener('click',goList)
+  document.querySelector('.logo')?.addEventListener('click',goList)
   pagerPrev?.addEventListener('click',e=>{e.preventDefault();openPrev()})
   pagerNext?.addEventListener('click',e=>{e.preventDefault();openNext()})
   desktopPagerPrev?.addEventListener('click',e=>{e.preventDefault();openPrev()})
