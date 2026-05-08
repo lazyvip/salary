@@ -160,8 +160,10 @@ function openPost(i){
     const sidebar=document.querySelector('.sidebar'); if(sidebar&&sidebar.classList.contains('mobile-open')){sidebar.classList.remove('mobile-open');document.body.classList.remove('no-scroll')}
     const mobileBack=document.getElementById('mobile-back')
     const mobilePager=document.getElementById('mobile-pager')
+    const tocW=document.getElementById('toc-wrap')
     mobileBack?.classList.remove('autohide-hide')
     mobilePager?.classList.remove('autohide-hide')
+    tocW?.classList.remove('autohide-hide')
   }).catch(()=>{
     document.getElementById('article-content').textContent='加载正文失败'
   })
@@ -253,14 +255,7 @@ function setup(){
   const mobListToggle=document.getElementById('mob-list-toggle')
   const sidebar=document.querySelector('.sidebar')
   if(tocWrap){
-    let tocCloseTimer=null
-    const open=()=>{if(tocCloseTimer){clearTimeout(tocCloseTimer);tocCloseTimer=null}tocWrap.classList.add('open')}
-    const scheduleClose=()=>{if(tocCloseTimer){clearTimeout(tocCloseTimer)}tocCloseTimer=setTimeout(()=>{tocWrap.classList.remove('open')},400)}
-    tocWrap.addEventListener('mouseenter',open)
-    tocWrap.addEventListener('mouseleave',scheduleClose)
     tocToggle?.addEventListener('click',()=>tocWrap.classList.toggle('open'))
-    // touch devices: tap toggles panel
-    tocWrap.addEventListener('touchstart',open,{passive:true})
     document.addEventListener('click',e=>{if(!tocWrap.contains(e.target)) tocWrap.classList.remove('open')})
   }
   const openMobileList=()=>{if(sidebar){sidebar.classList.add('mobile-open');document.body.classList.add('no-scroll')}}
@@ -291,29 +286,46 @@ function setup(){
   const mobileBackBtn=document.getElementById('mobile-back')
   const mobilePagerBar=document.getElementById('mobile-pager')
   let lastY=0
+  let lastDirection='up'
   let scrollTimer=null
   const mq=window.matchMedia('(max-width: 768px)')
   const getScrollY=()=> reader?.scrollTop||0
+  const showAutohideEls=()=>{
+    mobileBackBtn?.classList.remove('autohide-hide')
+    mobilePagerBar?.classList.remove('autohide-hide')
+    tocWrap?.classList.remove('autohide-hide')
+  }
+  const hideAutohideEls=()=>{
+    mobileBackBtn?.classList.add('autohide-hide')
+    mobilePagerBar?.classList.add('autohide-hide')
+    tocWrap?.classList.add('autohide-hide')
+  }
   const handleScroll=()=>{
-    if(uiMode!=='reader'||!mq.matches) return
+    if(uiMode!=='reader') return
     const y=getScrollY()
     if(scrollTimer) clearTimeout(scrollTimer)
-    if(y>lastY+20){
-      mobileBackBtn?.classList.add('autohide-hide')
-      mobilePagerBar?.classList.add('autohide-hide')
-    }
-    else if(y<lastY-20){
-      mobileBackBtn?.classList.remove('autohide-hide')
-      mobilePagerBar?.classList.remove('autohide-hide')
-    }
     if(y<=10){
-      mobileBackBtn?.classList.remove('autohide-hide')
-      mobilePagerBar?.classList.remove('autohide-hide')
+      showAutohideEls()
+      lastDirection='up'
+      lastY=y
+      return
+    }
+    const delta=y-lastY
+    if(delta>3){
+      if(lastDirection!=='down'){
+        lastDirection='down'
+        hideAutohideEls()
+      }
+    }else if(delta<-3){
+      if(lastDirection!=='up'){
+        lastDirection='up'
+        showAutohideEls()
+      }
     }
     scrollTimer=setTimeout(()=>{
-      mobileBackBtn?.classList.remove('autohide-hide')
-      mobilePagerBar?.classList.remove('autohide-hide')
-    },2000)
+      showAutohideEls()
+      lastDirection='up'
+    },1500)
     lastY=y
   }
   const updateProgress=()=>{
@@ -432,7 +444,7 @@ function buildTOC(){
     a.textContent=text
     a.href='#'+id
     a.className='toc-item toc-'+h.tagName.toLowerCase()
-    a.addEventListener('click',e=>{e.preventDefault();document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})})
+    a.addEventListener('click',e=>{e.preventDefault();const target=document.getElementById(id);if(target){const reader=document.querySelector('.reader');if(reader){reader.scrollTo({top:target.offsetTop-reader.offsetTop,behavior:'smooth'})}else{target.scrollIntoView({behavior:'smooth',block:'start'})}}})
     panel.appendChild(a)
   })
 }
