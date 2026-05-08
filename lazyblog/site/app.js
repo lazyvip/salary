@@ -411,16 +411,12 @@ function init(){
   setup()
   load()
   window.addEventListener('load',()=>{
-    setTimeout(loadCustomFont,1500)
+    if(document.fonts.check('1em SanJiKai')){
+      document.body.classList.add('custom-font-loaded')
+    }else{
+      document.fonts.ready.then(()=>{document.body.classList.add('custom-font-loaded')})
+    }
   })
-}
-async function loadCustomFont(){
-  try{
-    const font=new FontFace('SanJiKai','url(../data/三极古拙楷书简.ttf)')
-    await font.load()
-    document.fonts.add(font)
-    document.body.classList.add('custom-font-loaded')
-  }catch(e){console.warn('自定义字体加载失败:',e)}
 }
 function buildTOC(){
   const panel=document.getElementById('toc-panel')

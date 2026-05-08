@@ -1,5 +1,6 @@
 @font-face {
   font-family: 'SanJiKai';
-  src: url('../data/三极古拙楷书简.ttf') format('truetype');
+  src: url('../data/三极古拙楷书简.woff2') format('woff2'),
+       url('../data/三极古拙楷书简.ttf') format('truetype');
   font-display: swap;
 }
