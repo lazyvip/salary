@@ -152,7 +152,7 @@ function openPost(i){
   getContent(p).then(md=>{
     document.getElementById('article-content').innerHTML=renderMarkdown(md)
     buildTOC()
-    const r=document.querySelector('.reader'); if(r) r.scrollTo({top:0,behavior:'instant'})
+    const r=document.querySelector('.reader-scroll'); if(r) r.scrollTo({top:0,behavior:'instant'})
     window.scrollTo({top:0,behavior:'instant'})
     updatePager()
     const progressBar=document.getElementById('reading-progress')
@@ -281,7 +281,7 @@ function setup(){
   document.addEventListener('contextmenu',e=>{if(!isEditable(e.target))e.preventDefault()})
   document.addEventListener('selectstart',e=>{if(!isEditable(e.target))e.preventDefault()})
 
-  const reader=document.querySelector('.reader')
+  const reader=document.querySelector('.reader-scroll')
   const progressBar=document.getElementById('reading-progress')
   const mobileBackBtn=document.getElementById('mobile-back')
   const mobilePagerBar=document.getElementById('mobile-pager')
@@ -444,7 +444,7 @@ function buildTOC(){
     a.textContent=text
     a.href='#'+id
     a.className='toc-item toc-'+h.tagName.toLowerCase()
-    a.addEventListener('click',e=>{e.preventDefault();const target=document.getElementById(id);if(target){const reader=document.querySelector('.reader');if(reader){reader.scrollTo({top:target.offsetTop-reader.offsetTop,behavior:'smooth'})}else{target.scrollIntoView({behavior:'smooth',block:'start'})}}})
+    a.addEventListener('click',e=>{e.preventDefault();const target=document.getElementById(id);if(target){const rs=document.querySelector('.reader-scroll');if(rs){rs.scrollTo({top:target.offsetTop,behavior:'smooth'})}else{target.scrollIntoView({behavior:'smooth',block:'start'})}}})
     panel.appendChild(a)
   })
 }

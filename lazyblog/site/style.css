@@ -320,20 +320,24 @@ body.mode-reader .sidebar {
 }
 
 .reader {
-  overflow: auto;
+  position: relative;
+  overflow: hidden;
   min-height: 0;
   min-width: 0;
-  padding: 10px;
   opacity: 1;
   transform: translateX(0);
   transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0, 1),
               transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-body.mode-reader .reader {
+.reader-scroll {
   overflow: auto;
-  border-radius: 0 10px 10px 0;
+  height: 100%;
   overscroll-behavior: contain;
+}
+
+body.mode-reader .reader {
+  border-radius: 0 10px 10px 0;
 }
 
 #article {
@@ -512,7 +516,7 @@ textarea {
 }
 
 .toc-wrap {
-  position: fixed;
+  position: absolute;
   right: 14px;
   bottom: 20px;
   z-index: 999;
@@ -578,9 +582,9 @@ textarea {
 
 .mobile-back {
   display: none;
-  position: fixed;
+  position: absolute;
   left: 14px;
-  bottom: 20px;
+  top: 10px;
   z-index: 999;
   padding: 8px 11px;
   box-shadow: 0 4px 12px var(--card-shadow);
@@ -591,7 +595,7 @@ textarea {
 body.mode-reader .mobile-back { display: inline-block; }
 
 .mobile-back.autohide-hide {
-  transform: translateY(80%);
+  transform: translateY(-120%);
   opacity: 0;
   pointer-events: none;
 }
@@ -767,7 +771,7 @@ body.mode-list .mobile-back {
     width: 100%;
     max-width: none;
   }
-  .reader { padding: 4px; }
+  .reader-scroll { padding: 4px; }
   #article { padding: 16px 16px 24px; }
   #article-content {
     font-size: 17px;
@@ -810,7 +814,7 @@ body.mode-list .mobile-back {
   body.mode-list .mob-list-toggle { display: none; }
 
   body.mode-reader .sidebar { display: none; }
-  body.mode-reader .reader { display: block; overflow: auto; }
+  body.mode-reader .reader { display: block; }
   body.mode-reader .reader { border-top: none; }
   body.mode-reader .page-a4 { overflow: hidden; }
   body.mode-reader .main { overflow: hidden; }
@@ -823,13 +827,8 @@ body.mode-list .mobile-back {
   body.mode-reader .page-content { padding: 0; }
 
   .mobile-back {
-    top: 72px;
+    top: 12px;
     left: 12px;
-    bottom: auto;
-  }
-
-  .mobile-back.autohide-hide {
-    transform: translateY(-120%);
   }
 
   .mobile-pager {

@@ -32,14 +32,21 @@
               <ul id="list"></ul>
             </aside>
             <section class="reader">
-              <article id="article">
-                <h2 id="article-title"></h2>
-                <div id="article-date" class="date"></div>
-                <div id="article-content" class="content"></div>
-              </article>
-              <div id="desktop-pager" class="desktop-pager">
-                <a id="desktop-pager-prev" class="desktop-pager-card desktop-pager-prev"><span class="label">← 上一篇</span><span id="desktop-pager-prev-title"></span></a>
-                <a id="desktop-pager-next" class="desktop-pager-card desktop-pager-next"><span class="label">下一篇 →</span><span id="desktop-pager-next-title"></span></a>
+              <button id="mobile-back" class="mobile-back">返回</button>
+              <div class="reader-scroll">
+                <article id="article">
+                  <h2 id="article-title"></h2>
+                  <div id="article-date" class="date"></div>
+                  <div id="article-content" class="content"></div>
+                </article>
+                <div id="desktop-pager" class="desktop-pager">
+                  <a id="desktop-pager-prev" class="desktop-pager-card desktop-pager-prev"><span class="label">← 上一篇</span><span id="desktop-pager-prev-title"></span></a>
+                  <a id="desktop-pager-next" class="desktop-pager-card desktop-pager-next"><span class="label">下一篇 →</span><span id="desktop-pager-next-title"></span></a>
+                </div>
+              </div>
+              <div id="toc-wrap" class="toc-wrap">
+                <button id="toc-toggle" class="toc-toggle">目录</button>
+                <div id="toc-panel" class="toc-panel"></div>
               </div>
               <div id="mobile-pager" class="mobile-pager">
                 <a id="pager-prev" class="pager-card pager-prev"><span class="label">上一篇</span><span id="pager-prev-title"></span></a>
@@ -53,11 +60,6 @@
           <div>PRINT STABLE A4</div>
         </footer>
       </section>
-    </div>
-    <button id="mobile-back" class="mobile-back">返回</button>
-    <div id="toc-wrap" class="toc-wrap">
-      <button id="toc-toggle" class="toc-toggle">目录</button>
-      <div id="toc-panel" class="toc-panel"></div>
     </div>
     <div id="mob-list-toggle" class="mob-list-toggle">列表</div>
     <script src="app.js?v=20260414"></script>
