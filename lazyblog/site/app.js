@@ -418,8 +418,49 @@ async function getContent(p){
   contentCache.set(p.filename,md)
   return md
 }
-init()
+function showPasswordOverlay(expected,onSuccess){
+  const overlay=document.createElement('div')
+  overlay.id='pw-overlay'
+  Object.assign(overlay.style,{position:'fixed',inset:'0',background:'#fff',zIndex:'99999',display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column',gap:'16px'})
+  const box=document.createElement('div')
+  Object.assign(box.style,{display:'flex',flexDirection:'column',alignItems:'center',gap:'12px'})
+  const title=document.createElement('div')
+  title.textContent='懒人收藏夹'
+  Object.assign(title.style,{fontSize:'20px',fontWeight:'bold',color:'#333'})
+  const input=document.createElement('input')
+  input.type='password'
+  input.placeholder='请输入访问密码'
+  Object.assign(input.style,{padding:'8px 14px',border:'1px solid #ccc',borderRadius:'6px',fontSize:'15px',outline:'none',width:'200px',textAlign:'center'})
+  const btn=document.createElement('button')
+  btn.textContent='进入'
+  Object.assign(btn.style,{padding:'8px 28px',border:'none',borderRadius:'6px',background:'#333',color:'#fff',fontSize:'15px',cursor:'pointer'})
+  const err=document.createElement('div')
+  err.style.cssText='color:red;font-size:13px;min-height:18px'
+  const tryUnlock=()=>{
+    if(input.value===expected){overlay.remove();onSuccess()}
+    else{err.textContent='密码错误';input.value='';input.focus()}
+  }
+  btn.addEventListener('click',tryUnlock)
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock()})
+  box.appendChild(title)
+  box.appendChild(input)
+  box.appendChild(btn)
+  box.appendChild(err)
+  overlay.appendChild(box)
+  document.body.appendChild(overlay)
+  input.focus()
+}
+
 function init(){
+  const pwMeta=document.querySelector('meta[name="site-password"]')
+  const expected=pwMeta?.content?.trim()
+  if(expected){
+    const sessionKey='lazyblog_auth_'+expected
+    if(sessionStorage.getItem(sessionKey)!=='ok'){
+      showPasswordOverlay(expected,()=>{sessionStorage.setItem(sessionKey,'ok');setup();load()})
+      return
+    }
+  }
   setup()
   load()
   window.addEventListener('load',()=>{
@@ -469,3 +510,5 @@ function updatePager(){
 }
 function openPrev(){const i=state.activeIndex; if(i>0) openPost(i-1)}
 function openNext(){const i=state.activeIndex; if(i<state.filtered.length-1) openPost(i+1)}
+
+init()
