@@ -140,6 +140,15 @@ function updateActiveListItem(){
 }
 function openPost(i){
   if(i<0||i>=state.filtered.length) return
+  const pwMeta=document.querySelector('meta[name="site-password"]')
+  const expected=pwMeta?.content?.trim()
+  if(expected){
+    const sessionKey='lazyblog_auth_'+expected
+    if(sessionStorage.getItem(sessionKey)!=='ok'){
+      showPasswordOverlay(expected,()=>{sessionStorage.setItem(sessionKey,'ok');openPost(i)})
+      return
+    }
+  }
   state.activeIndex=i
   const p=state.filtered[i]
   state.activeFilename=p.filename
@@ -438,7 +447,7 @@ function showPasswordOverlay(expected,onSuccess){
   err.style.cssText='color:red;font-size:13px;min-height:18px'
   const tryUnlock=()=>{
     if(input.value===expected){overlay.remove();onSuccess()}
-    else{err.textContent='密码错误';input.value='';input.focus()}
+    else{err.innerHTML='仅供 懒人专属群 成员访问。<br>访问密码查看群公告，不定期修改密码';input.value='';input.focus()}
   }
   btn.addEventListener('click',tryUnlock)
   input.addEventListener('keydown',e=>{if(e.key==='Enter')tryUnlock()})
@@ -452,15 +461,6 @@ function showPasswordOverlay(expected,onSuccess){
 }
 
 function init(){
-  const pwMeta=document.querySelector('meta[name="site-password"]')
-  const expected=pwMeta?.content?.trim()
-  if(expected){
-    const sessionKey='lazyblog_auth_'+expected
-    if(sessionStorage.getItem(sessionKey)!=='ok'){
-      showPasswordOverlay(expected,()=>{sessionStorage.setItem(sessionKey,'ok');setup();load()})
-      return
-    }
-  }
   setup()
   load()
   window.addEventListener('load',()=>{
