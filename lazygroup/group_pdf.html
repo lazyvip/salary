@@ -316,13 +316,15 @@
     <script>
 		function checkPassword() {
 			var password = document.getElementById('password').value;
-			
-			if (password == '0702') {
-				document.getElementById('content').style.display = 'block';
-				document.getElementById('passwordForm').style.display = 'none';
-			} else {
-				alert('密码不正确，请确保你是 懒人专属群 成员。\n最新密码访问专属群Q群消息');
-			}
+			crypto.subtle.digest('SHA-256', new TextEncoder().encode(password)).then(function(hash) {
+				var hex = Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+				if (hex === 'f3d497366e7adc53c17ab25367108b8e826b168f3edb00ade987b814eb2d2598') {
+					document.getElementById('content').style.display = 'block';
+					document.getElementById('passwordForm').style.display = 'none';
+				} else {
+					alert('密码不正确，请确保你是 懒人专属群 成员。\n最新密码访问专属群Q群消息');
+				}
+			});
 		}
 
 		function openRandomLink() {
